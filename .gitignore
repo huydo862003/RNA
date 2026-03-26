@@ -4,6 +4,7 @@ node_modules/
 dist/
 build/
 storybook-static/
+doc-dist/
 
 # Coverage
 coverage/

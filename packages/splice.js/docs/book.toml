@@ -5,7 +5,7 @@ src = "src"
 title = "splice.js"
 
 [build]
-build-dir = "book"
+build-dir = "../doc-dist"
 
 [output.html]
 mathjax-support = true

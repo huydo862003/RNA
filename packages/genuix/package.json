@@ -36,6 +36,7 @@
     "dev": "storybook dev -p 8686",
     "build": "vite build",
     "build-storybook": "storybook build",
+    "doc:build": "storybook build -o doc-dist",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },

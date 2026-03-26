@@ -8,7 +8,8 @@
     "lint:fix": "pnpm -r lint:fix",
     "changeset": "changeset",
     "version": "changeset version",
-    "release": "pnpm build && changeset publish && git push --follow-tags"
+    "release": "pnpm build && changeset publish && git push --follow-tags",
+    "doc:build": "node scripts/build-docs.mjs"
   },
   "keywords": [
     "design system",
