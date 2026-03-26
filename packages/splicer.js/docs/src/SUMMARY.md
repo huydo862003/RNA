@@ -9,7 +9,7 @@
 - [Notes](./notes.md)
   - [Surveys]()
     - [Ramalingam & Reps (1993)](./notes/surveys/ramalingam-reps-1993.md)
-    - [Reactive & Incremental Programming (blog)](./notes/surveys/reactive-incremental-survey.md)
+
   - [Incremental Computation]()
     - [Acar - Self-Adjusting Computation (2005)](./notes/incremental-computation/acar-2005.md)
     - [Hammer et al. - Adapton (PLDI 2014)](./notes/incremental-computation/adapton-2014.md)
