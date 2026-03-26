@@ -2,7 +2,7 @@
   "$schema": "https://json.schemastore.org/package",
   "name": "@hdnax/splice.js",
   "version": "0.1.0",
-  "description": "Efficient incremental computation.",
+  "description": "Reactive computation via finite differencing.",
   "repository": {
     "type": "git",
     "url": "https://github.com/hdnax/rna.git",
@@ -32,7 +32,9 @@
   "scripts": {
     "build": "vite build",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "docs": "mdbook serve docs",
+    "docs:build": "mdbook build docs"
   },
   "peerDependencies": {
     "eslint": "^9.39.2"

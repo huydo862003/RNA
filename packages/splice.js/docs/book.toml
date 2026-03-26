@@ -1,0 +1,11 @@
+[book]
+authors = ["H-DNA"]
+language = "en"
+src = "src"
+title = "splice.js"
+
+[build]
+build-dir = "book"
+
+[output.html]
+mathjax-support = true
