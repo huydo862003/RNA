@@ -2,7 +2,7 @@
 authors = ["H-DNA"]
 language = "en"
 src = "src"
-title = "splice.js"
+title = "splicer.js"
 
 [build]
 build-dir = "../doc-dist"

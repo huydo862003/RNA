@@ -1,26 +1,26 @@
 {
   "$schema": "https://json.schemastore.org/package",
-  "name": "@hdnax/splice.js",
+  "name": "@hdnax/splicer.js",
   "version": "0.1.0",
   "description": "Reactive computation via finite differencing.",
   "repository": {
     "type": "git",
     "url": "https://github.com/hdnax/rna.git",
-    "directory": "packages/splice.js"
+    "directory": "packages/splicer.js"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org",
     "access": "public"
   },
   "type": "module",
-  "main": "./dist/splice.umd.cjs",
-  "module": "./dist/splice.js",
+  "main": "./dist/splicer.umd.cjs",
+  "module": "./dist/splicer.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/splice.js",
-      "require": "./dist/splice.umd.cjs"
+      "import": "./dist/splicer.js",
+      "require": "./dist/splicer.umd.cjs"
     }
   },
   "files": [

@@ -1,6 +1,6 @@
 # Finite Differencing
 
-The core technique behind splice.js. The idea: given a program that computes \\(f(x)\\), systematically derive a maintenance program \\(\Delta f\\) that updates the result when \\(x\\) changes, without rerunning \\(f\\) from scratch.
+The core technique behind splicer.js. The idea: given a program that computes \\(f(x)\\), systematically derive a maintenance program \\(\Delta f\\) that updates the result when \\(x\\) changes, without rerunning \\(f\\) from scratch.
 
 ## Foundational
 
@@ -11,7 +11,7 @@ The core technique behind splice.js. The idea: given a program that computes \\(
 ## Higher-order extensions
 
 - Cai, Giarrusso, Rendel, Ostermann, "A Theory of Changes for Higher-Order Languages - Incrementalizing Lambda-Calculi by Static Differentiation" (PLDI 2014)
-  - Formalizes delta propagation for higher-order functions. Introduces change structures (a type paired with a notion of delta) and program derivatives (given \\(f\\), mechanically derive its delta propagator \\(\Delta f\\)). The most directly relevant formalization of what splice.js does.
+  - Formalizes delta propagation for higher-order functions. Introduces change structures (a type paired with a notion of delta) and program derivatives (given \\(f\\), mechanically derive its delta propagator \\(\Delta f\\)). The most directly relevant formalization of what splicer.js does.
   - [ACM Digital Library](https://dl.acm.org/doi/10.1145/2594291.2594304)
 
 - Giarrusso, "Optimizing and Incrementalizing Higher-Order Collection Queries by AST Transformation" (PhD thesis, 2020)

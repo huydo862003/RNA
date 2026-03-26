@@ -1,4 +1,4 @@
-# Splice.js
+# Splicer.js
 
 ![Status](https://img.shields.io/badge/status-active-brightblue)
 ![Version](https://img.shields.io/badge/version-0.1.0--alpha-orange)
@@ -14,7 +14,7 @@ Given a source domain $A$, a target domain $B$, and a pure function $f: A \to B$
 
 The question: can we update $y$ automatically and efficiently when $x$ changes, without recomputing $f(x)$ from scratch every time? More precisely, if we write to $x$ then read $y$ without any other writes to $x$ in between, $y$ should always be $f(x)$!
 
-splice.js aims to resolve this problem via **finite differencing**: given $f$ and a delta $\Delta x$ on the input, we derive a delta propagator $\Delta f$ such that $f(x + \Delta x) = f(x) + \Delta f(x, \Delta x)$, updating $y$ by applying $\Delta f$ directly - without rerunning $f$ from scratch.
+splicer.js aims to resolve this problem via **finite differencing**: given $f$ and a delta $\Delta x$ on the input, we derive a delta propagator $\Delta f$ such that $f(x + \Delta x) = f(x) + \Delta f(x, \Delta x)$, updating $y$ by applying $\Delta f$ directly - without rerunning $f$ from scratch.
 
 ![Formulation visualization](./assets/problem_formulation_2.png)
 
@@ -34,16 +34,16 @@ The line between these is blurry. My current understanding (which may be inaccur
 | Mechanism | Dependency graph separating base states from derived states | Dependency graph that selectively re-executes stale nodes | Transform the logic itself - no graph, no re-execution |
 | Granularity | Whole derived value rebuilds on change | Node-level - entire nodes re-evaluate, just fewer of them | Surgical - individual mutations on the output |
 | Automation | Automatic | Automatic | Manual (must define $\Delta f$ for each $f$) |
-| Examples | Vue `ref`/`computed` | Adapton, self-adjusting computation | splice.js |
+| Examples | Vue `ref`/`computed` | Adapton, self-adjusting computation | splicer.js |
 
-splice.js sits in the delta propagation camp. It doesn't propagate values through a graph - it propagates deltas through transformed patch logic, mutating outputs directly. The tradeoff of delta propagation is the manual derivation of $\Delta f$ - splice.js aims to make this transformation logic as automatic as possible.
+splicer.js sits in the delta propagation camp. It doesn't propagate values through a graph - it propagates deltas through transformed patch logic, mutating outputs directly. The tradeoff of delta propagation is the manual derivation of $\Delta f$ - splicer.js aims to make this transformation logic as automatic as possible.
 
 Incrementality and reactivity are [two sides of the same coin](https://interjectedfuture.com/lab-note-049-survey-of-reactive-and-incremental-programming/):
 
 - Reactivity is the "what": derived outputs update automatically when inputs change. A programming model that separates base states (Vue's `ref`) from derived states (Vue's `computed`), with automatic change propagation through a dependency graph.
 - Incremental computation is the "how": updating efficiently via partial recomputation rather than full recomputation. Without it, reactivity becomes too expensive at scale.
 
-splice.js is incremental, but not in the general sense. General incremental computation (Adapton, self-adjusting computation) builds a dependency graph at runtime, traces which subcomputations read which inputs, and selectively re-executes stale nodes when inputs change. The granularity of update is the subcomputation - entire nodes re-evaluate, just fewer of them.
+splicer.js is incremental, but not in the general sense. General incremental computation (Adapton, self-adjusting computation) builds a dependency graph at runtime, traces which subcomputations read which inputs, and selectively re-executes stale nodes when inputs change. The granularity of update is the subcomputation - entire nodes re-evaluate, just fewer of them.
 
 Delta propagation via finite differencing takes a different approach entirely. Instead of tracking dependencies and selectively re-executing nodes, we transform the logic itself: given a function $f$, we derive a delta propagator $\Delta f$ that maps an input delta $\Delta x$ directly to an output delta $\Delta y$, then mutate the output in place. There is no computation graph, no dependency tracking, no re-execution of $f$. The update path is a separate, hand-derived (or mechanically derived) piece of code that knows how to patch the output given a description of what changed in the input.
 
