@@ -129,7 +129,7 @@ The remaining sections cover more applied work. These feel less central to what 
 
 ## Verdict
 
-This survey draws bridges between PL and other fields that all use incremental ideas without necessarily talking to each other. It's from 1993, so it misses the modern reactive/FRP wave, but the foundations are all here. The section on finite differencing is the most relevant to splicer.js. I want to dig deeper into Paige & Koenig's work next.
+This survey draws bridges between PL and other fields that all use incremental ideas without necessarily talking to each other. It's from 1993, so it misses the modern reactive/FRP wave, but the foundations are all here. The section on finite differencing is the most relevant to splicer.js.
 
 ## References
 
