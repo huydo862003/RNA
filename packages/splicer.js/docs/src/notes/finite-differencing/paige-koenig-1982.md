@@ -133,3 +133,10 @@ Illustrative example:
 Cocke's strength reduction technique is powerful enough that it can transform repeated polynomial calculations according to Horner's rule into one that is essentially Briggs' finite difference method. Note that Cocke's technique doesn't even treat polynomials specially, but manages to converge into a technique esstentially as finite differencing. This shows that inherently, finite differencing works due to properties of elementary operations, not exclusive properties of polynomials (say, the degree observation above).
 
 These properties are the distributive and associative laws for sums and products.
+
+### Extensions
+
+1. Cocke and Schwarts later extended this strength reduction idea (also called as finite differencing by the authors) to all arithmetic operations having appropriate distributive properties.
+2. Earley suggest applying finite differencing in a set theoretic context.
+3. Fong and Ullman later proved that Earley's method can improve the asymptotic behavior of an algorithm. A theoretical characterization could then be developed to determine when this technique can be applied.
+4. Finite differencing was generalized further by Paige to allow its application in many type of expressions with various operations and data types.
