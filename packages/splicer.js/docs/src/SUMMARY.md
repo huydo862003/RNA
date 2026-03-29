@@ -21,4 +21,3 @@
     - [Paige & Koenig (1982)](./notes/finite-differencing/paige-koenig-1982.md)
     - [Cai et al. - ILC (PLDI 2014)](./notes/finite-differencing/cai-et-al-2014.md)
     - [Giarrusso (PhD thesis, 2020)](./notes/finite-differencing/giarrusso-2020.md)
-    - [Koch et al. - DBToaster (VLDB 2014)](./notes/finite-differencing/dbtoaster-2014.md)

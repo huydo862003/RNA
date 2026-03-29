@@ -4,6 +4,13 @@ Ramalingam & Reps, 1993. [ACM Digital Library](https://dl.acm.org/doi/10.1145/15
 
 See [research material](../../research/surveys.md).
 
+Important keywords:
+- Incremental computation.
+- Batch computation.
+- Dynamization of static problems.
+- Selective recomputation.
+- Finite differencing.
+
 ## Abstract
 
 Small changes in the input to a computation often cause only small changes in the output. Rather than recomputing from scratch, we should be able to propagate only the delta. But until recently, I haven't known of a technique to do this efficently? Specifically, how do we transform a delta on the input to a delta on the output? How do we measure performance supposing we're taking this approach? The area of incremental computation was pretty much new to me, so I decided to read this survey to first have an overview of the field first.
@@ -89,21 +96,43 @@ Annotations can depend on other annotations too, so changes can cascade.
 
 The survey identifies three approaches:
 
-- **Selective recomputation**: figure out which annotations are affected by a substrate change, then recompute only those. This is the approach behind incremental attribute grammars, incremental data-flow analysis, and maintaining shortest distances in graphs.
+- **Selective recomputation**: figure out which annotations are affected by a substrate change, then recompute only those.
+  - A recomputed annotation if not changes may not need to trigger recomputation of further dependent annotations.
+  - This is the approach behind:
+    - Incremental updating of attributed derivation trees/augmented ASTs.
+    - Incremental circuit-annotation problem.
+    - Incremental data-flow analysis.
+    - Path problems (e.g. shortest paths) in graphs.
+  - At Holistics, the AML compiler mirrors salsa, presumably using this pattern also.
 - **Differential updating**: instead of recomputing affected annotations from scratch, compute the _difference_ to apply. Related to database view maintenance and the INC language.
-- **Other incremental expression-evaluation**: function caching, incremental reduction in the lambda calculus, dynamic expression trees.
+- **Other incremental expression-evaluation algorithms**:
+  - Function caching.
+  - Incremental reduction in the lambda calculus.
+  - Dynamic expression trees.
 
-### Dynamic Graph Problems
+### Other Dynamic Graph Problems
 
-Maintaining graph properties (connectivity, transitive closure, minimum spanning trees, planarity, etc) under edge insertions and deletions. I'm not entirely sure whether "edge" here always means the lines between nodes or sometimes refers to leaf nodes? The work covers a wide range, from Even & Shiloach's early edge-deletion problem (1981) through to Eppstein et al's sparsification technique (1992).
+Maintaining:
+
+- Graph properties (connectivity, transitive closure
+- Minimum spanning trees.
+- Planarity.
+
+under edge insertions and deletions.
+
+I'm not entirely sure whether "edge" here always means the lines between nodes or sometimes refers to leaf nodes?
+
+The work covers a wide range, from Even & Shiloach's early edge-deletion problem (1981) through to Eppstein et al's sparsification technique (1992).
 
 ### Dynamization of Static Data Structures
 
-This is a general methodology for transforming a static data structure into a dynamic one. What does "static" mean here exactly? I think it means a structure that's built from scratch given the inputs, no support for incremental updates baked in. The key idea comes from Bentley and Saxe's work on decomposable searching problems: if you can decompose a query across subsets, you can convert a static structure into one that handles insertions.
+This is a general methodology for transforming a static data structure into a dynamic one.
+
+What does "static" mean here exactly? I think it means a structure that's built from scratch given the inputs, no support for incremental updates baked in.
 
 ### Finite Differencing
 
-This is the section I was most interested in. Finite differencing is about automatically deriving incremental maintenance logic from batch definitions. You write the batch computation, and the technique derives how to update the output when the input changes. **This is exactly what splicer.js is looking for.**
+Finite differencing is about automatically deriving incremental maintenance logic from batch definitions. You write the batch computation, and the technique derives how to update the output when the input changes. **This is exactly what splicer.js is looking for.**
 
 The foundational paper is Paige & Koenig (1982) on finite differencing of computable expressions. Earlier work by Earley on high-level iterators and by Fong & Ullman on induction variables laid the groundwork.
 
@@ -121,11 +150,11 @@ This section covers incrementalizing formal operations: reduction, parsing, dedu
 
 The remaining sections cover more applied work. These feel less central to what I'm after, but worth noting:
 
-**Special-purpose algorithms**: domain-specific applications, including incremental compilation (DICE, Magpie), smart recompilation (Tichy), interactive document composition (JANUS), VLSI layout (Magic). These adapt incremental ideas to fairly niche fields.
+- **Special-purpose algorithms**: domain-specific applications, including incremental compilation (DICE, Magpie), smart recompilation (Tichy), interactive document composition (JANUS), VLSI layout (Magic). These adapt incremental ideas to fairly niche fields.
 
-**Implementation frameworks**: actual systems that enable incremental computation. VisiCalc (the original spreadsheet!) is listed here, along with the Synthesizer Generator, CENTAUR, PSG, Pan, and Alphonse. Also includes Cai & Paige's SETL-family work on binding performance at language design time.
+- **Implementation frameworks**: actual systems that enable incremental computation. VisiCalc (the original spreadsheet!) is listed here, along with the Synthesizer Generator, CENTAUR, PSG, Pan, and Alphonse. Also includes Cai & Paige's SETL-family work on binding performance at language design time.
 
-**Related problems**: problems with similar structure, such as sensitivity analysis in linear network optimization, parametric maximum flow, continuous execution (Visiprog).
+- **Related problems**: problems with similar structure, such as sensitivity analysis in linear network optimization, parametric maximum flow, continuous execution (Visiprog).
 
 ## Verdict
 

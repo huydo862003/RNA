@@ -6,7 +6,7 @@ General incremental computation builds a dependency graph at runtime, traces whi
 
 - Acar, "Self-Adjusting Computation" (PhD thesis, Carnegie Mellon, 2005)
   - The foundational work on runtime dependency tracking for incremental computation. Programs are written normally; the runtime records a dynamic dependency graph and replays only the affected parts when inputs change.
-  - [CMU Tech Report](https://www.cs.cmu.edu/~umut/papers/thesis.pdf)
+  - [CMU Tech Report](https://www.cs.cmu.edu/~rwh/students/acar.pdf)
 
 - Hammer, Phang, Hicks, Foster, "Adapton: Composable, Demand-Driven Incremental Computation" (PLDI 2014)
   - Introduces lazy, demand-driven incremental computation. Unlike self-adjusting computation (which eagerly propagates changes), Adapton only re-evaluates nodes when their results are demanded. Composable - subcomputations can be independently incremental.
@@ -14,4 +14,4 @@ General incremental computation builds a dependency graph at runtime, traces whi
 
 - Acar, Blelloch, Harper, "Adaptive Functional Programming" (POPL 2002)
   - Earlier work on the same theme. Introduces modifiables (mutable inputs) and the change propagation algorithm that re-executes only affected code.
-  - [ACM Digital Library](https://dl.acm.org/doi/10.1145/503272.503279)
+  - [ACM Digital Library](https://www.cs.cmu.edu/~guyb/papers/popl02.pdf)
