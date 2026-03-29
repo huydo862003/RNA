@@ -140,3 +140,155 @@ These properties are the distributive and associative laws for sums and products
 2. Earley suggest applying finite differencing in a set theoretic context.
 3. Fong and Ullman later proved that Earley's method can improve the asymptotic behavior of an algorithm. A theoretical characterization could then be developed to determine when this technique can be applied.
 4. Finite differencing was generalized further by Paige to allow its application in many type of expressions with various operations and data types.
+
+## Definitions and Notations
+
+### Language
+
+Finite differencing is language-agnostic, but SETL is used in this paper for illustrative purposes.
+
+SETL seems to allow the programmer to work on many levels of abstractions, ranging from concrete FORTRAN to set-theory level.
+
+Data types in SETL: heterogeneous tuples, sets and maps.
+
+- Tuples: Ordered from first to the last component.
+- Sets: Unordered and can only contain unique elements.
+- Maps: Sets of pairs \\(([x, y]\\)), each associating a domain value \\(x\\) to a range value \\(y\\).
+
+Primitive operations:
+
+| Primitive operations            | Remarks                                                                                             |
+| ------------------------------- | --------------------------------------------------------------------------------------------------- |
+| \\(x + y\\)                     | Addition for integers/reals. Union for sets. Concatenation for strings and tuples.                  |
+| \\(x - y\\)                     | Subtraction for integers/reals. Difference for sets.                                                |
+| \\(x \* y\\)                    | Multiplication for integers/reals. Intersection for sets.                                           |
+| \\(x \in y\\), \\(x \notin y\\) | Tests membership in a set or tuple.                                                                 |
+| \\(\#x\\)                       | Returns the cardinality of a set, or the length of a tuple or string.                               |
+| **arb** \\(x\\)                 | Picks an arbitrary element from set \\(x\\). **arb** \\(\\{\\}\\) yields the undefined atom **om**. |
+| \\(x\\) **incs** \\(y\\)        | Returns whether set \\(x\\) includes set \\(y\\).                                                   |
+| \\(x\\) **with** \\(y\\)        | Equivalent to \\(x + \\{y\\}\\) if \\(x\\) is a set, or \\(x + [y]\\) if \\(x\\) is a tuple.        |
+| \\(x\\) **less** \\(y\\)        | Equivalent to \\(x - \\{y\\}\\).                                                                    |
+| \\(\\{x, y, \ldots\\}\\)        | Set literal.                                                                                        |
+| \\([x, y, \ldots]\\)            | Tuple literal.                                                                                      |
+
+- C-like convention: \\(x := x \text{op} \textit{exp}\\) can be abbreviated as \\(x \text{op}:= \text{exp}\\).
+
+- APL reduction operation: \\(\text{binop}/Q\\), which folds a **binary associative operator** \\(\text{binop}\\) over all elements of a set or tuple \\(Q\\).
+
+- Powerful iterators: Allow constrained search through sets and tuples.
+  - Can be combined.
+  - Can be used as arguments to various iterative operations.
+
+- The most basic example to illustrate iterators is the **forall loop** (\\(\forall\\)-loop):
+
+  ```
+  (∀x ∈ s | x mod 2 = 0)
+    block(x)
+  end ∀;
+  ```
+
+  This executes `block` for each even number in `s`.
+
+  Internal implementation:
+  1. Iterate through `s` selecting each value without repetition into the bound variable `x`.
+  2. Execute the predicate.
+  3. Run the block when it holds.
+
+  If `s` is a set, iteration order is unspecified; if `s` is a tuple, iteration is from first to last component.
+
+- **forall** loops can implement many high-level iterator-involving expressions:
+  - **Set former**: Computes a subset satisfying a predicate. For example, \\(\\{x \in s \mid x \bmod 2 \neq 0\\}\\) gives all odd elements of \\(s\\). A variant \\(\\{x^2 : x \in s \mid x \bmod 2 \neq 0\\}\\) gives the set of squares of odd elements.
+
+- **Range specifications**: \\([2 .. n-1]\\) produces a tuple \\([2, 3, \ldots, n-1]\\). \\(\\{1, 3 .. 11\\}\\) produces all odd numbers from 1 to 11.
+
+- **Bounded existential and universal quantifiers**: A universal quantifier \\(\forall j \in [2..n-1] \mid n \bmod j \neq 0\\) tests primality. If it evaluates to false, \\(j\\) is assigned a witness as a side effect.
+
+- **Map retrieval** comes in three forms:
+  1. \\(f(a)\\): Function application. Returns **om** if \\(a\\) is not in the domain or \\(f\\) is multivalued at \\(a\\).
+  2. \\(f\\{a\\}\\): Image set of \\(\\{a\\}\\) under \\(f\\). Returns \\(\\{\\}\\) if \\(a\\) is not in the domain.
+  3. \\(f[S]\\): Image of set \\(S\\) under \\(f\\), equivalent to \\(+/\\{f(a) : a \in S\\}\\).
+
+- **Map modification** via indexed assignment:
+  - \\(f(a) := \textbf{om}\\) removes \\(a\\) from the domain.
+  - \\(f(a) := z\\) first removes \\(a\\), then adds the pair \\([a, z]\\).
+  - \\(f\\{a\\} \mathrel{+}:= \text{delta}\\) modifies the image set at a domain point.
+
+> So map here is like a relation.
+
+- \\(n\\)-parameter maps are sets of pairs whose first component is an \\(n\\)-tuple. Notational shorthand: \\(f(x, y, z)\\) abbreviates \\(f([x, y, z])\\).
+
+- SETL uses **copy value semantics**, as in mathematics.
+
+### Verification
+
+The authors extend SETL with two annotation statements for verification purposes:
+
+- **assume** _cond_: A no-op during execution; marks a condition that is expected to hold.
+- **assert** _cond_: Also a no-op; marks a condition that must hold.
+
+An encounter with either statement is **satisfied** if the condition holds at that point.
+
+An execution is **valid** if:
+
+1. Whenever an unsatisfied **assert** encounter occurs, it was preceded by an unsatisfied **assume** encounter.
+2. Whenever all **assume** encounters are satisfied, execution terminates normally.
+
+A program is valid if all possible executions are valid. The **domain** of a valid program \\(P\\) is the set of inputs for which every assumption encounter is satisfied.
+
+Every program includes **output assertions** at normal exit points. A transformation \\(T\\) is:
+
+- **Validity preserving** if \\(T(P)\\) preserves output assertions and remains valid whenever \\(P\\) is valid.
+- **Semantics preserving** if additionally the domain of \\(T(P)\\) includes the domain of \\(P\\).
+
+These notions also apply to single-entry, single-exit code blocks: replacing block \\(B\\) with \\(B'\\) is validity/semantics preserving when the same conditions hold within the enclosing program.
+
+An **achieve statement** `achieve E = f(x1, ..., xn)` has the same semantics as an assignment `E := f(x1, ..., xn)`.
+
+### Complexity
+
+The complexity model is based on SETL's runtime: sets are expandable hash tables (unit-time membership test, linear-time full scan), and maps use hash tables for domains with fast access to range elements via domain elements.
+
+| Operation                             | Estimated cost                                 |
+| ------------------------------------- | ---------------------------------------------- |
+| \\(s\\) **with**:= \\(x\\)            | \\(O(1)\\) \*                                  |
+| \\(s\\) **less**:= \\(x\\)            | \\(O(1)\\) \*                                  |
+| \\(x \in s\\)                         | \\(O(1)\\)                                     |
+| \\(s +\\!:= \text{delta}\\)           | \\(O(\\#\text{delta})\\) \*                    |
+| \\(f(x) := y\\)                       | \\(O(1)\\) \*                                  |
+| \\(f(x_1, \ldots, x_n)\\)             | \\(O(n)\\)                                     |
+| \\(\forall x \in s\\): Block(\\(x\\)) | \\(O(\\#s \times \text{cost}(\text{Block}))\\) |
+| \\(\\{x \in s \mid k(x)\\}\\)         | \\(O(\\#s \times \text{cost}(k))\\)            |
+| \\(\exists x \in s \mid k(x)\\)       | \\(O(\\#s \times \text{cost}(k))\\)            |
+| \\(\forall x \in s \mid k(x)\\)       | \\(O(\\#s \times \text{cost}(k))\\)            |
+| \\(s + t\\)                           | \\(O(\\#s + \\#t)\\)                           |
+| \\(f[s]\\)                            | \\(O(\\#\\{[x,y] \in f \mid x \in s\\})\\)     |
+
+\* These estimates hold when set copy operations are avoided.
+
+### Miscellaneous Definitions
+
+Some definitions borrowed from program optimization literature.
+
+- **Virtual variable**: Given a text expression \\(f\\) with \\(n\\) free variables \\(x_1, \ldots, x_n\\), we write \\(C = f(x_1, \ldots, x_n)\\) to associate a variable \\(C\\) (the virtual variable) with \\(f\\). Whenever \\(f\\) is executed, its value is placed in \\(C\\). We assume \\(f\\) and all subexpressions are **applicative** (behave like finite maps).
+
+- **Available**: \\(C\\) is available on exit from a program point \\(p\\) if \\(C\\) equals the value \\(f\\) would have if evaluated right after \\(p\\). Available on entrance to \\(p\\) means available on exit from all predecessor points.
+
+- **Spoiled**: \\(C\\) is spoiled at \\(p\\) if \\(C\\) is available on entrance to \\(p\\) but not on exit (because \\(p\\) modifies some parameter \\(x_i\\) that \\(f\\) depends on).
+
+- **Redundant**: An occurrence of \\(f\\) at point \\(p\\) is redundant if \\(C\\) is already available on entrance to \\(p\\). In that case, \\(f\\) can be replaced by \\(C\\) while preserving semantics. This replacement is called **redundant code elimination**.
+
+- **Well defined**: \\(f\\) is well defined at \\(p\\) if, in every valid execution passing through \\(p\\) with all prior assumptions satisfied, the values of \\(x_1, \ldots, x_n\\) at \\(p\\) belong to the domain of \\(f\\).
+
+- **Control flow path**: A sequence of program points representing a logical sequence of primitive operations that might be performed, assuming each predicate encountered evaluates to either true or false.
+
+- **Uses and definitions**: A use of variable \\(v\\) retrieves but does not modify \\(v\\). A definition modifies \\(v\\) (left side of assignment, read statement, iterator bound variable).
+
+- **Reaches**: A definition \\(d\\) of \\(v\\) reaches program point \\(p\\) if there exists a control flow path from \\(d\\) to \\(p\\) with no other definitions of \\(v\\).
+
+- **Live**: A use \\(u\\) of \\(v\\) is live at \\(p\\) if there exists a control flow path from \\(p\\) to \\(u\\) free of definitions to \\(v\\).
+
+- **Data flow maps**: Built from reaches and live relations.
+  - **defTouse**\\(\\{d\\}\\): The set of uses of \\(v\\) reached by definition \\(d\\).
+  - **useToDef**\\(\\{u\\}\\): The set of definitions of \\(v\\) that reach use \\(u\\).
+
+- **Dead-code elimination**: A semantics-preserving transformation that removes code not contributing directly or indirectly to the value of any variables used in **print**, sequential **read**, **assume**, or **assert** statements. Uses the data flow maps above.
