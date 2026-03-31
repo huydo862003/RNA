@@ -8,7 +8,7 @@ A personal design system with DNA in its name — **Gene** + **UI/UX** = **Genui
 
 Also a place to document my findings of building a design system.
 
-**Progress tracker**: [Design System Home](https://painted-jodhpur-6fe.notion.site/Design-System-Home-2e6aa8fcd08880cb94bbe70c80eb0fa1)
+**Progress tracker**: [scrambled kitchen](https://huydo862003.github.io/journeys/design)
 
 ## Motivation
 
