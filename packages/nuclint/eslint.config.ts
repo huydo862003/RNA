@@ -1,3 +1,3 @@
-import config from './index.ts';
+import config from './src';
 
 export default config;
