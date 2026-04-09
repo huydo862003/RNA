@@ -25,7 +25,7 @@ export const preferLessThanRule: Rule.RuleModule = {
             node,
             messageId: 'avoidGreaterThan',
             fix (fixer) {
-              const sourceCode = context.sourceCode ?? context.getSourceCode();
+              const sourceCode = context.sourceCode ?? context.sourceCode;
               const leftText = sourceCode.getText(node.left);
               const rightText = sourceCode.getText(node.right);
 
@@ -37,7 +37,7 @@ export const preferLessThanRule: Rule.RuleModule = {
             node,
             messageId: 'avoidGreaterThanOrEqual',
             fix (fixer) {
-              const sourceCode = context.sourceCode ?? context.getSourceCode();
+              const sourceCode = context.sourceCode ?? context.sourceCode;
               const leftText = sourceCode.getText(node.left);
               const rightText = sourceCode.getText(node.right);
 
