@@ -290,7 +290,7 @@ Some definitions are borrowed from program optimization literature for the sake 
 
   **Why applicativity is essential**: If \\(f\\) is applicative, caching \\(E = f(x_1, \ldots, x_n)\\) is safe. Once \\(E\\) is computed, you know it's correct as long as \\(x_1, \ldots, x_n\\) don't change. When a parameter *does* change, you know exactly what invalidated the cache and can compute a targeted incremental update. If \\(f\\) had side effects or hidden state, you wouldn't know when the cache goes stale—the optimization would be unsound.
 
-- **Virtual variable**: A notational trick that binds an applicative expression to a variable name so we can talk about whether the result is "available" or "spoiled."
+- **Virtual variable**: A notational trick that binds an applicative expression to a variable name so we can talk about whether the result is "available" or "spoiled".
 
   Given:
   - A text expression \\(f\\) (say, \\(x \* y + z\\))
