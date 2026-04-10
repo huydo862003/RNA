@@ -1,3 +1,1 @@
-import config from './src';
-
-export default config;
+export { baseConfig, vueConfig } from './src/configs';

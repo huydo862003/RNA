@@ -1,1 +1,1 @@
-export * from './custom/prefer_less_than';
+export * from './prefer_less_than';
