@@ -2,7 +2,6 @@ import type { Linter } from 'eslint';
 import stylistic from '@stylistic/eslint-plugin';
 import importPlugin from 'eslint-plugin-import';
 import unicorn from 'eslint-plugin-unicorn';
-
 import {
   preferLessThanRule,
 } from './rules';
