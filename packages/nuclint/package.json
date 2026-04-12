@@ -13,13 +13,14 @@
     "access": "public"
   },
   "type": "module",
-  "main": "./dist/index.js",
+  "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
     }
   },
   "files": [
@@ -29,7 +30,7 @@
     "eslint"
   ],
   "scripts": {
-    "build": "tsc -p tsconfig.build.json",
+    "build": "tsup --tsconfig ./tsconfig.build.json",
     "test": "vitest",
     "test:ui": "vitest --ui",
     "lint": "eslint .",
@@ -51,6 +52,7 @@
   },
   "devDependencies": {
     "@types/node": "^25.6.0",
+    "tsup": "^8.5.1",
     "vitest": "^1.6.0"
   }
 }
