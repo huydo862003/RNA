@@ -11,6 +11,38 @@ export const expressionRules: Linter.RulesRecord = {
     'always',
   ],
 
+  '@stylistic/arrow-spacing': [
+    'error',
+    {
+      before: true,
+      after: true,
+    },
+  ],
+
+  // Require consistent line breaks in function call arguments
+  '@stylistic/function-call-argument-newline': [
+    'error',
+    'consistent',
+  ],
+
+  // Require line breaks for function parameters spanning multiple lines
+  '@stylistic/function-paren-newline': [
+    'error',
+    'multiline-arguments',
+  ],
+
+  // Disallow spaces between function name and the parentheses in **function call**
+  '@stylistic/function-call-spacing': [
+    'error',
+    'never',
+  ],
+
+  // Enforce 1 space between function name and the parentheses in **function definition** for easily grepping
+  '@stylistic/space-before-function-paren': [
+    'error',
+    'always',
+  ],
+
   // Require trailing commas in multiline lists to reduce diff noise
   '@stylistic/comma-dangle': [
     'error',
@@ -39,12 +71,6 @@ export const expressionRules: Linter.RulesRecord = {
   '@stylistic/quotes': [
     'error',
     'single',
-  ],
-
-  // Require space between function name and opening paren
-  '@stylistic/space-before-function-paren': [
-    'error',
-    'always',
   ],
 
   // Prefer < and <= over > and >= for easier left-to-right reading

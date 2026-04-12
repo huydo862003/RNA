@@ -1,5 +1,9 @@
-import { resolve } from 'path';
-import { defineConfig } from 'vite';
+import {
+  resolve,
+} from 'node:path';
+import {
+  defineConfig,
+} from 'vite';
 import vue from '@vitejs/plugin-vue';
 import tailwindcss from '@tailwindcss/vite';
 import dts from 'vite-plugin-dts';
@@ -8,7 +12,9 @@ export default defineConfig({
   plugins: [
     vue(),
     tailwindcss(),
-    dts({ tsconfigPath: './tsconfig.json' }),
+    dts({
+      tsconfigPath: './tsconfig.json',
+    }),
   ],
   build: {
     lib: {
@@ -17,7 +23,9 @@ export default defineConfig({
       fileName: 'genuix',
     },
     rollupOptions: {
-      external: ['vue'],
+      external: [
+        'vue',
+      ],
       output: {
         assetFileNames: (assetInfo) => {
           if (assetInfo.name === 'style.css') return 'style.css';

@@ -24,9 +24,18 @@ export const statementRules: Linter.RulesRecord = {
     'error',
     'always',
   ],
-  // Require space before opening brace of a code block
-  '@stylistic/space-before-blocks': [
+
+  // Enforce max line length of 200 characters with exceptions for URLs and comments
+  '@stylistic/max-len': [
     'error',
-    'always',
+    {
+      code: 200,
+      tabWidth: 2,
+      ignoreUrls: true,
+      ignoreStrings: true,
+      ignoreTemplateLiterals: true,
+      ignoreRegExpLiterals: true,
+      ignoreComments: true,
+    },
   ],
 };

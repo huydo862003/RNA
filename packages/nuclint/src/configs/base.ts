@@ -21,7 +21,7 @@ export const baseConfig: Linter.Config[] = [
   ...tselint.configs.strict,
   {
     files: [
-      '**/*.{js,ts,vue,jsx,tsx,json}',
+      '**/*.{js,ts,vue,jsx,tsx}',
     ],
     plugins: {
       '@stylistic': stylistic,
@@ -38,6 +38,8 @@ export const baseConfig: Linter.Config[] = [
       'node_modules',
       'dist',
       'storybook-static',
+      'build',
+      'output',
     ],
     rules: {
       ...typeSafetyRules,

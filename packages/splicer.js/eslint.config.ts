@@ -1,3 +1,12 @@
 import config from '@hdnax/nuclint';
 
-export default config;
+export default [
+  {
+    ignores: [
+      'dist',
+      'doc-dist',
+      'node_modules',
+    ],
+  },
+  ...config,
+];

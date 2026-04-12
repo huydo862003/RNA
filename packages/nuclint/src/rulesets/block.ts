@@ -9,29 +9,13 @@ export const blockRules: Linter.RulesRecord = {
     'error',
     '1tbs',
   ],
-  // Require consistent line breaks in function call arguments
-  '@stylistic/function-call-argument-newline': [
+
+  // Require space before opening brace of a code block
+  '@stylistic/space-before-blocks': [
     'error',
-    'consistent',
+    'always',
   ],
-  // Require line breaks for function parameters spanning multiple lines
-  '@stylistic/function-paren-newline': [
-    'error',
-    'multiline-arguments',
-  ],
-  // Enforce max line length of 200 characters with exceptions for URLs and comments
-  '@stylistic/max-len': [
-    'error',
-    {
-      code: 200,
-      tabWidth: 2,
-      ignoreUrls: true,
-      ignoreStrings: true,
-      ignoreTemplateLiterals: true,
-      ignoreRegExpLiterals: true,
-      ignoreComments: true,
-    },
-  ],
+
   // Require semicolon delimiters in interface/type members with trailing semicolon in multiline
   '@stylistic/member-delimiter-style': [
     'error',
@@ -46,11 +30,13 @@ export const blockRules: Linter.RulesRecord = {
       },
     },
   ],
+
   // Require multiline ternary expressions to have breaks at each operator
   '@stylistic/multiline-ternary': [
     'error',
     'always-multiline',
   ],
+
   // Require line breaks between chained method calls at depth > 2
   '@stylistic/newline-per-chained-call': [
     'error',
@@ -58,6 +44,7 @@ export const blockRules: Linter.RulesRecord = {
       ignoreChainWithDepth: 2,
     },
   ],
+
   // Disallow multiple consecutive empty lines
   '@stylistic/no-multiple-empty-lines': [
     'error',
@@ -65,5 +52,10 @@ export const blockRules: Linter.RulesRecord = {
       max: 1,
       maxEOF: 0,
     },
+  ],
+
+  '@stylistic/block-spacing': [
+    'error',
+    'always',
   ],
 };
