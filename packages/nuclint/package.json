@@ -30,8 +30,10 @@
   ],
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
     "lint": "eslint .",
-    "lint:fix": "eslint ./rules ./eslint.config.ts --fix",
+    "lint:fix": "eslint ./src ./eslint.config.ts --fix",
     "prepublishOnly": "mv ./README.md ./README.md.backup && mv ./README.npm.md ./README.md && pnpm run build",
     "postpublish": "mv ./README.md.backup ./README.md"
   },
@@ -41,9 +43,14 @@
   "dependencies": {
     "@stylistic/eslint-plugin": "^5.7.0",
     "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-n": "^17.10.0",
     "eslint-plugin-unicorn": "^62.0.0",
     "eslint-plugin-vue": "^10.7.0",
     "typescript-eslint": "^8.52.0",
     "vue-eslint-parser": "^10.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.6.0",
+    "vitest": "^1.6.0"
   }
 }

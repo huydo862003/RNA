@@ -1,9 +1,14 @@
-import type { Linter } from 'eslint';
+import type {
+  Linter,
+} from 'eslint';
+import tselint from 'typescript-eslint';
 import stylistic from '@stylistic/eslint-plugin';
 import importPlugin from 'eslint-plugin-import';
 import unicorn from 'eslint-plugin-unicorn';
-import tseslint from 'typescript-eslint';
-import { preferLessThanRule } from '../rules';
+import n from 'eslint-plugin-n';
+import {
+  preferLessThanRule,
+} from '../rules';
 import {
   typeSafetyRules,
   expressionRules,
@@ -13,15 +18,21 @@ import {
 } from '../rulesets';
 
 export const baseConfig: Linter.Config[] = [
-  stylistic.configs.recommended,
-  ...tseslint.configs.recommended,
+  ...tselint.configs.strict,
   {
-    files: ['**/*.{js,ts,vue}'],
+    files: [
+      '**/*.{js,ts,vue,jsx,tsx,json}',
+    ],
     plugins: {
       '@stylistic': stylistic,
       'import': importPlugin,
       'unicorn': unicorn,
-      'custom': { rules: { 'prefer-less-than': preferLessThanRule } },
+      'n': n,
+      'custom': {
+        rules: {
+          'prefer-less-than': preferLessThanRule,
+        },
+      },
     },
     ignores: [
       'node_modules',

@@ -1,7 +1,11 @@
-import type { Linter } from 'eslint';
+import type {
+  Linter,
+} from 'eslint';
 
 // Import rules enforce best practices for module imports and dependencies
 export const importRules: Linter.RulesRecord = {
+  // Require `node:` prefix for Node.js built-in imports
+  'n/prefer-node-protocol': 'error',
   // Require imports to come first in the file before other code
   'import/first': 'error',
   // Verify that all named imports are defined in the imported module

@@ -1,4 +1,6 @@
-import type { Linter } from 'eslint';
+import type {
+  Linter,
+} from 'eslint';
 
 // Type safety rules enforce correct usage of TypeScript types and prevent unsafe patterns
 export const typeSafetyRules: Linter.RulesRecord = {
@@ -14,7 +16,10 @@ export const typeSafetyRules: Linter.RulesRecord = {
     },
   ],
   // Enforce interface over type for object definitions for consistency and better error messages
-  '@typescript-eslint/consistent-type-definitions': ['error', 'interface'],
+  '@typescript-eslint/consistent-type-definitions': [
+    'error',
+    'interface',
+  ],
   // Disallow explicit any type to maintain type safety
   '@typescript-eslint/no-explicit-any': 'error',
   // Disallow non-null assertions to encourage proper null checks

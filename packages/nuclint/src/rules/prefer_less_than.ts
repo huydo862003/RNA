@@ -1,4 +1,6 @@
-import type { Rule } from 'eslint';
+import type {
+  Rule,
+} from 'eslint';
 
 /**
  * Custom ESLint rule to enforce using < and <= instead of > and >=
