@@ -1,5 +1,11 @@
 # nuclint
 
+## 0.11.0
+
+### Minor Changes
+
+- Config esm and cjs targets
+
 ## 0.10.0
 
 ### Minor Changes
