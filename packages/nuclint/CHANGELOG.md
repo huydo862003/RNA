@@ -1,5 +1,11 @@
 # nuclint
 
+## 0.10.0
+
+### Minor Changes
+
+- Reorganize lint configs, ignore lint issues of internal files
+
 ## 0.9.1
 
 ### Patch Changes

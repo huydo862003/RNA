@@ -1,5 +1,11 @@
 # genuix
 
+## 0.4.0
+
+### Minor Changes
+
+- Reorganize lint configs, ignore lint issues of internal files
+
 ## 0.3.1
 
 ### Patch Changes
