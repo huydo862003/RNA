@@ -35,7 +35,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint ./src ./eslint.config.ts --fix",
     "prepublishOnly": "mv ./README.md ./README.md.backup && mv ./README.npm.md ./README.md && pnpm run build",
-    "postpublish": "mv ./README.md.backup ./README.md"
+    "postpublish": "mv ./README.md ./README.npm.md && mv ./README.md.backup ./README.md"
   },
   "peerDependencies": {
     "eslint": "^9.39.2"
