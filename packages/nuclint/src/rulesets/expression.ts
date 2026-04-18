@@ -105,7 +105,10 @@ export const expressionRules: Linter.RulesRecord = {
   ],
   '@stylistic/array-bracket-newline': [
     'error',
-    'always',
+    {
+      multiline: true,
+      minItems: 2,
+    },
   ],
 
   /* Disallow spaces after [, { and before ], } */
@@ -115,7 +118,10 @@ export const expressionRules: Linter.RulesRecord = {
   ],
   '@stylistic/object-curly-spacing': [
     'error',
-    'never',
+    'always',
+    {
+      emptyObjects: 'never',
+    },
   ],
 
   /* Enforce array and object fields to be on one line each */
