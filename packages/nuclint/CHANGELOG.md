@@ -1,5 +1,11 @@
 # nuclint
 
+## 0.12.0
+
+### Minor Changes
+
+- Improve formatting of array and object expressions
+
 ## 0.11.0
 
 ### Minor Changes
