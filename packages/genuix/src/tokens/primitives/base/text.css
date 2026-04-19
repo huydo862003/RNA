@@ -1,0 +1,22 @@
+/* #human-slop
+ *  https://github.com/huydo862003/Fck-AI-Slop/edit/main/README.md
+ */
+
+/**
+ * @tokens Font sizes
+ * @presenter FontSize
+ */
+@theme {
+  /* Font size scale: minor third ratio (1.2)
+   * Good for generic web apps
+   * Base 16px
+   * */
+  --text-1: 11.1px;
+  --text-2: 13.3px;
+  --text-3: 16px;
+  --text-4: 19.2px;
+  --text-5: 23px;
+  --text-6: 27.6px;
+  --text-7: 33.2px;
+}
+/** @tokens-end */

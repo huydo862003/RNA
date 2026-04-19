@@ -1,0 +1,17 @@
+/* #human-slop
+ *  https://github.com/huydo862003/Fck-AI-Slop/edit/main/README.md
+ */
+
+/**
+ * @tokens Border radius
+ * @presenter BorderRadius
+ */
+@theme {
+  /* Snapped to 2/4px grid for consistency with spacing */
+  --radius-1: 2px;
+  --radius-2: 4px;
+  --radius-3: 8px;
+  --radius-4: 12px;
+  --radius-5: 16px;
+}
+/** @tokens-end */

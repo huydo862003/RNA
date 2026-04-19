@@ -4,7 +4,7 @@
 ![License](https://img.shields.io/badge/license-MIT-green)
 <a href="https://github.com/huydo862003/Fck-AI-Slop#plan"><img src="https://img.shields.io/badge/Human%20slop-90EE90"></a>
 
-**Reusable Nucleus Abstractions** — a monorepo for personal libraries.
+**Reusable Nucleus Abstractions** - a monorepo for personal libraries.
 
 ## Packages
 

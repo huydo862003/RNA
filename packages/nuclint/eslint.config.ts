@@ -9,8 +9,6 @@ export {
 export default [
   ...baseConfig,
   {
-    ignores: [
-      '__tests__/fixtures',
-    ],
+    ignores: ['__tests__/fixtures'],
   },
 ];

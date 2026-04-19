@@ -10,11 +10,16 @@ export default defineConfig({
   plugins: [
     dts({
       tsconfigPath: './tsconfig.json',
+      rollupTypes: false,
     }),
   ],
   build: {
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
+      formats: [
+        'cjs',
+        'es',
+      ],
       name: 'Stdx',
       fileName: 'stdx',
     },

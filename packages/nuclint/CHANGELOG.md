@@ -1,5 +1,11 @@
 # nuclint
 
+## 0.13.0
+
+### Minor Changes
+
+- Only warn on explicit anys and non-null assertions
+
 ## 0.12.0
 
 ### Minor Changes

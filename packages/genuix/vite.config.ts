@@ -1,3 +1,7 @@
+/* #human-slop
+   https://github.com/huydo862003/Fck-AI-Slop/edit/main/README.md
+*/
+
 import {
   resolve,
 } from 'node:path';
@@ -16,6 +20,12 @@ export default defineConfig({
       tsconfigPath: './tsconfig.json',
     }),
   ],
+  resolve: {
+    alias: {
+      '@': './src/',
+      '$storybook': './.storybook/',
+    },
+  },
   build: {
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
@@ -25,14 +35,12 @@ export default defineConfig({
     rollupOptions: {
       external: [
         'vue',
+        '@phosphor-icons/vue',
       ],
       output: {
-        assetFileNames: (assetInfo) => {
-          if (assetInfo.name === 'style.css') return 'style.css';
-          return assetInfo.name || '';
-        },
         globals: {
           vue: 'Vue',
+          '@phosphor-icons/vue': 'Phosphor',
         },
       },
     },

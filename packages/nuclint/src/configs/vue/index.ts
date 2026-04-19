@@ -12,18 +12,14 @@ export const vueConfig: Linter.Config[] = [
   ...baseConfig,
   ...vuePlugin.configs['flat/recommended'],
   {
-    files: [
-      '**/*.vue',
-    ],
+    files: ['**/*.vue'],
     languageOptions: {
       parser: vueParser,
       parserOptions: {
         ecmaVersion: 'latest',
         sourceType: 'module',
         parser: tseslint.parser,
-        extraFileExtensions: [
-          '.vue',
-        ],
+        extraFileExtensions: ['.vue'],
       },
     },
   },

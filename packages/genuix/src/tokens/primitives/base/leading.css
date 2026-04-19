@@ -1,0 +1,19 @@
+/* #human-slop
+ *  https://github.com/huydo862003/Fck-AI-Slop/edit/main/README.md
+ */
+
+/**
+ * @tokens Line heights
+ * @presenter LineHeight
+ */
+@theme {
+  /* Fixed values snap to grid. */
+  --leading-1: 16px;
+  --leading-2: 20px;
+  --leading-3: 24px;
+  --leading-4: 28px;
+  --leading-5: 32px;
+  --leading-6: 36px;
+  --leading-7: 40px;
+}
+/** @tokens-end */

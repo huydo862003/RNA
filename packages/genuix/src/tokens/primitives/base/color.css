@@ -1,0 +1,169 @@
+/* #human-slop
+ *  https://github.com/huydo862003/Fck-AI-Slop/edit/main/README.md
+ */
+
+/* Color primitives from Radix Colors v3.0.0 (@radix-ui/colors)
+ * 12 steps per hue
+ * */
+
+/**
+ * @tokens Neutral color shades (Slate)
+ * @presenter Color
+ */
+@theme {
+  /* Corresponds to `slate` in Radix UI (See www.radix-ui.com/colors/docs/palette-composition/scales#slate)
+   * Blue-tinted neutral
+   * Used in Vercel, GitHub
+   * */
+  --color-neutral-1: #fcfcfd;
+  --color-neutral-2: #f9f9fb;
+  --color-neutral-3: #f0f0f3;
+  --color-neutral-4: #e8e8ec;
+  --color-neutral-5: #e0e1e6;
+  --color-neutral-6: #d9d9e0;
+  --color-neutral-7: #cdced6;
+  --color-neutral-8: #b9bbc6;
+  --color-neutral-9: #8b8d98;
+  --color-neutral-10: #80838d;
+  --color-neutral-11: #60646c;
+  --color-neutral-12: #1c2024;
+}
+/** @tokens-end */
+
+/**
+ * @tokens Primary color shades (Slate)
+ * @presenter Color
+ */
+@theme {
+  /* Corresponds to `slate` in Radix UI (See www.radix-ui.com/colors/docs/palette-composition/scales#slate)
+   * Blue-tinted neutral, used as primary too
+   * */
+  --color-primary-1: #fcfcfd;
+  --color-primary-2: #f9f9fb;
+  --color-primary-3: #f0f0f3;
+  --color-primary-4: #e8e8ec;
+  --color-primary-5: #e0e1e6;
+  --color-primary-6: #d9d9e0;
+  --color-primary-7: #cdced6;
+  --color-primary-8: #b9bbc6;
+  --color-primary-9: #8b8d98;
+  --color-primary-10: #80838d;
+  --color-primary-11: #60646c;
+  --color-primary-12: #1c2024;
+}
+/** @tokens-end */
+
+/**
+ * @tokens Red accent color (Red)
+ * @presenter Color
+ */
+@theme {
+  /* Corresponds to `red` in Radix UI (See www.radix-ui.com/colors/docs/palette-composition/scales#red)
+   * Somewhat warm, high-contrast red
+   * */
+  --color-accent-red-1: #fffcfc;
+  --color-accent-red-2: #fff7f7;
+  --color-accent-red-3: #feebec;
+  --color-accent-red-4: #ffdbdc;
+  --color-accent-red-5: #ffcdce;
+  --color-accent-red-6: #fdbdbe;
+  --color-accent-red-7: #f4a9aa;
+  --color-accent-red-8: #eb8e90;
+  --color-accent-red-9: #e5484d;
+  --color-accent-red-10: #dc3e42;
+  --color-accent-red-11: #ce2c31;
+  --color-accent-red-12: #641723;
+}
+/** @tokens-end */
+
+/**
+ * @tokens Green accent color (Grass)
+ * @presenter Color
+ */
+@theme {
+  /* Corresponds to `grass` in Radix UI (See www.radix-ui.com/colors/docs/palette-composition/scales#grass)
+   * Somewhat warm, earthy green
+   * */
+  --color-accent-green-1: #fbfefb;
+  --color-accent-green-2: #f5fbf5;
+  --color-accent-green-3: #e9f6e9;
+  --color-accent-green-4: #daf1db;
+  --color-accent-green-5: #c9e8ca;
+  --color-accent-green-6: #b2ddb5;
+  --color-accent-green-7: #94ce9a;
+  --color-accent-green-8: #65ba74;
+  --color-accent-green-9: #46a758;
+  --color-accent-green-10: #3e9b4f;
+  --color-accent-green-11: #2a7e3b;
+  --color-accent-green-12: #203c25;
+}
+/** @tokens-end */
+
+/**
+ * @tokens Yellow accent color (Amber)
+ * @presenter Color
+ */
+@theme {
+  /* Corresponds to `amber` in Radix UI (See www.radix-ui.com/colors/docs/palette-composition/scales#amber)
+   * Somewhat warm golden tone, good contrast on dark background
+   * */
+  --color-accent-yellow-1: #fefdfb;
+  --color-accent-yellow-2: #fefbe9;
+  --color-accent-yellow-3: #fff7c2;
+  --color-accent-yellow-4: #ffee9c;
+  --color-accent-yellow-5: #fbe577;
+  --color-accent-yellow-6: #f3d673;
+  --color-accent-yellow-7: #e9c162;
+  --color-accent-yellow-8: #e2a336;
+  --color-accent-yellow-9: #ffc53d;
+  --color-accent-yellow-10: #ffba18;
+  --color-accent-yellow-11: #ab6400;
+  --color-accent-yellow-12: #4f3422;
+}
+/** @tokens-end */
+
+/**
+ * @tokens Blue accent color (Blue)
+ * @presenter Color
+ */
+@theme {
+  /* Corresponds to `blue` in Radix UI (See www.radix-ui.com/colors/docs/palette-composition/scales#blue)
+   * Somewhat neutral, saturated blue
+   * */
+  --color-accent-blue-1: #fbfdff;
+  --color-accent-blue-2: #f4faff;
+  --color-accent-blue-3: #e6f4fe;
+  --color-accent-blue-4: #d5efff;
+  --color-accent-blue-5: #c2e5ff;
+  --color-accent-blue-6: #acd8fc;
+  --color-accent-blue-7: #8ec8f6;
+  --color-accent-blue-8: #5eb1ef;
+  --color-accent-blue-9: #0090ff;
+  --color-accent-blue-10: #0588f0;
+  --color-accent-blue-11: #0d74ce;
+  --color-accent-blue-12: #113264;
+}
+/** @tokens-end */
+
+/**
+ * @tokens Orange accent color (Orange)
+ * @presenter Color
+ */
+@theme {
+  /* Corresponds to `orange` in Radix UI (See www.radix-ui.com/colors/docs/palette-composition/scales#orange)
+   * Somewhat warm, vibrant tone
+   * */
+  --color-accent-orange-1: #fefcfb;
+  --color-accent-orange-2: #fff7ed;
+  --color-accent-orange-3: #ffefd6;
+  --color-accent-orange-4: #ffdfb5;
+  --color-accent-orange-5: #ffd19a;
+  --color-accent-orange-6: #ffc182;
+  --color-accent-orange-7: #f5ae73;
+  --color-accent-orange-8: #ec9455;
+  --color-accent-orange-9: #f76b15;
+  --color-accent-orange-10: #ef5f00;
+  --color-accent-orange-11: #cc4e00;
+  --color-accent-orange-12: #582d1d;
+}
+/** @tokens-end */

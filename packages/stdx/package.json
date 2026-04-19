@@ -39,6 +39,7 @@
   },
   "devDependencies": {
     "@hdnax/nuclint": "workspace:*",
+    "@types/node": "^25.6.0",
     "vite-plugin-dts": "^4.5.4"
   }
 }

@@ -1,0 +1,479 @@
+/* #human-slop
+ * https://github.com/huydo862003/Fck-AI-Slop/edit/main/README.md
+ */
+
+/* Tier 2: Semantic tokens
+ * These assign roles to primitive tokens
+ */
+
+/**
+ * @tokens Typography
+ * @presenter FontFamily
+ */
+@theme {
+  --font-sans: 'JetBrains Mono', monospace;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+/** @tokens-end */
+
+/**
+ * @tokens Text sizes
+ * @presenter FontSize
+ */
+@theme {
+  --text-xs: var(--text-1);
+  --text-sm: var(--text-2);
+  --text-base: var(--text-3);
+  --text-lg: var(--text-4);
+  --text-xl: var(--text-5);
+  --text-2xl: var(--text-6);
+  --text-3xl: var(--text-7);
+}
+/** @tokens-end */
+
+/**
+ * @tokens Semantic spacing
+ * @presenter Spacing
+ */
+@theme {
+  --spacing-xs: var(--spacing-1);
+  --spacing-sm: var(--spacing-2);
+  --spacing-md: var(--spacing-4);
+  --spacing-lg: var(--spacing-6);
+  --spacing-xl: var(--spacing-8);
+  --spacing-2xl: var(--spacing-12);
+  --spacing-3xl: var(--spacing-16);
+}
+/** @tokens-end */
+
+/**
+ * @tokens Semantic radius
+ * @presenter BorderRadius
+ */
+@theme {
+  --radius-none: 0;
+  --radius-sm: var(--radius-1);
+  --radius-md: var(--radius-2);
+  --radius-lg: var(--radius-3);
+  --radius-xl: var(--radius-4);
+  --radius-2xl: var(--radius-5);
+  --radius-full: 9999px;
+}
+/** @tokens-end */
+
+/**
+ * @tokens Shadows
+ * @presenter Shadow
+ */
+@theme {
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05); /* Buttons, inputs */
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1); /* Cards */
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1); /* Dropdowns, popovers */
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1); /* Modals, dialogs */
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1); /* Toasts, command palette */
+}
+/** @tokens-end */
+
+/**
+ * @tokens Neutral semantic colors
+ * @presenter Color
+ */
+:root {
+  --gui-neutral-bg: var(--color-neutral-1);
+  --gui-neutral-bg-subtle: var(--color-neutral-2);
+  --gui-neutral-bg-hover: var(--color-neutral-3);
+  --gui-neutral-bg-active: var(--color-neutral-4);
+
+  --gui-neutral-border-subtle: var(--color-neutral-5);
+  --gui-neutral-border: var(--color-neutral-6);
+  --gui-neutral-border-strong: var(--color-neutral-7);
+
+  --gui-neutral-solid: var(--color-neutral-9);
+  --gui-neutral-solid-hover: var(--color-neutral-10);
+
+  --gui-neutral-fg-muted: var(--color-neutral-11);
+  --gui-neutral-fg: var(--color-neutral-12);
+}
+/** @tokens-end */
+
+/**
+ * @tokens Primary semantic colors
+ * @presenter Color
+ */
+:root {
+  --gui-primary-bg: var(--color-primary-1);
+  --gui-primary-bg-subtle: var(--color-primary-2);
+  --gui-primary-bg-hover: var(--color-primary-3);
+  --gui-primary-bg-active: var(--color-primary-4);
+
+  --gui-primary-border-subtle: var(--color-primary-5);
+  --gui-primary-border: var(--color-primary-6);
+  --gui-primary-border-strong: var(--color-primary-7);
+
+  --gui-primary-solid: var(--color-primary-9);
+  --gui-primary-solid-hover: var(--color-primary-10);
+
+  --gui-primary-fg-muted: var(--color-primary-11);
+  --gui-primary-fg: var(--color-primary-12);
+}
+/** @tokens-end */
+
+/**
+ * @tokens Danger semantic colors
+ * @presenter Color
+ */
+:root {
+  --gui-danger-bg: var(--color-accent-red-1);
+  --gui-danger-bg-subtle: var(--color-accent-red-2);
+  --gui-danger-bg-hover: var(--color-accent-red-3);
+  --gui-danger-bg-active: var(--color-accent-red-4);
+
+  --gui-danger-border-subtle: var(--color-accent-red-5);
+  --gui-danger-border: var(--color-accent-red-6);
+  --gui-danger-border-strong: var(--color-accent-red-7);
+
+  --gui-danger-solid: var(--color-accent-red-9);
+  --gui-danger-solid-hover: var(--color-accent-red-10);
+
+  --gui-danger-fg-muted: var(--color-accent-red-11);
+  --gui-danger-fg: var(--color-accent-red-12);
+}
+/** @tokens-end */
+
+/**
+ * @tokens Success semantic colors
+ * @presenter Color
+ */
+:root {
+  --gui-success-bg: var(--color-accent-green-1);
+  --gui-success-bg-subtle: var(--color-accent-green-2);
+  --gui-success-bg-hover: var(--color-accent-green-3);
+  --gui-success-bg-active: var(--color-accent-green-4);
+
+  --gui-success-border-subtle: var(--color-accent-green-5);
+  --gui-success-border: var(--color-accent-green-6);
+  --gui-success-border-strong: var(--color-accent-green-7);
+
+  --gui-success-solid: var(--color-accent-green-9);
+  --gui-success-solid-hover: var(--color-accent-green-10);
+
+  --gui-success-fg-muted: var(--color-accent-green-11);
+  --gui-success-fg: var(--color-accent-green-12);
+}
+/** @tokens-end */
+
+/**
+ * @tokens Warning semantic colors
+ * @presenter Color
+ */
+:root {
+  --gui-warning-bg: var(--color-accent-yellow-1);
+  --gui-warning-bg-subtle: var(--color-accent-yellow-2);
+  --gui-warning-bg-hover: var(--color-accent-yellow-3);
+  --gui-warning-bg-active: var(--color-accent-yellow-4);
+
+  --gui-warning-border-subtle: var(--color-accent-yellow-5);
+  --gui-warning-border: var(--color-accent-yellow-6);
+  --gui-warning-border-strong: var(--color-accent-yellow-7);
+
+  --gui-warning-solid: var(--color-accent-yellow-9);
+  --gui-warning-solid-hover: var(--color-accent-yellow-10);
+
+  --gui-warning-fg-muted: var(--color-accent-yellow-11);
+  --gui-warning-fg: var(--color-accent-yellow-12);
+}
+/** @tokens-end */
+
+/**
+ * @tokens Informative semantic colors
+ * @presenter Color
+ */
+:root {
+  --gui-info-bg: var(--color-accent-blue-1);
+  --gui-info-bg-subtle: var(--color-accent-blue-2);
+  --gui-info-bg-hover: var(--color-accent-blue-3);
+  --gui-info-bg-active: var(--color-accent-blue-4);
+
+  --gui-info-border-subtle: var(--color-accent-blue-5);
+  --gui-info-border: var(--color-accent-blue-6);
+  --gui-info-border-strong: var(--color-accent-blue-7);
+
+  --gui-info-solid: var(--color-accent-blue-9);
+  --gui-info-solid-hover: var(--color-accent-blue-10);
+
+  --gui-info-fg-muted: var(--color-accent-blue-11);
+  --gui-info-fg: var(--color-accent-blue-12);
+}
+/** @tokens-end */
+
+/**
+ * @tokens Notice semantic colors
+ * @presenter Color
+ */
+:root {
+  --gui-notice-bg: var(--color-accent-orange-1);
+  --gui-notice-bg-subtle: var(--color-accent-orange-2);
+  --gui-notice-bg-hover: var(--color-accent-orange-3);
+  --gui-notice-bg-active: var(--color-accent-orange-4);
+  --gui-notice-border-subtle: var(--color-accent-orange-5);
+  --gui-notice-border: var(--color-accent-orange-6);
+  --gui-notice-border-strong: var(--color-accent-orange-7);
+  --gui-notice-solid: var(--color-accent-orange-9);
+  --gui-notice-solid-hover: var(--color-accent-orange-10);
+  --gui-notice-fg-muted: var(--color-accent-orange-11);
+  --gui-notice-fg: var(--color-accent-orange-12);
+}
+/** @tokens-end */
+
+/**
+ * @tokens Overlay
+ * @presenter Color
+ */
+:root {
+  --gui-overlay-bg: rgba(0, 0, 0, 0.3);
+}
+/** @tokens-end */
+
+/* Utility classes for semantic colors */
+
+@utility gui-neutral-bg {
+  background-color: var(--gui-neutral-bg);
+}
+@utility gui-neutral-bg-subtle {
+  background-color: var(--gui-neutral-bg-subtle);
+}
+@utility gui-neutral-bg-hover {
+  background-color: var(--gui-neutral-bg-hover);
+}
+@utility gui-neutral-bg-active {
+  background-color: var(--gui-neutral-bg-active);
+}
+@utility gui-neutral-border-subtle {
+  border-color: var(--gui-neutral-border-subtle);
+}
+@utility gui-neutral-border {
+  border-color: var(--gui-neutral-border);
+}
+@utility gui-neutral-border-strong {
+  border-color: var(--gui-neutral-border-strong);
+}
+@utility gui-neutral-solid {
+  background-color: var(--gui-neutral-solid);
+}
+@utility gui-neutral-solid-hover {
+  background-color: var(--gui-neutral-solid-hover);
+}
+@utility gui-neutral-fg-muted {
+  color: var(--gui-neutral-fg-muted);
+}
+@utility gui-neutral-fg {
+  color: var(--gui-neutral-fg);
+}
+
+@utility gui-primary-bg {
+  background-color: var(--gui-primary-bg);
+}
+@utility gui-primary-bg-subtle {
+  background-color: var(--gui-primary-bg-subtle);
+}
+@utility gui-primary-bg-hover {
+  background-color: var(--gui-primary-bg-hover);
+}
+@utility gui-primary-bg-active {
+  background-color: var(--gui-primary-bg-active);
+}
+@utility gui-primary-border-subtle {
+  border-color: var(--gui-primary-border-subtle);
+}
+@utility gui-primary-border {
+  border-color: var(--gui-primary-border);
+}
+@utility gui-primary-border-strong {
+  border-color: var(--gui-primary-border-strong);
+}
+@utility gui-primary-solid {
+  background-color: var(--gui-primary-solid);
+}
+@utility gui-primary-solid-hover {
+  background-color: var(--gui-primary-solid-hover);
+}
+@utility gui-primary-fg-muted {
+  color: var(--gui-primary-fg-muted);
+}
+@utility gui-primary-fg {
+  color: var(--gui-primary-fg);
+}
+
+@utility gui-danger-bg {
+  background-color: var(--gui-danger-bg);
+}
+@utility gui-danger-bg-subtle {
+  background-color: var(--gui-danger-bg-subtle);
+}
+@utility gui-danger-bg-hover {
+  background-color: var(--gui-danger-bg-hover);
+}
+@utility gui-danger-bg-active {
+  background-color: var(--gui-danger-bg-active);
+}
+@utility gui-danger-border-subtle {
+  border-color: var(--gui-danger-border-subtle);
+}
+@utility gui-danger-border {
+  border-color: var(--gui-danger-border);
+}
+@utility gui-danger-border-strong {
+  border-color: var(--gui-danger-border-strong);
+}
+@utility gui-danger-solid {
+  background-color: var(--gui-danger-solid);
+}
+@utility gui-danger-solid-hover {
+  background-color: var(--gui-danger-solid-hover);
+}
+@utility gui-danger-fg-muted {
+  color: var(--gui-danger-fg-muted);
+}
+@utility gui-danger-fg {
+  color: var(--gui-danger-fg);
+}
+
+@utility gui-success-bg {
+  background-color: var(--gui-success-bg);
+}
+@utility gui-success-bg-subtle {
+  background-color: var(--gui-success-bg-subtle);
+}
+@utility gui-success-bg-hover {
+  background-color: var(--gui-success-bg-hover);
+}
+@utility gui-success-bg-active {
+  background-color: var(--gui-success-bg-active);
+}
+@utility gui-success-border-subtle {
+  border-color: var(--gui-success-border-subtle);
+}
+@utility gui-success-border {
+  border-color: var(--gui-success-border);
+}
+@utility gui-success-border-strong {
+  border-color: var(--gui-success-border-strong);
+}
+@utility gui-success-solid {
+  background-color: var(--gui-success-solid);
+}
+@utility gui-success-solid-hover {
+  background-color: var(--gui-success-solid-hover);
+}
+@utility gui-success-fg-muted {
+  color: var(--gui-success-fg-muted);
+}
+@utility gui-success-fg {
+  color: var(--gui-success-fg);
+}
+
+@utility gui-warning-bg {
+  background-color: var(--gui-warning-bg);
+}
+@utility gui-warning-bg-subtle {
+  background-color: var(--gui-warning-bg-subtle);
+}
+@utility gui-warning-bg-hover {
+  background-color: var(--gui-warning-bg-hover);
+}
+@utility gui-warning-bg-active {
+  background-color: var(--gui-warning-bg-active);
+}
+@utility gui-warning-border-subtle {
+  border-color: var(--gui-warning-border-subtle);
+}
+@utility gui-warning-border {
+  border-color: var(--gui-warning-border);
+}
+@utility gui-warning-border-strong {
+  border-color: var(--gui-warning-border-strong);
+}
+@utility gui-warning-solid {
+  background-color: var(--gui-warning-solid);
+}
+@utility gui-warning-solid-hover {
+  background-color: var(--gui-warning-solid-hover);
+}
+@utility gui-warning-fg-muted {
+  color: var(--gui-warning-fg-muted);
+}
+@utility gui-warning-fg {
+  color: var(--gui-warning-fg);
+}
+
+@utility gui-info-bg {
+  background-color: var(--gui-info-bg);
+}
+@utility gui-info-bg-subtle {
+  background-color: var(--gui-info-bg-subtle);
+}
+@utility gui-info-bg-hover {
+  background-color: var(--gui-info-bg-hover);
+}
+@utility gui-info-bg-active {
+  background-color: var(--gui-info-bg-active);
+}
+@utility gui-info-border-subtle {
+  border-color: var(--gui-info-border-subtle);
+}
+@utility gui-info-border {
+  border-color: var(--gui-info-border);
+}
+@utility gui-info-border-strong {
+  border-color: var(--gui-info-border-strong);
+}
+@utility gui-info-solid {
+  background-color: var(--gui-info-solid);
+}
+@utility gui-info-solid-hover {
+  background-color: var(--gui-info-solid-hover);
+}
+@utility gui-info-fg-muted {
+  color: var(--gui-info-fg-muted);
+}
+@utility gui-info-fg {
+  color: var(--gui-info-fg);
+}
+
+@utility gui-notice-bg {
+  background-color: var(--gui-notice-bg);
+}
+@utility gui-notice-bg-subtle {
+  background-color: var(--gui-notice-bg-subtle);
+}
+@utility gui-notice-bg-hover {
+  background-color: var(--gui-notice-bg-hover);
+}
+@utility gui-notice-bg-active {
+  background-color: var(--gui-notice-bg-active);
+}
+@utility gui-notice-border-subtle {
+  border-color: var(--gui-notice-border-subtle);
+}
+@utility gui-notice-border {
+  border-color: var(--gui-notice-border);
+}
+@utility gui-notice-border-strong {
+  border-color: var(--gui-notice-border-strong);
+}
+@utility gui-notice-solid {
+  background-color: var(--gui-notice-solid);
+}
+@utility gui-notice-solid-hover {
+  background-color: var(--gui-notice-solid-hover);
+}
+@utility gui-notice-fg-muted {
+  color: var(--gui-notice-fg-muted);
+}
+@utility gui-notice-fg {
+  color: var(--gui-notice-fg);
+}
+
+@utility gui-overlay-bg {
+  background-color: var(--gui-overlay-bg);
+}

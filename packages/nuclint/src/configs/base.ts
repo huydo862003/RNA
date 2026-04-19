@@ -3,7 +3,7 @@ import type {
 } from 'eslint';
 import tselint from 'typescript-eslint';
 import stylistic from '@stylistic/eslint-plugin';
-import importPlugin from 'eslint-plugin-import';
+import importPlugin, { createNodeResolver } from 'eslint-plugin-import-x';
 import unicorn from 'eslint-plugin-unicorn';
 import n from 'eslint-plugin-n';
 import {
@@ -20,9 +20,7 @@ import {
 export const baseConfig: Linter.Config[] = [
   ...tselint.configs.strict,
   {
-    files: [
-      '**/*.{js,ts,vue,jsx,tsx}',
-    ],
+    files: ['**/*.{js,ts,vue,jsx,tsx}'],
     plugins: {
       '@stylistic': stylistic,
       'import': importPlugin,
@@ -41,6 +39,9 @@ export const baseConfig: Linter.Config[] = [
       'build',
       'output',
     ],
+    settings: {
+      'import-x/resolver-next': [createNodeResolver()],
+    },
     rules: {
       ...typeSafetyRules,
       ...expressionRules,

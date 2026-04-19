@@ -1,13 +1,21 @@
 {
+  "$schema": "https://json.schemastore.org/tsconfig",
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "useDefineForClassFields": true,
     "jsx": "preserve",
-    "rootDir": "./src/"
+    "rootDir": "./src/",
+    "paths": {
+      "@/*": ["./src/*"],
+      "$storybook/*": ["./.storybook/*"]
+    }
   },
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/**/*.vue"
+  ],
+  "exclude": [
+    "templates/**/*.ts"
   ]
 }

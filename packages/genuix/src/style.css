@@ -1,0 +1,22 @@
+/* #human-slop
+ * https://github.com/huydo862003/Fck-AI-Slop/edit/main/README.md
+ */
+
+@import 'tailwindcss';
+@import 'floating-vue/style.css';
+
+/* Reset default tailwind namespaces we redefine */
+@theme {
+  --color-*: initial;
+  --font-*: initial;
+  --text-*: initial;
+  --leading-*: initial;
+  --spacing-*: initial;
+  --radius-*: initial;
+  --shadow-*: initial;
+  --ease-*: initial;
+}
+
+@import './tokens/primitives/base/index.css';
+@import './tokens/primitives/dark/index.css';
+@import './tokens/semantic.css';

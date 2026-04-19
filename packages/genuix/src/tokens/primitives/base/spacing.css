@@ -1,0 +1,26 @@
+/* #human-slop
+ *  https://github.com/huydo862003/Fck-AI-Slop/edit/main/README.md
+ */
+
+/*
+ * These are used for fixed size elements
+ * */
+
+/**
+ * @tokens Spacing
+ * @presenter Spacing
+ */
+@theme {
+  --spacing: 4px; /* Base unit for TW4 multiplier system */
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 12px;
+  --spacing-4: 16px;
+  --spacing-5: 20px;
+  --spacing-6: 24px;
+  --spacing-8: 32px;
+  --spacing-10: 40px;
+  --spacing-12: 48px;
+  --spacing-16: 64px;
+}
+/** @tokens-end */

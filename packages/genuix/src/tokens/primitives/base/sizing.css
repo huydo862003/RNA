@@ -1,0 +1,20 @@
+/* #human-slop
+ *  https://github.com/huydo862003/Fck-AI-Slop/edit/main/README.md
+ */
+
+/**
+ * @tokens Sizing
+ * @presenter Spacing
+ */
+@theme {
+  /* Generic sizing scale on 4px grid */
+  --size-1: 12px;
+  --size-2: 16px;
+  --size-3: 20px;
+  --size-4: 24px;
+  --size-5: 32px;
+  --size-6: 40px;
+  --size-7: 48px;
+  --size-8: 64px;
+}
+/** @tokens-end */

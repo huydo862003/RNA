@@ -1,0 +1,121 @@
+/* #human-slop
+ * https://github.com/huydo862003/Fck-AI-Slop/edit/main/README.md
+ */
+
+/* Color primitives from Radix Colors v3.0.0 (@radix-ui/colors)
+ * 12 steps per hue
+ * These design tokens will override the base tokens when the dark theme is applied
+ * */
+
+@variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  .dark {
+    color-scheme: dark;
+
+    /* Corresponds to `slateDark` in Radix UI (See www.radix-ui.com/colors/docs/palette-composition/scales#slate) */
+    --color-neutral-1: #111113;
+    --color-neutral-2: #18191b;
+    --color-neutral-3: #212225;
+    --color-neutral-4: #272a2d;
+    --color-neutral-5: #2e3135;
+    --color-neutral-6: #363a3f;
+    --color-neutral-7: #43484e;
+    --color-neutral-8: #5a6169;
+    --color-neutral-9: #696e77;
+    --color-neutral-10: #777b84;
+    --color-neutral-11: #b0b4ba;
+    --color-neutral-12: #edeef0;
+
+    /* Corresponds to `slateDark` in Radix UI (See www.radix-ui.com/colors/docs/palette-composition/scales#slate) (primary = neutral) */
+    --color-primary-1: #111113;
+    --color-primary-2: #18191b;
+    --color-primary-3: #212225;
+    --color-primary-4: #272a2d;
+    --color-primary-5: #2e3135;
+    --color-primary-6: #363a3f;
+    --color-primary-7: #43484e;
+    --color-primary-8: #5a6169;
+    --color-primary-9: #696e77;
+    --color-primary-10: #777b84;
+    --color-primary-11: #b0b4ba;
+    --color-primary-12: #edeef0;
+
+    /* Corresponds to `redDark` in Radix UI (See www.radix-ui.com/colors/docs/palette-composition/scales#red) */
+    --color-accent-red-1: #191111;
+    --color-accent-red-2: #201314;
+    --color-accent-red-3: #3b1219;
+    --color-accent-red-4: #500f1c;
+    --color-accent-red-5: #611623;
+    --color-accent-red-6: #72232d;
+    --color-accent-red-7: #8c333a;
+    --color-accent-red-8: #b54548;
+    --color-accent-red-9: #e5484d;
+    --color-accent-red-10: #ec5d5e;
+    --color-accent-red-11: #ff9592;
+    --color-accent-red-12: #ffd1d9;
+
+    /* Corresponds to `grassDark` in Radix UI (See www.radix-ui.com/colors/docs/palette-composition/scales#grass) */
+    --color-accent-green-1: #0e1511;
+    --color-accent-green-2: #141a15;
+    --color-accent-green-3: #1b2a1e;
+    --color-accent-green-4: #1d3a24;
+    --color-accent-green-5: #25482d;
+    --color-accent-green-6: #2d5736;
+    --color-accent-green-7: #366740;
+    --color-accent-green-8: #3e7949;
+    --color-accent-green-9: #46a758;
+    --color-accent-green-10: #53b365;
+    --color-accent-green-11: #71d083;
+    --color-accent-green-12: #c2f0c2;
+
+    /* Corresponds to `amberDark` in Radix UI (See www.radix-ui.com/colors/docs/palette-composition/scales#amber) */
+    --color-accent-yellow-1: #16120c;
+    --color-accent-yellow-2: #1d180f;
+    --color-accent-yellow-3: #302008;
+    --color-accent-yellow-4: #3f2700;
+    --color-accent-yellow-5: #4d3000;
+    --color-accent-yellow-6: #5c3d05;
+    --color-accent-yellow-7: #714f19;
+    --color-accent-yellow-8: #8f6424;
+    --color-accent-yellow-9: #ffc53d;
+    --color-accent-yellow-10: #ffd60a;
+    --color-accent-yellow-11: #ffca16;
+    --color-accent-yellow-12: #ffe7b3;
+
+    /* Corresponds to `blueDark` in Radix UI (See www.radix-ui.com/colors/docs/palette-composition/scales#blue) */
+    --color-accent-blue-1: #0d1520;
+    --color-accent-blue-2: #111927;
+    --color-accent-blue-3: #0d2847;
+    --color-accent-blue-4: #003362;
+    --color-accent-blue-5: #004074;
+    --color-accent-blue-6: #104d87;
+    --color-accent-blue-7: #205d9e;
+    --color-accent-blue-8: #2870bd;
+    --color-accent-blue-9: #0090ff;
+    --color-accent-blue-10: #3b9eff;
+    --color-accent-blue-11: #70b8ff;
+    --color-accent-blue-12: #c2e6ff;
+
+    /* Corresponds to `orangeDark` in Radix UI (See www.radix-ui.com/colors/docs/palette-composition/scales#orange) */
+    --color-accent-orange-1: #17120e;
+    --color-accent-orange-2: #1e160f;
+    --color-accent-orange-3: #331e0b;
+    --color-accent-orange-4: #462100;
+    --color-accent-orange-5: #562800;
+    --color-accent-orange-6: #66350c;
+    --color-accent-orange-7: #7e451d;
+    --color-accent-orange-8: #a35829;
+    --color-accent-orange-9: #f76b15;
+    --color-accent-orange-10: #ff801f;
+    --color-accent-orange-11: #ffa057;
+    --color-accent-orange-12: #ffe0c2;
+
+    /* Overlay needs higher opacity in dark mode */
+    --color-bg-overlay: rgba(0, 0, 0, 0.6);
+  }
+}
