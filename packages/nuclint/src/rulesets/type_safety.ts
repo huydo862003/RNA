@@ -20,8 +20,8 @@ export const typeSafetyRules: Linter.RulesRecord = {
     'error',
     'interface',
   ],
-  // Disallow explicit any type to maintain type safety
-  '@typescript-eslint/no-explicit-any': 'error',
-  // Disallow non-null assertions to encourage proper null checks
-  '@typescript-eslint/no-non-null-assertion': 'error',
+  // Warn on explicit any type to maintain type safety
+  '@typescript-eslint/no-explicit-any': 'warn',
+  // Warn on non-null assertions to encourage proper null checks
+  '@typescript-eslint/no-non-null-assertion': 'warn',
 };
