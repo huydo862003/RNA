@@ -25,6 +25,9 @@
 import {
   Tooltip,
 } from 'floating-vue';
+import {
+  useId,
+} from 'vue';
 
 type Side = 'top' | 'bottom' | 'left' | 'right';
 type Alignment = 'start' | 'end';
