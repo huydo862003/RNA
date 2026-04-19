@@ -1,5 +1,16 @@
 # genuix
 
+## 0.5.0
+
+### Minor Changes
+
+- Add GDropdown, GTooltip, GKbdKey, GKbdShortcut, useTheme to genuix
+
+### Patch Changes
+
+- Updated dependencies
+  - @hdnax/stdx@0.3.0
+
 ## 0.4.0
 
 ### Minor Changes

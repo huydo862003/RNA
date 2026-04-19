@@ -1,5 +1,11 @@
 # nuclint
 
+## 0.14.0
+
+### Minor Changes
+
+- Use better import resolver in nuclint
+
 ## 0.13.0
 
 ### Minor Changes

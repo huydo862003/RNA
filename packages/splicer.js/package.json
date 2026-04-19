@@ -1,5 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/package",
+  "private": true,
   "name": "@hdnax/splicer.js",
   "version": "0.2.0",
   "description": "Reactive computation via finite differencing.",
