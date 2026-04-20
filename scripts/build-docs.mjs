@@ -24,6 +24,10 @@ async function readPkgJson(dir) {
 }
 
 async function main() {
+  execSync("pnpm -r --if-present run build", {
+    cwd: ROOT,
+    stdio: "inherit",
+  });
   execSync("pnpm -r --if-present run doc:build", {
     cwd: ROOT,
     stdio: "inherit",
