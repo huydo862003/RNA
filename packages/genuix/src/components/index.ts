@@ -42,3 +42,13 @@ export {
   FlipDirection,
   FlipTrigger,
 } from './Flippable/types';
+
+export {
+  default as GButton,
+} from './Button/GButton.vue';
+
+export {
+  ButtonVariant,
+  ButtonSemantic,
+  ButtonSize,
+} from './Button/types';
