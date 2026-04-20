@@ -11,6 +11,10 @@ export {
 } from './Kbd/GKbdKey.vue';
 
 export {
+  GKbdKeyName,
+} from './Kbd/types';
+
+export {
   default as GTooltip,
 } from './Tooltip/GTooltip.vue';
 

@@ -46,7 +46,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
+export const DefaultCollapsibleStory: Story = {
   parameters: {
     docs: {
       description: {
@@ -62,14 +62,14 @@ export const Default: Story = {
       <GCollapsible>
         <template #summary>Click to expand</template>
         <template #collapsible-content>
-          <p style="padding: 8px 0;">Hidden content revealed on toggle.</p>
+          <p class="py-spacing-2">Hidden content revealed on toggle.</p>
         </template>
       </GCollapsible>
     `,
   }),
 };
 
-export const OpenByDefault: Story = {
+export const OpenByDefaultCollapsibleStory: Story = {
   parameters: {
     docs: {
       description: {
@@ -85,14 +85,14 @@ export const OpenByDefault: Story = {
       <GCollapsible open>
         <template #summary>Already open</template>
         <template #collapsible-content>
-          <p style="padding: 8px 0;">Visible on load.</p>
+          <p class="py-spacing-2">Visible on load.</p>
         </template>
       </GCollapsible>
     `,
   }),
 };
 
-export const NestedColapsible: Story = {
+export const NestedCollapsibleStory: Story = {
   parameters: {
     docs: {
       description: {
@@ -108,11 +108,11 @@ export const NestedColapsible: Story = {
       <GCollapsible>
         <template #summary>Outer</template>
         <template #collapsible-content>
-          <p style="padding: 8px 0;">Outer content</p>
+          <p class="py-spacing-2">Outer content</p>
           <GCollapsible>
             <template #summary>Inner</template>
             <template #collapsible-content>
-              <p style="padding: 8px 0;">Inner content</p>
+              <p class="py-spacing-2">Inner content</p>
             </template>
           </GCollapsible>
         </template>
@@ -121,7 +121,7 @@ export const NestedColapsible: Story = {
   }),
 };
 
-export const MultipleCollapsible: Story = {
+export const MultipleCollapsibleStory: Story = {
   parameters: {
     docs: {
       description: {
@@ -134,23 +134,23 @@ export const MultipleCollapsible: Story = {
       GCollapsible,
     },
     template: `
-      <div style="display: flex; flex-direction: column; gap: 4px;">
+      <div class="flex flex-col gap-spacing-1">
         <GCollapsible>
           <template #summary>Section 1</template>
           <template #collapsible-content>
-            <p style="padding: 8px 0;">Content for section 1.</p>
+            <p class="py-spacing-2">Content for section 1.</p>
           </template>
         </GCollapsible>
         <GCollapsible>
           <template #summary>Section 2</template>
           <template #collapsible-content>
-            <p style="padding: 8px 0;">Content for section 2.</p>
+            <p class="py-spacing-2">Content for section 2.</p>
           </template>
         </GCollapsible>
         <GCollapsible>
           <template #summary>Section 3</template>
           <template #collapsible-content>
-            <p style="padding: 8px 0;">Content for section 3.</p>
+            <p class="py-spacing-2">Content for section 3.</p>
           </template>
         </GCollapsible>
       </div>

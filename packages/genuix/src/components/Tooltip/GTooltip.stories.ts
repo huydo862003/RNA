@@ -47,7 +47,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
+export const DefaultTooltipStory: Story = {
   parameters: {
     docs: {
       description: {
@@ -69,7 +69,7 @@ export const Default: Story = {
     },
     template: `
       <GTooltip v-bind="args">
-        <button style="padding: 8px 16px; border: 1px solid #ccc; border-radius: 4px; cursor: pointer;">
+        <button class="px-spacing-4 py-spacing-2 border rui-border-neutral rounded-md cursor-pointer">
           Hover me
         </button>
         <template #popper>
@@ -80,7 +80,7 @@ export const Default: Story = {
   }),
 };
 
-export const Placements: Story = {
+export const PlacementsTooltipStory: Story = {
   parameters: {
     docs: {
       description: {
@@ -93,21 +93,21 @@ export const Placements: Story = {
       GTooltip,
     },
     template: `
-      <div style="display: flex; gap: 24px; padding: 64px; flex-wrap: wrap; justify-content: center;">
+      <div class="flex gap-spacing-6 p-spacing-16 flex-wrap justify-center">
         <GTooltip placement="top">
-          <button style="padding: 8px 16px; border: 1px solid #ccc; border-radius: 4px;">Top</button>
+          <button class="px-spacing-4 py-spacing-2 border rui-border-neutral rounded-md">Top</button>
           <template #popper>Top tooltip</template>
         </GTooltip>
         <GTooltip placement="bottom">
-          <button style="padding: 8px 16px; border: 1px solid #ccc; border-radius: 4px;">Bottom</button>
+          <button class="px-spacing-4 py-spacing-2 border rui-border-neutral rounded-md">Bottom</button>
           <template #popper>Bottom tooltip</template>
         </GTooltip>
         <GTooltip placement="left">
-          <button style="padding: 8px 16px; border: 1px solid #ccc; border-radius: 4px;">Left</button>
+          <button class="px-spacing-4 py-spacing-2 border rui-border-neutral rounded-md">Left</button>
           <template #popper>Left tooltip</template>
         </GTooltip>
         <GTooltip placement="right">
-          <button style="padding: 8px 16px; border: 1px solid #ccc; border-radius: 4px;">Right</button>
+          <button class="px-spacing-4 py-spacing-2 border rui-border-neutral rounded-md">Right</button>
           <template #popper>Right tooltip</template>
         </GTooltip>
       </div>
@@ -115,7 +115,7 @@ export const Placements: Story = {
   }),
 };
 
-export const NoPopper: Story = {
+export const NoPopperTooltipStory: Story = {
   parameters: {
     docs: {
       description: {

@@ -41,7 +41,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
+export const DefaultIconStory: Story = {
   parameters: {
     docs: {
       description: {
@@ -54,7 +54,7 @@ export const Default: Story = {
   },
 };
 
-export const Sized: Story = {
+export const SizedIconStory: Story = {
   parameters: {
     docs: {
       description: {
@@ -67,11 +67,11 @@ export const Sized: Story = {
     setup () {
       return { GIconName };
     },
-    template: '<GIcon :name="GIconName.Star" style="width: 32px; height: 32px;" />',
+    template: '<GIcon :name="GIconName.Star" class="w-size-5 h-size-5" />',
   }),
 };
 
-export const CustomIcon: Story = {
+export const CustomIconStory: Story = {
   parameters: {
     docs: {
       description: {
@@ -98,11 +98,11 @@ export const CustomIcon: Story = {
         customSvg,
       };
     },
-    template: '<GIcon :icon="customSvg" style="width: 24px; height: 24px;" />',
+    template: '<GIcon :icon="customSvg" class="w-size-4 h-size-4" />',
   }),
 };
 
-export const AllIcons: Story = {
+export const AllIconsStory: Story = {
   parameters: {
     docs: {
       description: {
@@ -120,14 +120,14 @@ export const AllIcons: Story = {
       };
     },
     template: `
-      <div style="display: flex; flex-wrap: wrap; gap: 16px;">
+      <div class="flex flex-wrap gap-spacing-4">
         <div
           v-for="icon in icons"
           :key="icon"
-          style="display: flex; flex-direction: column; align-items: center; gap: 4px; width: 80px;"
+          class="flex flex-col items-center gap-spacing-1 w-[80px]"
         >
-          <GIcon :name="icon" style="width: 24px; height: 24px;" />
-          <span style="font-size: 10px; color: #666; text-align: center; word-break: break-all;">{{ icon }}</span>
+          <GIcon :name="icon" class="w-size-4 h-size-4" />
+          <span class="text-xs rui-fg-muted-neutral text-center break-all">{{ icon }}</span>
         </div>
       </div>
     `,

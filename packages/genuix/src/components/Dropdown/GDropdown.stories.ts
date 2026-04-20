@@ -47,7 +47,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
+export const DefaultDropdownStory: Story = {
   parameters: {
     docs: {
       description: {
@@ -69,18 +69,18 @@ export const Default: Story = {
     },
     template: `
       <GDropdown v-bind="args">
-        <button style="padding: 8px 16px; border: 1px solid #ccc; border-radius: 4px; cursor: pointer;">
+        <button class="px-spacing-4 py-spacing-2 border rui-border-neutral rounded-md cursor-pointer">
           Click me
         </button>
         <template #popper>
-          <div style="padding: 8px 12px;">Dropdown content</div>
+          <div class="px-spacing-3 py-spacing-2">Dropdown content</div>
         </template>
       </GDropdown>
     `,
   }),
 };
 
-export const Placements: Story = {
+export const PlacementsDropdownStory: Story = {
   parameters: {
     docs: {
       description: {
@@ -93,29 +93,29 @@ export const Placements: Story = {
       GDropdown,
     },
     template: `
-      <div style="display: flex; gap: 24px; padding: 64px; flex-wrap: wrap; justify-content: center;">
+      <div class="flex gap-spacing-6 p-spacing-16 flex-wrap justify-center">
         <GDropdown placement="top">
-          <button style="padding: 8px 16px; border: 1px solid #ccc; border-radius: 4px;">Top</button>
-          <template #popper><div style="padding: 8px 12px;">Top dropdown</div></template>
+          <button class="px-spacing-4 py-spacing-2 border rui-border-neutral rounded-md">Top</button>
+          <template #popper><div class="px-spacing-3 py-spacing-2">Top dropdown</div></template>
         </GDropdown>
         <GDropdown placement="bottom">
-          <button style="padding: 8px 16px; border: 1px solid #ccc; border-radius: 4px;">Bottom</button>
-          <template #popper><div style="padding: 8px 12px;">Bottom dropdown</div></template>
+          <button class="px-spacing-4 py-spacing-2 border rui-border-neutral rounded-md">Bottom</button>
+          <template #popper><div class="px-spacing-3 py-spacing-2">Bottom dropdown</div></template>
         </GDropdown>
         <GDropdown placement="left">
-          <button style="padding: 8px 16px; border: 1px solid #ccc; border-radius: 4px;">Left</button>
-          <template #popper><div style="padding: 8px 12px;">Left dropdown</div></template>
+          <button class="px-spacing-4 py-spacing-2 border rui-border-neutral rounded-md">Left</button>
+          <template #popper><div class="px-spacing-3 py-spacing-2">Left dropdown</div></template>
         </GDropdown>
         <GDropdown placement="right">
-          <button style="padding: 8px 16px; border: 1px solid #ccc; border-radius: 4px;">Right</button>
-          <template #popper><div style="padding: 8px 12px;">Right dropdown</div></template>
+          <button class="px-spacing-4 py-spacing-2 border rui-border-neutral rounded-md">Right</button>
+          <template #popper><div class="px-spacing-3 py-spacing-2">Right dropdown</div></template>
         </GDropdown>
       </div>
     `,
   }),
 };
 
-export const WithMenu: Story = {
+export const WithMenuDropdownStory: Story = {
   parameters: {
     docs: {
       description: {
@@ -129,14 +129,14 @@ export const WithMenu: Story = {
     },
     template: `
       <GDropdown placement="bottom-start">
-        <button style="padding: 8px 16px; border: 1px solid #ccc; border-radius: 4px; cursor: pointer;">
+        <button class="px-spacing-4 py-spacing-2 border rui-border-neutral rounded-md cursor-pointer">
           Menu
         </button>
         <template #popper>
-          <div style="display: flex; flex-direction: column; min-width: 120px;">
-            <button style="padding: 8px 12px; text-align: left; border: none; background: none; cursor: pointer;">Item 1</button>
-            <button style="padding: 8px 12px; text-align: left; border: none; background: none; cursor: pointer;">Item 2</button>
-            <button style="padding: 8px 12px; text-align: left; border: none; background: none; cursor: pointer;">Item 3</button>
+          <div class="flex flex-col min-w-[120px]">
+            <button class="px-spacing-3 py-spacing-2 text-left border-none bg-transparent cursor-pointer">Item 1</button>
+            <button class="px-spacing-3 py-spacing-2 text-left border-none bg-transparent cursor-pointer">Item 2</button>
+            <button class="px-spacing-3 py-spacing-2 text-left border-none bg-transparent cursor-pointer">Item 3</button>
           </div>
         </template>
       </GDropdown>
