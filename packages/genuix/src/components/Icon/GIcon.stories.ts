@@ -127,7 +127,7 @@ export const AllIconsStory: Story = {
           class="flex flex-col items-center gap-spacing-1 w-[80px]"
         >
           <GIcon :name="icon" class="w-size-4 h-size-4" />
-          <span class="text-xs rui-fg-muted-neutral text-center break-all">{{ icon }}</span>
+          <span class="text-xs gui-neutral-fg-muted text-center break-all">{{ icon }}</span>
         </div>
       </div>
     `,

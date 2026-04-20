@@ -69,7 +69,7 @@ export const DefaultTooltipStory: Story = {
     },
     template: `
       <GTooltip v-bind="args">
-        <button class="px-spacing-4 py-spacing-2 border rui-border-neutral rounded-md cursor-pointer">
+        <button class="px-spacing-4 py-spacing-2 border gui-neutral-border rounded-md cursor-pointer">
           Hover me
         </button>
         <template #popper>
@@ -95,19 +95,19 @@ export const PlacementsTooltipStory: Story = {
     template: `
       <div class="flex gap-spacing-6 p-spacing-16 flex-wrap justify-center">
         <GTooltip placement="top">
-          <button class="px-spacing-4 py-spacing-2 border rui-border-neutral rounded-md">Top</button>
+          <button class="px-spacing-4 py-spacing-2 border gui-neutral-border rounded-md">Top</button>
           <template #popper>Top tooltip</template>
         </GTooltip>
         <GTooltip placement="bottom">
-          <button class="px-spacing-4 py-spacing-2 border rui-border-neutral rounded-md">Bottom</button>
+          <button class="px-spacing-4 py-spacing-2 border gui-neutral-border rounded-md">Bottom</button>
           <template #popper>Bottom tooltip</template>
         </GTooltip>
         <GTooltip placement="left">
-          <button class="px-spacing-4 py-spacing-2 border rui-border-neutral rounded-md">Left</button>
+          <button class="px-spacing-4 py-spacing-2 border gui-neutral-border rounded-md">Left</button>
           <template #popper>Left tooltip</template>
         </GTooltip>
         <GTooltip placement="right">
-          <button class="px-spacing-4 py-spacing-2 border rui-border-neutral rounded-md">Right</button>
+          <button class="px-spacing-4 py-spacing-2 border gui-neutral-border rounded-md">Right</button>
           <template #popper>Right tooltip</template>
         </GTooltip>
       </div>
