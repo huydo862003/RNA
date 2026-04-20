@@ -140,6 +140,7 @@ defineExpose({
 }
 
 .flippable.is-disabled {
+  cursor: not-allowed;
   pointer-events: none;
 }
 </style>

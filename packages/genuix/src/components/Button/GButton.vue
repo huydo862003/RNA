@@ -4,6 +4,7 @@
       'btn',
       `btn-${variant}`,
       `btn-${size}`,
+      { 'is-loading': loading },
     ]"
     :style="{
       '--_bg': `var(--gui-${semantic}-bg)`,
@@ -15,9 +16,16 @@
       '--_fg': `var(--gui-${semantic}-fg)`,
       '--_fg-muted': `var(--gui-${semantic}-fg-muted)`,
     }"
-    :disabled="disabled"
+    :disabled="isInactive"
   >
-    <slot />
+    <GSpinner
+      v-if="loading"
+      :size="spinnerSize"
+      class="btn-spinner"
+    />
+    <span class="btn-content">
+      <slot />
+    </span>
   </button>
 </template>
 
@@ -27,22 +35,44 @@
  */
 
 import {
+  computed,
+} from 'vue';
+import {
   ButtonVariant,
   ButtonSemantic,
   ButtonSize,
 } from './types';
+import GSpinner from '../Spinner/GSpinner.vue';
+import {
+  SpinnerSize,
+} from '../Spinner/types';
 
 const {
   variant = ButtonVariant.Solid,
   semantic = ButtonSemantic.Primary,
   size = ButtonSize.Md,
   disabled = false,
+  loading = false,
 } = defineProps<{
   variant?: ButtonVariant;
   semantic?: ButtonSemantic;
   size?: ButtonSize;
   disabled?: boolean;
+  loading?: boolean;
 }>();
+
+const isInactive = computed(() => disabled || loading);
+
+const spinnerSize = computed(() => {
+  const map: Record<ButtonSize, SpinnerSize> = {
+    [ButtonSize.Xs]: SpinnerSize.Xs,
+    [ButtonSize.Sm]: SpinnerSize.Xs,
+    [ButtonSize.Md]: SpinnerSize.Sm,
+    [ButtonSize.Lg]: SpinnerSize.Md,
+    [ButtonSize.Xl]: SpinnerSize.Md,
+  };
+  return map[size];
+});
 </script>
 
 <style scoped>
@@ -50,7 +80,7 @@ const {
 
 /* Base */
 .btn {
-  @apply inline-flex items-center justify-center font-mono cursor-pointer select-none;
+  @apply inline-flex items-center justify-center font-mono cursor-pointer select-none relative;
   border: none;
   border-radius: var(--radius-md);
   transition-property: background-color, color, border-color;
@@ -64,7 +94,13 @@ const {
 
 .btn:disabled {
   opacity: 0.5;
+  cursor: not-allowed;
   pointer-events: none;
+}
+
+.btn.is-loading {
+  cursor: wait;
+  filter: brightness(0.85);
 }
 
 @keyframes btn-pulse {
@@ -150,5 +186,15 @@ const {
 
 .btn-link:hover {
   text-decoration: underline;
+}
+
+/* Loading state: spinner overlays content, both visible */
+.btn-spinner {
+  position: absolute;
+}
+
+.btn-content {
+  opacity: 1;
+  transition: opacity var(--duration-fast) var(--ease-default);
 }
 </style>

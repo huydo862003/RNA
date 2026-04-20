@@ -33,6 +33,10 @@ const meta = {
       options: Object.values(ButtonSize),
       description: 'Button size',
     },
+    loading: {
+      control: 'boolean',
+      description: 'Show spinner, disable interactions',
+    },
     disabled: {
       control: 'boolean',
       description: 'Disable interactions',
@@ -127,6 +131,22 @@ export const LinkButtonStory: Story = {
     docs: {
       description: {
         story: 'Looks like a hyperlink',
+      },
+    },
+  },
+  render,
+};
+
+export const LoadingButtonStory: Story = {
+  args: {
+    variant: ButtonVariant.Solid,
+    semantic: ButtonSemantic.Primary,
+    loading: true,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Loading state with spinner, button disabled',
       },
     },
   },
