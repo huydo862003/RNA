@@ -141,6 +141,6 @@ defineExpose({
 
 .flippable.is-disabled {
   cursor: not-allowed;
-  pointer-events: none;
+  filter: brightness(0.95);
 }
 </style>

@@ -102,7 +102,6 @@ defineExpose({
 .switch.is-disabled {
   opacity: 0.5;
   cursor: not-allowed;
-  pointer-events: none;
 }
 
 /* Thumb */
@@ -116,7 +115,9 @@ defineExpose({
   transition-timing-function: var(--ease-default);
 }
 
-/* Sizes: height = sizing token, thumb = sizing token - 1 step, width = 2 * thumb + 4px padding */
+/* Switch thumb = sizing token - 1 step (to not overlap with the track)
+ * Switch width = 2 * thumb + 4px padding
+ */
 .switch-sm {
   width: calc(2 * var(--size-1) + 4px);
   height: var(--size-2);

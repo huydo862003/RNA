@@ -37,15 +37,15 @@
 import {
   computed,
 } from 'vue';
+import GSpinner from '../Spinner/GSpinner.vue';
+import {
+  SpinnerSize,
+} from '../Spinner/types';
 import {
   ButtonVariant,
   ButtonSemantic,
   ButtonSize,
 } from './types';
-import GSpinner from '../Spinner/GSpinner.vue';
-import {
-  SpinnerSize,
-} from '../Spinner/types';
 
 const {
   variant = ButtonVariant.Solid,
@@ -88,14 +88,13 @@ const spinnerSize = computed(() => {
   transition-timing-function: var(--ease-default, ease);
 }
 
-.btn:active {
+.btn:active:not(.btn:disabled) {
   animation: btn-pulse var(--duration-fast, 150ms) var(--ease-out, ease-out);
 }
 
 .btn:disabled {
-  opacity: 0.5;
   cursor: not-allowed;
-  pointer-events: none;
+  filter: brightness(0.95);
 }
 
 .btn.is-loading {
@@ -146,7 +145,7 @@ const spinnerSize = computed(() => {
   color: white;
 }
 
-.btn-solid:hover {
+.btn-solid:hover:not(.btn:disabled) {
   background-color: var(--_solid-hover);
 }
 
@@ -155,7 +154,7 @@ const spinnerSize = computed(() => {
   color: var(--_fg);
 }
 
-.btn-soft:hover {
+.btn-soft:hover:not(.btn:disabled) {
   background-color: var(--_bg-active);
 }
 
@@ -165,7 +164,7 @@ const spinnerSize = computed(() => {
   border: 1px solid var(--_border);
 }
 
-.btn-outline:hover {
+.btn-outline:hover:not(.btn:disabled) {
   background-color: var(--_bg-hover);
 }
 
@@ -174,7 +173,7 @@ const spinnerSize = computed(() => {
   color: var(--_fg);
 }
 
-.btn-ghost:hover {
+.btn-ghost:hover:not(.btn:disabled) {
   background-color: var(--_bg-hover);
 }
 
