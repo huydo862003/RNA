@@ -33,3 +33,12 @@ export {
 export {
   GIconName,
 } from './Icon/types';
+
+export {
+  default as GFlippable,
+} from './Flippable/GFlippable.vue';
+
+export {
+  FlipDirection,
+  FlipTrigger,
+} from './Flippable/types';
