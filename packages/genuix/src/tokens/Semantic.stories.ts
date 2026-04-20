@@ -118,7 +118,7 @@ function Preview () {
 
 const meta = {
   title: 'Tokens/Semantic',
-  tags: ['autodocs'],
+  tags: [],
   parameters: {
     docs: {
       description: {

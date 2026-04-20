@@ -2,12 +2,12 @@
   <GTooltip class="text-xs">
     <span>
       <kbd
-        v-if="keyMeta.component"
+        v-if="keyMeta.icon"
         class="kbd"
         tabindex="-1"
         :aria-label="keyMeta.tooltipContent ?? keyMeta.label"
       >
-        <component :is="keyMeta.component" />
+        <GIcon :name="keyMeta.icon" />
       </kbd>
       <kbd
         v-else
@@ -32,27 +32,17 @@
  */
 
 import {
-  computed,
-  type Component,
-} from 'vue';
-import {
-  PhArrowDown,
-  PhArrowFatLinesUp,
-  PhArrowFatUp,
-  PhArrowLeft,
-  PhArrowRight,
-  PhArrowUp,
-  PhBackspace,
-  PhCommand,
-  PhKeyReturn,
-  PhOption,
-  PhWindowsLogo,
-} from '@phosphor-icons/vue';
-import {
   getPlatform,
   PlatformKind,
 } from '@hdnax/stdx';
+import {
+  computed,
+} from 'vue';
 import GTooltip from '../Tooltip/GTooltip.vue';
+import GIcon from '../Icon/GIcon.vue';
+import {
+  GIconName,
+} from '../Icon/types';
 import {
   GKbdKeyName,
 } from './types';
@@ -69,7 +59,7 @@ const isMac = platform === PlatformKind.Mac;
 
 interface KeyMeta {
   label?: string;
-  component?: Component;
+  icon?: GIconName;
   tooltipContent?: string;
 }
 
@@ -78,29 +68,29 @@ const keyMeta = computed((): KeyMeta => {
   // Arrows
   case GKbdKeyName.ArrowDown:
     return {
-      component: PhArrowDown,
+      icon: GIconName.ArrowDown,
       tooltipContent: 'Arrow Down',
     };
   case GKbdKeyName.ArrowUp:
     return {
-      component: PhArrowUp,
+      icon: GIconName.ArrowUp,
       tooltipContent: 'Arrow Up',
     };
   case GKbdKeyName.ArrowLeft:
     return {
-      component: PhArrowLeft,
+      icon: GIconName.ArrowLeft,
       tooltipContent: 'Arrow Left',
     };
   case GKbdKeyName.ArrowRight:
     return {
-      component: PhArrowRight,
+      icon: GIconName.ArrowRight,
       tooltipContent: 'Arrow Right',
     };
 
   // Whitespace
   case GKbdKeyName.Enter:
     return {
-      component: PhKeyReturn,
+      icon: GIconName.KeyReturn,
       tooltipContent: 'Enter',
     };
   case GKbdKeyName.Tab:
@@ -122,7 +112,7 @@ const keyMeta = computed((): KeyMeta => {
   case GKbdKeyName.Alt:
     return isMac
       ? {
-        component: PhOption,
+        icon: GIconName.Option,
         tooltipContent: 'Option',
       }
       : {
@@ -130,12 +120,12 @@ const keyMeta = computed((): KeyMeta => {
       };
   case GKbdKeyName.Shift:
     return {
-      component: PhArrowFatUp,
+      icon: GIconName.ShiftKey,
       tooltipContent: 'Shift',
     };
   case GKbdKeyName.Meta:
     return {
-      component: isMac ? PhCommand : PhWindowsLogo,
+      icon: isMac ? GIconName.Command : GIconName.WindowsLogo,
       tooltipContent: isMac ? 'Command' : 'Windows',
     };
   case GKbdKeyName.Escape:
@@ -147,7 +137,7 @@ const keyMeta = computed((): KeyMeta => {
   // Edit keys
   case GKbdKeyName.Backspace:
     return {
-      component: PhBackspace,
+      icon: GIconName.Backspace,
       tooltipContent: 'Backspace',
     };
   case GKbdKeyName.Delete:
@@ -164,7 +154,7 @@ const keyMeta = computed((): KeyMeta => {
   // Lock keys
   case GKbdKeyName.CapsLock:
     return {
-      component: PhArrowFatLinesUp,
+      icon: GIconName.CapsLockKey,
       tooltipContent: 'Caps Lock',
     };
   case GKbdKeyName.NumLock:

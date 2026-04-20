@@ -17,3 +17,15 @@ export {
 export {
   default as GDropdown,
 } from './Dropdown/GDropdown.vue';
+
+export {
+  default as GCollapisble,
+} from './Collapsible/GCollapsible.vue';
+
+export {
+  default as GIcon,
+} from './Icon/GIcon.vue';
+
+export {
+  GIconName,
+} from './Icon/types';

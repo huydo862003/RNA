@@ -80,7 +80,7 @@ function Swatch () {
 
 const meta = {
   title: 'Tokens/Primitives/Color',
-  tags: ['autodocs'],
+  tags: [],
   parameters: {
     docs: {
       description: {

@@ -68,7 +68,7 @@ function Preview () {
 
 const meta = {
   title: 'Tokens/Primitives/Z-index',
-  tags: ['autodocs'],
+  tags: [],
   parameters: {
     docs: {
       description: {

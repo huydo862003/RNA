@@ -68,7 +68,7 @@ function Preview () {
 
 const meta = {
   title: 'Tokens/Primitives/Line height',
-  tags: ['autodocs'],
+  tags: [],
   parameters: {
     docs: {
       description: {

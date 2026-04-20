@@ -68,7 +68,7 @@ function Preview () {
 
 const meta = {
   title: 'Tokens/Primitives/Animation',
-  tags: ['autodocs'],
+  tags: [],
   parameters: {
     docs: {
       description: {

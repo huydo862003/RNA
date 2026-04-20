@@ -72,7 +72,7 @@ function Preview () {
 
 const meta = {
   title: 'Tokens/Primitives/Sizing',
-  tags: ['autodocs'],
+  tags: [],
   parameters: {
     docs: {
       description: {

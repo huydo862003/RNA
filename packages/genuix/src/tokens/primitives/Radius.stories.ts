@@ -60,7 +60,7 @@ function Preview () {
 
 const meta = {
   title: 'Tokens/Primitives/Radius',
-  tags: ['autodocs'],
+  tags: [],
   parameters: {
     docs: {
       description: {

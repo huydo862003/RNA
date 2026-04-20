@@ -63,7 +63,7 @@ function Preview () {
 
 const meta = {
   title: 'Tokens/Primitives/Font size',
-  tags: ['autodocs'],
+  tags: [],
   parameters: {
     docs: {
       description: {
