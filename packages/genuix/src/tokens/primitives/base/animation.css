@@ -3,6 +3,18 @@
  */
 
 /**
+ * @tokens Duration
+ * @presenter Animation
+ */
+@theme {
+  --duration-fastest: 75ms;
+  --duration-fast: 150ms;
+  --duration-normal: 200ms;
+  --duration-slow: 300ms;
+}
+/** @tokens-end */
+
+/**
  * @tokens Easing
  * @presenter Easing
  */
