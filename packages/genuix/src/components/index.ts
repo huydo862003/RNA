@@ -52,3 +52,12 @@ export {
   ButtonSemantic,
   ButtonSize,
 } from './Button/types';
+
+export {
+  default as GSpinner,
+} from './Spinner/GSpinner.vue';
+
+export {
+  SpinnerSize,
+  SpinnerSpeed,
+} from './Spinner/types';
