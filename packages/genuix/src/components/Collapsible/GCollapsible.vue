@@ -101,7 +101,7 @@ defineExpose({
   width: var(--size-2);
   height: var(--size-2);
   transition-property: transform;
-  transition-duration: 150ms;
+  transition-duration: var(--duration-fast);
   transition-timing-function: var(--ease-default, ease);
 }
 
@@ -122,7 +122,7 @@ defineExpose({
 .v-enter-active,
 .v-leave-active {
   transition-property: opacity transform;
-  transition-duration: 150ms;
+  transition-duration: var(--duration-fast);
   transition-timing-function: var(--ease-default, ease);
   cursor: pointer; /* Avoid the cursor to flash between pointer and caret on the collapsible content transition */
 }
