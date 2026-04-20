@@ -61,3 +61,11 @@ export {
   SpinnerSize,
   SpinnerSpeed,
 } from './Spinner/types';
+
+export {
+  default as GSwitch,
+} from './Switch/GSwitch.vue';
+
+export {
+  SwitchSize,
+} from './Switch/types';

@@ -2,6 +2,11 @@
  *  https://github.com/huydo862003/Fck-AI-Slop/edit/main/README.md
  */
 
+export {
+  Semantic as ButtonSemantic,
+  Size as ButtonSize,
+} from '../../types';
+
 // Based on Radix
 export enum ButtonVariant {
   Solid = 'solid', // For primary action, solid button
@@ -9,22 +14,4 @@ export enum ButtonVariant {
   Outline = 'outline', // For tertiary action
   Ghost = 'ghost', // For highlighted text as buttons
   Link = 'link', // For link as buttons
-}
-
-export enum ButtonSemantic {
-  Primary = 'primary',
-  Neutral = 'neutral',
-  Danger = 'danger',
-  Success = 'success',
-  Warning = 'warning',
-  Info = 'info',
-  Notice = 'notice',
-}
-
-export enum ButtonSize {
-  Xs = 'xs',
-  Sm = 'sm',
-  Md = 'md',
-  Lg = 'lg',
-  Xl = 'xl',
 }

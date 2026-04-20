@@ -3,11 +3,6 @@
  */
 
 export {
-  Size as SpinnerSize,
+  Size as SwitchSize,
+  Semantic as SwitchSemantic,
 } from '../../types';
-
-export enum SpinnerSpeed {
-  Slow = 'slow',
-  Normal = 'normal',
-  Fast = 'fast',
-}

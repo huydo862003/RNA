@@ -7,5 +7,8 @@ storybook-static/
 doc-dist/
 book/
 
+# Generated design token artifacts
+packages/genuix/public/design-tokens.source.json
+
 # Coverage
 coverage/
