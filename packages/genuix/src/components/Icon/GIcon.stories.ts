@@ -63,9 +63,13 @@ export const SizedIconStory: Story = {
     },
   },
   render: () => ({
-    components: { GIcon },
+    components: {
+      GIcon,
+    },
     setup () {
-      return { GIconName };
+      return {
+        GIconName,
+      };
     },
     template: '<GIcon :name="GIconName.Star" class="w-size-5 h-size-5" />',
   }),

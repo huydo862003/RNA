@@ -39,9 +39,9 @@ import {
 } from '../Icon/types';
 
 const {
-  open: initialState,
+  open: initialState = false,
 } = defineProps<{
-  open: boolean;
+  open?: boolean;
 }>();
 
 // Allow reactive props to override the current value

@@ -7,3 +7,4 @@ import './style.css';
 export * from './types';
 export * from './components';
 export * from './composables';
+export * from './directives';
