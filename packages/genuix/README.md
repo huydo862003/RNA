@@ -16,3 +16,12 @@ Also a place to document my findings of building a design system.
 - Learn how design systems are built and maintained.
 - Explore UI/UX best practices hands-on.
 - Build personal libraries to use across my projects.
+
+## Component Design
+
+Some types of APIs to consider for a modular piece of UI + logic:
+- Simple reusable components.
+- Simple composables.
+- Compound components with `project`/`inject`.
+- Vue directives.
+- Scoped slots.
