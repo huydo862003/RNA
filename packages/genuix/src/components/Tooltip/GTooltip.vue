@@ -3,6 +3,9 @@
     v-if="$slots.popper"
     class="g-tooltip-trigger"
     :placement="placement"
+    :shown="shown"
+    :triggers="triggers"
+    :popper-triggers="['hover']"
     :popper-class="`__g-tooltip-${uid} ${_class}`"
   >
     <slot />
@@ -40,11 +43,20 @@ defineOptions({
 const {
   class: _class = '',
   placement = 'bottom',
+  shown = undefined,
+  triggers = [
+    'hover',
+    'focus',
+  ],
 } = defineProps<{
   /** CSS classes applied to the popper element */
   class?: string;
   /** Positioning of the tooltip relative to the trigger */
   placement?: Placement;
+  /** Programmatically show/hide the tooltip */
+  shown?: boolean;
+  /** Events that trigger the tooltip */
+  triggers?: ('hover' | 'click' | 'focus' | 'touch')[];
 }>();
 
 const uid = useId();

@@ -8,7 +8,7 @@ import type {
 } from '@storybook/vue3-vite';
 import GButton from './GButton.vue';
 import {
-  ButtonVariant,
+  ButtonProminence,
   ButtonSemantic,
   ButtonSize,
 } from './types';
@@ -18,10 +18,10 @@ const meta = {
   tags: ['autodocs'],
   component: GButton,
   argTypes: {
-    variant: {
+    prominence: {
       control: 'select',
-      options: Object.values(ButtonVariant),
-      description: 'Visual style',
+      options: Object.values(ButtonProminence),
+      description: 'Prominence level',
     },
     semantic: {
       control: 'select',
@@ -61,41 +61,41 @@ const render: Story['render'] = (args) => ({
   `,
 });
 
-export const SolidButtonStory: Story = {
+export const PrimaryButtonStory: Story = {
   args: {
-    variant: ButtonVariant.Solid,
-    semantic: ButtonSemantic.Primary,
+    prominence: ButtonProminence.Primary,
+    semantic: ButtonSemantic.Neutral,
     size: ButtonSize.Md,
   },
   parameters: {
     docs: {
       description: {
-        story: 'Default solid button',
+        story: 'Default primary button',
       },
     },
   },
   render,
 };
 
-export const SoftButtonStory: Story = {
+export const SecondaryButtonStory: Story = {
   args: {
-    variant: ButtonVariant.Soft,
-    semantic: ButtonSemantic.Primary,
+    prominence: ButtonProminence.Secondary,
+    semantic: ButtonSemantic.Neutral,
   },
   parameters: {
     docs: {
       description: {
-        story: 'Soft tinted background',
+        story: 'Secondary tinted background',
       },
     },
   },
   render,
 };
 
-export const OutlineButtonStory: Story = {
+export const TertiaryButtonStory: Story = {
   args: {
-    variant: ButtonVariant.Outline,
-    semantic: ButtonSemantic.Primary,
+    prominence: ButtonProminence.Tertiary,
+    semantic: ButtonSemantic.Neutral,
   },
   parameters: {
     docs: {
@@ -109,8 +109,8 @@ export const OutlineButtonStory: Story = {
 
 export const GhostButtonStory: Story = {
   args: {
-    variant: ButtonVariant.Ghost,
-    semantic: ButtonSemantic.Primary,
+    prominence: ButtonProminence.Ghost,
+    semantic: ButtonSemantic.Neutral,
   },
   parameters: {
     docs: {
@@ -122,25 +122,10 @@ export const GhostButtonStory: Story = {
   render,
 };
 
-export const LinkButtonStory: Story = {
-  args: {
-    variant: ButtonVariant.Link,
-    semantic: ButtonSemantic.Info,
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: 'Looks like a hyperlink',
-      },
-    },
-  },
-  render,
-};
-
 export const LoadingButtonStory: Story = {
   args: {
-    variant: ButtonVariant.Solid,
-    semantic: ButtonSemantic.Primary,
+    prominence: ButtonProminence.Primary,
+    semantic: ButtonSemantic.Neutral,
     loading: true,
   },
   parameters: {
@@ -155,7 +140,7 @@ export const LoadingButtonStory: Story = {
 
 export const DangerButtonStory: Story = {
   args: {
-    variant: ButtonVariant.Solid,
+    prominence: ButtonProminence.Primary,
     semantic: ButtonSemantic.Danger,
   },
   parameters: {
@@ -170,8 +155,8 @@ export const DangerButtonStory: Story = {
 
 export const DisabledButtonStory: Story = {
   args: {
-    variant: ButtonVariant.Solid,
-    semantic: ButtonSemantic.Primary,
+    prominence: ButtonProminence.Primary,
+    semantic: ButtonSemantic.Neutral,
     disabled: true,
   },
   parameters: {
@@ -199,7 +184,7 @@ export const AllSizesButtonStory: Story = {
     setup () {
       return {
         sizes: Object.values(ButtonSize),
-        ButtonVariant,
+        ButtonProminence,
         ButtonSemantic,
       };
     },
@@ -208,7 +193,7 @@ export const AllSizesButtonStory: Story = {
         <GButton
           v-for="s in sizes"
           :key="s"
-          :variant="ButtonVariant.Solid"
+          :prominence="ButtonProminence.Primary"
           :semantic="ButtonSemantic.Primary"
           :size="s"
         >{{ s }}</GButton>
@@ -217,11 +202,11 @@ export const AllSizesButtonStory: Story = {
   }),
 };
 
-export const AllVariantsButtonStory: Story = {
+export const AllProminencesButtonStory: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'All variants with primary semantic',
+        story: 'All prominence levels with primary semantic',
       },
     },
   },
@@ -231,18 +216,18 @@ export const AllVariantsButtonStory: Story = {
     },
     setup () {
       return {
-        variants: Object.values(ButtonVariant),
+        prominences: Object.values(ButtonProminence),
         ButtonSemantic,
       };
     },
     template: `
       <div class="flex items-center gap-spacing-2">
         <GButton
-          v-for="v in variants"
-          :key="v"
-          :variant="v"
+          v-for="p in prominences"
+          :key="p"
+          :prominence="p"
           :semantic="ButtonSemantic.Primary"
-        >{{ v }}</GButton>
+        >{{ p }}</GButton>
       </div>
     `,
   }),
@@ -252,7 +237,7 @@ export const AllSemanticsButtonStory: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'All semantics with solid variant',
+        story: 'All semantics with primary prominence',
       },
     },
   },
@@ -263,7 +248,7 @@ export const AllSemanticsButtonStory: Story = {
     setup () {
       return {
         semantics: Object.values(ButtonSemantic),
-        ButtonVariant,
+        ButtonProminence,
       };
     },
     template: `
@@ -271,7 +256,7 @@ export const AllSemanticsButtonStory: Story = {
         <GButton
           v-for="s in semantics"
           :key="s"
-          :variant="ButtonVariant.Solid"
+          :prominence="ButtonProminence.Primary"
           :semantic="s"
         >{{ s }}</GButton>
       </div>

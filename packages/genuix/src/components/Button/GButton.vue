@@ -2,7 +2,7 @@
   <button
     :class="[
       'btn',
-      `btn-${variant}`,
+      `btn-${prominence}`,
       `btn-${size}`,
       { 'is-loading': loading },
     ]"
@@ -42,19 +42,19 @@ import {
   SpinnerSize,
 } from '../Spinner/types';
 import {
-  ButtonVariant,
+  ButtonProminence,
   ButtonSemantic,
   ButtonSize,
 } from './types';
 
 const {
-  variant = ButtonVariant.Solid,
-  semantic = ButtonSemantic.Primary,
+  prominence = ButtonProminence.Primary,
+  semantic = ButtonSemantic.Neutral,
   size = ButtonSize.Md,
   disabled = false,
   loading = false,
 } = defineProps<{
-  variant?: ButtonVariant;
+  prominence?: ButtonProminence;
   semantic?: ButtonSemantic;
   size?: ButtonSize;
   disabled?: boolean;
@@ -139,32 +139,32 @@ const spinnerSize = computed(() => {
   font-size: var(--text-lg);
 }
 
-/* Variants */
-.btn-solid {
+/* Prominence */
+.btn-primary {
   background-color: var(--_solid);
   color: white;
 }
 
-.btn-solid:hover:not(.btn:disabled) {
+.btn-primary:hover:not(.btn:disabled) {
   background-color: var(--_solid-hover);
 }
 
-.btn-soft {
+.btn-secondary {
   background-color: var(--_bg-hover);
   color: var(--_fg);
 }
 
-.btn-soft:hover:not(.btn:disabled) {
+.btn-secondary:hover:not(.btn:disabled) {
   background-color: var(--_bg-active);
 }
 
-.btn-outline {
+.btn-tertiary {
   background-color: transparent;
   color: var(--_fg);
   border: 1px solid var(--_border);
 }
 
-.btn-outline:hover:not(.btn:disabled) {
+.btn-tertiary:hover:not(.btn:disabled) {
   background-color: var(--_bg-hover);
 }
 
@@ -175,16 +175,6 @@ const spinnerSize = computed(() => {
 
 .btn-ghost:hover:not(.btn:disabled) {
   background-color: var(--_bg-hover);
-}
-
-.btn-link {
-  background-color: transparent;
-  color: var(--_fg);
-  text-decoration: none;
-}
-
-.btn-link:hover {
-  text-decoration: underline;
 }
 
 /* Loading state: spinner overlays content, both visible */

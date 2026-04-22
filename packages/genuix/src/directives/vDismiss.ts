@@ -39,14 +39,8 @@ function isEventTriggeredOutside (el: HTMLElement, e: Event): boolean {
   return !e.composedPath().includes(el);
 }
 
-function setup (element: HTMLElement, handler: (e: Event) => void, modifiers: Partial<Record<string, boolean>>) {
+function setup (element: HTMLElement, handler: (e: Event) => void) {
   cleanup(element);
-
-  // No modifiers = all triggers enabled
-  const all = Object.keys(modifiers).length === 0;
-  const useClick = all || modifiers.click;
-  const useFocusout = all || modifiers.focus;
-  const useEscape = all || modifiers.escape;
 
   const listeners: DismissState['listeners'] = [];
 
@@ -60,7 +54,7 @@ function setup (element: HTMLElement, handler: (e: Event) => void, modifiers: Pa
   }
 
   // Click: Detect pointerdown triggered on document but outside the element
-  if (useClick) {
+  Click: {
     const listener = (event: Event) => {
       if (isEventTriggeredOutside(element, event)) dismiss(event);
     };
@@ -73,7 +67,7 @@ function setup (element: HTMLElement, handler: (e: Event) => void, modifiers: Pa
   }
 
   // Focusout: Detect focus leaving the element
-  if (useFocusout) {
+  Focusout: {
     const listener = (e: Event) => {
       // focusout fires before the new element receives focus
       // Use requestAnimationFrame to check if focus landed outside
@@ -92,7 +86,7 @@ function setup (element: HTMLElement, handler: (e: Event) => void, modifiers: Pa
   }
 
   // Escape: Detect ESC press
-  if (useEscape) {
+  Esc: {
     const listener = (e: Event) => {
       if (!(e instanceof KeyboardEvent)) return;
       if (e.key !== GKbdKeyName.Escape) return;
@@ -126,11 +120,11 @@ function cleanup (element: HTMLElement) {
 
 export const vDismiss: ObjectDirective<HTMLElement, (event: Event) => void> = {
   mounted (element, binding) {
-    setup(element, binding.value, binding.modifiers);
+    setup(element, binding.value);
   },
 
   updated (element, binding) {
-    setup(element, binding.value, binding.modifiers);
+    setup(element, binding.value);
   },
 
   unmounted (element) {

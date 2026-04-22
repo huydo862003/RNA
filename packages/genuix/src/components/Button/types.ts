@@ -5,13 +5,5 @@
 export {
   Semantic as ButtonSemantic,
   Size as ButtonSize,
-} from '../../types';
-
-// Based on Radix
-export enum ButtonVariant {
-  Solid = 'solid', // For primary action, solid button
-  Soft = 'soft', // For secondary action, soft solid button
-  Outline = 'outline', // For tertiary action
-  Ghost = 'ghost', // For highlighted text as buttons
-  Link = 'link', // For link as buttons
-}
+  Prominence as ButtonProminence,
+} from '@/types';

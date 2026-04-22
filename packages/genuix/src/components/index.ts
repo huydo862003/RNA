@@ -48,7 +48,7 @@ export {
 } from './Button/GButton.vue';
 
 export {
-  ButtonVariant,
+  ButtonProminence,
   ButtonSemantic,
   ButtonSize,
 } from './Button/types';

@@ -33,7 +33,7 @@ const {
   modelValue = false,
   disabled = false,
   size = SwitchSize.Md,
-  semantic = SwitchSemantic.Primary,
+  semantic = SwitchSemantic.Neutral,
 } = defineProps<{
   modelValue?: boolean;
   disabled?: boolean;

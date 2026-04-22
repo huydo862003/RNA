@@ -4,13 +4,20 @@
 
 // Shared semantic roles across components (Button, Switch, etc.)
 export enum Semantic {
-  Primary = 'primary',
   Neutral = 'neutral',
   Danger = 'danger',
   Success = 'success',
   Warning = 'warning',
   Info = 'info',
   Notice = 'notice',
+}
+
+// Shared prominence levels across components (Button, Code block, etc.)
+export enum Prominence {
+  Secondary = 'secondary',
+  Primary = 'primary',
+  Tertiary = 'tertiary',
+  Ghost = 'ghost',
 }
 
 // Shared size scale across components
