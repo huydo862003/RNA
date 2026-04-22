@@ -35,6 +35,9 @@ importers:
       '@phosphor-icons/vue':
         specifier: ^2.2.1
         version: 2.2.1(vue@3.5.26(typescript@5.9.3))
+      dompurify:
+        specifier: ^3.4.0
+        version: 3.4.0
       floating-vue:
         specifier: ^5.2.2
         version: 5.2.2(vue@3.5.26(typescript@5.9.3))
@@ -66,6 +69,9 @@ importers:
       '@vitest/browser-playwright':
         specifier: ^4.1.4
         version: 4.1.4(playwright@1.59.1)(vite@7.3.1(@types/node@25.6.0)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.46.1))(vitest@4.1.4)
+      highlight.js:
+        specifier: ^11.0.0
+        version: 11.11.1
       storybook:
         specifier: 10.3.5
         version: 10.3.5(@testing-library/dom@10.4.1)(prettier@2.8.8)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
@@ -1805,6 +1811,9 @@ packages:
   '@types/serve-static@1.15.10':
     resolution: {integrity: sha512-tRs1dB+g8Itk72rlSI2ZrW6vZg0YrLI81iQSTkMmOqnqCaNr/8Ek4VwWcN5vZgCYWbg/JJSGBlUaYGAOP73qBw==}
 
+  '@types/trusted-types@2.0.7':
+    resolution: {integrity: sha512-ScaPdn1dQczgbl0QFTeTOmVHFULt394XJgOQNoyVhZ6r2vLnMLJfBPd53SB52T/3G36VI1/g2MZaX0cwDuXsfw==}
+
   '@typescript-eslint/eslint-plugin@8.52.0':
     resolution: {integrity: sha512-okqtOgqu2qmZJ5iN4TWlgfF171dZmx2FzdOv2K/ixL2LZWDStL8+JgQerI2sa8eAEfoydG9+0V96m7V+P8yE1Q==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
@@ -2646,6 +2655,9 @@ packages:
     engines: {node: '>=12'}
     deprecated: Use your platform's native DOMException instead
 
+  dompurify@3.4.0:
+    resolution: {integrity: sha512-nolgK9JcaUXMSmW+j1yaSvaEaoXYHwWyGJlkoCTghc97KgGDDSnpoU/PlEnw63Ah+TGKFOyY+X5LnxaWbCSfXg==}
+
   dotenv-expand@10.0.0:
     resolution: {integrity: sha512-GopVGCpVS1UKH75VKHGuQFqS1Gusej0z4FyQkPdwjil2gNIv+LNsqBlboOzpJFZKVT95GkCyWJbBSdFEFUWI2A==}
     engines: {node: '>=12'}
@@ -3121,6 +3133,10 @@ packages:
   he@1.2.0:
     resolution: {integrity: sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw==}
     hasBin: true
+
+  highlight.js@11.11.1:
+    resolution: {integrity: sha512-Xwwo44whKBVCYoliBQwaPvtd/2tYFkRQtXDWj1nackaV2JPXx3L0+Jvd8/qCJ2p+ML0/XVkJ2q+Mr+UVdpJK5w==}
+    engines: {node: '>=12.0.0'}
 
   html-encoding-sniffer@3.0.0:
     resolution: {integrity: sha512-oWv4T4yJ52iKrufjnyZPkrN0CH3QnrUqdB6In1g5Fe1mia8GmF36gnfNySxoZtxD5+NmYw1EElVXiBk93UeskA==}
@@ -6491,6 +6507,9 @@ snapshots:
       '@types/node': 25.6.0
       '@types/send': 0.17.6
 
+  '@types/trusted-types@2.0.7':
+    optional: true
+
   '@typescript-eslint/eslint-plugin@8.52.0(@typescript-eslint/parser@8.52.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3)':
     dependencies:
       '@eslint-community/regexpp': 4.12.2
@@ -7381,6 +7400,10 @@ snapshots:
     dependencies:
       webidl-conversions: 7.0.0
 
+  dompurify@3.4.0:
+    optionalDependencies:
+      '@types/trusted-types': 2.0.7
+
   dotenv-expand@10.0.0: {}
 
   dotenv@16.6.1: {}
@@ -7976,6 +7999,8 @@ snapshots:
       function-bind: 1.1.2
 
   he@1.2.0: {}
+
+  highlight.js@11.11.1: {}
 
   html-encoding-sniffer@3.0.0:
     dependencies:

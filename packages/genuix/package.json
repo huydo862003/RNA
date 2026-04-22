@@ -42,10 +42,12 @@
   },
   "dependencies": {
     "@hdnax/stdx": "workspace:*",
+    "dompurify": "^3.4.0",
     "floating-vue": "^5.2.2"
   },
   "peerDependencies": {
     "@phosphor-icons/vue": "^2.2.1",
+    "highlight.js": "^11.0.0",
     "vue": "^3.5.26"
   },
   "devDependencies": {
@@ -57,6 +59,7 @@
     "@tailwindcss/vite": "^4.1.18",
     "@vitejs/plugin-vue": "^6.0.3",
     "@vitest/browser-playwright": "^4.1.4",
+    "highlight.js": "^11.0.0",
     "storybook": "10.3.5",
     "storybook-addon-vue-slots": "^0.9.29",
     "storybook-design-token": "^5.0.0",

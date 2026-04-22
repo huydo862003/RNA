@@ -75,8 +75,8 @@ export function invertTokens (semantic: Semantic): Record<string, string> {
   return {
     [`--gui-${s}-fg`]: `var(--gui-${s}-bg)`,
     [`--gui-${s}-fg-muted`]: `var(--gui-${s}-bg-subtle)`,
-    [`--gui-${s}-border`]: `var(--gui-${s}-bg-active)`,
-    [`--gui-${s}-border-subtle`]: `var(--gui-${s}-bg-active)`,
+    [`--gui-${s}-border`]: 'var(--gui-neutral-border)',
+    [`--gui-${s}-border-subtle`]: 'var(--gui-neutral-border-subtle)',
     [`--gui-${s}-bg-hover`]: `var(--gui-${s}-solid-hover)`,
     [`--gui-${s}-bg-active`]: `var(--gui-${s}-solid-hover)`,
   };

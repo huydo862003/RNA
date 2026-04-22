@@ -69,3 +69,32 @@ export {
 export {
   SwitchSize,
 } from './Switch/types';
+
+export {
+  default as GCodeBlock,
+} from './Code/GCodeBlock.vue';
+
+export {
+  default as GInlineCode,
+} from './Code/GInlineCode.vue';
+
+export {
+  GCodeLanguage,
+  CodeBlockProminence,
+} from './Code/types';
+
+export {
+  default as GRangeSelection1D,
+} from './Interaction/RangeSelection/range1D/GRangeSelection1D.vue';
+
+export {
+  default as GRangeItem1D,
+} from './Interaction/RangeSelection/range1D/GRangeItem1D.vue';
+
+export {
+  default as GRangeSelection2D,
+} from './Interaction/RangeSelection/range2D/GRangeSelection2D.vue';
+
+export {
+  default as GRangeCell2D,
+} from './Interaction/RangeSelection/range2D/GRangeCell2D.vue';
