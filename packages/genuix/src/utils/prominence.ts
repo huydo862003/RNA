@@ -11,6 +11,7 @@ import {
 
 export interface ProminenceTokens {
   bg: string;
+  bgHover: string;
   subtleBg: string;
   fg: string;
   mutedFg: string;
@@ -21,7 +22,7 @@ export interface ProminenceTokens {
  * prominence level and semantic role.
  *
  * Primary   -> solid bg, contrast fg
- * Secondary -> semantic bg, semantic fg
+ * Secondary -> tinted bg (bg-hover), semantic fg
  * Tertiary  -> transparent bg, semantic fg, subtle border
  * Ghost     -> transparent bg, semantic fg, no border
  */
@@ -32,22 +33,25 @@ export function prominenceTokens (prominence: Prominence, semantic: Semantic): P
   case Prominence.Primary:
     return {
       bg: `var(--gui-${s}-solid)`,
+      bgHover: `var(--gui-${s}-solid-hover)`,
       subtleBg: `var(--gui-${s}-bg-subtle)`,
       fg: `var(--gui-${s}-bg)`,
       mutedFg: `var(--gui-${s}-bg-subtle)`,
-      border: `var(--gui-${s}-border)`,
+      border: 'transparent',
     };
   case Prominence.Secondary:
     return {
-      bg: `var(--gui-${s}-bg)`,
+      bg: `var(--gui-${s}-bg-hover)`,
+      bgHover: `var(--gui-${s}-bg-active)`,
       subtleBg: `var(--gui-${s}-bg-subtle)`,
       fg: `var(--gui-${s}-fg)`,
       mutedFg: `var(--gui-${s}-fg-muted)`,
-      border: `var(--gui-${s}-border-subtle)`,
+      border: 'transparent',
     };
   case Prominence.Tertiary:
     return {
       bg: 'transparent',
+      bgHover: `var(--gui-${s}-bg-hover)`,
       subtleBg: `var(--gui-${s}-bg-subtle)`,
       fg: `var(--gui-${s}-fg)`,
       mutedFg: `var(--gui-${s}-fg-muted)`,
@@ -56,6 +60,7 @@ export function prominenceTokens (prominence: Prominence, semantic: Semantic): P
   case Prominence.Ghost:
     return {
       bg: 'transparent',
+      bgHover: `var(--gui-${s}-bg-hover)`,
       subtleBg: `var(--gui-${s}-bg-subtle)`,
       fg: `var(--gui-${s}-fg)`,
       mutedFg: `var(--gui-${s}-fg-muted)`,

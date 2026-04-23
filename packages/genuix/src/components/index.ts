@@ -98,3 +98,7 @@ export {
 export {
   default as GRangeCell2D,
 } from './Interaction/RangeSelection/range2D/GRangeCell2D.vue';
+
+export {
+  default as GDismiss,
+} from './Interaction/Dismiss/GDismiss.vue';

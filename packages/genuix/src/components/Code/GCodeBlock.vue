@@ -32,7 +32,7 @@
             :prominence="ButtonProminence.Tertiary"
             :semantic="semantic"
             :size="ButtonSize.Xs"
-            @click="copy"
+            @click="clickCopyButton"
           >
             <GIcon :name="GIconName.Copy" />
           </GButton>
@@ -43,36 +43,43 @@
       </div>
     </div>
 
-    <div class="code-content">
-      <!-- Do not format this as pre is format-sensitive -->
+    <GDismiss
+      @dismiss="clearLineSelection"
+    >
       <GRangeSelection1D
         v-model:selection="lineSelection"
         :count="highlightedLines.length"
       >
-        <pre><code class="code-pre"><template
-          v-for="(line, i) in highlightedLines"
-          :key="i"
+        <div
+          class="code-content"
         >
+          <!-- Do not format this as pre is format-sensitive -->
+          <pre><code class="code-pre"><template
+            v-for="(line, i) in highlightedLines"
+            :key="i"
+          >
 <GRangeItem1D
-            v-slot="{ selected, isPosition }"
-            :index="i"
-          ><span
-            :id="`${id}-L${i + 1}`"
-            class="code-line"
-            :class="{
-              'selected-code-line--start': isPosition('start'),
-              'selected-code-line--end': isPosition('end'),
-              'selected-code-line--middle': selected && !isPosition('start') && !isPosition('end'),
-            }"
-          ><span class="code-line-gutter" /><span
-            v-if="showLineNumbers"
-            class="code-line-number"
-          >{{ i + 1 }}</span><span
-            class="code-line-content"
-            v-html="line"
-          /></span></GRangeItem1D></template></code></pre>
+              v-slot="{ selected, isPosition }"
+              :index="i"
+            ><span
+              :id="`${id}-L${i + 1}`"
+              class="code-line"
+              :class="{
+                'selected-code-line--start': isPosition('start'),
+                'selected-code-line--end': isPosition('end'),
+                'selected-code-line--middle': selected && !isPosition('start') && !isPosition('end'),
+                'selected-code-line': selected,
+              }"
+            ><span class="code-line-gutter" /><span
+              v-if="showLineNumbers"
+              class="code-line-number"
+            >{{ i + 1 }}</span><span
+              class="code-line-content"
+              v-html="line"
+            /></span></GRangeItem1D></template></code></pre>
+        </div>
       </GRangeSelection1D>
-    </div>
+    </GDismiss>
   </div>
 </template>
 
@@ -99,6 +106,9 @@ import type {
 } from './types';
 import GRangeSelection1D from '@/components/Interaction/RangeSelection/range1D/GRangeSelection1D.vue';
 import GRangeItem1D from '@/components/Interaction/RangeSelection/range1D/GRangeItem1D.vue';
+import type {
+  Range1D,
+} from '@/components/Interaction/RangeSelection/range1D/types';
 import GIcon from '@/components/Icon/GIcon.vue';
 import {
   GIconName,
@@ -108,6 +118,7 @@ import {
   ButtonProminence,
   ButtonSize,
 } from '@/components/Button/types';
+import GDismiss from '@/components/Interaction/Dismiss/GDismiss.vue';
 import GTooltip from '@/components/Tooltip/GTooltip.vue';
 import {
   Semantic,
@@ -120,8 +131,8 @@ import {
 
 const {
   id,
-  title,
-  icon,
+  title = '',
+  icon = undefined,
   code: rawCode,
   language,
   showLineNumbers = false,
@@ -142,13 +153,22 @@ const {
   semantic?: CodeBlockSemantic;
 }>();
 
+/* Theme */
 const tokens = computed(() => prominenceTokens(prominence, semantic));
 const invertedTokens = computed(() => invertTokens(semantic));
 
-const lineSelection = ref(undefined);
-
+/* Human-friendly language label */
 const languageLabel = computed(() => GCodeLanguageLabel[language]);
 
+/* The current selected ranges of code lines */
+const lineSelection = ref<Range1D | undefined>(undefined);
+
+// Clear the line selection on dismiss
+function clearLineSelection () {
+  lineSelection.value = undefined;
+}
+
+/* Format the code block and highlight */
 const code = computed(() => {
   let res = rawCode;
   if (rawCode.startsWith('\n')) {
@@ -173,9 +193,10 @@ const highlightedLines = computed(() => {
   return sanitized.split(/(?:\n|\r\n)/);
 });
 
+/* Code block content copy */
 const copied = ref(false);
 
-async function copy () {
+async function clickCopyButton () {
   await navigator.clipboard.writeText(code.value);
   copied.value = true;
   setTimeout(() => {
@@ -307,5 +328,13 @@ async function copy () {
   box-shadow:
     -2px 0 var(--color-accent-blue-10) inset,
     2px 0 var(--color-accent-blue-10) inset;
+}
+
+.selected-code-line {
+  @apply gui-notice-bg-subtle;
+}
+
+.selected-code-line:hover {
+  @apply gui-notice-bg-hover;
 }
 </style>

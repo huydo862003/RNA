@@ -1,6 +1,5 @@
 <template>
   <div
-    v-dismiss="clearSelection"
     class="contents"
   >
     <slot />
@@ -29,9 +28,6 @@ import type {
   Position1D,
   Range1D,
 } from './types';
-import {
-  vDismiss,
-} from '@/directives';
 
 const {
   count,

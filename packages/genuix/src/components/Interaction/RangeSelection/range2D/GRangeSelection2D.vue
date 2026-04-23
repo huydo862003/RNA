@@ -1,6 +1,5 @@
 <template>
   <div
-    v-dismiss="clearSelection"
     class="contents"
   >
     <slot />
@@ -23,9 +22,6 @@ import type {
   Position2D,
   Range2D,
 } from './types';
-import {
-  vDismiss,
-} from '@/directives';
 
 // The current 2D range selection
 // Contains startRow, startCol, endRow, endCol that define a 2D block

@@ -5,6 +5,7 @@
     role="img"
     :aria-label="alt"
     :aria-hidden="!alt"
+    :weight="weight"
   />
 </template>
 
@@ -26,6 +27,7 @@ const {
   name = undefined,
   icon = undefined,
   alt = undefined,
+  weight = undefined,
 } = defineProps<{
   /** Named icon from GIconName enum */
   name?: GIconName;
@@ -33,6 +35,8 @@ const {
   icon?: Component;
   /** Accessible alt text. When absent, icon is decorative (aria-hidden) */
   alt?: string;
+  /** The weight of the icon */
+  weight?: 'thin' | 'light' | 'regular' | 'bold' | 'fill';
 }>();
 
 const resolvedIcon = computed(() => icon ?? (name ? iconMap[name] : undefined));

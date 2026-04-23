@@ -6,7 +6,7 @@
     :shown="shown"
     :triggers="triggers"
     :popper-triggers="['hover']"
-    :popper-class="`__g-tooltip-${uid} ${_class}`"
+    :popper-class="popperClass"
   >
     <slot />
     <template
@@ -29,8 +29,12 @@ import {
   Tooltip,
 } from 'floating-vue';
 import {
-  useId,
+  computed,
+  getCurrentInstance,
 } from 'vue';
+import {
+  getId,
+} from '@hdnax/stdx';
 
 type Side = 'top' | 'bottom' | 'left' | 'right';
 type Alignment = 'start' | 'end';
@@ -44,6 +48,7 @@ const {
   class: _class = '',
   placement = 'bottom',
   shown = undefined,
+  arrow = true,
   triggers = [
     'hover',
     'focus',
@@ -55,11 +60,25 @@ const {
   placement?: Placement;
   /** Programmatically show/hide the tooltip */
   shown?: boolean;
+  /** Show arrow/triangle pointing to trigger */
+  arrow?: boolean;
   /** Events that trigger the tooltip */
   triggers?: ('hover' | 'click' | 'focus' | 'touch')[];
 }>();
 
-const uid = useId();
+const popperUid = `g-tooltip-${getId(Tooltip, getCurrentInstance()!)}`; // A unique id so we can query the child of the current tooltip
+
+const popperClass = computed(() => [
+  popperUid,
+  _class,
+  !arrow && 'g-popper--no-arrow',
+].filter(Boolean).join(' '));
+
+const popper = computed(() => document.querySelector(`.${popperUid}.v-popper__popper`));
+
+defineExpose({
+  popper,
+});
 </script>
 
 <style>
@@ -71,5 +90,9 @@ const uid = useId();
 
 .v-popper {
   @apply inline;
+}
+
+.g-popper--no-arrow .v-popper__arrow-container {
+  display: none;
 }
 </style>
