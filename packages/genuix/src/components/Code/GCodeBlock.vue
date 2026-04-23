@@ -14,13 +14,20 @@
       :style="prominence === Prominence.Primary ? invertedTokens : undefined"
     >
       <span
-        v-if="title || icon"
         class="code-title"
-      ><GIcon
-        v-if="icon"
-        :name="icon"
-        class="code-title-icon"
-      />{{ title }}</span>
+      >
+        <GIcon
+          v-if="icon"
+          :name="icon"
+          class="code-title-icon"
+        />
+        <div
+          v-if="title"
+          class="code-title-name"
+        >
+          {{ title }}
+        </div>
+      </span>
       <div class="code-header-actions">
         <span class="code-language">{{ languageLabel }}</span>
         <GTooltip
@@ -219,41 +226,33 @@ async function clickCopyButton () {
 }
 
 .code-header {
-  @apply px-3 py-xs;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  @apply px-3 py-xs gap-6 flex content-between items-center;
   border-bottom: 1px solid var(--_border);
   background-color: var(--_header-bg);
 }
 
 .code-title {
-  @apply text-xs font-medium;
+  @apply text-xs font-medium basis-0 items-center gap-sm flex grow;
   color: var(--_header-fg);
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-xs);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  min-width: 0;
+  flex-basis: 0;
+  min-width: 0; /* LEARN: Even with basis-0 then grow (which means to take the leftovers of other elements), min-width has to be set, to override min-width of "auto" */
 }
 
 .code-title-icon {
-  flex-shrink: 0;
+  @apply shrink-0;
+}
+
+.code-title-name {
+  @apply basis-0 grow overflow-hidden text-ellipsis whitespace-nowrap;
+  min-width: 0; /* LEARN: Even with basis-0 then grow (which means to take the leftovers of other elements), min-width has to be set, to override min-width of "auto" */
 }
 
 .code-header-actions {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-sm);
-  margin-left: auto; /* Push right when no title */
-  flex-shrink: 0;
+  @apply flex items-center grow-0 shrink-0 gap-sm;
 }
 
 .code-language {
-  @apply gui-neutral-fg-muted;
-  font-size: 11px;
+  @apply gui-neutral-fg-muted text-xs;
   color: var(--_lang-color);
 }
 
@@ -262,9 +261,8 @@ async function clickCopyButton () {
 }
 
 .code-pre {
-  @apply m-0 leading-0;
-  display: grid;
-  white-space: pre-wrap;       /* Allow wrapping while preserving whitespace */
+  @apply m-0 leading-0 grid; /* grid is used to ensure all div spans the same space (so highlighted background will be consistent)*/
+  white-space: pre-wrap;       /* LEARN: Allow wrapping while preserving whitespace, else `overflow-wrap` wouldn't work */
   overflow-wrap: break-word;   /* Break long tokens that exceed container */
 }
 
@@ -293,7 +291,7 @@ async function clickCopyButton () {
 }
 
 .code-pre :deep(> div) {
-  outline: none;
+  outline: none; /* Disable default browser outline */
 }
 
 .code-line-content {
