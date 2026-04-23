@@ -7,6 +7,7 @@ import type {
   StoryObj,
 } from '@storybook/vue3-vite';
 import {
+  computed,
   ref,
 } from 'vue';
 import GRangeSelection1D from './GRangeSelection1D.vue';
@@ -38,7 +39,8 @@ export const FileExplorerRangeSelection1DStory: Story = {
       GRangeItem1D,
     },
     setup () {
-      const selection = ref(undefined);
+      const rangeRef = ref(null);
+      const selection = computed(() => rangeRef.value?.selection.value);
       const files = [
         {
           name: 'README.md',
@@ -77,6 +79,7 @@ export const FileExplorerRangeSelection1DStory: Story = {
         },
       ];
       return {
+        rangeRef,
         selection,
         files,
       };
@@ -89,7 +92,7 @@ export const FileExplorerRangeSelection1DStory: Story = {
             {{ selection ? (selection.end - selection.start + 1) + ' of ' + files.length + ' selected' : files.length + ' items' }}
           </span>
         </div>
-        <GRangeSelection1D v-model:selection="selection" :count="files.length">
+        <GRangeSelection1D ref="rangeRef" :count="files.length">
           <div class="border gui-neutral-border rounded-lg overflow-hidden">
             <table class="w-full border-collapse text-sm">
               <thead>
@@ -152,7 +155,8 @@ export const DayPickerRangeSelection1DStory: Story = {
       GRangeItem1D,
     },
     setup () {
-      const selection = ref(undefined);
+      const rangeRef = ref(null);
+      const selection = computed(() => rangeRef.value?.selection.value);
       const days = [
         'Mon',
         'Tue',
@@ -163,6 +167,7 @@ export const DayPickerRangeSelection1DStory: Story = {
         'Sun',
       ];
       return {
+        rangeRef,
         selection,
         days,
       };
@@ -172,7 +177,7 @@ export const DayPickerRangeSelection1DStory: Story = {
         <div class="text-xs gui-neutral-fg-muted mb-spacing-3">
           {{ selection ? days[selection.start] + ' \u2014 ' + days[selection.end] : 'Select a range of days' }}
         </div>
-        <GRangeSelection1D v-model:selection="selection" :count="days.length">
+        <GRangeSelection1D ref="rangeRef" :count="days.length">
           <div class="inline-flex rounded-lg overflow-hidden shadow-sm border gui-neutral-border">
             <GRangeItem1D
               v-for="(day, i) in days"

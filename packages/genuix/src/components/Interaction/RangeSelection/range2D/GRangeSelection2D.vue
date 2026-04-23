@@ -216,4 +216,9 @@ provide(RANGE_SELECTION_2D_KEY, {
   selectAll,
   clearSelection,
 });
+
+defineExpose({
+  selection,
+  clearSelection,
+});
 </script>

@@ -15,6 +15,9 @@ import {
   nextTick,
   type TemplateRef,
 } from 'vue';
+import {
+  vDismiss,
+} from '@/directives';
 
 // A more customizable version of v-dismiss
 const emit = defineEmits<{

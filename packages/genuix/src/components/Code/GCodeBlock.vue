@@ -54,7 +54,7 @@
       @dismiss="clearLineSelection"
     >
       <GRangeSelection1D
-        v-model:selection="lineSelection"
+        ref="rangeSelectionRef"
         :count="highlightedLines.length"
       >
         <div
@@ -100,6 +100,7 @@ import 'highlight.js/styles/github.css';
 import {
   computed,
   ref,
+  useTemplateRef,
 } from 'vue';
 import {
   hljs,
@@ -113,9 +114,6 @@ import type {
 } from './types';
 import GRangeSelection1D from '@/components/Interaction/RangeSelection/range1D/GRangeSelection1D.vue';
 import GRangeItem1D from '@/components/Interaction/RangeSelection/range1D/GRangeItem1D.vue';
-import type {
-  Range1D,
-} from '@/components/Interaction/RangeSelection/range1D/types';
 import GIcon from '@/components/Icon/GIcon.vue';
 import {
   GIconName,
@@ -167,12 +165,10 @@ const invertedTokens = computed(() => invertTokens(semantic));
 /* Human-friendly language label */
 const languageLabel = computed(() => GCodeLanguageLabel[language]);
 
-/* The current selected ranges of code lines */
-const lineSelection = ref<Range1D | undefined>(undefined);
+const rangeSelectionRef = useTemplateRef<InstanceType<typeof GRangeSelection1D>>('rangeSelectionRef');
 
-// Clear the line selection on dismiss
 function clearLineSelection () {
-  lineSelection.value = undefined;
+  rangeSelectionRef.value?.clearSelection();
 }
 
 /* Format the code block and highlight */

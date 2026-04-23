@@ -36,7 +36,7 @@ const {
 }>();
 
 // The current 1D range selection
-const selection = defineModel<Range1D | undefined>('selection');
+const selection = ref<Range1D | undefined>(undefined);
 
 // The first selected item (used as the anchor for the next selects)
 const anchor = ref<number | undefined>(undefined);
@@ -177,6 +177,11 @@ provide(RANGE_SELECTION_1D_KEY, {
   movePrev,
   moveNext,
   selectAll,
+  clearSelection,
+});
+
+defineExpose({
+  selection,
   clearSelection,
 });
 </script>

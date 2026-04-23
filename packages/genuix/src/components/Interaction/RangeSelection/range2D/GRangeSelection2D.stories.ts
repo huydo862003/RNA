@@ -7,6 +7,7 @@ import type {
   StoryObj,
 } from '@storybook/vue3-vite';
 import {
+  computed,
   ref,
 } from 'vue';
 import GRangeSelection2D from './GRangeSelection2D.vue';
@@ -39,7 +40,8 @@ export const SpreadsheetRangeSelection2DStory: Story = {
       GRangeCell2D,
     },
     setup () {
-      const selection = ref(undefined);
+      const rangeRef = ref(null);
+      const selection = computed(() => rangeRef.value?.selection.value);
       const headers = [
         'A',
         'B',
@@ -54,6 +56,7 @@ export const SpreadsheetRangeSelection2DStory: Story = {
       }, (_, r) =>
         headers.map((_, c) => ((r + 1) * 10 + c + 1)));
       return {
+        rangeRef,
         selection,
         headers,
         rows: Array.from({
@@ -70,7 +73,7 @@ export const SpreadsheetRangeSelection2DStory: Story = {
               + ' (' + ((selection.endRow - selection.startRow + 1) * (selection.endCol - selection.startCol + 1)) + ' cells)'
             : 'Click and drag to select cells' }}
         </div>
-        <GRangeSelection2D v-model:selection="selection" :rows="rows.length" :cols="headers.length">
+        <GRangeSelection2D ref="rangeRef" :rows="rows.length" :cols="headers.length">
           <table class="border-collapse border gui-neutral-border rounded-md overflow-hidden text-sm">
             <thead>
               <tr class="gui-neutral-bg-subtle">
@@ -134,7 +137,8 @@ export const CalendarRangeSelection2DStory: Story = {
       GRangeCell2D,
     },
     setup () {
-      const selection = ref(undefined);
+      const rangeRef = ref(null);
+      const selection = computed(() => rangeRef.value?.selection.value);
       const weekdays = [
         'Mon',
         'Tue',
@@ -158,6 +162,7 @@ export const CalendarRangeSelection2DStory: Story = {
           return (1 <= day && day <= days) ? day : null;
         }));
       return {
+        rangeRef,
         selection,
         weekdays,
         grid,
@@ -169,7 +174,7 @@ export const CalendarRangeSelection2DStory: Story = {
         <div class="text-xs gui-neutral-fg-muted mb-spacing-2">
           {{ selection ? 'Selected range' : 'Drag to select date range' }}
         </div>
-        <GRangeSelection2D v-model:selection="selection" :rows="grid.length" :cols="weekdays.length">
+        <GRangeSelection2D ref="rangeRef" :rows="grid.length" :cols="weekdays.length">
           <table class="border-collapse text-sm">
             <thead>
               <tr>
