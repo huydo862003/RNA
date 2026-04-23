@@ -14,7 +14,7 @@ import GRangeSelection1D from './GRangeSelection1D.vue';
 import GRangeItem1D from './GRangeItem1D.vue';
 
 const meta = {
-  title: 'Interaction/GRangeSelection1D',
+  title: 'Components/Interaction/GRangeSelection1D',
   tags: ['autodocs'],
   component: GRangeSelection1D,
 } satisfies Meta;

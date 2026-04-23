@@ -13,7 +13,6 @@
  */
 import {
   nextTick,
-  type TemplateRef,
 } from 'vue';
 import {
   vDismiss,
@@ -28,13 +27,13 @@ const {
   options = {},
 } = defineProps<{
   options?: {
-    ignore?: TemplateRef<HTMLElement>[];
+    ignore?: (HTMLElement | null)[];
   };
 }>();
 
 async function onDismiss (e: Event) {
   let focusedElement: unknown = null;
-  if (e.type === 'click') {
+  if (e.type === 'click' || e.type === 'pointerdown') {
     focusedElement = e.target;
   } else if (e.type === 'focusout') {
     await nextTick();
@@ -42,8 +41,8 @@ async function onDismiss (e: Event) {
   }
 
   if (focusedElement instanceof HTMLElement) {
-    for (const i of options.ignore || []) {
-      if (i.value?.contains(focusedElement)) {
+    for (const el of options.ignore || []) {
+      if (el?.contains(focusedElement)) {
         return; // ignore
       }
     }

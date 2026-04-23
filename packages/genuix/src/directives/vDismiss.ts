@@ -23,7 +23,7 @@ import type {
 } from 'vue';
 import {
   GKbdKeyName,
-} from '@/components/Kbd/types';
+} from '@/components/Display/Kbd/types';
 
 interface DismissState {
   listeners: {

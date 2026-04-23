@@ -14,7 +14,7 @@ import GRangeSelection2D from './GRangeSelection2D.vue';
 import GRangeCell2D from './GRangeCell2D.vue';
 
 const meta = {
-  title: 'Interaction/GRangeSelection2D',
+  title: 'Components/Interaction/GRangeSelection2D',
   tags: ['autodocs'],
   component: GRangeSelection2D,
 } satisfies Meta;

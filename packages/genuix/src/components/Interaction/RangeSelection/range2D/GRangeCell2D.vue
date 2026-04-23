@@ -31,7 +31,7 @@ import type {
 } from './types';
 import {
   GKbdKeyName,
-} from '@/components/Kbd/types';
+} from '@/components/Display/Kbd/types';
 
 const props = defineProps<{
   row: number;
