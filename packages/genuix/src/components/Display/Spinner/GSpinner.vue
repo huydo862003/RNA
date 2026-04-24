@@ -4,7 +4,8 @@
   <!-- Viewbox use 24 - A popular icon grid -->
   <!-- r is set to 10 to account for the stroke-width of 3 -->
   <svg
-    :class="['spinner', `spinner-${size}`, `spinner-${speed}`]"
+    :class="['spinner', `spinner-${size}`, `spinner-${speed}`, _class]"
+    :style="_style"
     viewBox="0 0 24 24"
     fill="none"
     role="status"
@@ -40,11 +41,19 @@ import {
   SpinnerSpeed,
 } from './types';
 
+defineOptions({
+  inheritAttrs: false,
+});
+
 const {
+  class: _class = '',
+  style: _style = undefined,
   size = SpinnerSize.Md,
   speed = SpinnerSpeed.Normal,
   label = 'Loading',
 } = defineProps<{
+  class?: string;
+  style?: Record<string, string>;
   size?: SpinnerSize;
   speed?: SpinnerSpeed;
   label?: string;
@@ -54,6 +63,7 @@ const {
 <style scoped>
 @reference '@/style.css';
 
+@layer components {
 .spinner-slow {
   animation: spin 1.5s linear infinite;
 }
@@ -93,12 +103,12 @@ const {
 }
 
 .spinner-track {
+  @apply opacity-60;
   stroke: var(--gui-neutral-border-subtle); /* subtle static background (soft neutral) */
-  opacity: 0.6;
 }
 
 .spinner-arc {
-  stroke: currentColor;
+  @apply stroke-current;
   stroke-dasharray: 45 100; /* Draw 45 units then gap 100 units (unit here assumes the unit in the view box - 45 units are well over 70% of 20pi, the circumference)*/
 }
 
@@ -106,5 +116,6 @@ const {
   to {
     transform: rotate(360deg);
   }
+}
 }
 </style>

@@ -1,6 +1,9 @@
 <template>
   <GTooltip class="text-xs">
-    <span>
+    <span
+      :class="_class"
+      :style="_style"
+    >
       <kbd
         v-if="keyMeta.icon"
         class="kbd"
@@ -47,9 +50,17 @@ import {
   GIconName,
 } from '@/components/Display/Icon/types';
 
+defineOptions({
+  inheritAttrs: false,
+});
+
 const {
+  class: _class = '',
+  style: _style = undefined,
   name,
 } = defineProps<{
+  class?: string;
+  style?: Record<string, string>;
   /** Key name following the W3C KeyboardEvent.key spec */
   name: GKbdKeyName;
 }>();
@@ -212,16 +223,17 @@ const keyMeta = computed((): KeyMeta => {
 <style scoped>
 @reference '@/style.css';
 
+@layer components {
 .kbd {
   @apply inline-flex items-center justify-center;
   @apply w-xl h-lg text-xs border gui-neutral-border gui-neutral-bg-subtle rounded-1 font-mono leading-none align-middle;
   @apply shadow-primary-1 shadow-sm inset-shadow-sm;
-  @apply cursor-default select-none;
-  outline: none;
+  @apply cursor-default select-none outline-none;
 }
 
 .kbd :deep(svg) {
   width: var(--size-1);
   height: var(--size-1);
+}
 }
 </style>

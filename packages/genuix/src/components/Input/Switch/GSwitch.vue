@@ -6,10 +6,12 @@
       'switch',
       `switch-${size}`,
       { 'is-checked': modelValue, 'is-disabled': disabled },
+      _class,
     ]"
     :style="{
       '--_solid': `var(--gui-${semantic}-solid)`,
       '--_solid-hover': `var(--gui-${semantic}-solid-hover)`,
+      ..._style,
     }"
     :aria-checked="modelValue"
     :disabled="disabled"
@@ -29,12 +31,20 @@ import {
   SwitchSemantic,
 } from './types';
 
+defineOptions({
+  inheritAttrs: false,
+});
+
 const {
+  class: _class = '',
+  style: _style = undefined,
   modelValue = false,
   disabled = false,
   size = SwitchSize.Md,
   semantic = SwitchSemantic.Neutral,
 } = defineProps<{
+  class?: string;
+  style?: Record<string, string>;
   modelValue?: boolean;
   disabled?: boolean;
   size?: SwitchSize;
@@ -74,14 +84,11 @@ defineExpose({
 <style scoped>
 @reference '@/style.css';
 
+@layer components {
 .switch {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  border: none;
+  @apply relative inline-flex items-center border-none cursor-pointer;
   border-radius: var(--radius-full);
   background-color: var(--gui-neutral-bg-active);
-  cursor: pointer;
   transition-property: background-color;
   transition-duration: var(--duration-fast);
   transition-timing-function: var(--ease-default);
@@ -100,15 +107,13 @@ defineExpose({
 }
 
 .switch.is-disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
+  @apply opacity-50 cursor-not-allowed;
 }
 
 /* Thumb */
 .switch-thumb {
-  display: block;
+  @apply block bg-white;
   border-radius: var(--radius-full);
-  background-color: white;
   box-shadow: var(--shadow-xs);
   transition-property: transform;
   transition-duration: var(--duration-fast);
@@ -161,5 +166,6 @@ defineExpose({
 
 .switch-lg.is-checked .switch-thumb {
   transform: translateX(var(--size-3));
+}
 }
 </style>

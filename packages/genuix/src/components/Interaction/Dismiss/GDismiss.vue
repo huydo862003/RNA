@@ -1,7 +1,8 @@
 <template>
   <div
     v-dismiss="onDismiss"
-    class="contents"
+    :class="['contents', _class]"
+    :style="_style"
   >
     <slot />
   </div>
@@ -18,14 +19,22 @@ import {
   vDismiss,
 } from '@/directives';
 
+defineOptions({
+  inheritAttrs: false,
+});
+
 // A more customizable version of v-dismiss
 const emit = defineEmits<{
   (e: 'dismiss', event: Event): void; // event is the one that causes the dismiss
 }>();
 
 const {
+  class: _class = '',
+  style: _style = undefined,
   options = {},
 } = defineProps<{
+  class?: string;
+  style?: Record<string, string>;
   options?: {
     ignore?: (HTMLElement | null)[];
   };

@@ -1,12 +1,13 @@
 <template>
   <div
-    :class="['code-block', { 'code-block--scroll': !wordWrap }]"
+    :class="['code-block', { 'code-block--scroll': !wordWrap }, _class]"
     :style="{
       '--_border': tokens.border,
       '--_header-bg': tokens.bg,
       '--_header-fg': tokens.fg,
       '--_lang-color': tokens.mutedFg,
       '--_body-bg': tokens.subtleBg,
+      ..._style,
     }"
   >
     <div
@@ -134,7 +135,13 @@ import {
   invertTokens,
 } from '@/utils/prominence';
 
+defineOptions({
+  inheritAttrs: false,
+});
+
 const {
+  class: _class = '',
+  style: _style = undefined,
   id,
   title = '',
   icon = undefined,
@@ -145,6 +152,8 @@ const {
   prominence = Prominence.Tertiary,
   semantic = Semantic.Neutral,
 } = defineProps<{
+  class?: string;
+  style?: Record<string, string>;
   id: string;
   title?: string;
   icon?: GIconName;
@@ -211,6 +220,7 @@ async function clickCopyButton () {
 <style scoped>
 @reference '@/style.css';
 
+@layer components {
 .code-block {
   @apply font-mono rounded-md;
   border: 1px solid var(--_border);
@@ -218,7 +228,7 @@ async function clickCopyButton () {
 }
 
 .code-block--scroll {
-  overflow-x: auto;
+  @apply overflow-x-auto;
 }
 
 .code-header {
@@ -228,10 +238,10 @@ async function clickCopyButton () {
 }
 
 .code-title {
-  @apply text-xs font-medium basis-0 items-center gap-sm flex grow;
+  @apply text-xs font-medium basis-0 items-center gap-sm flex grow min-w-0;
+    /* LEARN: Even with basis-0 then grow (which means to take the leftovers of other elements), min-width has to be set, to override min-width of "auto" */
   color: var(--_header-fg);
   flex-basis: 0;
-  min-width: 0; /* LEARN: Even with basis-0 then grow (which means to take the leftovers of other elements), min-width has to be set, to override min-width of "auto" */
 }
 
 .code-title-icon {
@@ -239,8 +249,8 @@ async function clickCopyButton () {
 }
 
 .code-title-name {
-  @apply basis-0 grow overflow-hidden text-ellipsis whitespace-nowrap;
-  min-width: 0; /* LEARN: Even with basis-0 then grow (which means to take the leftovers of other elements), min-width has to be set, to override min-width of "auto" */
+  @apply basis-0 grow overflow-hidden text-ellipsis whitespace-nowrap min-w-0;
+    /* LEARN: Even with basis-0 then grow (which means to take the leftovers of other elements), min-width has to be set, to override min-width of "auto" */
 }
 
 .code-header-actions {
@@ -257,13 +267,14 @@ async function clickCopyButton () {
 }
 
 .code-pre {
-  @apply m-0 leading-0 grid; /* grid is used to ensure all div spans the same space (so highlighted background will be consistent)*/
-  white-space: pre-wrap;       /* LEARN: Allow wrapping while preserving whitespace, else `overflow-wrap` wouldn't work */
-  overflow-wrap: break-word;   /* Break long tokens that exceed container */
+  @apply m-0 leading-0;
+  @apply grid; /* grid is used to ensure all div spans the same space (so highlighted background will be consistent)*/
+  @apply whitespace-pre-wrap; /* LEARN: Allow wrapping while preserving whitespace, else `overflow-wrap` wouldn't work */
+  @apply wrap-break-words; /* Break long tokens that exceed container */
 }
 
 .code-block--scroll .code-pre {
-  white-space: pre;            /* No wrapping, horizontal scroll instead */
+  @apply whitespace-pre;       /* No wrapping, horizontal scroll instead */
   overflow-wrap: normal;
 }
 
@@ -276,18 +287,16 @@ async function clickCopyButton () {
 }
 
 .code-line-gutter {
-  @apply pl-3;
-  user-select: none; /* Do not make code selection also select code gutter */
+  @apply pl-3 select-none; /* Do not make code selection also select code gutter */
 }
 
 .code-line-number {
-  @apply text-xs gui-neutral-fg-muted mr-6 shrink-0;
+  @apply text-xs gui-neutral-fg-muted mr-6 shrink-0 select-none; /* Do not make code selection also select code line number */
   line-height: var(--leading-3); /* Match content line-height so number aligns with first wrapped line */
-  user-select: none; /* Do not make code selection also select code line number */
 }
 
 .code-pre :deep(> div) {
-  outline: none; /* Disable default browser outline */
+  @apply outline-none; /* Disable default browser outline */
 }
 
 .code-line-content {
@@ -330,5 +339,6 @@ async function clickCopyButton () {
 
 .selected-code-line:hover {
   @apply gui-notice-bg-hover;
+}
 }
 </style>

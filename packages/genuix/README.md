@@ -49,6 +49,8 @@ bg-hover -> solid-hover (hover state works on solid surface)
 
 Usage: apply the returned style object on the container, and any child component reading `--gui-{semantic}-*` automatically gets contrast-correct values with zero overrides.
 
-I believe Radix Themes handle it like this.
+I believe Radix Themes handles it like this.
 
 The general rule: **parent owns the context, children stay generic**.
+
+This is another reason why we should use semantic design tokens.

@@ -1,5 +1,8 @@
 <template>
-  <div class="collapsible">
+  <div
+    :class="['collapsible', _class]"
+    :style="_style"
+  >
     <button
       class="collapsible-summary"
       type="button"
@@ -38,9 +41,17 @@ import {
   GIconName,
 } from '@/components/Display/Icon/types';
 
+defineOptions({
+  inheritAttrs: false,
+});
+
 const {
+  class: _class = '',
+  style: _style = undefined,
   open: initialState = false,
 } = defineProps<{
+  class?: string;
+  style?: Record<string, string>;
   open?: boolean;
 }>();
 
@@ -87,6 +98,7 @@ defineExpose({
 <style scoped>
 @reference '@/style.css';
 
+@layer components {
 .collapsible {
   @apply pl-6;
 }
@@ -106,34 +118,31 @@ defineExpose({
 }
 
 .collapsible-toggle-icon.is-open {
-  transform: rotate(90deg);
+  @apply rotate-90;
 }
 
 .v-enter-from {
-  opacity: 0;
-  transform: translateY(-100%);
+  @apply opacity-0 -translate-y-full;
 }
 
 .v-enter-to {
-  opacity: 1;
-  transform: translateY(0);
+  @apply opacity-100 translate-y-0;
 }
 
 .v-enter-active,
 .v-leave-active {
+  @apply cursor-pointer; /* Avoid the cursor to flash between pointer and caret on the collapsible content transition */
   transition-property: opacity transform;
   transition-duration: var(--duration-fast);
   transition-timing-function: var(--ease-default, ease);
-  cursor: pointer; /* Avoid the cursor to flash between pointer and caret on the collapsible content transition */
 }
 
 .v-leave-from {
-  opacity: 1;
-  transform: translateY(0);
+  @apply opacity-100 translate-y-0;
 }
 
 .v-leave-to {
-  opacity: 0;
-  transform: translateY(-100%);
+  @apply opacity-0 -translate-y-full;
+}
 }
 </style>

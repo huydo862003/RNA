@@ -4,12 +4,14 @@
       'btn',
       `btn-${size}`,
       { 'is-loading': loading },
+      _class,
     ]"
     :style="{
       '--_bg': tokens.bg,
       '--_bg-hover': tokens.bgHover,
       '--_fg': tokens.fg,
       '--_border': tokens.border,
+      ..._style,
     }"
     :disabled="isInactive"
   >
@@ -45,13 +47,21 @@ import {
   prominenceTokens,
 } from '@/utils/prominence';
 
+defineOptions({
+  inheritAttrs: false,
+});
+
 const {
+  class: _class = '',
+  style: _style = undefined,
   prominence = ButtonProminence.Primary,
   semantic = ButtonSemantic.Neutral,
   size = ButtonSize.Md,
   disabled = false,
   loading = false,
 } = defineProps<{
+  class?: string;
+  style?: Record<string, string>;
   prominence?: ButtonProminence;
   semantic?: ButtonSemantic;
   size?: ButtonSize;
@@ -78,6 +88,7 @@ const spinnerSize = computed(() => {
 <style scoped>
 @reference '@/style.css';
 
+@layer components {
 .btn {
   @apply inline-flex items-center justify-center font-mono cursor-pointer select-none relative;
   border-radius: var(--radius-md);
@@ -98,12 +109,12 @@ const spinnerSize = computed(() => {
 }
 
 .btn:disabled {
-  cursor: not-allowed;
+  @apply cursor-not-allowed;
   filter: brightness(0.95);
 }
 
 .btn.is-loading {
-  cursor: wait;
+  @apply cursor-wait;
   filter: brightness(0.85);
 }
 
@@ -146,11 +157,12 @@ const spinnerSize = computed(() => {
 
 /* Loading state: Spinner lays on top of the content */
 .btn-spinner {
-  position: absolute;
+  @apply absolute;
 }
 
 .btn-content {
-  opacity: 1;
+  @apply opacity-100;
   transition: opacity var(--duration-fast) var(--ease-default);
+}
 }
 </style>

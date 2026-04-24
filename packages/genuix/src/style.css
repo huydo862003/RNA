@@ -5,6 +5,8 @@
 @import 'tailwindcss';
 @import 'floating-vue/style.css';
 
+@layer components;
+
 /* Reset default tailwind namespaces we redefine */
 @theme {
   --color-*: initial;

@@ -49,7 +49,7 @@ export const BasicDismissStory: Story = {
     template: `
       <div class="p-spacing-4">
         <p class="text-xs gui-neutral-fg-muted mb-spacing-3">
-          {{ active ? 'Active — click outside to dismiss' : 'Click the box to activate' }}
+          {{ active ? 'Active. Click outside to dismiss.' : 'Click the box to activate' }}
         </p>
         <GDismiss @dismiss="dismiss">
           <div
@@ -69,7 +69,7 @@ export const IgnoreDismissStory: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'The "Ignore me" button is in the ignore list — clicking it will not dismiss.',
+        story: 'The "Ignore me" button is in the ignore list. Clicking it will not dismiss.',
       },
     },
   },

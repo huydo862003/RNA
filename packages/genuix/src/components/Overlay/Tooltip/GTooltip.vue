@@ -6,7 +6,7 @@
     :shown="shown"
     :triggers="triggers"
     :popper-triggers="['hover']"
-    :popper-class="popperClass"
+    :popper-class="`${popperClass} mt-1`"
   >
     <slot />
     <template
@@ -31,6 +31,7 @@ import {
 import {
   computed,
   getCurrentInstance,
+  watchEffect,
 } from 'vue';
 import {
   getId,
@@ -46,6 +47,7 @@ defineOptions({
 
 const {
   class: _class = '',
+  style: _style = undefined,
   placement = 'bottom',
   shown = undefined,
   arrow = true,
@@ -56,6 +58,8 @@ const {
 } = defineProps<{
   /** CSS classes applied to the popper element */
   class?: string;
+  /** Inline styles applied to the popper element */
+  style?: Record<string, string>;
   /** Positioning of the tooltip relative to the trigger */
   placement?: Placement;
   /** Programmatically show/hide the tooltip */
@@ -76,6 +80,18 @@ const popperClass = computed(() => [
 
 const popper = computed(() => document.querySelector(`.${popperUid}.v-popper__popper`));
 
+// Apply inline styles to the teleported popper element
+watchEffect(() => {
+  const el = popper.value;
+  if (!el || !_style) return;
+  for (const [
+    key,
+    val,
+  ] of Object.entries(_style)) {
+    (el as HTMLElement).style.setProperty(key, val);
+  }
+});
+
 defineExpose({
   popper,
 });
@@ -84,8 +100,9 @@ defineExpose({
 <style>
 @reference '@/style.css';
 
+@layer components {
 .g-tooltip-trigger {
-  display: inline;
+  @apply inline;
 }
 
 .v-popper {
@@ -93,6 +110,7 @@ defineExpose({
 }
 
 .g-popper--no-arrow .v-popper__arrow-container {
-  display: none;
+  @apply hidden;
+}
 }
 </style>

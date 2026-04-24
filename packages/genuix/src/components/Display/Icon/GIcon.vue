@@ -2,6 +2,8 @@
   <component
     :is="resolvedIcon"
     v-if="resolvedIcon"
+    :class="_class"
+    :style="_style"
     role="img"
     :aria-label="alt"
     :aria-hidden="!alt"
@@ -23,12 +25,20 @@ import {
   iconMap,
 } from './types';
 
+defineOptions({
+  inheritAttrs: false,
+});
+
 const {
+  class: _class = '',
+  style: _style = undefined,
   name = undefined,
   icon = undefined,
   alt = undefined,
   weight = undefined,
 } = defineProps<{
+  class?: string;
+  style?: Record<string, string>;
   /** Named icon from GIconName enum */
   name?: GIconName;
   /** Custom component or SVG to render instead of named icon */

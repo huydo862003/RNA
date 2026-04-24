@@ -1,13 +1,17 @@
 <template>
   <div
-    class="flippable"
-    :class="{
-      'is-flipped': isFlipped,
-      'is-vertical': direction === FlipDirection.Vertical,
-      'is-horizontal': direction === FlipDirection.Horizontal,
-      'is-disabled': disabled,
-      'trigger-on-click': trigger === FlipTrigger.Click,
-    }"
+    :class="[
+      'flippable',
+      {
+        'is-flipped': isFlipped,
+        'is-vertical': direction === FlipDirection.Vertical,
+        'is-horizontal': direction === FlipDirection.Horizontal,
+        'is-disabled': disabled,
+        'trigger-on-click': trigger === FlipTrigger.Click,
+      },
+      _class,
+    ]"
+    :style="_style"
     @click="trigger === FlipTrigger.Click && flip()"
     @mouseenter="trigger === FlipTrigger.Hover && showBack()"
     @mouseleave="trigger === FlipTrigger.Hover && showFront()"
@@ -36,12 +40,20 @@ import {
   FlipTrigger,
 } from './types';
 
+defineOptions({
+  inheritAttrs: false,
+});
+
 const {
+  class: _class = '',
+  style: _style = undefined,
   flipped: initialState = false,
   disabled = false,
   direction = FlipDirection.Horizontal,
   trigger = FlipTrigger.Click,
 } = defineProps<{
+  class?: string;
+  style?: Record<string, string>;
   flipped?: boolean;
   disabled?: boolean;
   direction?: FlipDirection;
@@ -83,14 +95,15 @@ defineExpose({
 <style scoped>
 @reference '@/style.css';
 
+@layer components {
 .flippable {
+  @apply relative; /* Content should be stacked inside flippable, not floating out */
   perspective: max(100vw, 100vh); /* ensure the flippable is suffiently far from the screen */
-  position: relative; /* Content should be stacked inside flippable, not floating out */
 }
 
 .flippable-front,
 .flippable-back {
-  backface-visibility: hidden; /* Hide the back face of the front and back div (so when flipped, the front div would show its back to the user) */
+  @apply backface-hidden; /* Hide the back face of the front and back div (so when flipped, the front div would show its back to the user) */
   transition-property: transform;
   transition-duration: var(--duration-slow, 300ms);
   transition-timing-function: var(--ease-default, ease);
@@ -98,17 +111,15 @@ defineExpose({
 
 .flippable-front,
 .flippable-back {
-  width: 100%;
-  height: 100%;
+  @apply w-full h-full;
 }
 
 .flippable-back {
-  position: absolute;
-  inset: 0;
+  @apply absolute inset-0;
 }
 
 .trigger-on-click {
-  cursor: pointer;
+  @apply cursor-pointer;
 }
 
 .is-horizontal {
@@ -140,7 +151,8 @@ defineExpose({
 }
 
 .flippable.is-disabled {
-  cursor: not-allowed;
+  @apply cursor-not-allowed;
   filter: brightness(0.95);
+}
 }
 </style>
