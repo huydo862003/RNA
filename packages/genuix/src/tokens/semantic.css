@@ -23,7 +23,7 @@
 @theme {
   --text-xs: var(--text-1);
   --text-sm: var(--text-2);
-  --text-base: var(--text-3);
+  --text-md: var(--text-3);
   --text-lg: var(--text-4);
   --text-xl: var(--text-5);
   --text-2xl: var(--text-6);

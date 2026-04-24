@@ -146,7 +146,7 @@ const spinnerSize = computed(() => {
 .btn-lg {
   height: var(--size-6);
   padding-inline: var(--spacing-lg);
-  font-size: var(--text-base);
+  font-size: var(--text-md);
 }
 
 .btn-xl {
