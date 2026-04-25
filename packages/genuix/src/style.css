@@ -22,3 +22,14 @@
 @import './tokens/primitives/base/index.css';
 @import './tokens/primitives/dark/index.css';
 @import './tokens/semantic.css';
+
+/* Reset floating-vue styles */
+.v-popper__popper {
+  border: none;
+  .v-popper__wrapper {
+    border: none;
+    .v-popper__inner {
+      border: none;
+    }
+  }
+}
