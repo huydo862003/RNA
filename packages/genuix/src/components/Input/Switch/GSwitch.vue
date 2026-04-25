@@ -1,5 +1,6 @@
 <template>
   <button
+    :id="id"
     type="button"
     role="switch"
     :class="[
@@ -36,6 +37,7 @@ defineOptions({
 });
 
 const {
+  id = undefined,
   class: _class = '',
   style: _style = undefined,
   modelValue = false,
@@ -43,6 +45,7 @@ const {
   size = SwitchSize.Md,
   semantic = SwitchSemantic.Neutral,
 } = defineProps<{
+  id?: string;
   class?: string;
   style?: Record<string, string>;
   modelValue?: boolean;

@@ -2,6 +2,7 @@
   <component
     :is="resolvedIcon"
     v-if="resolvedIcon"
+    :id="id"
     :class="_class"
     :style="_style"
     role="img"
@@ -30,6 +31,7 @@ defineOptions({
 });
 
 const {
+  id = undefined,
   class: _class = '',
   style: _style = undefined,
   name = undefined,
@@ -37,6 +39,7 @@ const {
   alt = undefined,
   weight = undefined,
 } = defineProps<{
+  id?: string;
   class?: string;
   style?: Record<string, string>;
   /** Named icon from GIconName enum */

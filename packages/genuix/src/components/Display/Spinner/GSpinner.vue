@@ -4,6 +4,7 @@
   <!-- Viewbox use 24 - A popular icon grid -->
   <!-- r is set to 10 to account for the stroke-width of 3 -->
   <svg
+    :id="id"
     :class="['spinner', `spinner-${size}`, `spinner-${speed}`, _class]"
     :style="_style"
     viewBox="0 0 24 24"
@@ -46,12 +47,14 @@ defineOptions({
 });
 
 const {
+  id = undefined,
   class: _class = '',
   style: _style = undefined,
   size = SpinnerSize.Md,
   speed = SpinnerSpeed.Normal,
   label = 'Loading',
 } = defineProps<{
+  id?: string;
   class?: string;
   style?: Record<string, string>;
   size?: SpinnerSize;

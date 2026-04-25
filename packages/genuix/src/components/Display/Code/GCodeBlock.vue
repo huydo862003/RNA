@@ -1,5 +1,6 @@
 <template>
   <div
+    :id="id"
     :class="['code-block', { 'code-block--scroll': !wordWrap }, _class]"
     :style="{
       '--_border': tokens.border,

@@ -1,5 +1,6 @@
 <template>
   <div
+    :id="id"
     :class="[
       'flippable',
       {
@@ -45,6 +46,7 @@ defineOptions({
 });
 
 const {
+  id = undefined,
   class: _class = '',
   style: _style = undefined,
   flipped: initialState = false,
@@ -52,6 +54,7 @@ const {
   direction = FlipDirection.Horizontal,
   trigger = FlipTrigger.Click,
 } = defineProps<{
+  id?: string;
   class?: string;
   style?: Record<string, string>;
   flipped?: boolean;

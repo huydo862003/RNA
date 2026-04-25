@@ -1,6 +1,7 @@
 <template>
   <GTooltip class="text-xs">
     <span
+      :id="id"
       :class="_class"
       :style="_style"
     >
@@ -55,10 +56,12 @@ defineOptions({
 });
 
 const {
+  id = undefined,
   class: _class = '',
   style: _style = undefined,
   name,
 } = defineProps<{
+  id?: string;
   class?: string;
   style?: Record<string, string>;
   /** Key name following the W3C KeyboardEvent.key spec */

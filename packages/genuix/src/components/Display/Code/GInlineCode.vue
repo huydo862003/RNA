@@ -1,5 +1,6 @@
 <template>
   <code
+    :id="id"
     :class="['inline-code', _class]"
     :style="_style"
   >
@@ -17,9 +18,11 @@ defineOptions({
 });
 
 const {
+  id = undefined,
   class: _class = '',
   style: _style = undefined,
 } = defineProps<{
+  id?: string;
   class?: string;
   style?: Record<string, string>;
 }>();

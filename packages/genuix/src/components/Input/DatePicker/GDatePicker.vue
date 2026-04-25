@@ -6,6 +6,7 @@
   >
     <!-- Datepicker trigger -->
     <button
+      :id="id"
       aria-haspopup="dialog"
       :disabled="disabled"
       :style="{
@@ -146,12 +147,14 @@ defineOptions({
 });
 
 const {
+  id = undefined,
   class: _class = '',
   style: _style = undefined,
   size = DatePickerSize.Md,
   disabled = false,
   placeholder = 'No Date',
 } = defineProps<{
+  id?: string;
   class?: string;
   style?: Record<string, string>;
   size?: DatePickerSize;

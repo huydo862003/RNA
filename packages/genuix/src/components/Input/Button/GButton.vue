@@ -1,5 +1,6 @@
 <template>
   <button
+    :id="id"
     :class="[
       'btn',
       `btn-${size}`,
@@ -52,6 +53,7 @@ defineOptions({
 });
 
 const {
+  id = undefined,
   class: _class = '',
   style: _style = undefined,
   prominence = ButtonProminence.Primary,
@@ -60,6 +62,7 @@ const {
   disabled = false,
   loading = false,
 } = defineProps<{
+  id?: string;
   class?: string;
   style?: Record<string, string>;
   prominence?: ButtonProminence;

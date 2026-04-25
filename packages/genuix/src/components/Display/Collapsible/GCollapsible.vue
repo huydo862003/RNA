@@ -1,5 +1,6 @@
 <template>
   <div
+    :id="id"
     :class="['collapsible', _class]"
     :style="_style"
   >
@@ -46,10 +47,12 @@ defineOptions({
 });
 
 const {
+  id = undefined,
   class: _class = '',
   style: _style = undefined,
   open: initialState = false,
 } = defineProps<{
+  id?: string;
   class?: string;
   style?: Record<string, string>;
   open?: boolean;

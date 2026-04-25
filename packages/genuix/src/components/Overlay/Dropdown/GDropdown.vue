@@ -1,6 +1,7 @@
 <template>
   <Dropdown
     v-if="$slots.popper"
+    :id="id"
     class="g-dropdown-trigger"
     :placement="placement"
     :shown="shown"
@@ -41,6 +42,7 @@ defineOptions({
 });
 
 const {
+  id = undefined,
   class: _class = '',
   style: _style = undefined,
   placement = 'bottom',
@@ -48,6 +50,7 @@ const {
   arrow = true,
   triggers = ['click'],
 } = defineProps<{
+  id?: string;
   /** CSS classes applied to the popper element */
   class?: string;
   /** Inline styles applied to the popper element */
