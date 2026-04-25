@@ -19,3 +19,12 @@ export {
 export {
   SwitchSize,
 } from './Switch/types';
+
+export {
+  default as GTextInput,
+} from './TextInput/GTextInput.vue';
+
+export {
+  TextInputSize,
+  TextInputState,
+} from './TextInput/types';
