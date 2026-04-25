@@ -112,7 +112,7 @@ defineExpose({
 
 /* Thumb */
 .switch-thumb {
-  @apply block bg-white;
+  @apply block gui-neutral-bg;
   border-radius: var(--radius-full);
   box-shadow: var(--shadow-xs);
   transition-property: transform;
