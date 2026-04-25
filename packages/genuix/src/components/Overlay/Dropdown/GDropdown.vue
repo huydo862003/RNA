@@ -2,15 +2,21 @@
   <Dropdown
     v-if="$slots.popper"
     :id="id"
+    ref="dropdownRef"
     class="g-dropdown-trigger"
     :placement="placement"
     :shown="shown"
     :triggers="triggers"
-    :popper-class="`${popperClass} mt-xs`"
+    :popper-class="popperClass"
+    @show="isOpen = true"
+    @hide="isOpen = false"
   >
-    <slot />
+    <slot :is-open="isOpen" />
     <template #popper>
-      <slot name="popper" />
+      <slot
+        name="popper"
+        :is-open="isOpen"
+      />
     </template>
   </Dropdown>
   <slot v-else />
@@ -27,7 +33,7 @@ import {
 import {
   computed,
   getCurrentInstance,
-  watchEffect,
+  ref,
 } from 'vue';
 import {
   getId,
@@ -44,7 +50,6 @@ defineOptions({
 const {
   id = undefined,
   class: _class = '',
-  style: _style = undefined,
   placement = 'bottom',
   shown = undefined,
   arrow = true,
@@ -53,8 +58,6 @@ const {
   id?: string;
   /** CSS classes applied to the popper element */
   class?: string;
-  /** Inline styles applied to the popper element */
-  style?: Record<string, string>;
   /** Positioning of the dropdown relative to the trigger */
   placement?: Placement;
   /** Programmatically show/hide the dropdown */
@@ -65,7 +68,8 @@ const {
   triggers?: ('hover' | 'click' | 'focus' | 'touch')[];
 }>();
 
-const popperUid = `g-dropdown-${getId(Dropdown, getCurrentInstance()!)}`; // A unique id for the dropdown popper, so we can query the child of the popper using query selector
+// A unique id for the dropdown popper, so we can query the child of the popper using query selector
+const popperUid = `g-dropdown-${getId(Dropdown, getCurrentInstance()!)}`;
 
 const popperClass = computed(() => [
   popperUid,
@@ -73,22 +77,13 @@ const popperClass = computed(() => [
   !arrow && 'g-popper--no-arrow',
 ].filter(Boolean).join(' '));
 
-const popper = computed(() => document.querySelector(`.${popperUid}.v-popper__popper`));
+const isOpen = ref(false);
 
-// Apply inline styles to the teleported popper element
-watchEffect(() => {
-  const el = popper.value;
-  if (!el || !_style) return;
-  for (const [
-    key,
-    val,
-  ] of Object.entries(_style)) {
-    (el as HTMLElement).style.setProperty(key, val);
-  }
-});
+const popper = computed(() => document.querySelector(`.${popperUid}.v-popper__popper`));
 
 defineExpose({
   popper,
+  isOpen,
 });
 </script>
 

@@ -2,7 +2,6 @@
   <GDropdown
     :arrow="false"
     placement="bottom-start"
-    class="datepicker-popper"
   >
     <!-- Datepicker trigger -->
     <button
@@ -28,6 +27,7 @@
     <!-- Datepicker popper -->
     <template #popper>
       <div
+        class="datepicker-panel"
         role="dialog"
         aria-modal="true"
         aria-label="Date picker"
@@ -307,16 +307,9 @@ function goToday () {
   @apply h-10 text-xl;
   width: 240px;
 }
-}
-</style>
-
-<style>
-/* Needs unscoped style here to style the popper, which is teleported */
-@reference '@/style.css';
-
-@layer components {
-/* Datepicker popper */
-.datepicker-popper .v-popper__inner {
+/* Datepicker panel */
+/* Datepicker panel */
+.datepicker-panel {
   @apply gui-neutral-bg gui-neutral-border-subtle rounded-lg font-mono border border-solid shadow-lg overflow-hidden p-sm;
   width: 280px; /* This is not really a design decision, so using a magic number is okay */
 }
@@ -357,8 +350,7 @@ function goToday () {
 
 /* Grid */
 .datepicker-weekday-grid {
-  @apply grid grid-cols-7 gap-1;
-  user-select: none; /* Calendar selector should not behave like they're selectable */
+  @apply grid grid-cols-7 gap-1 select-none;
 }
 
 .datepicker-weekday {
