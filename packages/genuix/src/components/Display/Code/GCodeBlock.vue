@@ -271,7 +271,7 @@ async function clickCopyButton () {
   @apply m-0 leading-0;
   @apply grid; /* grid is used to ensure all div spans the same space (so highlighted background will be consistent)*/
   @apply whitespace-pre-wrap; /* LEARN: Allow wrapping while preserving whitespace, else `overflow-wrap` wouldn't work */
-  @apply wrap-break-words; /* Break long tokens that exceed container */
+  @apply break-words; /* Break long tokens that exceed container */
 }
 
 .code-block--scroll .code-pre {
