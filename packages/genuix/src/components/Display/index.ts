@@ -53,6 +53,22 @@ export {
   GKbdKeyName,
 } from './Kbd/types';
 
+// Pill
+export {
+  default as GPill,
+} from './Pill/GPill.vue';
+
+export {
+  PillSize,
+  PillColor,
+  PillProminence,
+  PILL_COLORS,
+} from './Pill/types';
+
+export type {
+  PillColorTokens,
+} from './Pill/types';
+
 // Spinner
 export {
   default as GSpinner,
