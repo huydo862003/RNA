@@ -41,7 +41,7 @@ export const SpreadsheetRangeSelection2DStory: Story = {
     },
     setup () {
       const rangeRef = ref(null);
-      const selection = computed(() => rangeRef.value?.selection.value);
+      const selection = computed(() => rangeRef.value?.selection?.value);
       const headers = [
         'A',
         'B',
@@ -138,7 +138,7 @@ export const CalendarRangeSelection2DStory: Story = {
     },
     setup () {
       const rangeRef = ref(null);
-      const selection = computed(() => rangeRef.value?.selection.value);
+      const selection = computed(() => rangeRef.value?.selection?.value);
       const weekdays = [
         'Mon',
         'Tue',

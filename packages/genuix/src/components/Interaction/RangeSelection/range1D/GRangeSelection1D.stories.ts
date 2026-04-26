@@ -40,7 +40,7 @@ export const FileExplorerRangeSelection1DStory: Story = {
     },
     setup () {
       const rangeRef = ref(null);
-      const selection = computed(() => rangeRef.value?.selection.value);
+      const selection = computed(() => rangeRef.value?.selection?.value);
       const files = [
         {
           name: 'README.md',
@@ -156,7 +156,7 @@ export const DayPickerRangeSelection1DStory: Story = {
     },
     setup () {
       const rangeRef = ref(null);
-      const selection = computed(() => rangeRef.value?.selection.value);
+      const selection = computed(() => rangeRef.value?.selection?.value);
       const days = [
         'Mon',
         'Tue',
