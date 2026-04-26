@@ -40,8 +40,8 @@ export const SpreadsheetRangeSelection2DStory: Story = {
       GRangeCell2D,
     },
     setup () {
-      const rangeRef = ref(null);
-      const selection = computed(() => rangeRef.value?.selection?.value);
+      const rangeRef = ref<InstanceType<typeof GRangeSelection2D> | null>(null);
+      const selection = computed(() => rangeRef.value?.selection);
       const headers = [
         'A',
         'B',
@@ -137,8 +137,8 @@ export const CalendarRangeSelection2DStory: Story = {
       GRangeCell2D,
     },
     setup () {
-      const rangeRef = ref(null);
-      const selection = computed(() => rangeRef.value?.selection?.value);
+      const rangeRef = ref<InstanceType<typeof GRangeSelection2D> | null>(null);
+      const selection = computed(() => rangeRef.value?.selection);
       const weekdays = [
         'Mon',
         'Tue',

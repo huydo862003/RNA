@@ -39,8 +39,9 @@ export const FileExplorerRangeSelection1DStory: Story = {
       GRangeItem1D,
     },
     setup () {
-      const rangeRef = ref(null);
-      const selection = computed(() => rangeRef.value?.selection?.value);
+      const rangeRef = ref<InstanceType<typeof GRangeSelection1D> | null>(null);
+      const selection = computed(() => rangeRef.value?.selection);
+
       const files = [
         {
           name: 'README.md',
@@ -155,8 +156,8 @@ export const DayPickerRangeSelection1DStory: Story = {
       GRangeItem1D,
     },
     setup () {
-      const rangeRef = ref(null);
-      const selection = computed(() => rangeRef.value?.selection?.value);
+      const rangeRef = ref<InstanceType<typeof GRangeSelection1D> | null>(null);
+      const selection = computed(() => rangeRef.value?.selection);
       const days = [
         'Mon',
         'Tue',
