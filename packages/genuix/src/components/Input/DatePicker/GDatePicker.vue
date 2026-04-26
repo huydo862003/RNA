@@ -307,10 +307,10 @@ function goToday () {
   @apply h-10 text-xl;
   width: 240px;
 }
-/* Datepicker panel */
+
 /* Datepicker panel */
 .datepicker-panel {
-  @apply gui-neutral-bg gui-neutral-border-subtle rounded-lg font-mono border border-solid shadow-lg overflow-hidden p-sm;
+  @apply gui-neutral-bg gui-neutral-border-subtle rounded-lg font-mono overflow-hidden p-sm;
   width: 280px; /* This is not really a design decision, so using a magic number is okay */
 }
 

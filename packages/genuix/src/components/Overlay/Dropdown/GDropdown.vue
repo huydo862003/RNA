@@ -17,7 +17,9 @@
       <slot :is-open="isOpen" />
     </div>
     <template #popper>
-      <div :style="{ minWidth: triggerWidth ? `${triggerWidth}px` : undefined }">
+      <div
+        :style="{ minWidth: triggerWidth ? `${triggerWidth}px` : undefined }"
+      >
         <slot
           name="popper"
           :is-open="isOpen"
@@ -102,6 +104,8 @@ defineExpose({
 </script>
 
 <style>
+@reference '@/style.css';
+
 @layer components {
 .g-dropdown-trigger {
   @apply inline-block;

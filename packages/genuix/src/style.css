@@ -26,10 +26,12 @@
 /* Reset floating-vue styles */
 .v-popper__popper {
   border: none;
+  border-color: transparent;
   .v-popper__wrapper {
     border: none;
+    border-color: transparent;
     .v-popper__inner {
-      border: none;
+      @apply border gui-neutral-border-subtle;
     }
   }
 }
