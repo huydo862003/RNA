@@ -1,6 +1,7 @@
 <template>
   <Tooltip
     v-if="$slots.popper"
+    ref="popperRef"
     :id="id"
     class="g-tooltip-trigger"
     :placement="placement"
@@ -38,6 +39,7 @@ import {
   computed,
   getCurrentInstance,
   ref,
+  useTemplateRef,
 } from 'vue';
 import {
   getId,
@@ -89,8 +91,30 @@ const popperClass = computed(() => [
 
 const isOpen = ref(false);
 
+// floating-vue mixin types unresolvable by TS
+const popperRef = useTemplateRef<InstanceType<typeof Tooltip> | null>('popperRef');
+
+function show () {
+  popperRef.value?.show();
+}
+
+function hide () {
+  popperRef.value?.hide();
+}
+
+function toggle () {
+  if (isOpen.value) {
+    hide();
+  } else {
+    show();
+  }
+}
+
 defineExpose({
   isOpen,
+  show,
+  hide,
+  toggle,
 });
 </script>
 

@@ -2,6 +2,7 @@
   <Dropdown
     v-if="$slots.popper"
     :id="id"
+    ref="popperRef"
     class="g-dropdown-trigger"
     :placement="placement"
     :shown="shown"
@@ -102,8 +103,29 @@ const popperClass = computed(() => [
 
 const isOpen = ref(false);
 
+const popperRef = useTemplateRef<InstanceType<typeof Dropdown> | null>('popperRef');
+
+function show () {
+  popperRef.value?.show();
+}
+
+function hide () {
+  popperRef.value?.hide();
+}
+
+function toggle () {
+  if (isOpen.value) {
+    hide();
+  } else {
+    show();
+  }
+}
+
 defineExpose({
   isOpen,
+  show,
+  hide,
+  toggle,
 });
 </script>
 

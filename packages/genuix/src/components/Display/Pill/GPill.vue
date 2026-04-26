@@ -96,13 +96,15 @@ const tokens = computed(() => {
       fg: c.fg,
       border: 'transparent',
     };
-  default:
-    const _: never = prominence;
+  default: {
+    const _exhaustive: never = prominence;
+    void _exhaustive;
     return {
       bg: 'transparent',
       fg: c.fg,
       border: 'transparent',
     };
+  }
   }
 });
 </script>
