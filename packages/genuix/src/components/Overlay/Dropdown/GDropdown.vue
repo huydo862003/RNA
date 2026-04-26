@@ -7,6 +7,7 @@
     :shown="shown"
     :triggers="triggers"
     :popper-class="popperClass"
+    :distance="distance"
     @show="isOpen = true"
     @hide="isOpen = false"
   >
@@ -66,6 +67,7 @@ const {
   id = undefined,
   class: _class = '',
   placement = 'bottom',
+  distance = 0,
   shown = undefined,
   arrow = true,
   triggers = ['click'],
@@ -77,6 +79,8 @@ const {
   placement?: Placement;
   /** Programmatically show/hide the dropdown */
   shown?: boolean;
+  /** Add distance between the trigger and the popper */
+  distance?: number;
   /** Show arrow/triangle pointing to trigger */
   arrow?: boolean;
   /** Events that trigger the dropdown */

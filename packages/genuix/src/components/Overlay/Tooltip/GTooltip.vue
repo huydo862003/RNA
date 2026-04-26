@@ -5,6 +5,7 @@
     class="g-tooltip-trigger"
     :placement="placement"
     :shown="shown"
+    :distance="distance"
     :triggers="triggers"
     :popper-triggers="['hover']"
     :popper-class="popperClass"
@@ -54,6 +55,7 @@ const {
   id = undefined,
   class: _class = '',
   placement = 'bottom',
+  distance = 0,
   shown = undefined,
   arrow = true,
   triggers = [
@@ -66,6 +68,8 @@ const {
   class?: string;
   /** Positioning of the tooltip relative to the trigger */
   placement?: Placement;
+  /** Distance between the trigger and the popper */
+  distance?: number;
   /** Programmatically show/hide the tooltip */
   shown?: boolean;
   /** Show arrow/triangle pointing to trigger */
