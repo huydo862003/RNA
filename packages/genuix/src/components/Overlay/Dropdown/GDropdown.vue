@@ -25,7 +25,10 @@
       </div>
     </template>
   </Dropdown>
-  <slot v-else />
+  <slot
+    v-else
+    :is-open="isOpen"
+  />
 </template>
 
 <script setup lang="ts">
