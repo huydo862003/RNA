@@ -85,10 +85,7 @@ const popperClass = computed(() => [
 
 const isOpen = ref(false);
 
-const popper = computed(() => document.querySelector(`.${popperUid}.v-popper__popper`));
-
 defineExpose({
-  popper,
   isOpen,
 });
 </script>
@@ -98,11 +95,11 @@ defineExpose({
 
 @layer components {
 .g-tooltip-trigger {
-  @apply inline;
+  @apply inline-block;
 }
 
 .v-popper {
-  @apply inline;
+  @apply inline-block;
 }
 
 .g-popper--no-arrow .v-popper__arrow-container {
