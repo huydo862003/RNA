@@ -10,7 +10,10 @@ const config: StorybookConfig = {
   framework: '@storybook/vue3-vite',
   addons: [
     '@storybook/addon-docs',
-    'storybook-design-token',
+    {
+      name: 'storybook-design-token',
+      options: {},
+    },
     'storybook-addon-vue-slots',
   ],
 };

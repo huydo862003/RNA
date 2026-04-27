@@ -1,5 +1,6 @@
 <template>
   <button
+    v-bind="$attrs"
     :id="id"
     type="button"
     role="switch"
@@ -7,12 +8,10 @@
       'switch',
       `switch-${size}`,
       { 'is-checked': modelValue, 'is-disabled': disabled },
-      _class,
     ]"
     :style="{
       '--_solid': `var(--gui-${semantic}-solid)`,
       '--_solid-hover': `var(--gui-${semantic}-solid-hover)`,
-      ..._style,
     }"
     :aria-checked="modelValue"
     :disabled="disabled"
@@ -38,16 +37,12 @@ defineOptions({
 
 const {
   id = undefined,
-  class: _class = '',
-  style: _style = undefined,
   modelValue = false,
   disabled = false,
   size = SwitchSize.Md,
   semantic = SwitchSemantic.Neutral,
 } = defineProps<{
   id?: string;
-  class?: string;
-  style?: Record<string, string>;
   modelValue?: boolean;
   disabled?: boolean;
   size?: SwitchSize;

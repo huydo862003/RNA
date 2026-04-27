@@ -1,14 +1,14 @@
 <template>
   <div
+    v-bind="$attrs"
     :id="id"
-    :class="['code-block', { 'code-block--scroll': !wordWrap }, _class]"
+    :class="['code-block', { 'code-block--scroll': !wordWrap }]"
     :style="{
       '--_border': tokens.border,
       '--_header-bg': tokens.bg,
       '--_header-fg': tokens.fg,
       '--_lang-color': tokens.mutedFg,
       '--_body-bg': tokens.subtleBg,
-      ..._style,
     }"
   >
     <div
@@ -141,8 +141,6 @@ defineOptions({
 });
 
 const {
-  class: _class = '',
-  style: _style = undefined,
   id,
   title = '',
   icon = undefined,
@@ -153,8 +151,6 @@ const {
   prominence = Prominence.Tertiary,
   semantic = Semantic.Neutral,
 } = defineProps<{
-  class?: string;
-  style?: Record<string, string>;
   id: string;
   title?: string;
   icon?: GIconName;
@@ -190,10 +186,10 @@ const code = computed(() => {
     res = rawCode.slice(2);
   }
 
-  if (rawCode.endsWith('\n')) {
-    res = rawCode.slice(-1);
-  } else if (rawCode.endsWith('\r\n')) {
-    res = rawCode.slice(-2);
+  if (res.endsWith('\r\n')) {
+    res = res.slice(0, -2);
+  } else if (res.endsWith('\n')) {
+    res = res.slice(0, -1);
   }
   return res;
 });

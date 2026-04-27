@@ -1,18 +1,17 @@
 <template>
   <button
+    v-bind="$attrs"
     :id="id"
     :class="[
       'btn',
       `btn-${size}`,
       { 'is-loading': loading },
-      _class,
     ]"
     :style="{
       '--_bg': tokens.bg,
       '--_bg-hover': tokens.bgHover,
       '--_fg': tokens.fg,
       '--_border': tokens.border,
-      ..._style,
     }"
     :disabled="isInactive"
   >
@@ -54,8 +53,6 @@ defineOptions({
 
 const {
   id = undefined,
-  class: _class = '',
-  style: _style = undefined,
   prominence = ButtonProminence.Primary,
   semantic = ButtonSemantic.Neutral,
   size = ButtonSize.Md,
@@ -63,8 +60,6 @@ const {
   loading = false,
 } = defineProps<{
   id?: string;
-  class?: string;
-  style?: Record<string, string>;
   prominence?: ButtonProminence;
   semantic?: ButtonSemantic;
   size?: ButtonSize;

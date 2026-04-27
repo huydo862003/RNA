@@ -28,3 +28,33 @@ export {
   TextInputSize,
   TextInputState,
 } from './TextInput/types';
+
+export {
+  default as GMultiSelect,
+} from './MultiSelect/GMultiSelect.vue';
+
+export {
+  default as GMultiSelectOption,
+} from './MultiSelect/GMultiSelectOption.vue';
+
+export {
+  MultiSelectSize,
+  MultiSelectState,
+} from './MultiSelect/types';
+
+export {
+  default as GSelect,
+} from './Select/GSelect.vue';
+
+export {
+  default as GSelectOption,
+} from './Select/GSelectOption.vue';
+
+export {
+  default as GSelectGroup,
+} from './Select/GSelectGroup.vue';
+
+export {
+  SelectSize,
+  SelectState,
+} from './Select/types';

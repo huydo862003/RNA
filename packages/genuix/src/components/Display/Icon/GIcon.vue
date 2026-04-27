@@ -2,9 +2,8 @@
   <component
     :is="resolvedIcon"
     v-if="resolvedIcon"
+    v-bind="$attrs"
     :id="id"
-    :class="_class"
-    :style="_style"
     role="img"
     :aria-label="alt"
     :aria-hidden="!alt"
@@ -32,16 +31,12 @@ defineOptions({
 
 const {
   id = undefined,
-  class: _class = '',
-  style: _style = undefined,
   name = undefined,
   icon = undefined,
   alt = undefined,
   weight = undefined,
 } = defineProps<{
   id?: string;
-  class?: string;
-  style?: Record<string, string>;
   /** Named icon from GIconName enum */
   name?: GIconName;
   /** Custom component or SVG to render instead of named icon */

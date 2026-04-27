@@ -7,6 +7,7 @@
     <!-- Datepicker trigger -->
     <button
       :id="id"
+      v-bind="$attrs"
       aria-haspopup="dialog"
       :disabled="disabled"
       :style="{
@@ -14,10 +15,8 @@
         '--_fg': disabled ? tokens.mutedFg : tokens.fg,
         '--_bg': tokens.bg,
         '--_border': tokens.border,
-        ..._style,
       }"
       :class="{
-        [_class]: true,
         'datepicker-trigger': true,
         'cursor-pointer': !disabled,
         [`datepicker-trigger-${size}`]: true,
@@ -151,15 +150,11 @@ defineOptions({
 
 const {
   id = undefined,
-  class: _class = '',
-  style: _style = undefined,
   size = DatePickerSize.Md,
   disabled = false,
   placeholder = 'No Date',
 } = defineProps<{
   id?: string;
-  class?: string;
-  style?: Record<string, string>;
   size?: DatePickerSize;
   disabled?: boolean;
   placeholder?: string;

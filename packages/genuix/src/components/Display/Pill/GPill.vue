@@ -1,16 +1,15 @@
 <template>
   <span
+    v-bind="$attrs"
     :id="id"
     :class="[
       'pill',
       `pill-${size}`,
-      _class,
     ]"
     :style="{
       '--_bg': tokens.bg,
       '--_fg': tokens.fg,
       '--_border': tokens.border,
-      ..._style,
     }"
   >
     <span
@@ -54,15 +53,11 @@ defineOptions({
 
 const {
   id = undefined,
-  class: _class = '',
-  style: _style = undefined,
   size = PillSize.Md,
   color = PillColor.Gray,
   prominence = Prominence.Secondary,
 } = defineProps<{
   id?: string;
-  class?: string;
-  style?: Record<string, string>;
   size?: PillSize;
   color?: PillColor;
   prominence?: Prominence;
@@ -118,6 +113,7 @@ const tokens = computed(() => {
   background: var(--_bg);
   color: var(--_fg);
   border: 1px solid var(--_border);
+  max-width: var(--_pill-max-width, none);
 }
 
 /* Sizes */

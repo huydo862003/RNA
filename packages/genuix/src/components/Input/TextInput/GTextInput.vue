@@ -1,19 +1,18 @@
 <template>
   <input
-    ref="inputRef"
     :id="id"
+    ref="inputRef"
+    v-bind="$attrs"
     v-model="text"
     :class="[
       'text-input',
       `text-input-${size}`,
-      _class,
     ]"
     :style="{
       '--_bg': tokens.bg,
       '--_bg-hover': tokens.bgHover,
       '--_fg': disabled ? tokens.mutedFg : tokens.fg,
       '--_border': tokens.border,
-      ..._style,
     }"
     :data-state="state"
     type="text"
@@ -53,8 +52,6 @@ const text = defineModel<string>({
 
 const {
   id = undefined,
-  class: _class = '',
-  style: _style = undefined,
   size = TextInputSize.Md,
   state = TextInputState.Default,
   disabled = false,
@@ -62,8 +59,6 @@ const {
   placeholder = 'Empty',
 } = defineProps<{
   id?: string;
-  class?: string;
-  style?: Record<string, string>;
   size?: TextInputSize;
   state?: TextInputState;
   disabled?: boolean;

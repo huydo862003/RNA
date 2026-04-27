@@ -1,9 +1,9 @@
 <template>
   <div
+    v-bind="$attrs"
     :id="id"
     v-dismiss="onDismiss"
-    :class="['contents', _class]"
-    :style="_style"
+    :class="'contents'"
   >
     <slot />
   </div>
@@ -31,13 +31,9 @@ const emit = defineEmits<{
 
 const {
   id = undefined,
-  class: _class = '',
-  style: _style = undefined,
   options = {},
 } = defineProps<{
   id?: string;
-  class?: string;
-  style?: Record<string, string>;
   options?: {
     ignore?: (HTMLElement | null)[];
   };

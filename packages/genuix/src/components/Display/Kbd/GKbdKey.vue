@@ -1,9 +1,8 @@
 <template>
   <GTooltip class="text-xs">
     <span
+      v-bind="$attrs"
       :id="id"
-      :class="_class"
-      :style="_style"
     >
       <kbd
         v-if="keyMeta.icon"
@@ -57,13 +56,9 @@ defineOptions({
 
 const {
   id = undefined,
-  class: _class = '',
-  style: _style = undefined,
   name,
 } = defineProps<{
   id?: string;
-  class?: string;
-  style?: Record<string, string>;
   /** Key name following the W3C KeyboardEvent.key spec */
   name: GKbdKeyName;
 }>();

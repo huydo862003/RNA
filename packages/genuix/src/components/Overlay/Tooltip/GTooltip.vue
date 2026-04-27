@@ -4,13 +4,13 @@
     v-if="$slots.popper"
     :id="id"
     ref="popperRef"
-    class="g-tooltip-trigger"
     :placement="placement"
     :shown="shown"
     :distance="distance"
+    :delay="{ show: showDelay, hide: hideDelay }"
     :triggers="triggers"
     :popper-triggers="['hover']"
-    :popper-class="popperClass"
+    :popper-class="`g-tooltip-popper ${popperClass}`"
     no-auto-focus
     @show="isOpen = true; emit('show-start')"
     @apply-show="emit('show-end')"
@@ -41,6 +41,8 @@ import {
 import {
   computed,
   getCurrentInstance,
+  nextTick,
+  onMounted,
   ref,
   useTemplateRef,
 } from 'vue';
@@ -71,6 +73,8 @@ const {
     'hover',
     'focus',
   ],
+  showDelay = 0,
+  hideDelay = 0,
 } = defineProps<{
   id?: string;
   /** CSS classes applied to the popper element */
@@ -85,6 +89,10 @@ const {
   arrow?: boolean;
   /** Events that trigger the tooltip */
   triggers?: ('hover' | 'click' | 'focus' | 'touch')[];
+  /** Delay in ms before showing */
+  showDelay?: number;
+  /** Delay in ms before hiding */
+  hideDelay?: number;
 }>();
 
 // A unique id so we can query the child of the current tooltip
@@ -100,6 +108,19 @@ const isOpen = ref(false);
 
 // floating-vue mixin types unresolvable by TS
 const popperRef = useTemplateRef<InstanceType<typeof Tooltip> | null>('popperRef');
+
+// The trigger's wrapper should match the slot's display mode
+// To not cause the unexpected layout change for the consumer
+// FIXME: Be more precise
+onMounted(async () => {
+  await nextTick();
+  const wrapper = popperRef.value?.$el;
+  if (!wrapper) return;
+  const child = wrapper.firstElementChild;
+  if (!child) return;
+  const display = getComputedStyle(child).display;
+  wrapper.style.display = display === 'inline' ? 'inline' : display.startsWith('inline') ? 'inline-block' : 'block';
+});
 
 function show () {
   popperRef.value?.show();
@@ -128,15 +149,19 @@ defineExpose({
 <style>
 @reference '@/style.css';
 
+.g-tooltip-popper {
+  &.v-popper__popper {
+    @apply border-0 border-transparent;
+    .v-popper__wrapper {
+      @apply border-0 border-transparent;
+      .v-popper__inner {
+        @apply border-0 border-transparent;
+      }
+    }
+  }
+}
+
 @layer components {
-.g-tooltip-trigger {
-  @apply inline-block;
-}
-
-.v-popper {
-  @apply inline-block;
-}
-
 .g-popper--no-arrow .v-popper__arrow-container {
   @apply hidden;
 }

@@ -1,8 +1,8 @@
 <template>
   <span
+    v-bind="$attrs"
     :id="id"
-    :class="['inline-flex items-center gap-2', _class]"
-    :style="_style"
+    :class="'inline-flex items-center gap-2'"
   >
     <template
       v-for="(key, i) in keys"
@@ -33,13 +33,9 @@ defineOptions({
 
 const {
   id = undefined,
-  class: _class = '',
-  style: _style = undefined,
   keys,
 } = defineProps<{
   id?: string;
-  class?: string;
-  style?: Record<string, string>;
   /** Array of key names to display as a shortcut combination */
   keys: GKbdKeyName[];
 }>();

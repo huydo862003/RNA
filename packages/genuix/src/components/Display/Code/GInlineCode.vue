@@ -1,8 +1,8 @@
 <template>
   <code
+    v-bind="$attrs"
     :id="id"
-    :class="['inline-code', _class]"
-    :style="_style"
+    :class="'inline-code'"
   >
     <slot />
   </code>
@@ -19,12 +19,8 @@ defineOptions({
 
 const {
   id = undefined,
-  class: _class = '',
-  style: _style = undefined,
 } = defineProps<{
   id?: string;
-  class?: string;
-  style?: Record<string, string>;
 }>();
 </script>
 

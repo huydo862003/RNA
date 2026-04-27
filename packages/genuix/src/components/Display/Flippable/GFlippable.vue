@@ -1,5 +1,6 @@
 <template>
   <div
+    v-bind="$attrs"
     :id="id"
     :class="[
       'flippable',
@@ -10,9 +11,7 @@
         'is-disabled': disabled,
         'trigger-on-click': trigger === FlipTrigger.Click,
       },
-      _class,
     ]"
-    :style="_style"
     @click="trigger === FlipTrigger.Click && flip()"
     @mouseenter="trigger === FlipTrigger.Hover && showBack()"
     @mouseleave="trigger === FlipTrigger.Hover && showFront()"
@@ -47,16 +46,12 @@ defineOptions({
 
 const {
   id = undefined,
-  class: _class = '',
-  style: _style = undefined,
   flipped: initialState = false,
   disabled = false,
   direction = FlipDirection.Horizontal,
   trigger = FlipTrigger.Click,
 } = defineProps<{
   id?: string;
-  class?: string;
-  style?: Record<string, string>;
   flipped?: boolean;
   disabled?: boolean;
   direction?: FlipDirection;

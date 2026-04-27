@@ -4,12 +4,12 @@
     v-if="$slots.popper"
     :id="id"
     ref="popperRef"
-    class="g-dropdown-trigger"
     :placement="placement"
     :shown="shown"
     :triggers="triggers"
     :popper-class="popperClass"
     :distance="distance"
+    :delay="{ show: showDelay, hide: hideDelay }"
     no-auto-focus
     @show="isOpen = true; emit('show-start')"
     @apply-show="emit('show-end')"
@@ -17,13 +17,12 @@
   >
     <div
       ref="triggerRef"
-      class="g-dropdown-trigger-inner"
     >
       <slot :is-open="isOpen" />
     </div>
     <template #popper>
       <div
-        :style="{ minWidth: triggerWidth ? `${triggerWidth}px` : undefined }"
+        :style="{ width: triggerWidth ? `${triggerWidth}px` : undefined }"
       >
         <slot
           name="popper"
@@ -49,6 +48,8 @@ import {
 import {
   computed,
   getCurrentInstance,
+  onMounted,
+  nextTick,
   ref,
   useTemplateRef,
 } from 'vue';
@@ -79,6 +80,8 @@ const {
   shown = undefined,
   arrow = true,
   triggers = ['click'],
+  showDelay = 0,
+  hideDelay = 0,
 } = defineProps<{
   id?: string;
   /** CSS classes applied to the popper element */
@@ -93,11 +96,28 @@ const {
   arrow?: boolean;
   /** Events that trigger the dropdown */
   triggers?: ('hover' | 'click' | 'focus' | 'touch')[];
+  /** Delay in ms before showing */
+  showDelay?: number;
+  /** Delay in ms before hiding */
+  hideDelay?: number;
 }>();
 
 const triggerRef = useTemplateRef<HTMLElement>('triggerRef');
 
 const triggerWidth = useWidth(triggerRef);
+
+// The trigger's wrapper should match the slot's display mode
+// To not cause the unexpected layout change for the consumer
+// FIXME: Be more precise
+onMounted(async () => {
+  await nextTick();
+  const wrapper = triggerRef.value;
+  if (!wrapper) return;
+  const child = wrapper.firstElementChild;
+  if (!child) return;
+  const display = getComputedStyle(child).display;
+  wrapper.style.display = display === 'inline' ? 'inline' : display.startsWith('inline') ? 'inline-block' : 'block';
+});
 
 // A unique id for the dropdown popper, so we can query the child of the popper using query selector
 const popperUid = `g-dropdown-${getId(Dropdown, getCurrentInstance()!)}`;
@@ -139,15 +159,11 @@ defineExpose({
 <style>
 @reference '@/style.css';
 
+.v-popper__inner {
+  @apply overflow-visible w-full h-full;
+}
+
 @layer components {
-.g-dropdown-trigger {
-  @apply inline-block;
-}
-
-.g-dropdown-trigger-inner {
-  @apply inline-block;
-}
-
 .g-popper--no-arrow .v-popper__arrow-container {
   @apply hidden;
 }

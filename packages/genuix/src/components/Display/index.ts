@@ -2,6 +2,44 @@
  * https://github.com/huydo862003/Fck-AI-Slop/edit/main/README.md
  */
 
+// Avatar
+export {
+  default as GAvatar,
+} from './Avatar/GAvatar.vue';
+
+export {
+  AvatarSize,
+  AvatarShape,
+} from './Avatar/types';
+
+// Badge
+export {
+  default as GBadge,
+} from './Badge/GBadge.vue';
+
+export {
+  BadgeSize,
+  BadgeStyle,
+} from './Badge/types';
+
+export type {
+  BadgeColor,
+} from './Badge/types';
+
+// Hero
+export {
+  default as GHero,
+} from './Hero/GHero.vue';
+
+// Logo
+export {
+  default as GLogo,
+} from './Logo/GLogo.vue';
+
+export {
+  LogoSize,
+} from './Logo/types';
+
 // Code
 export {
   default as GCodeBlock,
