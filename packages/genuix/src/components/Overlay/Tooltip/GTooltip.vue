@@ -1,4 +1,5 @@
 <template>
+  <!-- no-auto-focus should not be set to prevent scenarios where the user tries to auto-focus a child element of the popper & then floating-vue steals the focus -->
   <Tooltip
     v-if="$slots.popper"
     :id="id"
@@ -10,6 +11,7 @@
     :triggers="triggers"
     :popper-triggers="['hover']"
     :popper-class="popperClass"
+    no-auto-focus
     @show="isOpen = true; emit('show-start')"
     @apply-show="emit('show-end')"
     @hide="isOpen = false; emit('hide')"
