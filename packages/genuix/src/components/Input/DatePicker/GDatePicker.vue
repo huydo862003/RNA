@@ -2,6 +2,7 @@
   <GDropdown
     :arrow="false"
     placement="bottom-start"
+    @show-end="focusDateInput"
   >
     <!-- Datepicker trigger -->
     <button
@@ -34,6 +35,7 @@
       >
         <!-- Date input -->
         <input
+          ref="dateInputRef"
           v-model="rawDateInput"
           :class="{
             'datepicker-input': true,
@@ -119,6 +121,7 @@ import {
 import {
   computed,
   ref,
+  useTemplateRef,
   watch,
 } from 'vue';
 import {
@@ -242,6 +245,14 @@ function prevMonth () {
 function nextMonth () {
   startViewDate.value = startViewDate.value.plus({
     months: 1,
+  });
+}
+
+const dateInputRef = useTemplateRef<HTMLInputElement>('dateInputRef');
+
+function focusDateInput () {
+  requestAnimationFrame(() => {
+    dateInputRef.value?.focus();
   });
 }
 
