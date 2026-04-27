@@ -1,8 +1,8 @@
 <template>
   <Tooltip
     v-if="$slots.popper"
-    ref="popperRef"
     :id="id"
+    ref="popperRef"
     class="g-tooltip-trigger"
     :placement="placement"
     :shown="shown"
@@ -10,8 +10,9 @@
     :triggers="triggers"
     :popper-triggers="['hover']"
     :popper-class="popperClass"
-    @show="isOpen = true"
-    @hide="isOpen = false"
+    @show="isOpen = true; emit('show-start')"
+    @apply-show="emit('show-end')"
+    @hide="isOpen = false; emit('hide')"
   >
     <slot :is-open="isOpen" />
     <template #popper>
@@ -52,6 +53,10 @@ type Placement = Side | `${Side}-${Alignment}`;
 defineOptions({
   inheritAttrs: false,
 });
+
+const emit = defineEmits<{
+  (e: 'show-start' | 'show-end' | 'hide'): void;
+}>();
 
 const {
   id = undefined,

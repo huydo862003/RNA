@@ -9,8 +9,9 @@
     :triggers="triggers"
     :popper-class="popperClass"
     :distance="distance"
-    @show="isOpen = true"
-    @hide="isOpen = false"
+    @show="isOpen = true; emit('show-start')"
+    @apply-show="emit('show-end')"
+    @hide="isOpen = false; emit('hide')"
   >
     <div
       ref="triggerRef"
@@ -63,6 +64,10 @@ type Placement = Side | `${Side}-${Alignment}`;
 defineOptions({
   inheritAttrs: false,
 });
+
+const emit = defineEmits<{
+  (e: 'show-start' | 'show-end' | 'hide'): void;
+}>();
 
 const {
   id = undefined,
