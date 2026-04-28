@@ -20,6 +20,13 @@ const meta = {
     },
   },
   argTypes: {
+    width: {
+      control: 'select',
+      options: [
+        'auto',
+        'trigger',
+      ],
+    },
     placement: {
       control: 'select',
       options: [
@@ -140,6 +147,43 @@ export const WithMenuDropdownStory: Story = {
           </div>
         </template>
       </GDropdown>
+    `,
+  }),
+};
+
+export const WidthDropdownStory: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: '`width="auto"` (default) sizes to content. `width="trigger"` matches the trigger element width.',
+      },
+    },
+  },
+  render: () => ({
+    components: {
+      GDropdown,
+    },
+    template: `
+      <div class="flex gap-lg items-start">
+        <div>
+          <p class="text-xs gui-neutral-fg-muted mb-sm">width="auto"</p>
+          <GDropdown placement="bottom-start" width="auto">
+            <button class="px-xl py-sm border gui-neutral-border rounded-md cursor-pointer" style="width: 200px">Wide trigger</button>
+            <template #popper>
+              <div class="px-md py-sm text-sm">Short</div>
+            </template>
+          </GDropdown>
+        </div>
+        <div>
+          <p class="text-xs gui-neutral-fg-muted mb-sm">width="trigger"</p>
+          <GDropdown placement="bottom-start" width="trigger">
+            <button class="px-xl py-sm border gui-neutral-border rounded-md cursor-pointer" style="width: 200px">Wide trigger</button>
+            <template #popper>
+              <div class="px-md py-sm text-sm">Matches trigger width</div>
+            </template>
+          </GDropdown>
+        </div>
+      </div>
     `,
   }),
 };

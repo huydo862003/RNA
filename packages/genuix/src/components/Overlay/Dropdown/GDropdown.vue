@@ -22,7 +22,7 @@
     </div>
     <template #popper>
       <div
-        :style="{ width: triggerWidth ? `${triggerWidth}px` : undefined }"
+        :style="{ width: width === 'trigger' && triggerWidth ? `${triggerWidth}px` : undefined }"
       >
         <slot
           name="popper"
@@ -82,6 +82,7 @@ const {
   triggers = ['click'],
   showDelay = 0,
   hideDelay = 0,
+  width = 'auto',
 } = defineProps<{
   id?: string;
   /** CSS classes applied to the popper element */
@@ -100,6 +101,8 @@ const {
   showDelay?: number;
   /** Delay in ms before hiding */
   hideDelay?: number;
+  /** Popper width: 'auto' (content-sized) or 'trigger' (match trigger width) */
+  width?: 'auto' | 'trigger';
 }>();
 
 const triggerRef = useTemplateRef<HTMLElement>('triggerRef');

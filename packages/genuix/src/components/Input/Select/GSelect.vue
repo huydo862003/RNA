@@ -4,6 +4,7 @@
     :arrow="false"
     placement="bottom-start"
     :distance="-(triggerHeight || 0)"
+    width="trigger"
     class="overflow-hidden"
     @hide="handleClose"
     @show-end="focusSearchBox"
