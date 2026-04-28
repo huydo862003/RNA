@@ -107,6 +107,20 @@ export type {
   PillColorTokens,
 } from './Pill/types';
 
+// Tab
+export {
+  default as GTab,
+} from './Tab/GTab.vue';
+
+export {
+  default as GTabPanel,
+} from './Tab/GTabPanel.vue';
+
+export {
+  TabSize,
+  TabPlacement,
+} from './Tab/types';
+
 // Spinner
 export {
   default as GSpinner,

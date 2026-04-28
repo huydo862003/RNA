@@ -1,6 +1,7 @@
 <template>
   <div
     v-bind="$attrs"
+    :id="id"
     :class="['tab-root', `tab-root--${placement}`]"
   >
     <div
@@ -10,6 +11,7 @@
     >
       <button
         v-for="[name, tab] in tabPanels"
+        :id="toHash(name)"
         :key="name"
         :ref="(element) => triggerRefs.set(name, element as HTMLElement)"
         :class="[
@@ -64,6 +66,9 @@ import {
   TAB_KEY,
   TabPlacement,
 } from './types';
+import {
+  useHash,
+} from '@/composables/useHash';
 import GIcon from '@/components/Display/Icon/GIcon.vue';
 
 defineOptions({
@@ -75,19 +80,39 @@ const emit = defineEmits<{
 }>();
 
 const {
+  id = undefined,
   default: defaultTab = undefined,
   placement = TabPlacement.Top,
 } = defineProps<{
+  id?: string;
   /** Name of the tab to activate by default */
   default?: string;
   /** Position of the tab bar */
   placement?: TabPlacement;
 }>();
 
+// Watch hash to navigate to a tab on a specific url
+function toHash (name: string) {
+  return id ? `${id}-${name}` : name;
+}
+
+function fromHash (hash: string) {
+  if (id && hash.startsWith(`${id}-`)) {
+    return hash.slice(id.length + 1);
+  }
+  return id ? undefined : hash;
+}
+
+const hash = useHash(defaultTab ? toHash(defaultTab) : '');
+const activeTab = computed({
+  get: () => fromHash(hash.value),
+  set: (name) => {
+    hash.value = name ? toHash(name) : '';
+  },
+});
+
 const tabPanels = reactive<Map<string, TabPanelRegistration>>(new Map());
 const panelNames = computed(() => [...tabPanels.keys()]);
-
-const activeTab = ref<string | undefined>(defaultTab);
 const tabBarRef = ref<HTMLElement | null>(null);
 
 /* Sliding animation */
