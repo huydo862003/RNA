@@ -2,6 +2,15 @@
  * https://github.com/huydo862003/Fck-AI-Slop/edit/main/README.md
  */
 
+// Breadcrumb
+export {
+  default as GBreadcrumb,
+} from './Breadcrumb/GBreadcrumb.vue';
+
+export type {
+  BreadcrumbItem,
+} from './Breadcrumb/types';
+
 // Avatar
 export {
   default as GAvatar,
