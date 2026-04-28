@@ -244,7 +244,7 @@ const collapsedItems = computed(() => items.slice(1, -2));
 
 @layer components {
 .breadcrumb {
-  @apply flex flex-wrap items-center text-xs gui-neutral-fg-muted;
+  @apply flex flex-wrap items-center text-sm gui-neutral-fg-muted;
 }
 
 .breadcrumb-sep {
@@ -274,7 +274,7 @@ const collapsedItems = computed(() => items.slice(1, -2));
 }
 
 .breadcrumb-ellipsis {
-  @apply text-xs px-1.5 py-0.5 rounded-sm cursor-pointer border-none gui-neutral-fg-muted inline-flex items-center;
+  @apply text-sm px-1.5 py-0.5 rounded-sm cursor-pointer border-none gui-neutral-fg-muted inline-flex items-center;
   line-height: 1;
   transition: background var(--duration-fast) var(--ease-default);
 }
@@ -293,7 +293,7 @@ const collapsedItems = computed(() => items.slice(1, -2));
 }
 
 .breadcrumb-popper .breadcrumb-dropdown-item {
-  @apply text-xs gui-neutral-fg-muted no-underline px-md py-xs inline-flex items-center gap-xs rounded-sm;
+  @apply text-sm gui-neutral-fg-muted no-underline px-md py-xs inline-flex items-center gap-xs rounded-sm;
   transition: background var(--duration-fast) var(--ease-default);
 }
 

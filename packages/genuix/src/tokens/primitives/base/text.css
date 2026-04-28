@@ -9,14 +9,14 @@
 @theme {
   /* Font size scale: minor third ratio (1.2)
    * Good for generic web apps
-   * Base 16px
+   * Base 18px
    * */
-  --text-1: 11.1px;
-  --text-2: 13.3px;
-  --text-3: 16px;
-  --text-4: 19.2px;
-  --text-5: 23px;
-  --text-6: 27.6px;
-  --text-7: 33.2px;
+  --text-1: 12.5px;
+  --text-2: 15px;
+  --text-3: 18px;
+  --text-4: 21.6px;
+  --text-5: 25.9px;
+  --text-6: 31.1px;
+  --text-7: 37.3px;
 }
 /** @tokens-end */

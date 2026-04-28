@@ -9,11 +9,11 @@ import type {
 import GTab from './GTab.vue';
 import GTabPanel from './GTabPanel.vue';
 import {
-  GIconName,
-} from '@/components/Display/Icon/types';
-import {
   TabPlacement,
 } from './types';
+import {
+  GIconName,
+} from '@/components/Display/Icon/types';
 
 const meta = {
   title: 'Components/Display/GTab',
@@ -26,7 +26,10 @@ type Story = StoryObj<typeof meta>;
 
 export const DefaultTabStory: Story = {
   render: () => ({
-    components: { GTab, GTabPanel },
+    components: {
+      GTab,
+      GTabPanel,
+    },
     template: `
       <GTab>
         <GTabPanel name="Overview">
@@ -54,9 +57,14 @@ export const DefaultTabStory: Story = {
 
 export const WithIconsStory: Story = {
   render: () => ({
-    components: { GTab, GTabPanel },
+    components: {
+      GTab,
+      GTabPanel,
+    },
     setup () {
-      return { GIconName };
+      return {
+        GIconName,
+      };
     },
     template: `
       <GTab>
@@ -85,7 +93,10 @@ export const WithIconsStory: Story = {
 
 export const CustomLabelStory: Story = {
   render: () => ({
-    components: { GTab, GTabPanel },
+    components: {
+      GTab,
+      GTabPanel,
+    },
     template: `
       <GTab>
         <GTabPanel name="parse" label="Parse SQL">
@@ -110,9 +121,14 @@ export const CustomLabelStory: Story = {
 
 export const ManyTabsStory: Story = {
   render: () => ({
-    components: { GTab, GTabPanel },
+    components: {
+      GTab,
+      GTabPanel,
+    },
     setup () {
-      return { GIconName };
+      return {
+        GIconName,
+      };
     },
     template: `
       <GTab>
@@ -141,7 +157,10 @@ export const ManyTabsStory: Story = {
 
 export const DefaultTabStoryWithDefault: Story = {
   render: () => ({
-    components: { GTab, GTabPanel },
+    components: {
+      GTab,
+      GTabPanel,
+    },
     template: `
       <GTab default-tab="Settings">
         <GTabPanel name="Overview">
@@ -157,9 +176,15 @@ export const DefaultTabStoryWithDefault: Story = {
 
 export const PlacementStory: Story = {
   render: () => ({
-    components: { GTab, GTabPanel },
+    components: {
+      GTab,
+      GTabPanel,
+    },
     setup () {
-      return { TabPlacement, GIconName };
+      return {
+        TabPlacement,
+        GIconName,
+      };
     },
     template: `
       <div class="flex flex-col gap-lg">

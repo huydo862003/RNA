@@ -7,13 +7,13 @@
  * @presenter LineHeight
  */
 @theme {
-  /* Fixed values snap to grid. */
-  --leading-1: 16px;
-  --leading-2: 20px;
-  --leading-3: 24px;
-  --leading-4: 28px;
-  --leading-5: 32px;
-  --leading-6: 36px;
-  --leading-7: 40px;
+  /* Fixed values snap to 4px grid */
+  --leading-1: 20px;
+  --leading-2: 24px;
+  --leading-3: 28px;
+  --leading-4: 32px;
+  --leading-5: 36px;
+  --leading-6: 44px;
+  --leading-7: 52px;
 }
 /** @tokens-end */

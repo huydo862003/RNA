@@ -11,8 +11,8 @@
  * @presenter FontFamily
  */
 @theme {
-  --font-sans: 'JetBrains Mono', monospace;
-  --font-mono: 'JetBrains Mono', monospace;
+  --font-sans: 'IBM Plex Mono', monospace;
+  --font-mono: 'IBM Plex Mono', monospace;
 }
 /** @tokens-end */
 
@@ -27,6 +27,7 @@
   --text-lg: var(--text-4);
   --text-xl: var(--text-5);
   --text-2xl: var(--text-6);
+  --text-3xl: var(--text-7);
   --text-3xl: var(--text-7);
 }
 /** @tokens-end */

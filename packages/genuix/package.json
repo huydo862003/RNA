@@ -52,6 +52,7 @@
     "vue": "^3.5.26"
   },
   "devDependencies": {
+    "@fontsource/ibm-plex-mono": "^5.2.7",
     "@hdnax/nuclint": "workspace:*",
     "@storybook/addon-a11y": "10.3.5",
     "@storybook/addon-docs": "10.3.5",

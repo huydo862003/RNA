@@ -72,7 +72,7 @@ const meta = {
   parameters: {
     docs: {
       description: {
-        component: 'Fixed line heights on a 4px grid. Paired with font sizes in components.',
+        component: 'Fixed line heights on a 4px grid',
       },
     },
   },
