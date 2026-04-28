@@ -8,3 +8,7 @@ export {
 export type {
   Theme,
 } from './useTheme';
+
+export {
+  useHash,
+} from './useHash';

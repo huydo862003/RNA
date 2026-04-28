@@ -89,6 +89,9 @@ const panelNames = computed(() => [...tabPanels.keys()]);
 
 const activeTab = ref<string | undefined>(defaultTab);
 const tabBarRef = ref<HTMLElement | null>(null);
+
+/* Sliding animation */
+// Track all triggers for sliding animation
 const triggerRefs = reactive(new Map<string, HTMLElement>());
 
 // Sliding indicator position
@@ -118,6 +121,7 @@ function updateIndicator () {
   }
 }
 
+/* Init */
 watch(tabPanels, () => {
   if (activeTab.value === undefined || !tabPanels.has(activeTab.value)) {
     activeTab.value = panelNames.value[0];
@@ -129,6 +133,7 @@ watch(activeTab, () => nextTick(updateIndicator));
 
 onMounted(() => nextTick(updateIndicator));
 
+/* Provided */
 function registerTab (name: string, registration: TabPanelRegistration) {
   tabPanels.set(name, registration);
 }
@@ -146,7 +151,6 @@ provide(TAB_KEY, {
   activeTab: readonly(activeTab),
   register: registerTab,
   unregister: unregisterTab,
-  select: selectTab,
 });
 </script>
 

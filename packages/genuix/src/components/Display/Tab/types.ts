@@ -31,7 +31,6 @@ export interface TabContext {
   activeTab: DeepReadonly<Ref<string | undefined>>;
   register (name: string, registration: TabPanelRegistration): void;
   unregister (name: string): void;
-  select (name: string): void;
 }
 
 export const TAB_KEY: InjectionKey<TabContext> = Symbol('GTab');
