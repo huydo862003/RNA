@@ -80,6 +80,12 @@ export const DefaultFlipStory: Story = {
       description: {
         story: 'Default horizontal flip',
       },
+      source: {
+        code: `<GFlippable>
+  <template #front>Front</template>
+  <template #back>Back</template>
+</GFlippable>`,
+      },
     },
   },
   render,
@@ -94,6 +100,12 @@ export const FlippedFlipStory: Story = {
     docs: {
       description: {
         story: 'Initially showing back face',
+      },
+      source: {
+        code: `<GFlippable flipped>
+  <template #front>Front</template>
+  <template #back>Back</template>
+</GFlippable>`,
       },
     },
   },
@@ -110,6 +122,12 @@ export const VerticalFlipStory: Story = {
       description: {
         story: 'Vertical flip axis',
       },
+      source: {
+        code: `<GFlippable :direction="FlipDirection.Vertical">
+  <template #front>Front</template>
+  <template #back>Back</template>
+</GFlippable>`,
+      },
     },
   },
   render,
@@ -124,6 +142,12 @@ export const HoverFlipStory: Story = {
     docs: {
       description: {
         story: 'Flip on hover, revert on leave',
+      },
+      source: {
+        code: `<GFlippable :trigger="FlipTrigger.Hover">
+  <template #front>Front</template>
+  <template #back>Back</template>
+</GFlippable>`,
       },
     },
   },
@@ -140,6 +164,12 @@ export const DisabledFlipStory: Story = {
       description: {
         story: 'Flipping disabled',
       },
+      source: {
+        code: `<GFlippable disabled>
+  <template #front>Front</template>
+  <template #back>Back</template>
+</GFlippable>`,
+      },
     },
   },
   render,
@@ -154,6 +184,13 @@ export const ProgrammaticFlipStory: Story = {
     docs: {
       description: {
         story: 'Manual trigger, flip via exposed method',
+      },
+      source: {
+        code: `<GFlippable :trigger="FlipTrigger.Manual" ref="flippable">
+  <template #front>Front</template>
+  <template #back>Back</template>
+</GFlippable>
+<button @click="flippable?.flip()">Flip</button>`,
       },
     },
   },

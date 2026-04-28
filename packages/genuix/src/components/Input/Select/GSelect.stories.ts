@@ -51,6 +51,13 @@ export const BasicSelectStory: Story = {
       description: {
         story: 'Basic select with searchable dropdown.',
       },
+      source: {
+        code: `<GSelect v-model="value" placeholder="Pick a fruit">
+  <GSelectOption value="apple" label="Apple" />
+  <GSelectOption value="banana" label="Banana" />
+  <GSelectOption value="cherry" label="Cherry" />
+</GSelect>`,
+      },
     },
   },
   render: () => ({
@@ -85,6 +92,12 @@ export const SizesSelectStory: Story = {
     docs: {
       description: {
         story: 'All size variants.',
+      },
+      source: {
+        code: `<GSelect v-model="value" size="md">
+  <GSelectOption value="apple" label="Apple" />
+  <GSelectOption value="banana" label="Banana" />
+</GSelect>`,
       },
     },
   },
@@ -133,6 +146,11 @@ export const StatesSelectStory: Story = {
       description: {
         story: 'State variants.',
       },
+      source: {
+        code: `<GSelect v-model="value" state="error">
+  <GSelectOption value="a" label="Option A" />
+</GSelect>`,
+      },
     },
   },
   render: () => ({
@@ -179,6 +197,16 @@ export const StatesSelectStory: Story = {
 };
 
 export const DisabledSelectStory: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<GSelect v-model="value" disabled>
+  <GSelectOption value="apple" label="Apple" />
+  <GSelectOption value="banana" label="Banana" />
+</GSelect>`,
+      },
+    },
+  },
   render: () => ({
     components: {
       GSelect,
@@ -206,6 +234,12 @@ export const LongOptionSelectStory: Story = {
     docs: {
       description: {
         story: 'Select with very long option labels.',
+      },
+      source: {
+        code: `<GSelect v-model="value" placeholder="Pick an option">
+  <GSelectOption value="short" label="Short" />
+  <GSelectOption value="long" label="A very long option label..." />
+</GSelect>`,
       },
     },
   },
@@ -241,6 +275,11 @@ export const FixedWidthSelectStory: Story = {
     docs: {
       description: {
         story: 'Custom fixed widths to test overflow behavior. Uses unlayered utility classes to override layered component styles.',
+      },
+      source: {
+        code: `<GSelect v-model="value" class="w-48" placeholder="Pick">
+  <GSelectOption value="apple" label="Apple" />
+</GSelect>`,
       },
     },
   },
@@ -287,6 +326,20 @@ export const FixedWidthSelectStory: Story = {
 };
 
 export const GroupedSelectStory: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<GSelect v-model="value" placeholder="Status">
+  <GSelectGroup label="In progress">
+    <GSelectOption value="in-progress" label="In progress" />
+  </GSelectGroup>
+  <GSelectGroup label="Complete">
+    <GSelectOption value="done" label="Done" />
+  </GSelectGroup>
+</GSelect>`,
+      },
+    },
+  },
   render: () => ({
     components: {
       GSelect,

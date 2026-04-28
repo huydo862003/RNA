@@ -111,6 +111,7 @@ defineExpose({
 
 .text-input::placeholder {
   @apply gui-neutral-fg-muted opacity-50;
+  font-size: var(--_placeholder-size);
 }
 
 /* States */
@@ -141,22 +142,27 @@ defineExpose({
 /* Sizes */
 .text-input-xs {
   @apply h-6 text-xs p-xs pl-sm;
+  --_placeholder-size: var(--text-xs);
 }
 
 .text-input-sm {
   @apply h-7 text-sm p-sm pl-sm;
+  --_placeholder-size: var(--text-xs);
 }
 
 .text-input-md {
   @apply h-8 text-md p-md pl-sm;
+  --_placeholder-size: var(--text-sm);
 }
 
 .text-input-lg {
   @apply h-9 text-lg p-md pl-sm;
+  --_placeholder-size: var(--text-md);
 }
 
 .text-input-xl {
   @apply h-10 text-xl p-lg pl-sm;
+  --_placeholder-size: var(--text-lg);
 }
 }
 </style>

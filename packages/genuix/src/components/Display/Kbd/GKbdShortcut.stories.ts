@@ -58,6 +58,9 @@ export const OneKeyCombinationStory: Story = {
       description: {
         story: 'A single key',
       },
+      source: {
+        code: '<GKbdShortcut :keys="[GKbdKeyName.a]" />',
+      },
     },
   },
   render,
@@ -76,6 +79,9 @@ export const ModifierCombinationStory: Story = {
       description: {
         story: 'Complex modifier keys combined with a letter (Ctrl + Shift + P)',
       },
+      source: {
+        code: '<GKbdShortcut :keys="[GKbdKeyName.Control, GKbdKeyName.Shift, GKbdKeyName.p]" />',
+      },
     },
   },
   render,
@@ -92,6 +98,9 @@ export const CtrlCombinationStory: Story = {
     docs: {
       description: {
         story: 'Common copy shortcut (Ctrl+C)',
+      },
+      source: {
+        code: '<GKbdShortcut :keys="[GKbdKeyName.Control, GKbdKeyName.c]" />',
       },
     },
   },
@@ -110,6 +119,9 @@ export const ArrowCombinationStory: Story = {
       description: {
         story: 'Two arrow keys',
       },
+      source: {
+        code: '<GKbdShortcut :keys="[GKbdKeyName.ArrowUp, GKbdKeyName.ArrowDown]" />',
+      },
     },
   },
   render,
@@ -126,6 +138,9 @@ export const AltCombinationStory: Story = {
     docs: {
       description: {
         story: 'Alt + F4 shortcut',
+      },
+      source: {
+        code: '<GKbdShortcut :keys="[GKbdKeyName.Alt, GKbdKeyName.F4]" />',
       },
     },
   },
@@ -144,6 +159,9 @@ export const MetaCombinationStory: Story = {
       description: {
         story: 'Shortcut with Meta + [',
       },
+      source: {
+        code: '<GKbdShortcut :keys="[GKbdKeyName.Meta, GKbdKeyName.LBracket]" />',
+      },
     },
   },
   render,
@@ -161,6 +179,9 @@ export const SpaceCombinationStory: Story = {
     docs: {
       description: {
         story: 'Shortcut with spaces',
+      },
+      source: {
+        code: '<GKbdShortcut :keys="[GKbdKeyName.Space, GKbdKeyName.Enter, GKbdKeyName.Tab]" />',
       },
     },
   },
@@ -183,6 +204,9 @@ export const SpecialControlKeys: Story = {
     docs: {
       description: {
         story: 'Shortcut with spaces',
+      },
+      source: {
+        code: '<GKbdShortcut :keys="[GKbdKeyName.Insert, GKbdKeyName.Backspace, GKbdKeyName.Delete]" />',
       },
     },
   },

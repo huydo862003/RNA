@@ -98,7 +98,7 @@
             v-model="search"
             class="select-search"
             type="text"
-            size="1"
+            :size="selected ? 1 : undefined"
             :placeholder="selected ? '' : searchPlaceholder"
             @keydown.backspace="handleBackspaceWhenEmpty"
           >
@@ -421,7 +421,7 @@ function focusSearchBox () {
 }
 
 .select-search::placeholder {
-  @apply text-sm gui-neutral-fg-muted opacity-50;
+  @apply text-xs gui-neutral-fg-muted opacity-50;
 }
 
 /* Menu */

@@ -27,6 +27,13 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const ImageWithTextStory: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: '<GLogo src="https://huydo862003.github.io/sqlingo.js/icon.svg" alt="sqlingo.js" text="sqlingo.js" />',
+      },
+    },
+  },
   render: () => ({
     components: {
       GLogo,
@@ -42,6 +49,13 @@ export const ImageWithTextStory: Story = {
 };
 
 export const ImageOnlyStory: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: '<GLogo src="https://huydo862003.github.io/sqlingo.js/icon.svg" alt="sqlingo.js" />',
+      },
+    },
+  },
   render: () => ({
     components: {
       GLogo,
@@ -56,6 +70,13 @@ export const ImageOnlyStory: Story = {
 };
 
 export const TextOnlyStory: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: '<GLogo text="genuix" />',
+      },
+    },
+  },
   render: () => ({
     components: {
       GLogo,
@@ -67,6 +88,13 @@ export const TextOnlyStory: Story = {
 };
 
 export const WithLinkStory: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: '<GLogo src="https://huydo862003.github.io/sqlingo.js/icon.svg" alt="sqlingo.js" text="sqlingo.js" href="https://huydo862003.github.io/sqlingo.js/" />',
+      },
+    },
+  },
   render: () => ({
     components: {
       GLogo,
@@ -83,6 +111,18 @@ export const WithLinkStory: Story = {
 };
 
 export const SlotContentStory: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<GLogo>
+  <span>🗃️</span>
+  <template #text>
+    <span>sqlingo.js</span>
+  </template>
+</GLogo>`,
+      },
+    },
+  },
   render: () => ({
     components: {
       GLogo,
@@ -99,6 +139,13 @@ export const SlotContentStory: Story = {
 };
 
 export const SizesStory: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: '<GLogo :size="Size.Md" src="icon.svg" alt="logo" text="sqlingo.js" />',
+      },
+    },
+  },
   render: () => ({
     components: {
       GLogo,
@@ -121,6 +168,13 @@ export const SizesStory: Story = {
 };
 
 export const BorderedStory: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: '<GLogo class="border rounded-lg p-xs" src="icon.svg" alt="sqlingo.js" text="sqlingo.js" />',
+      },
+    },
+  },
   render: () => ({
     components: {
       GLogo,

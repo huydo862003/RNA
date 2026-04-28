@@ -44,6 +44,13 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const BasicBadgeStory: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: '<GBadge label="license" value="MIT" color="green" />',
+      },
+    },
+  },
   render: () => ({
     components: {
       GBadge,
@@ -61,6 +68,13 @@ export const BasicBadgeStory: Story = {
 };
 
 export const LabelOnlyBadgeStory: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: '<GBadge label="npm" />',
+      },
+    },
+  },
   render: () => ({
     components: {
       GBadge,
@@ -76,6 +90,13 @@ export const LabelOnlyBadgeStory: Story = {
 };
 
 export const WithLinkBadgeStory: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: '<GBadge label="npm" value="@hdnax/sqlingo.js" color="red" href="https://www.npmjs.com/package/@hdnax/sqlingo.js" />',
+      },
+    },
+  },
   render: () => ({
     components: {
       GBadge,
@@ -90,6 +111,13 @@ export const WithLinkBadgeStory: Story = {
 };
 
 export const ColorsBadgeStory: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: '<GBadge label="color" value="blue" color="blue" />',
+      },
+    },
+  },
   render: () => ({
     components: {
       GBadge,
@@ -108,6 +136,13 @@ export const ColorsBadgeStory: Story = {
 };
 
 export const SizesBadgeStory: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: '<GBadge :size="Size.Md" label="size" value="md" color="blue" />',
+      },
+    },
+  },
   render: () => ({
     components: {
       GBadge,
@@ -126,6 +161,13 @@ export const SizesBadgeStory: Story = {
 };
 
 export const StylesBadgeStory: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: '<GBadge label="flat" value="default" color="green" badge-style="flat" />',
+      },
+    },
+  },
   render: () => ({
     components: {
       GBadge,

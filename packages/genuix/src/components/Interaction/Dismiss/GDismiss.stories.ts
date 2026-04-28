@@ -26,6 +26,13 @@ export const BasicDismissStory: Story = {
       description: {
         story: 'Click inside the blue box to select it. Click outside to dismiss.',
       },
+      source: {
+        code: `<GDismiss @dismiss="dismiss">
+  <div @click="activate">
+    {{ active ? 'Active' : 'Inactive' }}
+  </div>
+</GDismiss>`,
+      },
     },
   },
   render: () => ({
@@ -70,6 +77,14 @@ export const IgnoreDismissStory: Story = {
     docs: {
       description: {
         story: 'The "Ignore me" button is in the ignore list. Clicking it will not dismiss.',
+      },
+      source: {
+        code: `<GDismiss :options="{ ignore: [ignoredRef] }" @dismiss="dismiss">
+  <div @click="activate">
+    {{ active ? 'Active' : 'Click me' }}
+  </div>
+</GDismiss>
+<button ref="ignoredRef">Ignore me</button>`,
       },
     },
   },

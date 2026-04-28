@@ -32,6 +32,19 @@ export const SpreadsheetRangeSelection2DStory: Story = {
       description: {
         story: 'Excel-style spreadsheet with cell range selection',
       },
+      source: {
+        code: `<GRangeSelection2D ref="rangeRef" :rows="rows" :cols="cols">
+  <tr v-for="r in rows" :key="r">
+    <td v-for="c in cols" :key="c">
+      <GRangeCell2D :row="r" :col="c" v-slot="{ selected, isPosition }">
+        <div :class="selected ? 'selected' : ''">
+          {{ data[r][c] }}
+        </div>
+      </GRangeCell2D>
+    </td>
+  </tr>
+</GRangeSelection2D>`,
+      },
     },
   },
   render: () => ({
@@ -128,6 +141,19 @@ export const CalendarRangeSelection2DStory: Story = {
     docs: {
       description: {
         story: 'Calendar month view with date range selection',
+      },
+      source: {
+        code: `<GRangeSelection2D ref="rangeRef" :rows="grid.length" :cols="7">
+  <tr v-for="(week, r) in grid" :key="r">
+    <td v-for="(day, c) in week" :key="c">
+      <GRangeCell2D :row="r" :col="c" v-slot="{ selected, isPosition }">
+        <div :class="selected ? 'selected' : ''">
+          {{ day }}
+        </div>
+      </GRangeCell2D>
+    </td>
+  </tr>
+</GRangeSelection2D>`,
       },
     },
   },

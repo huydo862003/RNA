@@ -50,6 +50,9 @@ export const DefaultSwitchStory: Story = {
       description: {
         story: 'Default switch with v-model',
       },
+      source: {
+        code: '<GSwitch v-model="checked" />',
+      },
     },
   },
   render: () => ({
@@ -77,6 +80,9 @@ export const CheckedSwitchStory: Story = {
       description: {
         story: 'Initially checked',
       },
+      source: {
+        code: '<GSwitch v-model="checked" />',
+      },
     },
   },
   render: () => ({
@@ -100,6 +106,9 @@ export const DisabledSwitchStory: Story = {
     docs: {
       description: {
         story: 'Disabled state',
+      },
+      source: {
+        code: '<GSwitch v-model="checked" disabled />',
       },
     },
   },
@@ -129,6 +138,9 @@ export const AllSizesSwitchStory: Story = {
     docs: {
       description: {
         story: 'All sizes side by side',
+      },
+      source: {
+        code: '<GSwitch v-model="checked" size="md" />',
       },
     },
   },
@@ -162,6 +174,9 @@ export const AllSemanticsSwitchStory: Story = {
     docs: {
       description: {
         story: 'All semantics when checked',
+      },
+      source: {
+        code: '<GSwitch v-model="checked" semantic="primary" />',
       },
     },
   },

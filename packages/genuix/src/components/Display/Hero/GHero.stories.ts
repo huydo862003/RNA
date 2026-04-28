@@ -30,6 +30,19 @@ export const SqlingoStory: Story = {
       description: {
         story: 'sqlingo.js homepage hero.',
       },
+      source: {
+        code: `<GHero>
+  <template #icon>
+    <img src="https://huydo862003.github.io/sqlingo.js/icon.svg" alt="sqlingo.js" />
+  </template>
+  <template #title>
+    <h1>sqlingo.js: A Typescript/Javascript port of SQLGlot</h1>
+  </template>
+  <template #description>
+    <p>A JavaScript/TypeScript SQL parser, transpiler, and optimizer.</p>
+  </template>
+</GHero>`,
+      },
     },
   },
   render: () => ({
@@ -63,6 +76,17 @@ export const SqlingoStory: Story = {
 };
 
 export const IconOnlyStory: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<GHero>
+  <template #icon>
+    <span>🚀</span>
+  </template>
+</GHero>`,
+      },
+    },
+  },
   render: () => ({
     components: {
       GHero,
@@ -78,6 +102,17 @@ export const IconOnlyStory: Story = {
 };
 
 export const TitleOnlyStory: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<GHero>
+  <template #title>
+    <h1>Standalone Title</h1>
+  </template>
+</GHero>`,
+      },
+    },
+  },
   render: () => ({
     components: {
       GHero,
@@ -93,6 +128,23 @@ export const TitleOnlyStory: Story = {
 };
 
 export const WithHeaderStory: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<GHero>
+  <template #header>
+    <nav><a href="#">Docs</a></nav>
+  </template>
+  <template #title>
+    <h1>Project Name</h1>
+  </template>
+  <template #description>
+    <p>A brief tagline for the project.</p>
+  </template>
+</GHero>`,
+      },
+    },
+  },
   render: () => ({
     components: {
       GHero,
@@ -118,6 +170,26 @@ export const WithHeaderStory: Story = {
 };
 
 export const WithFooterStory: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<GHero>
+  <template #icon>
+    <span>📦</span>
+  </template>
+  <template #title>
+    <h1>Get Started</h1>
+  </template>
+  <template #description>
+    <p>Install the package and start building.</p>
+  </template>
+  <template #footer>
+    <code>npm install my-lib</code>
+  </template>
+</GHero>`,
+      },
+    },
+  },
   render: () => ({
     components: {
       GHero,
@@ -144,6 +216,29 @@ export const WithFooterStory: Story = {
 };
 
 export const WithHeaderAndFooterStory: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<GHero>
+  <template #header>
+    <span>v2.0 Released</span>
+  </template>
+  <template #icon>
+    <span>⚡</span>
+  </template>
+  <template #title>
+    <h1>Lightning Fast</h1>
+  </template>
+  <template #description>
+    <p>Built for speed. Zero dependencies. Runs everywhere.</p>
+  </template>
+  <template #footer>
+    <img src="badge.svg" alt="badge" />
+  </template>
+</GHero>`,
+      },
+    },
+  },
   render: () => ({
     components: {
       GHero,
@@ -176,6 +271,17 @@ export const WithHeaderAndFooterStory: Story = {
 };
 
 export const DescriptionOnlyStory: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<GHero>
+  <template #description>
+    <p>A description-only hero.</p>
+  </template>
+</GHero>`,
+      },
+    },
+  },
   render: () => ({
     components: {
       GHero,

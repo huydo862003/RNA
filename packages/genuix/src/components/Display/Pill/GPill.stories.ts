@@ -39,6 +39,13 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const BasicPillStory: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: '<GPill>Default</GPill>',
+      },
+    },
+  },
   render: () => ({
     components: {
       GPill,
@@ -52,6 +59,13 @@ export const BasicPillStory: Story = {
 };
 
 export const ColorsPillStory: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: '<GPill :color="PillColor.Blue">Blue</GPill>',
+      },
+    },
+  },
   render: () => ({
     components: {
       GPill,
@@ -84,6 +98,9 @@ export const ProminencesPillStory: Story = {
       description: {
         story: 'All prominence levels for a single color.',
       },
+      source: {
+        code: '<GPill :color="PillColor.Blue" :prominence="Prominence.Primary">Primary</GPill>',
+      },
     },
   },
   render: () => ({
@@ -108,6 +125,13 @@ export const ProminencesPillStory: Story = {
 };
 
 export const SizesPillStory: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: '<GPill :size="PillSize.Md" :color="PillColor.Blue">Md</GPill>',
+      },
+    },
+  },
   render: () => ({
     components: {
       GPill,
@@ -135,6 +159,14 @@ export const WithSlotsPillStory: Story = {
     docs: {
       description: {
         story: 'Left/right slots for attachable behavior.',
+      },
+      source: {
+        code: `<GPill :color="PillColor.Blue">
+  <template #left>
+    <span style="width:8px;height:8px;border-radius:50%;background:var(--gui-info-solid);display:inline-block" />
+  </template>
+  With dot
+</GPill>`,
       },
     },
   },

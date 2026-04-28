@@ -42,6 +42,17 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const BasicMultiSelectStory: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<GMultiSelect v-model="selected" placeholder="Pick fruits">
+  <GMultiSelectOption value="apple" label="Apple" />
+  <GMultiSelectOption value="banana" label="Banana" />
+  <GMultiSelectOption value="cherry" label="Cherry" />
+</GMultiSelect>`,
+      },
+    },
+  },
   render: () => ({
     components: {
       GMultiSelect,
@@ -70,6 +81,16 @@ export const BasicMultiSelectStory: Story = {
 };
 
 export const SizesMultiSelectStory: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<GMultiSelect v-model="selected" size="md">
+  <GMultiSelectOption value="apple" label="Apple" />
+  <GMultiSelectOption value="banana" label="Banana" />
+</GMultiSelect>`,
+      },
+    },
+  },
   render: () => ({
     components: {
       GMultiSelect,
@@ -123,6 +144,12 @@ export const FixedWidthMultiSelectStory: Story = {
     docs: {
       description: {
         story: 'Custom fixed widths to test overflow behavior. Unlayered utility classes override layered component styles without !important.',
+      },
+      source: {
+        code: `<GMultiSelect v-model="selected" class="w-48">
+  <GMultiSelectOption value="apple" label="Apple" />
+  <GMultiSelectOption value="banana" label="Banana" />
+</GMultiSelect>`,
       },
     },
   },

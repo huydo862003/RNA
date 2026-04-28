@@ -72,6 +72,9 @@ export const PrimaryButtonStory: Story = {
       description: {
         story: 'Default primary button',
       },
+      source: {
+        code: '<GButton prominence="primary" semantic="neutral" size="md">Button</GButton>',
+      },
     },
   },
   render,
@@ -86,6 +89,9 @@ export const SecondaryButtonStory: Story = {
     docs: {
       description: {
         story: 'Secondary tinted background',
+      },
+      source: {
+        code: '<GButton prominence="secondary" semantic="neutral">Button</GButton>',
       },
     },
   },
@@ -102,6 +108,9 @@ export const TertiaryButtonStory: Story = {
       description: {
         story: 'Border only, no fill',
       },
+      source: {
+        code: '<GButton prominence="tertiary" semantic="neutral">Button</GButton>',
+      },
     },
   },
   render,
@@ -116,6 +125,9 @@ export const GhostButtonStory: Story = {
     docs: {
       description: {
         story: 'No border, no background',
+      },
+      source: {
+        code: '<GButton prominence="ghost" semantic="neutral">Button</GButton>',
       },
     },
   },
@@ -133,6 +145,9 @@ export const LoadingButtonStory: Story = {
       description: {
         story: 'Loading state with spinner, button disabled',
       },
+      source: {
+        code: '<GButton prominence="primary" semantic="neutral" loading>Button</GButton>',
+      },
     },
   },
   render,
@@ -147,6 +162,9 @@ export const DangerButtonStory: Story = {
     docs: {
       description: {
         story: 'Danger semantic for destructive actions',
+      },
+      source: {
+        code: '<GButton prominence="primary" semantic="danger">Button</GButton>',
       },
     },
   },
@@ -164,6 +182,9 @@ export const DisabledButtonStory: Story = {
       description: {
         story: 'Disabled state',
       },
+      source: {
+        code: '<GButton prominence="primary" semantic="neutral" disabled>Button</GButton>',
+      },
     },
   },
   render,
@@ -174,6 +195,9 @@ export const AllSizesButtonStory: Story = {
     docs: {
       description: {
         story: 'All sizes side by side',
+      },
+      source: {
+        code: '<GButton prominence="primary" semantic="primary" size="md">Button</GButton>',
       },
     },
   },
@@ -208,6 +232,9 @@ export const AllProminencesButtonStory: Story = {
       description: {
         story: 'All prominence levels with primary semantic',
       },
+      source: {
+        code: '<GButton prominence="primary" semantic="primary">Button</GButton>',
+      },
     },
   },
   render: () => ({
@@ -238,6 +265,9 @@ export const AllSemanticsButtonStory: Story = {
     docs: {
       description: {
         story: 'All semantics with primary prominence',
+      },
+      source: {
+        code: '<GButton prominence="primary" semantic="neutral">Button</GButton>',
       },
     },
   },

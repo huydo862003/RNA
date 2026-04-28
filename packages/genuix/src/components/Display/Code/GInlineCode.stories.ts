@@ -23,6 +23,9 @@ export const DefaultInlineCodeStory: Story = {
       description: {
         story: 'Inline code in a sentence',
       },
+      source: {
+        code: '<GInlineCode>npm install</GInlineCode>',
+      },
     },
   },
   render: () => ({
@@ -42,6 +45,9 @@ export const MultipleInlineCodeStory: Story = {
     docs: {
       description: {
         story: 'Multiple inline code in paragraph',
+      },
+      source: {
+        code: '<GInlineCode>pnpm build</GInlineCode>',
       },
     },
   },

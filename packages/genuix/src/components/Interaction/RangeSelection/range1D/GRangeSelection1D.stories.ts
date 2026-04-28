@@ -31,6 +31,20 @@ export const FileExplorerRangeSelection1DStory: Story = {
       description: {
         story: 'File explorer: click, shift+click, drag, arrow keys, Ctrl+A, Esc to clear, click outside to dismiss',
       },
+      source: {
+        code: `<GRangeSelection1D ref="rangeRef" :count="files.length">
+  <GRangeItem1D
+    v-for="(file, i) in files"
+    :key="i"
+    :index="i"
+    v-slot="{ selected, isPosition }"
+  >
+    <tr :class="selected ? 'selected' : ''">
+      <td>{{ file.name }}</td>
+    </tr>
+  </GRangeItem1D>
+</GRangeSelection1D>`,
+      },
     },
   },
   render: () => ({
@@ -147,6 +161,20 @@ export const DayPickerRangeSelection1DStory: Story = {
     docs: {
       description: {
         story: 'Day range picker: select contiguous days',
+      },
+      source: {
+        code: `<GRangeSelection1D ref="rangeRef" :count="days.length">
+  <GRangeItem1D
+    v-for="(day, i) in days"
+    :key="i"
+    :index="i"
+    v-slot="{ selected, isPosition }"
+  >
+    <div :class="selected ? 'selected' : ''">
+      {{ day }}
+    </div>
+  </GRangeItem1D>
+</GRangeSelection1D>`,
       },
     },
   },

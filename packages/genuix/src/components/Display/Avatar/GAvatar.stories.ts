@@ -34,6 +34,15 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const WithImageStory: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<GAvatar label="Alice">
+  <img src="https://i.pravatar.cc/150?u=alice" alt="Alice" />
+</GAvatar>`,
+      },
+    },
+  },
   render: () => ({
     components: {
       GAvatar,
@@ -48,6 +57,13 @@ export const WithImageStory: Story = {
 };
 
 export const WithTextStory: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: '<GAvatar label="Alice Johnson">AJ</GAvatar>',
+      },
+    },
+  },
   render: () => ({
     components: {
       GAvatar,
@@ -63,6 +79,13 @@ export const WithTextStory: Story = {
 };
 
 export const WithEmojiStory: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: '<GAvatar>🦊</GAvatar>',
+      },
+    },
+  },
   render: () => ({
     components: {
       GAvatar,
@@ -78,6 +101,13 @@ export const WithEmojiStory: Story = {
 };
 
 export const SizesStory: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: '<GAvatar :size="Size.Md">MD</GAvatar>',
+      },
+    },
+  },
   render: () => ({
     components: {
       GAvatar,
@@ -100,6 +130,13 @@ export const SizesStory: Story = {
 };
 
 export const ShapesStory: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: '<GAvatar :shape="AvatarShape.Circle">AB</GAvatar>',
+      },
+    },
+  },
   render: () => ({
     components: {
       GAvatar,

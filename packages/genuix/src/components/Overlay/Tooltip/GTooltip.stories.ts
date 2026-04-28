@@ -53,6 +53,14 @@ export const DefaultTooltipStory: Story = {
       description: {
         story: 'Basic tooltip with default placement.',
       },
+      source: {
+        code: `<GTooltip placement="bottom">
+  <button>Hover me</button>
+  <template #popper>
+    Default tooltip
+  </template>
+</GTooltip>`,
+      },
     },
   },
   args: {
@@ -85,6 +93,12 @@ export const PlacementsTooltipStory: Story = {
     docs: {
       description: {
         story: 'Tooltip anchored to each side. Supports all 12 Popper.js placements.',
+      },
+      source: {
+        code: `<GTooltip placement="top">
+  <button>Top</button>
+  <template #popper>Top tooltip</template>
+</GTooltip>`,
       },
     },
   },
@@ -120,6 +134,11 @@ export const NoPopperTooltipStory: Story = {
     docs: {
       description: {
         story: 'Without `#popper` slot, children render directly with no tooltip wrapper.',
+      },
+      source: {
+        code: `<GTooltip>
+  <span>No popper slot will render children directly</span>
+</GTooltip>`,
       },
     },
   },

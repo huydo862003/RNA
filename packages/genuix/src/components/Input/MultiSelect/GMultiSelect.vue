@@ -85,6 +85,7 @@
             v-model="search"
             class="multiselect-search"
             type="text"
+            :size="selected.length > 0 ? 1 : undefined"
             :placeholder="selected.length === 0 ? searchPlaceholder : ''"
             @keydown.backspace="handleBackspaceWhenEmpty"
           >
@@ -412,7 +413,7 @@ provide(MULTI_SELECT_KEY, {
 }
 
 .multiselect-search::placeholder {
-  @apply gui-neutral-fg-muted opacity-50;
+  @apply text-xs gui-neutral-fg-muted opacity-50;
 }
 
 /* Menu */

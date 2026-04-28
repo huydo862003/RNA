@@ -58,6 +58,9 @@ export const LetterKeyStory: Story = {
       description: {
         story: 'A single letter key',
       },
+      source: {
+        code: '<GKbdKey :name="GKbdKeyName.a" />',
+      },
     },
   },
   render,
@@ -71,6 +74,9 @@ export const ArrowKeyStory: Story = {
     docs: {
       description: {
         story: 'Arrow key rendered as icon with tooltip',
+      },
+      source: {
+        code: '<GKbdKey :name="GKbdKeyName.ArrowUp" />',
       },
     },
   },
@@ -86,6 +92,9 @@ export const ModifierKeyStory: Story = {
       description: {
         story: 'Modifier key rendered as icon with tooltip',
       },
+      source: {
+        code: '<GKbdKey :name="GKbdKeyName.Shift" />',
+      },
     },
   },
   render,
@@ -99,6 +108,9 @@ export const EscapeKeyStory: Story = {
     docs: {
       description: {
         story: 'Escape key with abbreviated label',
+      },
+      source: {
+        code: '<GKbdKey :name="GKbdKeyName.Escape" />',
       },
     },
   },
@@ -114,6 +126,9 @@ export const FunctionKeyStory: Story = {
       description: {
         story: 'Function key displayed as-is',
       },
+      source: {
+        code: '<GKbdKey :name="GKbdKeyName.F1" />',
+      },
     },
   },
   render,
@@ -127,6 +142,9 @@ export const SpaceKeyStory: Story = {
     docs: {
       description: {
         story: 'Space key with unicode symbol and tooltip',
+      },
+      source: {
+        code: '<GKbdKey :name="GKbdKeyName.Space" />',
       },
     },
   },
@@ -142,6 +160,9 @@ export const ReturnKeyStory: Story = {
       description: {
         story: 'Enter key with icon and tooltip',
       },
+      source: {
+        code: '<GKbdKey :name="GKbdKeyName.Enter" />',
+      },
     },
   },
   render,
@@ -155,6 +176,9 @@ export const TabKeyStory: Story = {
     docs: {
       description: {
         story: 'Tab key',
+      },
+      source: {
+        code: '<GKbdKey :name="GKbdKeyName.Tab" />',
       },
     },
   },
@@ -170,6 +194,9 @@ export const DeleteKeyStory: Story = {
       description: {
         story: 'Delete key with symbol and tooltip',
       },
+      source: {
+        code: '<GKbdKey :name="GKbdKeyName.Delete" />',
+      },
     },
   },
   render,
@@ -184,6 +211,9 @@ export const BackspaceKeyStory: Story = {
       description: {
         story: 'Backspace key with icon and tooltip',
       },
+      source: {
+        code: '<GKbdKey :name="GKbdKeyName.Backspace" />',
+      },
     },
   },
   render,
@@ -197,6 +227,9 @@ export const PunctuationKeyStory: Story = {
     docs: {
       description: {
         story: 'Punctuation key displayed as-is',
+      },
+      source: {
+        code: '<GKbdKey :name="GKbdKeyName.LBracket" />',
       },
     },
   },

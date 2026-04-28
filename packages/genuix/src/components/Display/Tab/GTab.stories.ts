@@ -25,6 +25,23 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const DefaultTabStory: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<GTab>
+  <GTabPanel name="Overview">
+    <p>Overview content.</p>
+  </GTabPanel>
+  <GTabPanel name="Activity">
+    <p>Activity content.</p>
+  </GTabPanel>
+  <GTabPanel name="Settings">
+    <p>Settings content.</p>
+  </GTabPanel>
+</GTab>`,
+      },
+    },
+  },
   render: () => ({
     components: {
       GTab,
@@ -56,6 +73,20 @@ export const DefaultTabStory: Story = {
 };
 
 export const WithIconsStory: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<GTab>
+  <GTabPanel name="home" label="Home" :icon="GIconName.Home">
+    <p>Welcome home.</p>
+  </GTabPanel>
+  <GTabPanel name="settings" label="Settings" :icon="GIconName.Gear">
+    <p>Settings content.</p>
+  </GTabPanel>
+</GTab>`,
+      },
+    },
+  },
   render: () => ({
     components: {
       GTab,
@@ -92,6 +123,20 @@ export const WithIconsStory: Story = {
 };
 
 export const CustomLabelStory: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<GTab>
+  <GTabPanel name="parse" label="Parse SQL">
+    <p>Turn any SQL string into a clean AST.</p>
+  </GTabPanel>
+  <GTabPanel name="transpile" label="Transpile SQL">
+    <p>Convert SQL between 33+ dialects.</p>
+  </GTabPanel>
+</GTab>`,
+      },
+    },
+  },
   render: () => ({
     components: {
       GTab,
@@ -120,6 +165,20 @@ export const CustomLabelStory: Story = {
 };
 
 export const ManyTabsStory: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<GTab>
+  <GTabPanel name="Overview" :icon="GIconName.Home">
+    <p>Project overview.</p>
+  </GTabPanel>
+  <GTabPanel name="Activity" :icon="GIconName.Clock">
+    <p>Activity feed.</p>
+  </GTabPanel>
+</GTab>`,
+      },
+    },
+  },
   render: () => ({
     components: {
       GTab,
@@ -156,6 +215,20 @@ export const ManyTabsStory: Story = {
 };
 
 export const DefaultTabStoryWithDefault: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<GTab default-tab="Settings">
+  <GTabPanel name="Overview">
+    <p>Overview content.</p>
+  </GTabPanel>
+  <GTabPanel name="Settings">
+    <p>Settings opens by default.</p>
+  </GTabPanel>
+</GTab>`,
+      },
+    },
+  },
   render: () => ({
     components: {
       GTab,
@@ -175,6 +248,20 @@ export const DefaultTabStoryWithDefault: Story = {
 };
 
 export const PlacementStory: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<GTab :placement="TabPlacement.Left">
+  <GTabPanel name="Tab A" :icon="GIconName.Home">
+    <p>Left placement content A.</p>
+  </GTabPanel>
+  <GTabPanel name="Tab B" :icon="GIconName.Gear">
+    <p>Left placement content B.</p>
+  </GTabPanel>
+</GTab>`,
+      },
+    },
+  },
   render: () => ({
     components: {
       GTab,

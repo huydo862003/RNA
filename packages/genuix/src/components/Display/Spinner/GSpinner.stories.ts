@@ -60,6 +60,9 @@ export const DefaultSpinnerStory: Story = {
       description: {
         story: 'Default medium spinner',
       },
+      source: {
+        code: '<GSpinner />',
+      },
     },
   },
   render,
@@ -70,6 +73,9 @@ export const AllSizesSpinnerStory: Story = {
     docs: {
       description: {
         story: 'All sizes side by side',
+      },
+      source: {
+        code: '<GSpinner :size="SpinnerSize.Lg" />',
       },
     },
   },
@@ -95,6 +101,9 @@ export const AllSpeedsSpinnerStory: Story = {
     docs: {
       description: {
         story: 'All speeds side by side',
+      },
+      source: {
+        code: '<GSpinner :speed="SpinnerSpeed.Slow" />',
       },
     },
   },
@@ -123,6 +132,9 @@ export const ColoredSpinnerStory: Story = {
     docs: {
       description: {
         story: 'Spinner inherits color from parent',
+      },
+      source: {
+        code: '<GSpinner class="gui-primary-fg" />',
       },
     },
   },

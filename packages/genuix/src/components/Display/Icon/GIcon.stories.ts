@@ -47,6 +47,9 @@ export const DefaultIconStory: Story = {
       description: {
         story: 'Single icon by name.',
       },
+      source: {
+        code: '<GIcon :name="GIconName.Home" />',
+      },
     },
   },
   args: {
@@ -59,6 +62,9 @@ export const SizedIconStory: Story = {
     docs: {
       description: {
         story: 'Icon sized via class/style fallthrough.',
+      },
+      source: {
+        code: '<GIcon :name="GIconName.Star" class="w-size-5 h-size-5" />',
       },
     },
   },
@@ -80,6 +86,9 @@ export const CustomIconStory: Story = {
     docs: {
       description: {
         story: 'Custom SVG component passed via `icon` prop.',
+      },
+      source: {
+        code: '<GIcon :icon="customSvgComponent" />',
       },
     },
   },
@@ -111,6 +120,9 @@ export const AllIconsStory: Story = {
     docs: {
       description: {
         story: 'Gallery of all built-in icons.',
+      },
+      source: {
+        code: '<GIcon :name="GIconName.Home" />',
       },
     },
   },

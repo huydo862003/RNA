@@ -52,6 +52,14 @@ export const DefaultCollapsibleStory: Story = {
       description: {
         story: 'Basic collapsible section. Click summary to toggle.',
       },
+      source: {
+        code: `<GCollapsible>
+  <template #summary>Click to expand</template>
+  <template #collapsible-content>
+    <p>Hidden content revealed on toggle.</p>
+  </template>
+</GCollapsible>`,
+      },
     },
   },
   render: () => ({
@@ -75,6 +83,14 @@ export const OpenByDefaultCollapsibleStory: Story = {
       description: {
         story: 'The collapsible set to open by default.',
       },
+      source: {
+        code: `<GCollapsible open>
+  <template #summary>Already open</template>
+  <template #collapsible-content>
+    <p>Visible on load.</p>
+  </template>
+</GCollapsible>`,
+      },
     },
   },
   render: () => ({
@@ -97,6 +113,20 @@ export const NestedCollapsibleStory: Story = {
     docs: {
       description: {
         story: 'Collapsible sections can nest.',
+      },
+      source: {
+        code: `<GCollapsible>
+  <template #summary>Outer</template>
+  <template #collapsible-content>
+    <p>Outer content</p>
+    <GCollapsible>
+      <template #summary>Inner</template>
+      <template #collapsible-content>
+        <p>Inner content</p>
+      </template>
+    </GCollapsible>
+  </template>
+</GCollapsible>`,
       },
     },
   },
@@ -126,6 +156,14 @@ export const MultipleCollapsibleStory: Story = {
     docs: {
       description: {
         story: 'Multiple collapsible sections stacked.',
+      },
+      source: {
+        code: `<GCollapsible>
+  <template #summary>Section 1</template>
+  <template #collapsible-content>
+    <p>Content for section 1.</p>
+  </template>
+</GCollapsible>`,
       },
     },
   },

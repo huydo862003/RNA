@@ -49,6 +49,9 @@ export const BasicTextInputStory: Story = {
       description: {
         story: 'Basic text input with v-model binding.',
       },
+      source: {
+        code: '<GTextInput v-model="value" placeholder="Type something..." />',
+      },
     },
   },
   render: () => ({
@@ -77,6 +80,9 @@ export const SizesTextInputStory: Story = {
     docs: {
       description: {
         story: 'All size variants from xs to xl.',
+      },
+      source: {
+        code: '<GTextInput v-model="value" size="md" />',
       },
     },
   },
@@ -108,6 +114,9 @@ export const StatesTextInputStory: Story = {
     docs: {
       description: {
         story: 'State variants via data-state attribute. Consumer can also override with class prop.',
+      },
+      source: {
+        code: '<GTextInput v-model="value" state="error" placeholder="Error" />',
       },
     },
   },
@@ -149,6 +158,9 @@ export const DisabledTextInputStory: Story = {
       description: {
         story: 'Disabled input cannot be edited.',
       },
+      source: {
+        code: '<GTextInput v-model="value" disabled />',
+      },
     },
   },
   render: () => ({
@@ -174,6 +186,9 @@ export const ReadonlyTextInputStory: Story = {
     docs: {
       description: {
         story: 'Readonly input can be selected and copied but not edited.',
+      },
+      source: {
+        code: '<GTextInput v-model="value" readonly />',
       },
     },
   },

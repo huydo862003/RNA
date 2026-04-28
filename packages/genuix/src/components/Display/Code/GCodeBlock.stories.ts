@@ -89,6 +89,9 @@ function getUser(id: number): User {
       description: {
         story: 'Default code block with line numbers',
       },
+      source: {
+        code: '<GCodeBlock id="basic" :language="GCodeLanguage.Typescript" show-line-numbers :code="code" />',
+      },
     },
   },
 };
@@ -108,6 +111,9 @@ function processData(input: { name: string; email: string; address: string; phon
     docs: {
       description: {
         story: 'Word wrap enabled (default) vs disabled (scroll)',
+      },
+      source: {
+        code: '<GCodeBlock id="wrap" :language="GCodeLanguage.Typescript" show-line-numbers word-wrap :code="code" />',
       },
     },
   },
@@ -129,6 +135,9 @@ createApp(App).mount('#app');`,
       description: {
         story: 'Code block with a title prop (e.g. filename)',
       },
+      source: {
+        code: '<GCodeBlock id="titled" title="src/main.ts" :language="GCodeLanguage.Typescript" show-line-numbers :code="code" />',
+      },
     },
   },
 };
@@ -143,6 +152,9 @@ export const AllSemanticsCodeBlockStory: Story = {
     docs: {
       description: {
         story: 'All semantic colors with titles',
+      },
+      source: {
+        code: '<GCodeBlock id="sem-info" :language="GCodeLanguage.Bash" :code="\'npm install\'" :semantic="CodeBlockSemantic.Info" title="Installation" />',
       },
     },
   },
@@ -178,6 +190,9 @@ export const AllProminencesCodeBlockStory: Story = {
     docs: {
       description: {
         story: 'Tertiary, secondary, and primary prominences with info semantic',
+      },
+      source: {
+        code: '<GCodeBlock id="prom-secondary" :language="GCodeLanguage.Bash" :prominence="Prominence.Secondary" :semantic="CodeBlockSemantic.Info" :code="\'npm install\'" title="Secondary" />',
       },
     },
   },
@@ -215,6 +230,9 @@ export const LongTitleCodeBlockStory: Story = {
       description: {
         story: 'Long title truncated with ellipsis',
       },
+      source: {
+        code: '<GCodeBlock id="long-title" title="path/to/MyComponent.vue" :language="GCodeLanguage.Typescript" show-line-numbers :code="code" />',
+      },
     },
   },
 };
@@ -231,6 +249,9 @@ export const IconCodeBlockStory: Story = {
     docs: {
       description: {
         story: 'Code block with icon in header',
+      },
+      source: {
+        code: '<GCodeBlock id="icon" title="Terminal" :icon="GIconName.Code" :language="GCodeLanguage.Bash" code="npm install @hdnax/genuix" />',
       },
     },
   },

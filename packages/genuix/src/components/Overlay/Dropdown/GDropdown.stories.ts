@@ -60,6 +60,14 @@ export const DefaultDropdownStory: Story = {
       description: {
         story: 'Basic dropdown triggered by click.',
       },
+      source: {
+        code: `<GDropdown placement="bottom">
+  <button>Click me</button>
+  <template #popper>
+    <div>Dropdown content</div>
+  </template>
+</GDropdown>`,
+      },
     },
   },
   args: {
@@ -92,6 +100,14 @@ export const PlacementsDropdownStory: Story = {
     docs: {
       description: {
         story: 'Dropdown anchored to each side.',
+      },
+      source: {
+        code: `<GDropdown placement="top">
+  <button>Top</button>
+  <template #popper>
+    <div>Top dropdown</div>
+  </template>
+</GDropdown>`,
       },
     },
   },
@@ -128,6 +144,18 @@ export const WithMenuDropdownStory: Story = {
       description: {
         story: 'Dropdown with menu-style content.',
       },
+      source: {
+        code: `<GDropdown placement="bottom-start">
+  <button>Menu</button>
+  <template #popper>
+    <div>
+      <button>Item 1</button>
+      <button>Item 2</button>
+      <button>Item 3</button>
+    </div>
+  </template>
+</GDropdown>`,
+      },
     },
   },
   render: () => ({
@@ -156,6 +184,14 @@ export const WidthDropdownStory: Story = {
     docs: {
       description: {
         story: '`width="auto"` (default) sizes to content. `width="trigger"` matches the trigger element width.',
+      },
+      source: {
+        code: `<GDropdown placement="bottom-start" width="trigger">
+  <button>Wide trigger</button>
+  <template #popper>
+    <div>Matches trigger width</div>
+  </template>
+</GDropdown>`,
       },
     },
   },

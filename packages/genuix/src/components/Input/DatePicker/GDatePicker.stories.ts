@@ -44,6 +44,9 @@ export const BasicDatePickerStory: Story = {
       description: {
         story: 'Click trigger to open calendar dropdown. Select a day to update the date.',
       },
+      source: {
+        code: '<GDatePicker v-model="date" />',
+      },
     },
   },
   render: () => ({
@@ -73,6 +76,9 @@ export const EmptyDatePickerStory: Story = {
       description: {
         story: 'No initial date. Trigger shows placeholder text.',
       },
+      source: {
+        code: '<GDatePicker v-model="date" placeholder="Pick a date" />',
+      },
     },
   },
   render: () => ({
@@ -101,6 +107,9 @@ export const SizesDatePickerStory: Story = {
     docs: {
       description: {
         story: 'All trigger size variants from xs to xl.',
+      },
+      source: {
+        code: '<GDatePicker v-model="date" size="md" />',
       },
     },
   },
@@ -132,6 +141,13 @@ export const CustomPanelDatePickerStory: Story = {
     docs: {
       description: {
         story: 'Panel slot lets consumers add controls below the calendar grid.',
+      },
+      source: {
+        code: `<GDatePicker v-model="date">
+  <template #panel="{ clear }">
+    <button @click="clear">Clear</button>
+  </template>
+</GDatePicker>`,
       },
     },
   },
@@ -177,6 +193,9 @@ export const DisabledDatePickerStory: Story = {
     docs: {
       description: {
         story: 'Disabled trigger cannot be clicked.',
+      },
+      source: {
+        code: '<GDatePicker v-model="date" disabled />',
       },
     },
   },

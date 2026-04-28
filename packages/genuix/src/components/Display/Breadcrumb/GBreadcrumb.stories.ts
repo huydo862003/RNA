@@ -29,6 +29,13 @@ export const VariantsStory: Story = {
       description: {
         story: 'Short path, deep path (with ellipsis collapse), single item, icon separator, icons on crumbs, and icon ellipsis.',
       },
+      source: {
+        code: `<GBreadcrumb :items="[
+  { label: 'Home', href: '/' },
+  { label: 'Docs', href: '/docs' },
+  { label: 'Getting Started' },
+]" />`,
+      },
     },
   },
   render: () => ({
@@ -104,6 +111,17 @@ export const SlotsStory: Story = {
     docs: {
       description: {
         story: 'All 4 slots: `#separator`, `#ellipsis`, `#icon="{ item, index }"`, `#dropdown="{ items }"`.',
+      },
+      source: {
+        code: `<GBreadcrumb :items="[
+  { label: 'Home', href: '/' },
+  { label: 'Docs', href: '/docs' },
+  { label: 'Guide' },
+]">
+  <template #separator>
+    <span>→</span>
+  </template>
+</GBreadcrumb>`,
       },
     },
   },
