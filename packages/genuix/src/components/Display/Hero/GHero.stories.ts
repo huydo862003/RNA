@@ -60,7 +60,7 @@ export const SqlingoStory: Story = {
           />
         </template>
         <template #title>
-          <h1 class="text-3xl font-black tracking-tight">
+          <h1 class="text-3xl font-black leading-6">
             sqlingo.js: A Typescript/Javascript port of SQLGlot
           </h1>
         </template>
