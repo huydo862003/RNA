@@ -21,6 +21,7 @@
       class="number-input-field"
       type="text"
       inputmode="numeric"
+      :name="name"
       :disabled="disabled"
       :size="inputSize"
       :placeholder="placeholder"
@@ -99,6 +100,7 @@ const value = defineModel<number | undefined>({
 
 const {
   id = undefined,
+  name = undefined,
   size = NumberInputSize.Md,
   state = NumberInputState.Default,
   disabled = false,
@@ -111,6 +113,7 @@ const {
   step = 1,
 } = defineProps<{
   id?: string;
+  name?: string;
   size?: NumberInputSize;
   state?: NumberInputState;
   disabled?: boolean;

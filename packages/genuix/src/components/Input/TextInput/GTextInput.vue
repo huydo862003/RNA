@@ -16,6 +16,7 @@
     }"
     :data-state="effectiveState"
     type="text"
+    :name="name"
     :disabled="disabled"
     :placeholder="placeholder"
     :readonly="_readonly"
@@ -60,6 +61,7 @@ const text = defineModel<string>({
 
 const {
   id = undefined,
+  name = undefined,
   size = TextInputSize.Md,
   state = TextInputState.Default,
   disabled = false,
@@ -71,6 +73,7 @@ const {
   maxLength = undefined,
 } = defineProps<{
   id?: string;
+  name?: string;
   size?: TextInputSize;
   state?: TextInputState;
   disabled?: boolean;

@@ -16,6 +16,7 @@
       '--_border': tokens.border,
     }"
     :data-state="effectiveState"
+    :name="name"
     :disabled="disabled"
     :placeholder="placeholder"
     :readonly="_readonly"
@@ -64,6 +65,7 @@ const text = defineModel<string>({
 
 const {
   id = undefined,
+  name = undefined,
   size = TextAreaSize.Md,
   state = TextAreaState.Default,
   disabled = false,
@@ -77,6 +79,7 @@ const {
   maxLength = undefined,
 } = defineProps<{
   id?: string;
+  name?: string;
   size?: TextAreaSize;
   state?: TextAreaState;
   disabled?: boolean;

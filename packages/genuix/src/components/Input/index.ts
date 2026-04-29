@@ -13,6 +13,43 @@ export {
 } from './Button/types';
 
 export {
+  default as GCheckbox,
+} from './Checkbox/GCheckbox.vue';
+
+export {
+  CheckboxSize,
+  CheckboxSemantic,
+} from './Checkbox/types';
+
+export {
+  default as GNumberInput,
+} from './NumberInput/GNumberInput.vue';
+
+export {
+  NumberInputSize,
+  NumberInputState,
+} from './NumberInput/types';
+
+export {
+  default as GRadio,
+} from './RadioButton/GRadio.vue';
+
+export {
+  RadioSize,
+  RadioSemantic,
+} from './RadioButton/types';
+
+export {
+  default as GTextArea,
+} from './TextArea/GTextArea.vue';
+
+export {
+  TextAreaSize,
+  TextAreaState,
+  TextAreaResize,
+} from './TextArea/types';
+
+export {
   default as GSwitch,
 } from './Switch/GSwitch.vue';
 
