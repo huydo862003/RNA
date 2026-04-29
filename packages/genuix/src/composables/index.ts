@@ -23,8 +23,5 @@ export type {
 
 export {
   useKbdShortcut,
-} from './useKbdShortcut';
-
-export type {
-  KbdShortcut,
+  useLocalKbdShortcuts,
 } from './useKbdShortcut';

@@ -197,7 +197,6 @@ const tokens = prominenceTokens(Prominence.Ghost, Semantic.Neutral);
 const triggerRef = useTemplateRef('triggerRef');
 const triggerHeight = useHeight(triggerRef);
 
-const dropdownRef = useTemplateRef<InstanceType<typeof GDropdown> | null>('dropdownRef');
 const searchRef = useTemplateRef('searchRef');
 const menuElement = useTemplateRef<HTMLElement>('menuRef');
 

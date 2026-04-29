@@ -2,6 +2,27 @@
  * https://github.com/huydo862003/Fck-AI-Slop/edit/main/README.md
  */
 
+// Navbar
+export {
+  default as GNavbar,
+} from './Navbar/GNavbar.vue';
+
+export {
+  default as GNavBrand,
+} from './Navbar/GNavBrand.vue';
+
+export {
+  default as GNavLink,
+} from './Navbar/GNavLink.vue';
+
+export {
+  default as GNavMenu,
+} from './Navbar/GNavMenu.vue';
+
+export {
+  default as GNavButton,
+} from './Navbar/GNavButton.vue';
+
 // Breadcrumb
 export {
   default as GBreadcrumb,

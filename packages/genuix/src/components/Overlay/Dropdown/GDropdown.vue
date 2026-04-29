@@ -9,6 +9,7 @@
     :triggers="triggers"
     :popper-class="popperClass"
     :distance="distance"
+    :flip="flip"
     :delay="{ show: showDelay, hide: hideDelay }"
     :container="popperContainer ?? 'body'"
     no-auto-focus
@@ -50,10 +51,10 @@ import {
   computed,
   getCurrentInstance,
   inject,
-  onMounted,
   nextTick,
   ref,
   useTemplateRef,
+  watch,
 } from 'vue';
 import {
   getId,
@@ -87,6 +88,7 @@ const {
   distance = 0,
   shown = undefined,
   arrow = true,
+  flip = true,
   triggers = ['click'],
   showDelay = 0,
   hideDelay = 0,
@@ -103,6 +105,8 @@ const {
   distance?: number;
   /** Show arrow/triangle pointing to trigger */
   arrow?: boolean;
+  /** Allow floating-ui to flip placement when space is constrained */
+  flip?: boolean;
   /** Events that trigger the dropdown */
   triggers?: ('hover' | 'click' | 'focus' | 'touch')[];
   /** Delay in ms before showing */
@@ -117,17 +121,6 @@ const triggerRef = useTemplateRef<HTMLElement>('triggerRef');
 
 const triggerWidth = useWidth(triggerRef);
 
-// The trigger wrapper div can break consumer's layout if the trigger is block or inline-flex
-// We read the trigger's computed display and replicate that
-onMounted(() => nextTick(() => {
-  const wrapper = triggerRef.value;
-  if (!wrapper) return;
-  const trigger = wrapper.firstElementChild;
-  if (!trigger) return;
-  const display = getComputedStyle(trigger).display;
-  wrapper.style.display = display === 'inline' ? 'inline' : display.startsWith('inline') ? 'inline-block' : 'block';
-}));
-
 // A unique id for the dropdown popper, so we can query the child of the popper using query selector
 const popperUid = `g-dropdown-${getId(Dropdown, getCurrentInstance()!)}`;
 
@@ -140,6 +133,19 @@ const popperClass = computed(() => [
 const isOpen = ref(false);
 
 const popperRef = useTemplateRef<InstanceType<typeof Dropdown> | null>('popperRef');
+
+// The trigger wrapper div can break consumer's layout if the trigger is block or inline-flex
+// We read the trigger's computed display and replicate that
+watch(popperRef, () => nextTick(() => {
+  const wrapper = popperRef.value?.$el;
+  if (!wrapper) return;
+  const trigger = wrapper.firstElementChild;
+  if (!trigger) return;
+  const display = getComputedStyle(trigger).display;
+  wrapper.style.display = display === 'inline' ? 'inline' : display.startsWith('inline') ? 'inline-block' : 'block';
+}), {
+  immediate: true,
+});
 
 function show () {
   popperRef.value?.show();
