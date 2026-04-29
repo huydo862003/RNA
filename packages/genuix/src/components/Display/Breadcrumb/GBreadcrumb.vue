@@ -6,13 +6,82 @@
   >
     <!-- Short path: show all crumbs -->
     <template v-if="items.length <= maxVisible">
-      <template
-        v-for="(item, i) in items"
-        :key="i"
-      >
+      <ol class="inline-flex">
+        <template
+          v-for="(item, i) in items"
+          :key="i"
+        >
+          <span
+            v-if="i > 0"
+            class="breadcrumb-sep"
+            aria-hidden="true"
+          >
+            <slot
+              name="separator"
+            >
+              <GIcon
+                v-if="isIconSeparator"
+                :name="separator as GIconName"
+              />
+              <template v-else>{{ separator }}</template>
+            </slot>
+          </span>
+          <li>
+            <component
+              :is="item.href && i < items.length - 1 ? 'a' : 'span'"
+              :href="item.href && i < items.length - 1 ? item.href : undefined"
+              :class="i < items.length - 1 ? 'breadcrumb-link' : 'breadcrumb-current'"
+              :aria-current="i === items.length - 1 ? 'page' : undefined"
+            >
+              <slot
+                name="icon"
+                :item="item"
+                :index="i"
+              >
+                <GIcon
+                  v-if="item.icon"
+                  :name="item.icon"
+                  class="breadcrumb-icon"
+                  aria-hidden="true"
+                />
+              </slot>
+              <span class="breadcrumb-label">{{ item.label }}</span>
+            </component>
+          </li>
+        </template>
+      </ol>
+    </template>
+
+    <!-- Long path: first, ellipsis dropdown, second-to-last, current -->
+    <template v-else>
+      <ol class="inline-flex">
+        <!-- First crumb -->
+        <li>
+          <component
+            :is="items[0].href ? 'a' : 'span'"
+            :href="items[0].href"
+            class="breadcrumb-link"
+          >
+            <slot
+              name="icon"
+              :item="items[0]"
+              :index="0"
+            >
+              <GIcon
+                v-if="items[0].icon"
+                :name="items[0].icon"
+                class="breadcrumb-icon"
+                aria-hidden="true"
+              />
+            </slot>
+            <span class="breadcrumb-label">{{ items[0].label }}</span>
+          </component>
+        </li>
+
+        <!-- Separator -->
         <span
-          v-if="i > 0"
           class="breadcrumb-sep"
+          aria-hidden="true"
         >
           <slot name="separator">
             <GIcon
@@ -22,162 +91,124 @@
             <template v-else>{{ separator }}</template>
           </slot>
         </span>
-        <component
-          :is="item.href && i < items.length - 1 ? 'a' : 'span'"
-          :href="item.href && i < items.length - 1 ? item.href : undefined"
-          :class="i < items.length - 1 ? 'breadcrumb-link' : 'breadcrumb-current'"
-          :aria-current="i === items.length - 1 ? 'page' : undefined"
-        >
-          <slot
-            name="icon"
-            :item="item"
-            :index="i"
+
+        <!-- Ellipsis with dropdown -->
+        <li>
+          <GDropdown
+            placement="bottom-start"
+            :distance="4"
+            class="breadcrumb-popper"
           >
-            <GIcon
-              v-if="item.icon"
-              :name="item.icon"
-              class="breadcrumb-icon"
-            />
-          </slot>
-          <span class="breadcrumb-label">{{ item.label }}</span>
-        </component>
-      </template>
-    </template>
-
-    <!-- Long path: first, ellipsis dropdown, second-to-last, current -->
-    <template v-else>
-      <!-- First crumb -->
-      <component
-        :is="items[0].href ? 'a' : 'span'"
-        :href="items[0].href"
-        class="breadcrumb-link"
-      >
-        <slot
-          name="icon"
-          :item="items[0]"
-          :index="0"
-        >
-          <GIcon
-            v-if="items[0].icon"
-            :name="items[0].icon"
-            class="breadcrumb-icon"
-          />
-        </slot>
-        <span class="breadcrumb-label">{{ items[0].label }}</span>
-      </component>
-
-      <!-- Separator -->
-      <span class="breadcrumb-sep">
-        <slot name="separator">
-          <GIcon
-            v-if="isIconSeparator"
-            :name="separator as GIconName"
-          />
-          <template v-else>{{ separator }}</template>
-        </slot>
-      </span>
-
-      <!-- Ellipsis with dropdown -->
-      <GDropdown
-        placement="bottom-start"
-        :distance="4"
-        class="breadcrumb-popper"
-      >
-        <button class="breadcrumb-ellipsis">
-          <slot name="ellipsis">
-            <GIcon
-              v-if="isIconEllipsis"
-              :name="ellipsis as GIconName"
-            />
-            <template v-else>
-              {{ ellipsis }}
-            </template>
-          </slot>
-        </button>
-        <template #popper>
-          <slot
-            name="dropdown"
-            :items="collapsedItems"
-          >
-            <div class="breadcrumb-dropdown">
-              <a
-                v-for="(item, i) in collapsedItems"
-                :key="i"
-                :href="item.href ?? '#'"
-                class="breadcrumb-dropdown-item"
-              >
+            <button class="breadcrumb-ellipsis">
+              <slot name="ellipsis">
                 <GIcon
-                  v-if="item.icon"
-                  :name="item.icon"
-                  class="breadcrumb-icon"
+                  v-if="isIconEllipsis"
+                  :name="ellipsis as GIconName"
+                  aria-hidden="true"
                 />
-                <span class="breadcrumb-label">{{ item.label }}</span>
-              </a>
-            </div>
+                <template v-else>
+                  {{ ellipsis }}
+                </template>
+              </slot>
+            </button>
+            <template #popper>
+              <slot
+                name="dropdown"
+                :items="collapsedItems"
+              >
+                <div class="breadcrumb-dropdown">
+                  <a
+                    v-for="(item, i) in collapsedItems"
+                    :key="i"
+                    :href="item.href ?? '#'"
+                    class="breadcrumb-dropdown-item"
+                  >
+                    <GIcon
+                      v-if="item.icon"
+                      :name="item.icon"
+                      class="breadcrumb-icon"
+                      aria-hidden="true"
+                    />
+                    <span class="breadcrumb-label">{{ item.label }}</span>
+                  </a>
+                </div>
+              </slot>
+            </template>
+          </GDropdown>
+        </li>
+
+        <!-- Separator -->
+        <span
+          class="breadcrumb-sep"
+          aria-hidden="true"
+        >
+          <slot name="separator">
+            <GIcon
+              v-if="isIconSeparator"
+              :name="separator as GIconName"
+            />
+            <template v-else>{{ separator }}</template>
           </slot>
-        </template>
-      </GDropdown>
+        </span>
 
-      <!-- Separator -->
-      <span class="breadcrumb-sep">
-        <slot name="separator">
-          <GIcon
-            v-if="isIconSeparator"
-            :name="separator as GIconName"
-          />
-          <template v-else>{{ separator }}</template>
-        </slot>
-      </span>
+        <!-- Second-to-last crumb -->
+        <li>
+          <component
+            :is="items[items.length - 2].href ? 'a' : 'span'"
+            :href="items[items.length - 2].href"
+            class="breadcrumb-link"
+          >
+            <slot
+              name="icon"
+              :item="items[items.length - 2]"
+              :index="items.length - 2"
+            >
+              <GIcon
+                v-if="items[items.length - 2].icon"
+                :name="items[items.length - 2].icon"
+                class="breadcrumb-icon"
+                aria-hidden="true"
+              />
+            </slot>
+            <span class="breadcrumb-label">{{ items[items.length - 2].label }}</span>
+          </component>
+        </li>
 
-      <!-- Second-to-last crumb -->
-      <component
-        :is="items[items.length - 2].href ? 'a' : 'span'"
-        :href="items[items.length - 2].href"
-        class="breadcrumb-link"
-      >
-        <slot
-          name="icon"
-          :item="items[items.length - 2]"
-          :index="items.length - 2"
+        <!-- Separator -->
+        <span
+          class="breadcrumb-sep"
+          aria-hidden="true"
         >
-          <GIcon
-            v-if="items[items.length - 2].icon"
-            :name="items[items.length - 2].icon"
-            class="breadcrumb-icon"
-          />
-        </slot>
-        <span class="breadcrumb-label">{{ items[items.length - 2].label }}</span>
-      </component>
+          <slot name="separator">
+            <GIcon
+              v-if="isIconSeparator"
+              :name="separator as GIconName"
+            />
+            <template v-else>{{ separator }}</template>
+          </slot>
+        </span>
 
-      <!-- Separator -->
-      <span class="breadcrumb-sep">
-        <slot name="separator">
-          <GIcon
-            v-if="isIconSeparator"
-            :name="separator as GIconName"
-          />
-          <template v-else>{{ separator }}</template>
-        </slot>
-      </span>
-
-      <!-- Current (last) -->
-      <span
-        class="breadcrumb-current"
-        aria-current="page"
-      >
-        <slot
-          name="icon"
-          :item="items[items.length - 1]"
-          :index="items.length - 1"
-        >
-          <GIcon
-            v-if="items[items.length - 1].icon"
-            :name="items[items.length - 1].icon"
-            class="breadcrumb-icon"
-          />
-        </slot>
-        <span class="breadcrumb-label">{{ items[items.length - 1].label }}</span>
-      </span>
+        <!-- Current (last) -->
+        <li>
+          <span
+            class="breadcrumb-current"
+            aria-current="page"
+          >
+            <slot
+              name="icon"
+              :item="items[items.length - 1]"
+              :index="items.length - 1"
+            >
+              <GIcon
+                v-if="items[items.length - 1].icon"
+                :name="items[items.length - 1].icon"
+                class="breadcrumb-icon"
+              />
+            </slot>
+            <span class="breadcrumb-label">{{ items[items.length - 1].label }}</span>
+          </span>
+        </li>
+      </ol>
     </template>
   </nav>
 </template>
