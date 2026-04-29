@@ -12,3 +12,19 @@ export type {
 export {
   useHash,
 } from './useHash';
+
+export {
+  useModal,
+} from './useModal';
+
+export type {
+  ModalEntry,
+} from './useModal';
+
+export {
+  useKbdShortcut,
+} from './useKbdShortcut';
+
+export type {
+  KbdShortcut,
+} from './useKbdShortcut';
