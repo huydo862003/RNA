@@ -109,18 +109,16 @@ const triggerRef = useTemplateRef<HTMLElement>('triggerRef');
 
 const triggerWidth = useWidth(triggerRef);
 
-// The trigger's wrapper should match the slot's display mode
-// To not cause the unexpected layout change for the consumer
-// FIXME: Be more precise
-onMounted(async () => {
-  await nextTick();
+// The trigger wrapper div can break consumer's layout if the trigger is block or inline-flex
+// We read the trigger's computed display and replicate that
+onMounted(() => nextTick(() => {
   const wrapper = triggerRef.value;
   if (!wrapper) return;
-  const child = wrapper.firstElementChild;
-  if (!child) return;
-  const display = getComputedStyle(child).display;
+  const trigger = wrapper.firstElementChild;
+  if (!trigger) return;
+  const display = getComputedStyle(trigger).display;
   wrapper.style.display = display === 'inline' ? 'inline' : display.startsWith('inline') ? 'inline-block' : 'block';
-});
+}));
 
 // A unique id for the dropdown popper, so we can query the child of the popper using query selector
 const popperUid = `g-dropdown-${getId(Dropdown, getCurrentInstance()!)}`;

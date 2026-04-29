@@ -42,9 +42,9 @@ import {
   computed,
   getCurrentInstance,
   nextTick,
-  onMounted,
   ref,
   useTemplateRef,
+  watch,
 } from 'vue';
 import {
   getId,
@@ -106,20 +106,18 @@ const popperClass = computed(() => [
 
 const isOpen = ref(false);
 
-// floating-vue mixin types unresolvable by TS
 const popperRef = useTemplateRef<InstanceType<typeof Tooltip> | null>('popperRef');
 
-// The trigger's wrapper should match the slot's display mode
-// To not cause the unexpected layout change for the consumer
-// FIXME: Be more precise
-onMounted(async () => {
-  await nextTick();
+// We read the trigger's computed display and replicate that to the wrapper to not break layout
+watch(popperRef, () => nextTick(() => {
   const wrapper = popperRef.value?.$el;
   if (!wrapper) return;
-  const child = wrapper.firstElementChild;
-  if (!child) return;
-  const display = getComputedStyle(child).display;
+  const trigger = wrapper.firstElementChild;
+  if (!trigger) return;
+  const display = getComputedStyle(trigger).display;
   wrapper.style.display = display === 'inline' ? 'inline' : display.startsWith('inline') ? 'inline-block' : 'block';
+}), {
+  immediate: true,
 });
 
 function show () {
