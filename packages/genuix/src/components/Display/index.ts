@@ -58,6 +58,20 @@ export {
   default as GInlineCode,
 } from './Code/GInlineCode.vue';
 
+// Math
+export {
+  default as GInlineMath,
+} from './Math/GInlineMath.vue';
+
+export {
+  default as GMathBlock,
+} from './Math/GMathBlock.vue';
+
+export {
+  MathBlockProminence,
+  MathBlockSemantic,
+} from './Math/types';
+
 export {
   GCodeLanguage,
   CodeBlockProminence,
