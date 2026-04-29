@@ -99,7 +99,7 @@ const keyMeta = computed((): KeyMeta => {
   // Whitespace
   case GKbdKeyName.Enter:
     return {
-      icon: GIconName.KeyReturn,
+      label: '↵',
       tooltipContent: 'Enter',
     };
   case GKbdKeyName.Tab:
@@ -224,8 +224,7 @@ const keyMeta = computed((): KeyMeta => {
 @layer components {
 .kbd {
   @apply inline-flex items-center justify-center;
-  @apply w-xl h-lg text-xs border gui-neutral-border gui-neutral-bg-subtle rounded-1 font-mono leading-none align-middle;
-  @apply shadow-primary-1 shadow-sm inset-shadow-sm;
+  @apply min-w-5 h-5 px-1 text-xs gui-neutral-fg-muted gui-neutral-bg-subtle border gui-neutral-border-subtle rounded-sm font-mono leading-none align-middle;
   @apply cursor-default select-none outline-none;
 }
 

@@ -50,11 +50,15 @@
 import {
   computed,
   nextTick,
+  provide,
   ref,
   watch,
 } from 'vue';
 import type {
   ModalSize,
+} from './types';
+import {
+  POPPER_CONTAINER_KEY,
 } from './types';
 import {
   Size,
@@ -97,6 +101,9 @@ const isOpen = computed({
 
 const dialogRef = ref<HTMLDialogElement | null>(null);
 
+// Nested tooltips/dropdowns should render inside the dialog, not body
+provide(POPPER_CONTAINER_KEY, dialogRef);
+
 watch(isOpen, async (open) => {
   await nextTick();
   if (!dialogRef.value) return;
@@ -129,6 +136,7 @@ function handleBackdropClick (e: MouseEvent) {
 defineExpose({
   open,
   close,
+  dialogRef,
 });
 </script>
 
@@ -137,7 +145,7 @@ defineExpose({
 
 @layer components {
 .modal {
-  @apply fixed inset-0 m-auto rounded-lg overflow-hidden p-0;
+  @apply fixed inset-0 m-auto rounded-md overflow-hidden p-0;
   z-index: var(--z-modal);
   border: none;
   max-height: 85vh;

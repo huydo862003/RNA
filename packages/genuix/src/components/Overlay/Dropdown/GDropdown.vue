@@ -10,6 +10,7 @@
     :popper-class="popperClass"
     :distance="distance"
     :delay="{ show: showDelay, hide: hideDelay }"
+    :container="popperContainer ?? 'body'"
     no-auto-focus
     @show="isOpen = true; emit('show-start')"
     @apply-show="emit('show-end')"
@@ -48,6 +49,7 @@ import {
 import {
   computed,
   getCurrentInstance,
+  inject,
   onMounted,
   nextTick,
   ref,
@@ -56,6 +58,9 @@ import {
 import {
   getId,
 } from '@hdnax/stdx';
+import {
+  POPPER_CONTAINER_KEY,
+} from '@/components/Overlay/Modal/types';
 import {
   useWidth,
 } from '@/composables/useWidth';
@@ -67,6 +72,9 @@ type Placement = Side | `${Side}-${Alignment}`;
 defineOptions({
   inheritAttrs: false,
 });
+
+const popperContainerRef = inject(POPPER_CONTAINER_KEY, null);
+const popperContainer = computed(() => popperContainerRef?.value ?? undefined);
 
 const emit = defineEmits<{
   (e: 'show-start' | 'show-end' | 'hide'): void;

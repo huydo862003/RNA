@@ -2,7 +2,7 @@
   <span
     v-bind="$attrs"
     :id="id"
-    :class="'inline-flex items-center gap-2'"
+    :class="'inline-flex items-center gap-1'"
   >
     <template
       v-for="(key, i) in keys"
@@ -10,7 +10,7 @@
     >
       <span
         v-if="0 < i"
-        class="text-xs gui-neutral-fg-muted"
+        class="text-xs gui-neutral-fg-muted opacity-40"
       >+</span>
       <GKbdKey :name="key" />
     </template>

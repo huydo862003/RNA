@@ -35,10 +35,14 @@ export const DefaultStory: Story = {
     },
   },
   render: () => ({
-    components: { GNumberInput },
+    components: {
+      GNumberInput,
+    },
     setup () {
       const val = ref(5);
-      return { val };
+      return {
+        val,
+      };
     },
     template: `
       <div>
@@ -61,10 +65,14 @@ export const MinMaxStory: Story = {
     },
   },
   render: () => ({
-    components: { GNumberInput },
+    components: {
+      GNumberInput,
+    },
     setup () {
       const val = ref(0);
-      return { val };
+      return {
+        val,
+      };
     },
     template: `
       <div>
@@ -84,10 +92,15 @@ export const SizesStory: Story = {
     },
   },
   render: () => ({
-    components: { GNumberInput },
+    components: {
+      GNumberInput,
+    },
     setup () {
       const val = ref(42);
-      return { val, Size };
+      return {
+        val,
+        Size,
+      };
     },
     template: `
       <div class="flex flex-col gap-sm items-start">
@@ -112,10 +125,15 @@ export const StatesStory: Story = {
     },
   },
   render: () => ({
-    components: { GNumberInput },
+    components: {
+      GNumberInput,
+    },
     setup () {
       const val = ref(5);
-      return { val, NumberInputState };
+      return {
+        val,
+        NumberInputState,
+      };
     },
     template: `
       <div class="flex flex-col gap-sm items-start">
@@ -137,10 +155,14 @@ export const DisabledStory: Story = {
     },
   },
   render: () => ({
-    components: { GNumberInput },
+    components: {
+      GNumberInput,
+    },
     setup () {
       const val = ref(42);
-      return { val };
+      return {
+        val,
+      };
     },
     template: '<GNumberInput v-model="val" disabled />',
   }),
@@ -158,10 +180,14 @@ export const IntegerStory: Story = {
     },
   },
   render: () => ({
-    components: { GNumberInput },
+    components: {
+      GNumberInput,
+    },
     setup () {
       const val = ref(0);
-      return { val };
+      return {
+        val,
+      };
     },
     template: `
       <div>
@@ -184,10 +210,14 @@ export const NoStepperStory: Story = {
     },
   },
   render: () => ({
-    components: { GNumberInput },
+    components: {
+      GNumberInput,
+    },
     setup () {
       const val = ref(42);
-      return { val };
+      return {
+        val,
+      };
     },
     template: `
       <div>
@@ -210,10 +240,14 @@ export const NegativeValuesStory: Story = {
     },
   },
   render: () => ({
-    components: { GNumberInput },
+    components: {
+      GNumberInput,
+    },
     setup () {
       const val = ref(0);
-      return { val };
+      return {
+        val,
+      };
     },
     template: `
       <div>

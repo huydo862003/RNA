@@ -253,12 +253,18 @@ export const ValidationTextInputStory: Story = {
     },
   },
   render: () => ({
-    components: { GTextInput },
+    components: {
+      GTextInput,
+    },
     setup () {
       const email = ref('');
       const url = ref('');
       const name = ref('');
-      return { email, url, name };
+      return {
+        email,
+        url,
+        name,
+      };
     },
     template: `
       <div class="p-spacing-4 flex flex-col gap-spacing-3 items-start">

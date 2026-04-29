@@ -11,6 +11,7 @@
     :triggers="triggers"
     :popper-triggers="['hover']"
     :popper-class="`g-tooltip-popper ${popperClass}`"
+    :container="popperContainer ?? 'body'"
     no-auto-focus
     @show="isOpen = true; emit('show-start')"
     @apply-show="emit('show-end')"
@@ -41,6 +42,7 @@ import {
 import {
   computed,
   getCurrentInstance,
+  inject,
   nextTick,
   ref,
   useTemplateRef,
@@ -49,6 +51,9 @@ import {
 import {
   getId,
 } from '@hdnax/stdx';
+import {
+  POPPER_CONTAINER_KEY,
+} from '@/components/Overlay/Modal/types';
 
 type Side = 'top' | 'bottom' | 'left' | 'right';
 type Alignment = 'start' | 'end';
@@ -57,6 +62,10 @@ type Placement = Side | `${Side}-${Alignment}`;
 defineOptions({
   inheritAttrs: false,
 });
+
+// If inside a modal/dialog, render popper inside it instead of body
+const popperContainerRef = inject(POPPER_CONTAINER_KEY, null);
+const popperContainer = computed(() => popperContainerRef?.value ?? undefined);
 
 const emit = defineEmits<{
   (e: 'show-start' | 'show-end' | 'hide'): void;
