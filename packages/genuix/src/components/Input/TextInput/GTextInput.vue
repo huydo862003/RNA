@@ -14,11 +14,14 @@
       '--_fg': disabled ? tokens.mutedFg : tokens.fg,
       '--_border': tokens.border,
     }"
-    :data-state="state"
+    :data-state="effectiveState"
     type="text"
     :disabled="disabled"
     :placeholder="placeholder"
     :readonly="_readonly"
+    :maxlength="maxLength"
+    :minlength="minLength"
+    :required="required"
   >
 </template>
 
@@ -28,11 +31,16 @@
  */
 
 import {
+  computed,
   ref,
 } from 'vue';
 import {
   TextInputSize,
   TextInputState,
+  TEXT_INPUT_PATTERNS,
+} from './types';
+import type {
+  TextInputPattern,
 } from './types';
 import {
   prominenceTokens,
@@ -57,6 +65,10 @@ const {
   disabled = false,
   readonly: _readonly = false,
   placeholder = 'Empty',
+  required = false,
+  pattern = undefined,
+  minLength = undefined,
+  maxLength = undefined,
 } = defineProps<{
   id?: string;
   size?: TextInputSize;
@@ -64,9 +76,22 @@ const {
   disabled?: boolean;
   readonly?: boolean;
   placeholder?: string;
+  required?: boolean;
+  pattern?: TextInputPattern;
+  minLength?: number;
+  maxLength?: number;
 }>();
 
 const tokens = prominenceTokens(Prominence.Ghost, Semantic.Neutral);
+
+/* Input state */
+const effectiveState = computed(() => {
+  if (required && !text.value) return TextInputState.Error;
+  if (!text.value) return state;
+  if (minLength !== undefined && text.value.length < minLength) return TextInputState.Error;
+  if (pattern && !TEXT_INPUT_PATTERNS[pattern].test(text.value)) return TextInputState.Error;
+  return state;
+});
 
 const inputRef = ref<HTMLInputElement | null>(null);
 
@@ -86,6 +111,7 @@ defineExpose({
   focus,
   blur,
   select,
+  isInvalid: computed(() => effectiveState.value === TextInputState.Error),
 });
 </script>
 
@@ -98,7 +124,7 @@ defineExpose({
   background: var(--_bg);
   color: var(--_fg);
   border-color: var(--_border);
-  transition: border-color var(--duration-fast) var(--ease-default);
+  transition: border-color var(--duration-normal) var(--ease-default);
 }
 
 .text-input:focus {
@@ -118,23 +144,18 @@ defineExpose({
 .text-input[data-state="error"] {
   @apply gui-danger-border;
 }
-
 .text-input[data-state="error"]:focus {
   @apply gui-danger-border;
 }
-
 .text-input[data-state="warning"] {
   @apply gui-warning-border;
 }
-
 .text-input[data-state="warning"]:focus {
   @apply gui-warning-border;
 }
-
 .text-input[data-state="success"] {
   @apply gui-success-border;
 }
-
 .text-input[data-state="success"]:focus {
   @apply gui-success-border;
 }
@@ -144,22 +165,18 @@ defineExpose({
   @apply h-6 text-xs p-xs pl-sm;
   --_placeholder-size: var(--text-xs);
 }
-
 .text-input-sm {
   @apply h-7 text-sm p-sm pl-sm;
   --_placeholder-size: var(--text-xs);
 }
-
 .text-input-md {
   @apply h-8 text-md p-md pl-sm;
   --_placeholder-size: var(--text-sm);
 }
-
 .text-input-lg {
   @apply h-9 text-lg p-md pl-sm;
   --_placeholder-size: var(--text-md);
 }
-
 .text-input-xl {
   @apply h-10 text-xl p-lg pl-sm;
   --_placeholder-size: var(--text-lg);

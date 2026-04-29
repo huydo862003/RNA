@@ -27,6 +27,11 @@ export {
 export {
   TextInputSize,
   TextInputState,
+  TEXT_INPUT_PATTERNS,
+} from './TextInput/types';
+
+export type {
+  TextInputPattern,
 } from './TextInput/types';
 
 export {

@@ -15,11 +15,14 @@
       '--_fg': disabled ? tokens.mutedFg : tokens.fg,
       '--_border': tokens.border,
     }"
-    :data-state="state"
+    :data-state="effectiveState"
     :disabled="disabled"
     :placeholder="placeholder"
     :readonly="_readonly"
     :rows="rows"
+    :maxlength="maxLength"
+    :minlength="minLength"
+    :required="required"
   />
 </template>
 
@@ -29,6 +32,7 @@
  */
 
 import {
+  computed,
   ref,
 } from 'vue';
 import {
@@ -36,6 +40,12 @@ import {
   TextAreaState,
   TextAreaResize,
 } from './types';
+import {
+  TEXT_INPUT_PATTERNS,
+} from '@/components/Input/TextInput/types';
+import type {
+  TextInputPattern,
+} from '@/components/Input/TextInput/types';
 import {
   prominenceTokens,
 } from '@/utils/prominence';
@@ -61,6 +71,10 @@ const {
   placeholder = '',
   rows = 3,
   resize = TextAreaResize.Y,
+  required = false,
+  pattern = undefined,
+  minLength = undefined,
+  maxLength = undefined,
 } = defineProps<{
   id?: string;
   size?: TextAreaSize;
@@ -69,11 +83,23 @@ const {
   readonly?: boolean;
   placeholder?: string;
   rows?: number;
-  /** Resize direction: 'both', 'x', 'y' (default), 'none' */
   resize?: TextAreaResize;
+  required?: boolean;
+  pattern?: TextInputPattern;
+  minLength?: number;
+  maxLength?: number;
 }>();
 
 const tokens = prominenceTokens(Prominence.Ghost, Semantic.Neutral);
+
+/* Input state */
+const effectiveState = computed(() => {
+  if (required && !text.value) return TextAreaState.Error;
+  if (!text.value) return state;
+  if (minLength !== undefined && text.value.length < minLength) return TextAreaState.Error;
+  if (pattern && !TEXT_INPUT_PATTERNS[pattern].test(text.value)) return TextAreaState.Error;
+  return state;
+});
 
 const textareaRef = ref<HTMLTextAreaElement | null>(null);
 
@@ -88,6 +114,7 @@ function blur () {
 defineExpose({
   focus,
   blur,
+  isInvalid: computed(() => effectiveState.value === TextAreaState.Error),
 });
 </script>
 
@@ -100,7 +127,7 @@ defineExpose({
   background: var(--_bg);
   color: var(--_fg);
   border-color: var(--_border);
-  transition: border-color var(--duration-fast) var(--ease-default);
+  transition: border-color var(--duration-normal) var(--ease-default);
 }
 
 .textarea:focus {
@@ -119,7 +146,7 @@ defineExpose({
 /* States */
 .textarea[data-state="error"] {
   @apply gui-danger-border;
-  }
+}
 .textarea[data-state="error"]:focus {
   @apply gui-danger-border;
 }

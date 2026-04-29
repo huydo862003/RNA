@@ -209,3 +209,72 @@ export const ReadonlyTextInputStory: Story = {
     `,
   }),
 };
+
+export const RequiredTextInputStory: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Required input shows error when empty after first interaction.',
+      },
+      source: {
+        code: '<GTextInput v-model="value" required placeholder="Required field" />',
+      },
+    },
+  },
+  render: () => ({
+    components: {
+      GTextInput,
+    },
+    setup () {
+      const value = ref('');
+      return {
+        value,
+      };
+    },
+    template: `
+      <div class="p-spacing-4">
+        <p class="text-xs gui-neutral-fg-muted mb-spacing-2">Type something, then clear it.</p>
+        <GTextInput v-model="value" required placeholder="Required field" />
+      </div>
+    `,
+  }),
+};
+
+export const ValidationTextInputStory: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Validation with pattern and minLength as inline props.',
+      },
+      source: {
+        code: `<GTextInput v-model="email" pattern="email" placeholder="Email" />
+<GTextInput v-model="name" :min-length="3" placeholder="Min 3 chars" />`,
+      },
+    },
+  },
+  render: () => ({
+    components: { GTextInput },
+    setup () {
+      const email = ref('');
+      const url = ref('');
+      const name = ref('');
+      return { email, url, name };
+    },
+    template: `
+      <div class="p-spacing-4 flex flex-col gap-spacing-3 items-start">
+        <div>
+          <p class="text-xs gui-neutral-fg-muted mb-spacing-1">Email pattern</p>
+          <GTextInput v-model="email" pattern="email" placeholder="user@example.com" />
+        </div>
+        <div>
+          <p class="text-xs gui-neutral-fg-muted mb-spacing-1">URL pattern</p>
+          <GTextInput v-model="url" pattern="url" placeholder="https://..." />
+        </div>
+        <div>
+          <p class="text-xs gui-neutral-fg-muted mb-spacing-1">Min length: 3</p>
+          <GTextInput v-model="name" :min-length="3" placeholder="At least 3 chars" />
+        </div>
+      </div>
+    `,
+  }),
+};
