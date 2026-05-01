@@ -1,5 +1,11 @@
 # genuix
 
+## 0.8.0
+
+### Minor Changes
+
+- Re-release with resolved workspace:\* dependencies
+
 ## 0.7.0
 
 ### Minor Changes
