@@ -11,11 +11,13 @@ import {
   PhArrowSquareOut,
   PhArrowUp,
   PhArrowsIn,
+  PhArrowsLeftRight,
   PhArrowsOut,
   PhArticle,
   PhBackspace,
   PhBell,
   PhBook,
+  PhBookOpen,
   PhCalendar,
   PhCaretDown,
   PhCaretLeft,
@@ -29,6 +31,7 @@ import {
   PhClock,
   PhCode,
   PhCommand,
+  PhDatabase,
   PhCopy,
   PhDotsSixVertical,
   PhDotsThree,
@@ -42,6 +45,7 @@ import {
   PhFolder,
   PhFunnel,
   PhGear,
+  PhGithubLogo,
   PhGlobe,
   PhGraph,
   PhGridFour,
@@ -55,6 +59,7 @@ import {
   PhList,
   PhLock,
   PhLockOpen,
+  PhMagicWand,
   PhMagnifyingGlass,
   PhMinus,
   PhMoon,
@@ -63,6 +68,7 @@ import {
   PhPause,
   PhPencil,
   PhPlay,
+  PhPlayCircle,
   PhPlus,
   PhQuestion,
   PhShareNetwork,
@@ -77,6 +83,7 @@ import {
   PhTag,
   PhTerminal,
   PhTrash,
+  PhTreeStructure,
   PhUploadSimple,
   PhUser,
   PhUsers,
@@ -97,6 +104,7 @@ export enum GIconName {
   ArrowRight = 'arrow-right',
   ArrowUp = 'arrow-up',
   ArrowDown = 'arrow-down',
+  ArrowsLeftRight = 'arrows-left-right',
   ChevronLeft = 'chevron-left',
   ChevronRight = 'chevron-right',
   ChevronUp = 'chevron-up',
@@ -146,9 +154,11 @@ export enum GIconName {
   Folder = 'folder',
   Image = 'image',
   Code = 'code',
+  Database = 'database',
   Terminal = 'terminal',
   Article = 'article',
   Book = 'book',
+  BookOpen = 'book-open',
   Tag = 'tag',
   Flag = 'flag',
 
@@ -165,13 +175,19 @@ export enum GIconName {
 
   // Media
   Play = 'play',
+  PlayCircle = 'play-circle',
   Pause = 'pause',
   Stop = 'stop',
 
+  // Brands
+  GithubLogo = 'github-logo',
+
   // Misc
+  MagicWand = 'magic-wand',
   Star = 'star',
   Heart = 'heart',
   Lightning = 'lightning',
+  TreeStructure = 'tree-structure',
   Moon = 'moon',
   Sun = 'sun',
   Globe = 'globe',
@@ -204,6 +220,7 @@ export const iconMap: Record<GIconName, Component> = {
   [GIconName.ArrowRight]: PhArrowRight,
   [GIconName.ArrowUp]: PhArrowUp,
   [GIconName.ArrowDown]: PhArrowDown,
+  [GIconName.ArrowsLeftRight]: PhArrowsLeftRight,
   [GIconName.ChevronLeft]: PhCaretLeft,
   [GIconName.ChevronRight]: PhCaretRight,
   [GIconName.ChevronUp]: PhCaretUp,
@@ -253,9 +270,11 @@ export const iconMap: Record<GIconName, Component> = {
   [GIconName.Folder]: PhFolder,
   [GIconName.Image]: PhImage,
   [GIconName.Code]: PhCode,
+  [GIconName.Database]: PhDatabase,
   [GIconName.Terminal]: PhTerminal,
   [GIconName.Article]: PhArticle,
   [GIconName.Book]: PhBook,
+  [GIconName.BookOpen]: PhBookOpen,
   [GIconName.Tag]: PhTag,
   [GIconName.Flag]: PhFlag,
 
@@ -272,13 +291,19 @@ export const iconMap: Record<GIconName, Component> = {
 
   // Media
   [GIconName.Play]: PhPlay,
+  [GIconName.PlayCircle]: PhPlayCircle,
   [GIconName.Pause]: PhPause,
   [GIconName.Stop]: PhStop,
 
+  // Brands
+  [GIconName.GithubLogo]: PhGithubLogo,
+
   // Misc
+  [GIconName.MagicWand]: PhMagicWand,
   [GIconName.Star]: PhStar,
   [GIconName.Heart]: PhHeart,
   [GIconName.Lightning]: PhLightning,
+  [GIconName.TreeStructure]: PhTreeStructure,
   [GIconName.Moon]: PhMoon,
   [GIconName.Sun]: PhSun,
   [GIconName.Globe]: PhGlobe,
