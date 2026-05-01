@@ -179,7 +179,8 @@ function clearLineSelection () {
 
 /* Format the code block and highlight */
 const code = computed(() => {
-  let res = rawCode;
+  // FIXME: don't do this, should use CSS
+  let res = rawCode.replace('\n\n', '\n \n'); // Empty lines have smaller sizes than others... so we add a whitespace
   if (rawCode.startsWith('\n')) {
     res = rawCode.slice(1);
   } else if (rawCode.startsWith('\r\n')) {
@@ -206,7 +207,7 @@ const highlightedLines = computed(() => {
 const copied = ref(false);
 
 async function clickCopyButton () {
-  await navigator.clipboard.writeText(code.value);
+  await navigator.clipboard.writeText(code.value.replace('\n \n', '\n\n'));
   copied.value = true;
   setTimeout(() => {
     copied.value = false;
