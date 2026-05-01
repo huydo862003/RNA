@@ -18,7 +18,11 @@ import {
   PhBell,
   PhBook,
   PhBookOpen,
+  PhBrain,
   PhCalendar,
+  PhCards,
+  PhCaretDoubleDown,
+  PhCaretDoubleUp,
   PhCaretDown,
   PhCaretLeft,
   PhCaretRight,
@@ -31,8 +35,9 @@ import {
   PhClock,
   PhCode,
   PhCommand,
-  PhDatabase,
   PhCopy,
+  PhCrosshair,
+  PhDatabase,
   PhDotsSixVertical,
   PhDotsThree,
   PhDotsThreeVertical,
@@ -43,6 +48,7 @@ import {
   PhFile,
   PhFlag,
   PhFolder,
+  PhFrameCorners,
   PhFunnel,
   PhGear,
   PhGithubLogo,
@@ -61,16 +67,22 @@ import {
   PhLockOpen,
   PhMagicWand,
   PhMagnifyingGlass,
+  PhMapPinSimple,
   PhMinus,
   PhMoon,
+  PhNewspaper,
   PhOption,
+  PhPackage,
   PhPaperPlaneTilt,
   PhPause,
   PhPencil,
+  PhPencilSimple,
   PhPlay,
   PhPlayCircle,
   PhPlus,
   PhQuestion,
+  PhReadCvLogo,
+  PhRss,
   PhShareNetwork,
   PhSignIn,
   PhSignOut,
@@ -109,6 +121,10 @@ export enum GIconName {
   ChevronRight = 'chevron-right',
   ChevronUp = 'chevron-up',
   ChevronDown = 'chevron-down',
+  CaretDoubleUp = 'caret-double-up',
+  CaretDoubleDown = 'caret-double-down',
+  MapPin = 'map-pin',
+  Crosshair = 'crosshair',
 
   // Actions
   Plus = 'plus',
@@ -123,6 +139,8 @@ export enum GIconName {
   Share = 'share',
   Link = 'link',
   ExternalLink = 'external-link',
+  PencilSimple = 'pencil-simple',
+  FrameCorners = 'frame-corners',
 
   // UI
   Search = 'search',
@@ -161,6 +179,10 @@ export enum GIconName {
   BookOpen = 'book-open',
   Tag = 'tag',
   Flag = 'flag',
+  Newspaper = 'newspaper',
+  Rss = 'rss',
+  ReadCvLogo = 'read-cv-logo',
+  Package = 'package',
 
   // Communication
   Chat = 'chat',
@@ -200,6 +222,8 @@ export enum GIconName {
   List = 'list',
   Grid = 'grid',
   Clipboard = 'clipboard',
+  Brain = 'brain',
+  Cards = 'cards',
 
   // Keyboard
   KeyReturn = 'key-return',
@@ -225,6 +249,10 @@ export const iconMap: Record<GIconName, Component> = {
   [GIconName.ChevronRight]: PhCaretRight,
   [GIconName.ChevronUp]: PhCaretUp,
   [GIconName.ChevronDown]: PhCaretDown,
+  [GIconName.CaretDoubleUp]: PhCaretDoubleUp,
+  [GIconName.CaretDoubleDown]: PhCaretDoubleDown,
+  [GIconName.MapPin]: PhMapPinSimple,
+  [GIconName.Crosshair]: PhCrosshair,
 
   // Actions
   [GIconName.Plus]: PhPlus,
@@ -239,6 +267,8 @@ export const iconMap: Record<GIconName, Component> = {
   [GIconName.Share]: PhShareNetwork,
   [GIconName.Link]: PhLink,
   [GIconName.ExternalLink]: PhArrowSquareOut,
+  [GIconName.PencilSimple]: PhPencilSimple,
+  [GIconName.FrameCorners]: PhFrameCorners,
 
   // UI
   [GIconName.Search]: PhMagnifyingGlass,
@@ -277,6 +307,10 @@ export const iconMap: Record<GIconName, Component> = {
   [GIconName.BookOpen]: PhBookOpen,
   [GIconName.Tag]: PhTag,
   [GIconName.Flag]: PhFlag,
+  [GIconName.Newspaper]: PhNewspaper,
+  [GIconName.Rss]: PhRss,
+  [GIconName.ReadCvLogo]: PhReadCvLogo,
+  [GIconName.Package]: PhPackage,
 
   // Communication
   [GIconName.Chat]: PhChat,
@@ -316,6 +350,8 @@ export const iconMap: Record<GIconName, Component> = {
   [GIconName.List]: PhList,
   [GIconName.Grid]: PhGridFour,
   [GIconName.Clipboard]: PhClipboard,
+  [GIconName.Brain]: PhBrain,
+  [GIconName.Cards]: PhCards,
 
   // Keyboard
   [GIconName.KeyReturn]: PhKeyReturn,

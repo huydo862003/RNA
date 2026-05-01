@@ -11,7 +11,6 @@
     >
       <button
         v-for="[name, tab] in tabPanels"
-        :id="toHash(name)"
         :key="name"
         :ref="(element) => triggerRefs.set(name, element as HTMLElement)"
         :class="[
@@ -66,9 +65,6 @@ import {
   TAB_KEY,
   TabPlacement,
 } from './types';
-import {
-  useHash,
-} from '@/composables/useHash';
 import GIcon from '@/components/Display/Icon/GIcon.vue';
 
 defineOptions({
@@ -92,24 +88,7 @@ const {
 }>();
 
 // Watch hash to navigate to a tab on a specific url
-function toHash (name: string) {
-  return id ? `${id}-${name}` : name;
-}
-
-function fromHash (hash: string) {
-  if (id && hash.startsWith(`${id}-`)) {
-    return hash.slice(id.length + 1);
-  }
-  return id ? undefined : hash;
-}
-
-const hash = useHash(defaultTab ? toHash(defaultTab) : '');
-const activeTab = computed({
-  get: () => fromHash(hash.value),
-  set: (name) => {
-    hash.value = name ? toHash(name) : '';
-  },
-});
+const activeTab = ref(defaultTab);
 
 const tabPanels = reactive<Map<string, TabPanelRegistration>>(new Map());
 const panelNames = computed(() => [...tabPanels.keys()]);
