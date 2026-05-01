@@ -1,5 +1,11 @@
 # genuix
 
+## 0.7.0
+
+### Minor Changes
+
+- Add new icons: ArrowsLeftRight, Database, BookOpen, PlayCircle, GithubLogo, MagicWand, TreeStructure. Add polymorphic `as` and `to` props to GNavLink and GNavBrand for router integration.
+
 ## 0.6.1
 
 ### Patch Changes

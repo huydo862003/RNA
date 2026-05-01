@@ -1,19 +1,13 @@
 <template>
-  <a
-    v-if="href"
+  <component
+    :is="as"
     v-bind="$attrs"
     :href="href"
+    :to="to"
     class="nav-brand"
   >
     <slot />
-  </a>
-  <span
-    v-else
-    v-bind="$attrs"
-    class="nav-brand"
-  >
-    <slot />
-  </span>
+  </component>
 </template>
 
 <script setup lang="ts">
@@ -21,14 +15,22 @@
  *  https://github.com/huydo862003/Fck-AI-Slop/edit/main/README.md
  */
 
+import type {
+  Component,
+} from 'vue';
+
 defineOptions({
   inheritAttrs: false,
 });
 
 const {
+  as = 'a',
   href = undefined,
+  to = undefined,
 } = defineProps<{
+  as?: string | Component;
   href?: string;
+  to?: string | Record<string, unknown>;
 }>();
 </script>
 

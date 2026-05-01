@@ -1,7 +1,9 @@
 <template>
-  <a
+  <component
+    :is="as"
     v-bind="$attrs"
     :href="href"
+    :to="to"
     :class="['nav-link', active && 'nav-link--active']"
     role="menuitem"
   >
@@ -11,7 +13,7 @@
       class="nav-link-icon"
     />
     <slot>{{ label }}</slot>
-  </a>
+  </component>
 </template>
 
 <script setup lang="ts">
@@ -19,6 +21,9 @@
  *  https://github.com/huydo862003/Fck-AI-Slop/edit/main/README.md
  */
 
+import type {
+  Component,
+} from 'vue';
 import type {
   GIconName,
 } from '@/components/Display/Icon/types';
@@ -29,12 +34,16 @@ defineOptions({
 });
 
 const {
-  href,
+  as = 'a',
+  href = undefined,
+  to = undefined,
   label = undefined,
   icon = undefined,
   active = false,
 } = defineProps<{
-  href: string;
+  as?: string | Component;
+  href?: string;
+  to?: string | Record<string, unknown>;
   label?: string;
   icon?: GIconName;
   active?: boolean;
