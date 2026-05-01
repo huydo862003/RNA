@@ -1,5 +1,11 @@
 # genuix
 
+## 0.6.1
+
+### Patch Changes
+
+- Add more icons
+
 ## 0.6.0
 
 ### Minor Changes
