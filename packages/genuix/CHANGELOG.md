@@ -1,5 +1,15 @@
 # genuix
 
+## 0.6.0
+
+### Minor Changes
+
+- Add new components: Navbar, GCommandPalette, GModal, Math, GRadio, GCheckBox, GNumberInput, GTextArea, GBreadcrumb, GTab, GSelect, GMultiSelect, GHero, GAvatar, GBadge, GLogo, GPill, GTextInput, GDatePicker, GCodeBlock, GInlineCode, GRangeSelection, GSwitch, GSpinner, Button, GFlippable, GCollapsible, GIcon; add useKbdShortcut, useHash, useHeight composables; add duration design tokens; scale-up font sizes and use IBM Plex font; fix accessibility, styling, and interaction issues across components
+
+### Patch Changes
+
+- @hdnax/stdx@0.3.0
+
 ## 0.5.0
 
 ### Minor Changes

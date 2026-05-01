@@ -1,5 +1,11 @@
 # nuclint
 
+## 0.14.1
+
+### Patch Changes
+
+- Use a new eslint import resolver to avoid erroneous errors
+
 ## 0.14.0
 
 ### Minor Changes
