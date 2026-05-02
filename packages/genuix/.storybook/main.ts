@@ -15,6 +15,7 @@ const config: StorybookConfig = {
       options: {},
     },
     'storybook-addon-vue-slots',
+    'storybook-dark-mode',
   ],
 };
 

@@ -18,11 +18,18 @@ const preview: Preview = {
         ],
       },
     },
+    darkMode: {
+      classTarget: 'html',
+      darkClass: 'dark',
+      lightClass: '',
+      stylePreview: true,
+    },
     designToken: {
       files: {
         css: {
           'Primitives - Colors': 'src/tokens/primitives/base/color.css',
           'Primitives - Font Sizes': 'src/tokens/primitives/base/text.css',
+          'Primitives - Font Weights': 'src/tokens/primitives/base/font-weight.css',
           'Primitives - Line Heights': 'src/tokens/primitives/base/leading.css',
           'Primitives - Spacing': 'src/tokens/primitives/base/spacing.css',
           'Primitives - Sizing': 'src/tokens/primitives/base/sizing.css',

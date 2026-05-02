@@ -66,6 +66,7 @@
     "highlight.js": "^11.0.0",
     "storybook": "10.3.5",
     "storybook-addon-vue-slots": "^0.9.29",
+    "storybook-dark-mode": "^5.0.0",
     "storybook-design-token": "^5.0.0",
     "vite-plugin-dts": "^4.5.4",
     "vitest": "^4.1.4"
