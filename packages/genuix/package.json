@@ -65,6 +65,7 @@
     "@vitejs/plugin-vue": "^6.0.3",
     "@vitest/browser-playwright": "^4.1.4",
     "highlight.js": "^11.0.0",
+    "sass": "^1.99.0",
     "storybook": "10.3.5",
     "storybook-addon-vue-slots": "^0.9.29",
     "storybook-design-token": "^5.0.0",

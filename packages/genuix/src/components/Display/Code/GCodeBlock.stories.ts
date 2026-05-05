@@ -9,10 +9,11 @@ import type {
 import GCodeBlock from './GCodeBlock.vue';
 import {
   GCodeLanguage,
-  CodeBlockSemantic,
+  GCodeBlockSemantic,
+  GHighlightTheme,
 } from './types';
 import {
-  Prominence,
+  GProminence,
 } from '@/types';
 import {
   GIconName,
@@ -55,13 +56,22 @@ const meta = {
     },
     prominence: {
       control: 'select',
-      options: Object.values(Prominence),
-      description: 'Prominence level: tertiary, secondary, primary',
+      options: Object.values(GProminence),
+      description: 'GProminence level: tertiary, secondary, primary',
     },
     semantic: {
       control: 'select',
-      options: Object.values(CodeBlockSemantic),
+      options: Object.values(GCodeBlockSemantic),
       description: 'Color role for border, header, and language label',
+    },
+    highlightTheme: {
+      control: 'select',
+      options: Object.values(GHighlightTheme),
+      description: 'Built-in syntax highlight theme (auto-switches light/dark)',
+    },
+    showHeader: {
+      control: 'boolean',
+      description: 'Show or hide the header bar',
     },
   },
 } satisfies Meta;
@@ -154,7 +164,7 @@ export const AllSemanticsCodeBlockStory: Story = {
         story: 'All semantic colors with titles',
       },
       source: {
-        code: '<GCodeBlock id="sem-info" :language="GCodeLanguage.Bash" :code="\'npm install\'" :semantic="CodeBlockSemantic.Info" title="Installation" />',
+        code: '<GCodeBlock id="sem-info" :language="GCodeLanguage.Bash" :code="\'npm install\'" :semantic="GCodeBlockSemantic.Info" title="Installation" />',
       },
     },
   },
@@ -165,22 +175,22 @@ export const AllSemanticsCodeBlockStory: Story = {
     setup () {
       return {
         GCodeLanguage,
-        CodeBlockSemantic,
+        GCodeBlockSemantic,
       };
     },
     template: `
       <div class="flex flex-col gap-spacing-4">
-        <GCodeBlock id="sem-neutral" :language="GCodeLanguage.Bash" :code="'npm install @hdnax/genuix'" :semantic="CodeBlockSemantic.Neutral" title="Neutral" />
-        <GCodeBlock id="sem-info" :language="GCodeLanguage.Bash" :code="'npm install @hdnax/genuix'" :semantic="CodeBlockSemantic.Info" title="Installation" />
-        <GCodeBlock id="sem-danger" :language="GCodeLanguage.Bash" :code="'rm -rf /'" :semantic="CodeBlockSemantic.Danger" title="Do not run this" />
-        <GCodeBlock id="sem-warning" :language="GCodeLanguage.Typescript" :semantic="CodeBlockSemantic.Warning" :code="'// @deprecated Use fetchData() instead\\nfunction getData() { return fetch(\\'/api\\'); }'" title="Deprecated" />
-        <GCodeBlock id="sem-success" :language="GCodeLanguage.Bash" :semantic="CodeBlockSemantic.Success" :code="'vite v6.0.0 building...\\n✓ built in 1.2s'" title="Build output" />
+        <GCodeBlock id="sem-neutral" :language="GCodeLanguage.Bash" :code="'npm install @hdnax/genuix'" :semantic="GCodeBlockSemantic.Neutral" title="Neutral" />
+        <GCodeBlock id="sem-info" :language="GCodeLanguage.Bash" :code="'npm install @hdnax/genuix'" :semantic="GCodeBlockSemantic.Info" title="Installation" />
+        <GCodeBlock id="sem-danger" :language="GCodeLanguage.Bash" :code="'rm -rf /'" :semantic="GCodeBlockSemantic.Danger" title="Do not run this" />
+        <GCodeBlock id="sem-warning" :language="GCodeLanguage.Typescript" :semantic="GCodeBlockSemantic.Warning" :code="'// @deprecated Use fetchData() instead\\nfunction getData() { return fetch(\\'/api\\'); }'" title="Deprecated" />
+        <GCodeBlock id="sem-success" :language="GCodeLanguage.Bash" :semantic="GCodeBlockSemantic.Success" :code="'vite v6.0.0 building...\\n✓ built in 1.2s'" title="Build output" />
       </div>
     `,
   }),
 };
 
-export const AllProminencesCodeBlockStory: Story = {
+export const AllGProminencesCodeBlockStory: Story = {
   args: {
     id: 'prominences',
     language: GCodeLanguage.Bash,
@@ -192,7 +202,7 @@ export const AllProminencesCodeBlockStory: Story = {
         story: 'Tertiary, secondary, and primary prominences with info semantic',
       },
       source: {
-        code: '<GCodeBlock id="prom-secondary" :language="GCodeLanguage.Bash" :prominence="Prominence.Secondary" :semantic="CodeBlockSemantic.Info" :code="\'npm install\'" title="Secondary" />',
+        code: '<GCodeBlock id="prom-secondary" :language="GCodeLanguage.Bash" :prominence="GProminence.Secondary" :semantic="GCodeBlockSemantic.Info" :code="\'npm install\'" title="Secondary" />',
       },
     },
   },
@@ -203,15 +213,15 @@ export const AllProminencesCodeBlockStory: Story = {
     setup () {
       return {
         GCodeLanguage,
-        Prominence,
-        CodeBlockSemantic,
+        GProminence,
+        GCodeBlockSemantic,
       };
     },
     template: `
       <div class="flex flex-col gap-spacing-4">
-        <GCodeBlock id="prom-tertiary" :language="GCodeLanguage.Bash" :prominence="Prominence.Tertiary" :semantic="CodeBlockSemantic.Info" :code="'npm install @hdnax/genuix'" title="Tertiary (default)" />
-        <GCodeBlock id="prom-secondary" :language="GCodeLanguage.Bash" :prominence="Prominence.Secondary" :semantic="CodeBlockSemantic.Info" :code="'npm install @hdnax/genuix'" title="Secondary" />
-        <GCodeBlock id="prom-primary" :language="GCodeLanguage.Bash" :prominence="Prominence.Primary" :semantic="CodeBlockSemantic.Info" :code="'npm install @hdnax/genuix'" title="Primary" />
+        <GCodeBlock id="prom-tertiary" :language="GCodeLanguage.Bash" :prominence="GProminence.Tertiary" :semantic="GCodeBlockSemantic.Info" :code="'npm install @hdnax/genuix'" title="Tertiary (default)" />
+        <GCodeBlock id="prom-secondary" :language="GCodeLanguage.Bash" :prominence="GProminence.Secondary" :semantic="GCodeBlockSemantic.Info" :code="'npm install @hdnax/genuix'" title="Secondary" />
+        <GCodeBlock id="prom-primary" :language="GCodeLanguage.Bash" :prominence="GProminence.Primary" :semantic="GCodeBlockSemantic.Info" :code="'npm install @hdnax/genuix'" title="Primary" />
       </div>
     `,
   }),
@@ -232,6 +242,108 @@ export const LongTitleCodeBlockStory: Story = {
       },
       source: {
         code: '<GCodeBlock id="long-title" title="path/to/MyComponent.vue" :language="GCodeLanguage.Typescript" show-line-numbers :code="code" />',
+      },
+    },
+  },
+};
+
+export const AllHighlightThemesStory: Story = {
+  args: {
+    id: 'themes',
+    language: GCodeLanguage.Typescript,
+    code: '',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'All built-in highlight themes (auto-switch with dark mode)',
+      },
+    },
+  },
+  render: () => ({
+    components: {
+      GCodeBlock,
+    },
+    setup () {
+      return {
+        GCodeLanguage,
+        GHighlightTheme,
+      };
+    },
+    template: `
+      <div class="flex flex-col gap-spacing-4">
+        <GCodeBlock
+          v-for="theme in Object.values(GHighlightTheme)"
+          :key="theme"
+          :id="'theme-' + theme"
+          :language="GCodeLanguage.Typescript"
+          :highlight-theme="theme"
+          :title="theme"
+          show-line-numbers
+          :code="'interface User {\\n  id: number;\\n  name: string;\\n}\\n\\nfunction greet(user: User): string {\\n  // Return greeting\\n  return \\'Hello, \\' + user.name;\\n}'"
+        />
+      </div>
+    `,
+  }),
+};
+
+export const CustomBodyBgStory: Story = {
+  args: {
+    id: 'custom-bg',
+    language: GCodeLanguage.Typescript,
+    showLineNumbers: true,
+    highlightTheme: GHighlightTheme.TokyoNight,
+    code: `function hello() {
+  console.log("custom background");
+}`,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Code block with custom body background via style prop',
+      },
+    },
+  },
+  render: () => ({
+    components: {
+      GCodeBlock,
+    },
+    setup () {
+      return {
+        GCodeLanguage,
+        GHighlightTheme,
+      };
+    },
+    template: `
+      <GCodeBlock
+        id="custom-bg"
+        :language="GCodeLanguage.Typescript"
+        :highlight-theme="GHighlightTheme.TokyoNight"
+        show-line-numbers
+        class="gui-danger-bg"
+        :code="'function hello() {\\n  console.log(\\'custom background\\');\\n}'"
+      />
+    `,
+  }),
+};
+
+export const NoHeaderStory: Story = {
+  args: {
+    id: 'no-header',
+    language: GCodeLanguage.Typescript,
+    showLineNumbers: true,
+    showHeader: false,
+    code: `function hello() {
+  console.log("no header");
+}`,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Code block with header hidden',
+      },
+      source: {
+        code: '<GCodeBlock id="no-header" :language="GCodeLanguage.Typescript" :show-header="false" show-line-numbers :code="code" />',
       },
     },
   },

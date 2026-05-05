@@ -63,9 +63,7 @@ body {
 }
 
 :root .v-popper--theme-tooltip .v-popper__inner {
-  /* Tooltip uses inverted background */
-  background: var(--gui-neutral-solid);
-  /* Tooltip uses inverted foreground */
+  background: var(--color-neutral-12);
   color: var(--gui-neutral-bg);
   border: none;
 }

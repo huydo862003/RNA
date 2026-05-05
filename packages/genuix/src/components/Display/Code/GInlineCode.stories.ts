@@ -62,3 +62,26 @@ export const MultipleInlineCodeStory: Story = {
     `,
   }),
 };
+
+export const CustomBgInlineCodeStory: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Inline code with custom background via style override',
+      },
+      source: {
+        code: '<GInlineCode class="gui-danger-bg">warning</GInlineCode>',
+      },
+    },
+  },
+  render: () => ({
+    components: {
+      GInlineCode,
+    },
+    template: `
+      <p class="text-sm gui-neutral-fg">
+        Status: <GInlineCode style="--_inline-code-bg: #fef3c7">warning</GInlineCode> and <GInlineCode class="gui-danger-bg">success</GInlineCode>
+      </p>
+    `,
+  }),
+};

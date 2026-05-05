@@ -2,7 +2,7 @@
   <code
     v-bind="$attrs"
     :id="id"
-    :class="'inline-code'"
+    class="inline-code"
   >
     <slot />
   </code>
@@ -33,7 +33,7 @@ const {
   font-size: 0.9em;
   padding: 2px var(--spacing-xs);
   border-radius: var(--radius-sm);
-  background-color: var(--gui-neutral-bg-hover);
+  background-color: var(--_inline-code-bg, var(--gui-neutral-bg-hover));
   border: 1px solid var(--gui-neutral-border-subtle);
   color: var(--gui-neutral-fg);
 }

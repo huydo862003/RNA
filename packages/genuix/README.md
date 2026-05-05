@@ -148,3 +148,46 @@ So I ended up with `data-*` attributes, denoting the current state of the compon
 ```
 
 The `data-*` attribute is also queryable by parent CSS selectors (e.g. via `:has([data-state="error"])`), which none of the other approaches support.
+
+## `@import` CSS Inside a Selector
+
+When adding highlighting themes to `GCodeBlock`, I tried this approach by importing the `highlight.js` provided themes in the CSS selector:
+
+```vue
+<template>
+  <!-- highlightTheme can be github, github-dark, etc. -->
+  <div
+    id="code-block"
+    :theme="highlightTheme"
+  >
+  </div>
+</template>
+
+<style scoped>
+#code-block {
+  &.github {
+    @import 'highlight.js/styles/github.css';
+  }
+
+  &.github-dark {
+    @import 'highlight.js/styles/github-dark.css';
+  }
+}
+</style>
+```
+
+This built without errors, but styles failed to be applied. I checked the browser's CSS and it yielded some malformed CSS.
+
+I finally learnt that this was not supported, even with or without build tools.
+
+The solution I found is using `sass`:
+
+```scss
+@use "sass:module";
+
+#code-block {
+  &.github {
+    @include meta.load-css('highlight.js/styles/github.css');
+  }
+}
+```

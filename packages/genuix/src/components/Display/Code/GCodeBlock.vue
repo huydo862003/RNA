@@ -2,7 +2,13 @@
   <div
     v-bind="$attrs"
     :id="id"
-    :class="['code-block', { 'code-block--scroll': !wordWrap }]"
+    :class="[
+      'code-block',
+      {
+        'code-block--scroll': !wordWrap,
+        [highlightTheme]: true,
+      },
+    ]"
     :style="{
       '--_border': tokens.border,
       '--_header-bg': tokens.bg,
@@ -12,8 +18,9 @@
     }"
   >
     <div
+      v-if="showHeader"
       class="code-header"
-      :style="prominence === Prominence.Primary ? invertedTokens : undefined"
+      :style="prominence === GProminence.Primary ? invertedTokens : undefined"
     >
       <span
         class="code-title"
@@ -38,9 +45,9 @@
           placement="bottom-end"
         >
           <GButton
-            :prominence="ButtonProminence.Tertiary"
+            :prominence="GButtonProminence.Tertiary"
             :semantic="semantic"
-            :size="ButtonSize.Xs"
+            :size="GButtonSize.Xs"
             @click="clickCopyButton"
           >
             <GIcon :name="GIconName.Copy" />
@@ -98,7 +105,6 @@
  */
 
 import DOMPurify from 'dompurify';
-import 'highlight.js/styles/github.css';
 import {
   computed,
   ref,
@@ -109,10 +115,11 @@ import {
 } from './hljs';
 import {
   GCodeLanguageLabel,
+  GHighlightTheme,
 } from './types';
 import type {
   GCodeLanguage,
-  CodeBlockSemantic,
+  GCodeBlockSemantic,
 } from './types';
 import GRangeSelection1D from '@/components/Interaction/RangeSelection/range1D/GRangeSelection1D.vue';
 import GRangeItem1D from '@/components/Interaction/RangeSelection/range1D/GRangeItem1D.vue';
@@ -122,14 +129,14 @@ import {
 } from '@/components/Display/Icon/types';
 import GButton from '@/components/Input/Button/GButton.vue';
 import {
-  ButtonProminence,
-  ButtonSize,
+  GButtonProminence,
+  GButtonSize,
 } from '@/components/Input/Button/types';
 import GDismiss from '@/components/Interaction/Dismiss/GDismiss.vue';
 import GTooltip from '@/components/Overlay/Tooltip/GTooltip.vue';
 import {
-  Semantic,
-  Prominence,
+  GSemantic,
+  GProminence,
 } from '@/types';
 import {
   prominenceTokens,
@@ -148,8 +155,10 @@ const {
   language,
   showLineNumbers = false,
   wordWrap = true,
-  prominence = Prominence.Tertiary,
-  semantic = Semantic.Neutral,
+  showHeader = true,
+  prominence = GProminence.Tertiary,
+  semantic = GSemantic.Neutral,
+  highlightTheme = GHighlightTheme.Github,
 } = defineProps<{
   id: string;
   title?: string;
@@ -158,10 +167,13 @@ const {
   language: GCodeLanguage;
   showLineNumbers?: boolean;
   wordWrap?: boolean;
+  showHeader?: boolean;
   /** Prominence level: tertiary (default), secondary (tinted bg), primary (filled header) */
-  prominence?: Prominence;
+  prominence?: GProminence;
   /** Color role for block border, header, and language label */
-  semantic?: CodeBlockSemantic;
+  semantic?: GCodeBlockSemantic;
+  /** Built-in highlight color theme (auto-switches light/dark). Default: github */
+  highlightTheme?: GHighlightTheme;
 }>();
 
 /* Theme */
@@ -215,6 +227,10 @@ async function clickCopyButton () {
 }
 </script>
 
+<style lang="scss">
+@use './themes.scss';
+</style>
+
 <style scoped>
 @reference '@/style.css';
 
@@ -228,6 +244,7 @@ async function clickCopyButton () {
 .code-block--scroll {
   @apply overflow-x-auto;
 }
+
 
 .code-header {
   @apply px-3 py-xs gap-6 flex content-between items-center;
@@ -338,5 +355,6 @@ async function clickCopyButton () {
 .selected-code-line:hover {
   @apply gui-notice-bg-hover;
 }
+
 }
 </style>

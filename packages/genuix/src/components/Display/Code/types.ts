@@ -3,8 +3,8 @@
  */
 
 export {
-  Semantic as CodeBlockSemantic,
-  Prominence as CodeBlockProminence,
+  GSemantic as GCodeBlockSemantic,
+  GProminence as GCodeBlockProminence,
 } from '@/types';
 
 export enum GCodeLanguage {
@@ -27,6 +27,13 @@ export enum GCodeLanguage {
   Graphql = 'graphql',
   Markdown = 'markdown',
   Diff = 'diff',
+}
+
+export enum GHighlightTheme {
+  Github = 'github',
+  AtomOne = 'atom-one',
+  TokyoNight = 'tokyo-night',
+  RosePine = 'rose-pine',
 }
 
 /** Display names for languages (handles casing and abbreviations) */

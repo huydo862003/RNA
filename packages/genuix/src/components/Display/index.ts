@@ -28,7 +28,6 @@ export {
   default as GBreadcrumb,
 } from './Breadcrumb/GBreadcrumb.vue';
 
-
 // Avatar
 export {
   default as GAvatar,
@@ -94,11 +93,6 @@ export {
   GCodeLanguage,
   GCodeBlockProminence,
   GHighlightTheme,
-} from './Code/types';
-
-export type {
-  HighlightThemeColors,
-  HighlightThemePreset,
 } from './Code/types';
 
 // Collapsible
