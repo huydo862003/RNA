@@ -11,7 +11,7 @@ import {
 } from 'vue';
 import GCheckbox from './GCheckbox.vue';
 import {
-  Semantic,
+  GSemantic,
 } from '@/types';
 
 const meta = {
@@ -119,12 +119,12 @@ export const SemanticsStory: Story = {
     },
     setup () {
       return {
-        Semantic,
+        GSemantic,
       };
     },
     template: `
       <div class="flex flex-col gap-sm">
-        <GCheckbox :model-value="true" v-for="s in Object.values(Semantic)" :key="s" :semantic="s" :label="s" />
+        <GCheckbox :model-value="true" v-for="s in Object.values(GSemantic)" :key="s" :semantic="s" :label="s" />
       </div>
     `,
   }),

@@ -63,7 +63,7 @@ import type {
 } from './types';
 import {
   TAB_KEY,
-  TabPlacement,
+  GTabPlacement,
 } from './types';
 import GIcon from '@/components/Display/Icon/GIcon.vue';
 
@@ -78,13 +78,13 @@ const emit = defineEmits<{
 const {
   id = undefined,
   default: defaultTab = undefined,
-  placement = TabPlacement.Top,
+  placement = GTabPlacement.Top,
 } = defineProps<{
   id?: string;
   /** Name of the tab to activate by default */
   default?: string;
   /** Position of the tab bar */
-  placement?: TabPlacement;
+  placement?: GTabPlacement;
 }>();
 
 // Watch hash to navigate to a tab on a specific url
@@ -101,8 +101,8 @@ const triggerRefs = reactive(new Map<string, HTMLElement>());
 // Sliding indicator position
 const indicatorStyle = ref<Record<string, string>>({});
 const isHorizontal = computed(
-  () => placement === TabPlacement.Top
-    || placement === TabPlacement.Bottom,
+  () => placement === GTabPlacement.Top
+    || placement === GTabPlacement.Bottom,
 );
 
 // Slide the indicator

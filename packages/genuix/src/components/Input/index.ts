@@ -7,9 +7,9 @@ export {
 } from './Button/GButton.vue';
 
 export {
-  ButtonProminence,
-  ButtonSemantic,
-  ButtonSize,
+  GButtonProminence,
+  GButtonSemantic,
+  GButtonSize,
 } from './Button/types';
 
 export {
@@ -17,8 +17,8 @@ export {
 } from './Checkbox/GCheckbox.vue';
 
 export {
-  CheckboxSize,
-  CheckboxSemantic,
+  GCheckboxSize,
+  GCheckboxSemantic,
 } from './Checkbox/types';
 
 export {
@@ -26,8 +26,8 @@ export {
 } from './NumberInput/GNumberInput.vue';
 
 export {
-  NumberInputSize,
-  NumberInputState,
+  GNumberInputSize,
+  GNumberInputState,
 } from './NumberInput/types';
 
 export {
@@ -35,8 +35,8 @@ export {
 } from './RadioButton/GRadio.vue';
 
 export {
-  RadioSize,
-  RadioSemantic,
+  GRadioSize,
+  GRadioSemantic,
 } from './RadioButton/types';
 
 export {
@@ -44,9 +44,9 @@ export {
 } from './TextArea/GTextArea.vue';
 
 export {
-  TextAreaSize,
-  TextAreaState,
-  TextAreaResize,
+  GTextAreaSize,
+  GTextAreaState,
+  GTextAreaResize,
 } from './TextArea/types';
 
 export {
@@ -54,7 +54,7 @@ export {
 } from './Switch/GSwitch.vue';
 
 export {
-  SwitchSize,
+  GSwitchSize,
 } from './Switch/types';
 
 export {
@@ -62,8 +62,8 @@ export {
 } from './TextInput/GTextInput.vue';
 
 export {
-  TextInputSize,
-  TextInputState,
+  GTextInputSize,
+  GTextInputState,
   TEXT_INPUT_PATTERNS,
 } from './TextInput/types';
 
@@ -80,8 +80,8 @@ export {
 } from './MultiSelect/GMultiSelectOption.vue';
 
 export {
-  MultiSelectSize,
-  MultiSelectState,
+  GMultiSelectSize,
+  GMultiSelectState,
 } from './MultiSelect/types';
 
 export {
@@ -97,6 +97,7 @@ export {
 } from './Select/GSelectGroup.vue';
 
 export {
-  SelectSize,
-  SelectState,
+  GSelectSize,
+  GSelectState,
+  GSelectVariant,
 } from './Select/types';

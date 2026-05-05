@@ -11,8 +11,8 @@ import {
 } from 'vue';
 import GTextInput from './GTextInput.vue';
 import {
-  TextInputSize,
-  TextInputState,
+  GTextInputSize,
+  GTextInputState,
 } from './types';
 
 const meta = {
@@ -22,11 +22,11 @@ const meta = {
   argTypes: {
     size: {
       control: 'select',
-      options: Object.values(TextInputSize),
+      options: Object.values(GTextInputSize),
     },
     state: {
       control: 'select',
-      options: Object.values(TextInputState),
+      options: Object.values(GTextInputState),
     },
     disabled: {
       control: 'boolean',
@@ -94,16 +94,16 @@ export const SizesTextInputStory: Story = {
       const value = ref('Hello');
       return {
         value,
-        TextInputSize,
+        GTextInputSize,
       };
     },
     template: `
       <div class="p-spacing-4 flex flex-col gap-spacing-2 items-start">
-        <GTextInput v-model="value" :size="TextInputSize.Xs" />
-        <GTextInput v-model="value" :size="TextInputSize.Sm" />
-        <GTextInput v-model="value" :size="TextInputSize.Md" />
-        <GTextInput v-model="value" :size="TextInputSize.Lg" />
-        <GTextInput v-model="value" :size="TextInputSize.Xl" />
+        <GTextInput v-model="value" :size="GTextInputSize.Xs" />
+        <GTextInput v-model="value" :size="GTextInputSize.Sm" />
+        <GTextInput v-model="value" :size="GTextInputSize.Md" />
+        <GTextInput v-model="value" :size="GTextInputSize.Lg" />
+        <GTextInput v-model="value" :size="GTextInputSize.Xl" />
       </div>
     `,
   }),
@@ -126,26 +126,26 @@ export const StatesTextInputStory: Story = {
     },
     setup () {
       return {
-        TextInputState,
+        GTextInputState,
       };
     },
     template: `
       <div class="p-spacing-4 flex flex-col gap-spacing-3 items-start">
         <div>
           <p class="text-xs gui-neutral-fg-muted mb-spacing-1">Default</p>
-          <GTextInput :state="TextInputState.Default" placeholder="Default" />
+          <GTextInput :state="GTextInputState.Default" placeholder="Default" />
         </div>
         <div>
           <p class="text-xs gui-danger-fg mb-spacing-1">Error</p>
-          <GTextInput :state="TextInputState.Error" placeholder="Error" />
+          <GTextInput :state="GTextInputState.Error" placeholder="Error" />
         </div>
         <div>
           <p class="text-xs gui-warning-fg mb-spacing-1">Warning</p>
-          <GTextInput :state="TextInputState.Warning" placeholder="Warning" />
+          <GTextInput :state="GTextInputState.Warning" placeholder="Warning" />
         </div>
         <div>
           <p class="text-xs gui-success-fg mb-spacing-1">Success</p>
-          <GTextInput :state="TextInputState.Success" placeholder="Success" />
+          <GTextInput :state="GTextInputState.Success" placeholder="Success" />
         </div>
       </div>
     `,

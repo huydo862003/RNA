@@ -54,10 +54,10 @@
  */
 
 import type {
-  LogoSize,
+  GLogoSize,
 } from './types';
 import {
-  Size,
+  GSize,
 } from '@/types';
 
 defineOptions({
@@ -66,14 +66,14 @@ defineOptions({
 
 const {
   id = undefined,
-  size = Size.Md,
+  size = GSize.Md,
   src = undefined,
   alt = '',
   text = undefined,
   href = undefined,
 } = defineProps<{
   id?: string;
-  size?: LogoSize;
+  size?: GLogoSize;
   /** Brand image URL */
   src?: string;
   /** Alt text for image */

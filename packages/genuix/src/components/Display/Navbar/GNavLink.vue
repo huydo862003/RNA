@@ -55,7 +55,7 @@ const {
 
 @layer components {
 .nav-link {
-  @apply inline-flex items-center gap-xs text-xs no-underline gui-neutral-fg-muted px-sm py-xs rounded-sm;
+  @apply inline-flex items-center gap-xs text-xs no-underline gui-neutral-fg-muted px-sm py-xs rounded-sm cursor-pointer;
   transition: color var(--duration-fast) var(--ease-default), background var(--duration-fast) var(--ease-default);
 }
 

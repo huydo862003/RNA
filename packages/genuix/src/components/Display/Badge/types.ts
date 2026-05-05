@@ -3,16 +3,16 @@
  */
 
 import type {
-  PillColor,
+  GPillColor,
 } from '@/components/Display/Pill/types';
 
 export {
-  Size as BadgeSize,
+  GSize as GBadgeSize,
 } from '@/types';
 
-export enum BadgeStyle {
+export enum GBadgeStyle {
   Flat = 'flat',
   FlatSquare = 'flat-square',
 }
 
-export type BadgeColor = PillColor;
+export type GBadgeColor = GPillColor;

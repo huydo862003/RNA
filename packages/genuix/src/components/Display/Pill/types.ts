@@ -3,16 +3,20 @@
  */
 
 export {
-  Size as PillSize,
-  Prominence as PillProminence,
+  GSize as GPillSize,
+  GProminence as GPillProminence,
 } from '@/types';
 
-export enum PillColor {
+export enum GPillColor {
+  White = 'white',
+  Black = 'black',
   Gray = 'gray',
   Red = 'red',
   Pink = 'pink',
   Purple = 'purple',
+  Violet = 'violet',
   Blue = 'blue',
+  Cyan = 'cyan',
   Teal = 'teal',
   Green = 'green',
   Yellow = 'yellow',
@@ -26,60 +30,81 @@ export interface PillColorTokens {
   solid: string;
 }
 
-/* Radix UI Colors v3.0.0
+/*
  * bg = step 3 (tinted surface)
  * fg = step 12 (high-contrast text)
  * solid = step 9 (solid accent)
+ * White/Black use neutral primitive endpoints.
  */
-export const PILL_COLORS: Record<PillColor, PillColorTokens> = {
-  [PillColor.Gray]: {
-    bg: '#f0f0f3',
-    fg: '#1c2024',
-    solid: '#8b8d98',
+export const PILL_COLORS: Record<GPillColor, PillColorTokens> = {
+  [GPillColor.White]: {
+    bg: 'var(--color-neutral-1)',
+    fg: 'var(--color-neutral-12)',
+    solid: 'var(--color-neutral-1)',
   },
-  [PillColor.Red]: {
-    bg: '#feebec',
-    fg: '#641723',
-    solid: '#e5484d',
+  [GPillColor.Black]: {
+    bg: 'var(--color-neutral-12)',
+    fg: 'var(--color-neutral-1)',
+    solid: 'var(--color-neutral-12)',
   },
-  [PillColor.Pink]: {
-    bg: '#feeef8',
-    fg: '#651249',
-    solid: '#d6409f',
+  [GPillColor.Gray]: {
+    bg: 'var(--color-neutral-3)',
+    fg: 'var(--color-neutral-12)',
+    solid: 'var(--color-neutral-9)',
   },
-  [PillColor.Purple]: {
-    bg: '#f3e7fc',
-    fg: '#402060',
-    solid: '#8e4ec6',
+  [GPillColor.Red]: {
+    bg: 'var(--color-accent-red-3)',
+    fg: 'var(--color-accent-red-12)',
+    solid: 'var(--color-accent-red-9)',
   },
-  [PillColor.Blue]: {
-    bg: '#e6f4fe',
-    fg: '#113264',
-    solid: '#0090ff',
+  [GPillColor.Pink]: {
+    bg: 'var(--color-accent-pink-3)',
+    fg: 'var(--color-accent-pink-12)',
+    solid: 'var(--color-accent-pink-9)',
   },
-  [PillColor.Teal]: {
-    bg: '#e0f8f3',
-    fg: '#0d3d38',
-    solid: '#12a594',
+  [GPillColor.Purple]: {
+    bg: 'var(--color-accent-purple-3)',
+    fg: 'var(--color-accent-purple-12)',
+    solid: 'var(--color-accent-purple-9)',
   },
-  [PillColor.Green]: {
-    bg: '#e9f6e9',
-    fg: '#203c25',
-    solid: '#46a758',
+  [GPillColor.Violet]: {
+    bg: 'var(--color-accent-violet-3)',
+    fg: 'var(--color-accent-violet-12)',
+    solid: 'var(--color-accent-violet-9)',
   },
-  [PillColor.Yellow]: {
-    bg: '#fff7c2',
-    fg: '#4f3422',
-    solid: '#ffc53d',
+  [GPillColor.Blue]: {
+    bg: 'var(--color-accent-blue-3)',
+    fg: 'var(--color-accent-blue-12)',
+    solid: 'var(--color-accent-blue-9)',
   },
-  [PillColor.Orange]: {
-    bg: '#ffefd6',
-    fg: '#582d1d',
-    solid: '#f76b15',
+  [GPillColor.Cyan]: {
+    bg: 'var(--color-accent-cyan-3)',
+    fg: 'var(--color-accent-cyan-12)',
+    solid: 'var(--color-accent-cyan-9)',
   },
-  [PillColor.Brown]: {
-    bg: '#f2ede8',
-    fg: '#43302b',
-    solid: '#a18072',
+  [GPillColor.Teal]: {
+    bg: 'var(--color-accent-teal-3)',
+    fg: 'var(--color-accent-teal-12)',
+    solid: 'var(--color-accent-teal-9)',
+  },
+  [GPillColor.Green]: {
+    bg: 'var(--color-accent-green-3)',
+    fg: 'var(--color-accent-green-12)',
+    solid: 'var(--color-accent-green-9)',
+  },
+  [GPillColor.Yellow]: {
+    bg: 'var(--color-accent-yellow-3)',
+    fg: 'var(--color-accent-yellow-12)',
+    solid: 'var(--color-accent-yellow-9)',
+  },
+  [GPillColor.Orange]: {
+    bg: 'var(--color-accent-orange-3)',
+    fg: 'var(--color-accent-orange-12)',
+    solid: 'var(--color-accent-orange-9)',
+  },
+  [GPillColor.Brown]: {
+    bg: 'var(--color-accent-brown-3)',
+    fg: 'var(--color-accent-brown-12)',
+    solid: 'var(--color-accent-brown-9)',
   },
 };

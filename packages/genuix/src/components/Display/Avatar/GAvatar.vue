@@ -43,13 +43,13 @@
  */
 
 import {
-  AvatarShape,
+  GAvatarShape,
 } from './types';
 import type {
-  AvatarSize,
+  GAvatarSize,
 } from './types';
 import {
-  Size,
+  GSize,
 } from '@/types';
 import GTooltip from '@/components/Overlay/Tooltip/GTooltip.vue';
 
@@ -59,13 +59,13 @@ defineOptions({
 
 const {
   id = undefined,
-  size = Size.Md,
-  shape = AvatarShape.Circle,
+  size = GSize.Md,
+  shape = GAvatarShape.Circle,
   label = undefined,
 } = defineProps<{
   id?: string;
-  size?: AvatarSize;
-  shape?: AvatarShape;
+  size?: GAvatarSize;
+  shape?: GAvatarShape;
   /** Accessible name, also shown as tooltip on hover */
   label?: string;
 }>();

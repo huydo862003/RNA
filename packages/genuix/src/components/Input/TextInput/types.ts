@@ -3,10 +3,10 @@
  */
 
 export {
-  Size as TextInputSize,
+  GSize as GTextInputSize,
 } from '@/types';
 
-export enum TextInputState {
+export enum GTextInputState {
   Default = 'default',
   Error = 'error',
   Warning = 'warning',

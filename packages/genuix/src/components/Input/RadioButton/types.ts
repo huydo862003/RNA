@@ -3,6 +3,6 @@
  */
 
 export {
-  Size as RadioSize,
-  Semantic as RadioSemantic,
+  GSize as GRadioSize,
+  GSemantic as GRadioSemantic,
 } from '@/types';

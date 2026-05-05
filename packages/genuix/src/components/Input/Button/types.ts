@@ -3,7 +3,7 @@
  */
 
 export {
-  Semantic as ButtonSemantic,
-  Size as ButtonSize,
-  Prominence as ButtonProminence,
+  GSemantic as GButtonSemantic,
+  GSize as GButtonSize,
+  GProminence as GButtonProminence,
 } from '@/types';

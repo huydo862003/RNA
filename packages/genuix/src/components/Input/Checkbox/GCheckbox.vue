@@ -53,12 +53,12 @@ import {
   ref,
 } from 'vue';
 import type {
-  CheckboxSize,
+  GCheckboxSize,
 } from './types';
 import {
-  Size,
-  Semantic,
-  Prominence,
+  GSize,
+  GSemantic,
+  GProminence,
 } from '@/types';
 import {
   prominenceTokens,
@@ -79,20 +79,20 @@ const checked = defineModel<boolean>({
 const {
   id = undefined,
   name = undefined,
-  size = Size.Md,
-  semantic = Semantic.Neutral,
+  size = GSize.Md,
+  semantic = GSemantic.Neutral,
   disabled = false,
   label = undefined,
 } = defineProps<{
   id?: string;
   name?: string;
-  size?: CheckboxSize;
-  semantic?: Semantic;
+  size?: GCheckboxSize;
+  semantic?: GSemantic;
   disabled?: boolean;
   label?: string;
 }>();
 
-const tokens = computed(() => prominenceTokens(Prominence.Primary, semantic));
+const tokens = computed(() => prominenceTokens(GProminence.Primary, semantic));
 
 const inputRef = ref<HTMLInputElement | null>(null);
 

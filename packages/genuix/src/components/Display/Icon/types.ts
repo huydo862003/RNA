@@ -3,6 +3,7 @@
  */
 
 import {
+  PhArrowClockwise,
   PhArrowDown,
   PhArrowFatLinesUp,
   PhArrowFatUp,
@@ -18,6 +19,7 @@ import {
   PhBell,
   PhBook,
   PhBookOpen,
+  PhBooks,
   PhBrain,
   PhCalendar,
   PhCards,
@@ -31,10 +33,12 @@ import {
   PhChat,
   PhCheck,
   PhCheckCircle,
+  PhCheckSquare,
   PhClipboard,
   PhClock,
   PhCode,
   PhCommand,
+  PhCompass,
   PhCopy,
   PhCrosshair,
   PhDatabase,
@@ -47,6 +51,8 @@ import {
   PhEyeSlash,
   PhFile,
   PhFlag,
+  PhFlashlight,
+  PhFloppyDisk,
   PhFolder,
   PhFrameCorners,
   PhFunnel,
@@ -55,22 +61,27 @@ import {
   PhGlobe,
   PhGraph,
   PhGridFour,
+  PhHash,
   PhHeart,
   PhHouse,
   PhImage,
   PhInfo,
   PhKeyReturn,
+  PhLightbulb,
   PhLightning,
   PhLink,
   PhList,
+  PhListBullets,
   PhLock,
   PhLockOpen,
   PhMagicWand,
   PhMagnifyingGlass,
   PhMapPinSimple,
+  PhMapTrifold,
   PhMinus,
   PhMoon,
   PhNewspaper,
+  PhNotebook,
   PhOption,
   PhPackage,
   PhPaperPlaneTilt,
@@ -84,6 +95,8 @@ import {
   PhReadCvLogo,
   PhRss,
   PhShareNetwork,
+  PhSidebar,
+  PhSidebarSimple,
   PhSignIn,
   PhSignOut,
   PhSliders,
@@ -94,6 +107,8 @@ import {
   PhSun,
   PhTag,
   PhTerminal,
+  PhTextAa,
+  PhToggleLeft,
   PhTrash,
   PhTreeStructure,
   PhUploadSimple,
@@ -124,7 +139,11 @@ export enum GIconName {
   CaretDoubleUp = 'caret-double-up',
   CaretDoubleDown = 'caret-double-down',
   MapPin = 'map-pin',
+  MapTrifold = 'map-trifold',
   Crosshair = 'crosshair',
+  Compass = 'compass',
+  ArrowClockwise = 'arrow-clockwise',
+  SidebarSimple = 'sidebar-simple',
 
   // Actions
   Plus = 'plus',
@@ -141,6 +160,8 @@ export enum GIconName {
   ExternalLink = 'external-link',
   PencilSimple = 'pencil-simple',
   FrameCorners = 'frame-corners',
+  FloppyDisk = 'floppy-disk',
+  CheckSquare = 'check-square',
 
   // UI
   Search = 'search',
@@ -156,6 +177,8 @@ export enum GIconName {
   EyeSlash = 'eye-slash',
   Expand = 'expand',
   Collapse = 'collapse',
+  Sidebar = 'sidebar',
+  ToggleLeft = 'toggle-left',
 
   // Status
   Info = 'info',
@@ -183,6 +206,11 @@ export enum GIconName {
   Rss = 'rss',
   ReadCvLogo = 'read-cv-logo',
   Package = 'package',
+  Books = 'books',
+  Notebook = 'notebook',
+  TextAa = 'text-aa',
+  Hash = 'hash',
+  ListBullets = 'list-bullets',
 
   // Communication
   Chat = 'chat',
@@ -224,6 +252,8 @@ export enum GIconName {
   Clipboard = 'clipboard',
   Brain = 'brain',
   Cards = 'cards',
+  Lightbulb = 'lightbulb',
+  Flashlight = 'flashlight',
 
   // Keyboard
   KeyReturn = 'key-return',
@@ -252,7 +282,11 @@ export const iconMap: Record<GIconName, Component> = {
   [GIconName.CaretDoubleUp]: PhCaretDoubleUp,
   [GIconName.CaretDoubleDown]: PhCaretDoubleDown,
   [GIconName.MapPin]: PhMapPinSimple,
+  [GIconName.MapTrifold]: PhMapTrifold,
   [GIconName.Crosshair]: PhCrosshair,
+  [GIconName.Compass]: PhCompass,
+  [GIconName.ArrowClockwise]: PhArrowClockwise,
+  [GIconName.SidebarSimple]: PhSidebarSimple,
 
   // Actions
   [GIconName.Plus]: PhPlus,
@@ -269,6 +303,8 @@ export const iconMap: Record<GIconName, Component> = {
   [GIconName.ExternalLink]: PhArrowSquareOut,
   [GIconName.PencilSimple]: PhPencilSimple,
   [GIconName.FrameCorners]: PhFrameCorners,
+  [GIconName.FloppyDisk]: PhFloppyDisk,
+  [GIconName.CheckSquare]: PhCheckSquare,
 
   // UI
   [GIconName.Search]: PhMagnifyingGlass,
@@ -284,6 +320,8 @@ export const iconMap: Record<GIconName, Component> = {
   [GIconName.EyeSlash]: PhEyeSlash,
   [GIconName.Expand]: PhArrowsOut,
   [GIconName.Collapse]: PhArrowsIn,
+  [GIconName.Sidebar]: PhSidebar,
+  [GIconName.ToggleLeft]: PhToggleLeft,
 
   // Status
   [GIconName.Info]: PhInfo,
@@ -311,6 +349,11 @@ export const iconMap: Record<GIconName, Component> = {
   [GIconName.Rss]: PhRss,
   [GIconName.ReadCvLogo]: PhReadCvLogo,
   [GIconName.Package]: PhPackage,
+  [GIconName.Books]: PhBooks,
+  [GIconName.Notebook]: PhNotebook,
+  [GIconName.TextAa]: PhTextAa,
+  [GIconName.Hash]: PhHash,
+  [GIconName.ListBullets]: PhListBullets,
 
   // Communication
   [GIconName.Chat]: PhChat,
@@ -352,6 +395,8 @@ export const iconMap: Record<GIconName, Component> = {
   [GIconName.Clipboard]: PhClipboard,
   [GIconName.Brain]: PhBrain,
   [GIconName.Cards]: PhCards,
+  [GIconName.Lightbulb]: PhLightbulb,
+  [GIconName.Flashlight]: PhFlashlight,
 
   // Keyboard
   [GIconName.KeyReturn]: PhKeyReturn,

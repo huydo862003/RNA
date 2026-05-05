@@ -12,10 +12,10 @@ import type {
 } from '@/components/Display/Icon/types';
 
 export {
-  Size as TabSize,
+  GSize as GTabSize,
 } from '@/types';
 
-export enum TabPlacement {
+export enum GTabPlacement {
   Top = 'top',
   Bottom = 'bottom',
   Left = 'left',

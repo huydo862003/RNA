@@ -11,10 +11,10 @@ import {
 } from 'vue';
 import GNumberInput from './GNumberInput.vue';
 import {
-  NumberInputState,
+  GNumberInputState,
 } from './types';
 import {
-  Size,
+  GSize,
 } from '@/types';
 
 const meta = {
@@ -99,12 +99,12 @@ export const SizesStory: Story = {
       const val = ref(42);
       return {
         val,
-        Size,
+        GSize,
       };
     },
     template: `
       <div class="flex flex-col gap-sm items-start">
-        <div v-for="s in Object.values(Size)" :key="s" class="flex items-center gap-sm">
+        <div v-for="s in Object.values(GSize)" :key="s" class="flex items-center gap-sm">
           <span class="text-xs gui-neutral-fg-muted w-8">{{ s }}</span>
           <GNumberInput v-model="val" :size="s" />
         </div>
@@ -132,12 +132,12 @@ export const StatesStory: Story = {
       const val = ref(5);
       return {
         val,
-        NumberInputState,
+        GNumberInputState,
       };
     },
     template: `
       <div class="flex flex-col gap-sm items-start">
-        <div v-for="s in Object.values(NumberInputState)" :key="s" class="flex items-center gap-sm">
+        <div v-for="s in Object.values(GNumberInputState)" :key="s" class="flex items-center gap-sm">
           <span class="text-xs gui-neutral-fg-muted w-16">{{ s }}</span>
           <GNumberInput v-model="val" :state="s" />
         </div>

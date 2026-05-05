@@ -3,6 +3,6 @@
  */
 
 export {
-  Size as SwitchSize,
-  Semantic as SwitchSemantic,
+  GSize as GSwitchSize,
+  GSemantic as GSwitchSemantic,
 } from '@/types';

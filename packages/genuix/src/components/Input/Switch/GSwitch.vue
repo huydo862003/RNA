@@ -27,8 +27,8 @@
  */
 
 import {
-  SwitchSize,
-  SwitchSemantic,
+  GSwitchSize,
+  GSwitchSemantic,
 } from './types';
 
 defineOptions({
@@ -39,14 +39,14 @@ const {
   id = undefined,
   modelValue = false,
   disabled = false,
-  size = SwitchSize.Md,
-  semantic = SwitchSemantic.Neutral,
+  size = GSwitchSize.Md,
+  semantic = GSwitchSemantic.Neutral,
 } = defineProps<{
   id?: string;
   modelValue?: boolean;
   disabled?: boolean;
-  size?: SwitchSize;
-  semantic?: SwitchSemantic;
+  size?: GSwitchSize;
+  semantic?: GSwitchSemantic;
 }>();
 
 const emit = defineEmits<{

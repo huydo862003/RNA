@@ -3,10 +3,10 @@
  */
 
 export {
-  Size as NumberInputSize,
+  GSize as GNumberInputSize,
 } from '@/types';
 
-export enum NumberInputState {
+export enum GNumberInputState {
   Default = 'default',
   Error = 'error',
   Warning = 'warning',

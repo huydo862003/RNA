@@ -8,8 +8,8 @@ import type {
 } from '@storybook/vue3-vite';
 import GSpinner from './GSpinner.vue';
 import {
-  SpinnerSize,
-  SpinnerSpeed,
+  GSpinnerSize,
+  GSpinnerSpeed,
 } from './types';
 
 const meta = {
@@ -19,12 +19,12 @@ const meta = {
   argTypes: {
     size: {
       control: 'select',
-      options: Object.values(SpinnerSize),
+      options: Object.values(GSpinnerSize),
       description: 'Spinner size',
     },
     speed: {
       control: 'select',
-      options: Object.values(SpinnerSpeed),
+      options: Object.values(GSpinnerSpeed),
       description: 'Spin speed',
     },
     label: {
@@ -53,7 +53,7 @@ const render: Story['render'] = (args) => ({
 
 export const DefaultSpinnerStory: Story = {
   args: {
-    size: SpinnerSize.Md,
+    size: GSpinnerSize.Md,
   },
   parameters: {
     docs: {
@@ -75,7 +75,7 @@ export const AllSizesSpinnerStory: Story = {
         story: 'All sizes side by side',
       },
       source: {
-        code: '<GSpinner :size="SpinnerSize.Lg" />',
+        code: '<GSpinner :size="GSpinnerSize.Lg" />',
       },
     },
   },
@@ -85,7 +85,7 @@ export const AllSizesSpinnerStory: Story = {
     },
     setup () {
       return {
-        sizes: Object.values(SpinnerSize),
+        sizes: Object.values(GSpinnerSize),
       };
     },
     template: `
@@ -103,7 +103,7 @@ export const AllSpeedsSpinnerStory: Story = {
         story: 'All speeds side by side',
       },
       source: {
-        code: '<GSpinner :speed="SpinnerSpeed.Slow" />',
+        code: '<GSpinner :speed="GSpinnerSpeed.Slow" />',
       },
     },
   },
@@ -113,7 +113,7 @@ export const AllSpeedsSpinnerStory: Story = {
     },
     setup () {
       return {
-        speeds: Object.values(SpinnerSpeed),
+        speeds: Object.values(GSpinnerSpeed),
       };
     },
     template: `

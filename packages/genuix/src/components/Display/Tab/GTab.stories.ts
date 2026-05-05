@@ -9,7 +9,7 @@ import type {
 import GTab from './GTab.vue';
 import GTabPanel from './GTabPanel.vue';
 import {
-  TabPlacement,
+  GTabPlacement,
 } from './types';
 import {
   GIconName,
@@ -251,7 +251,7 @@ export const PlacementStory: Story = {
   parameters: {
     docs: {
       source: {
-        code: `<GTab :placement="TabPlacement.Left">
+        code: `<GTab :placement="GTabPlacement.Left">
   <GTabPanel name="Tab A" :icon="GIconName.Home">
     <p>Left placement content A.</p>
   </GTabPanel>
@@ -269,7 +269,7 @@ export const PlacementStory: Story = {
     },
     setup () {
       return {
-        TabPlacement,
+        GTabPlacement,
         GIconName,
       };
     },
@@ -277,28 +277,28 @@ export const PlacementStory: Story = {
       <div class="flex flex-col gap-lg">
         <div>
           <p class="text-xs gui-neutral-fg-muted mb-sm font-bold">Top (default)</p>
-          <GTab :placement="TabPlacement.Top">
+          <GTab :placement="GTabPlacement.Top">
             <GTabPanel name="Tab A"><div class="p-md text-sm gui-neutral-fg-muted">Top placement content A.</div></GTabPanel>
             <GTabPanel name="Tab B"><div class="p-md text-sm gui-neutral-fg-muted">Top placement content B.</div></GTabPanel>
           </GTab>
         </div>
         <div>
           <p class="text-xs gui-neutral-fg-muted mb-sm font-bold">Bottom</p>
-          <GTab :placement="TabPlacement.Bottom">
+          <GTab :placement="GTabPlacement.Bottom">
             <GTabPanel name="Tab A"><div class="p-md text-sm gui-neutral-fg-muted">Bottom placement content A.</div></GTabPanel>
             <GTabPanel name="Tab B"><div class="p-md text-sm gui-neutral-fg-muted">Bottom placement content B.</div></GTabPanel>
           </GTab>
         </div>
         <div>
           <p class="text-xs gui-neutral-fg-muted mb-sm font-bold">Left</p>
-          <GTab :placement="TabPlacement.Left" class="h-40">
+          <GTab :placement="GTabPlacement.Left" class="h-40">
             <GTabPanel name="Tab A" :icon="GIconName.Home"><div class="p-md text-sm gui-neutral-fg-muted">Left placement content A.</div></GTabPanel>
             <GTabPanel name="Tab B" :icon="GIconName.Gear"><div class="p-md text-sm gui-neutral-fg-muted">Left placement content B.</div></GTabPanel>
           </GTab>
         </div>
         <div>
           <p class="text-xs gui-neutral-fg-muted mb-sm font-bold">Right</p>
-          <GTab :placement="TabPlacement.Right" class="h-40">
+          <GTab :placement="GTabPlacement.Right" class="h-40">
             <GTabPanel name="Tab A" :icon="GIconName.Home"><div class="p-md text-sm gui-neutral-fg-muted">Right placement content A.</div></GTabPanel>
             <GTabPanel name="Tab B" :icon="GIconName.Gear"><div class="p-md text-sm gui-neutral-fg-muted">Right placement content B.</div></GTabPanel>
           </GTab>

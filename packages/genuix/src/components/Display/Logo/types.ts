@@ -3,5 +3,5 @@
  */
 
 export {
-  Size as LogoSize,
+  GSize as GLogoSize,
 } from '@/types';

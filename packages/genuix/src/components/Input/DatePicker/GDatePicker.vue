@@ -124,7 +124,7 @@ import {
   watch,
 } from 'vue';
 import {
-  DatePickerSize,
+  GDatePickerSize,
 } from './types';
 import {
   formatDate,
@@ -135,8 +135,8 @@ import {
   prominenceTokens,
 } from '@/utils/prominence';
 import {
-  Prominence,
-  Semantic,
+  GProminence,
+  GSemantic,
 } from '@/types';
 import GDropdown from '@/components/Overlay/Dropdown/GDropdown.vue';
 import GIcon from '@/components/Display/Icon/GIcon.vue';
@@ -150,17 +150,17 @@ defineOptions({
 
 const {
   id = undefined,
-  size = DatePickerSize.Md,
+  size = GDatePickerSize.Md,
   disabled = false,
   placeholder = 'No Date',
 } = defineProps<{
   id?: string;
-  size?: DatePickerSize;
+  size?: GDatePickerSize;
   disabled?: boolean;
   placeholder?: string;
 }>();
 
-const tokens = prominenceTokens(Prominence.Ghost, Semantic.Neutral);
+const tokens = prominenceTokens(GProminence.Ghost, GSemantic.Neutral);
 
 // Displayed date
 const displayDate = ref(placeholder);

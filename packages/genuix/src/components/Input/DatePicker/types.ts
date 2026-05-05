@@ -1,3 +1,3 @@
 export {
-  Size as DatePickerSize,
+  GSize as GDatePickerSize,
 } from '@/types';

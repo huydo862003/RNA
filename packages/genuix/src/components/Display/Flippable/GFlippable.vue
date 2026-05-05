@@ -6,15 +6,15 @@
       'flippable',
       {
         'is-flipped': isFlipped,
-        'is-vertical': direction === FlipDirection.Vertical,
-        'is-horizontal': direction === FlipDirection.Horizontal,
+        'is-vertical': direction === GFlipDirection.Vertical,
+        'is-horizontal': direction === GFlipDirection.Horizontal,
         'is-disabled': disabled,
-        'trigger-on-click': trigger === FlipTrigger.Click,
+        'trigger-on-click': trigger === GFlipTrigger.Click,
       },
     ]"
-    @click="trigger === FlipTrigger.Click && flip()"
-    @mouseenter="trigger === FlipTrigger.Hover && showBack()"
-    @mouseleave="trigger === FlipTrigger.Hover && showFront()"
+    @click="trigger === GFlipTrigger.Click && flip()"
+    @mouseenter="trigger === GFlipTrigger.Hover && showBack()"
+    @mouseleave="trigger === GFlipTrigger.Hover && showFront()"
   >
     <div class="flippable-front">
       <slot name="front" />
@@ -36,8 +36,8 @@ import {
   watch,
 } from 'vue';
 import {
-  FlipDirection,
-  FlipTrigger,
+  GFlipDirection,
+  GFlipTrigger,
 } from './types';
 
 defineOptions({
@@ -48,14 +48,14 @@ const {
   id = undefined,
   flipped: initialState = false,
   disabled = false,
-  direction = FlipDirection.Horizontal,
-  trigger = FlipTrigger.Click,
+  direction = GFlipDirection.Horizontal,
+  trigger = GFlipTrigger.Click,
 } = defineProps<{
   id?: string;
   flipped?: boolean;
   disabled?: boolean;
-  direction?: FlipDirection;
-  trigger?: FlipTrigger;
+  direction?: GFlipDirection;
+  trigger?: GFlipTrigger;
 }>();
 
 const isFlipped = ref(initialState);

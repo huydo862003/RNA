@@ -47,22 +47,22 @@ body {
   }
 }
 
-.v-popper--theme-dropdown .v-popper__inner {
+:root .v-popper--theme-dropdown .v-popper__inner {
   background: var(--gui-neutral-bg);
   color: var(--gui-neutral-fg);
   border: 1px solid var(--gui-neutral-border-subtle);
   box-shadow: var(--shadow-md);
 }
 
-.v-popper--theme-dropdown .v-popper__arrow-inner {
+:root .v-popper--theme-dropdown .v-popper__arrow-inner {
   border-color: var(--gui-neutral-bg);
 }
 
-.v-popper--theme-dropdown .v-popper__arrow-outer {
+:root .v-popper--theme-dropdown .v-popper__arrow-outer {
   border-color: var(--gui-neutral-border-subtle);
 }
 
-.v-popper--theme-tooltip .v-popper__inner {
+:root .v-popper--theme-tooltip .v-popper__inner {
   /* Tooltip uses inverted background */
   background: var(--gui-neutral-solid);
   /* Tooltip uses inverted foreground */

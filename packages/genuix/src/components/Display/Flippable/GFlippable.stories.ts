@@ -11,8 +11,8 @@ import {
 } from 'vue';
 import GFlippable from './GFlippable.vue';
 import {
-  FlipDirection,
-  FlipTrigger,
+  GFlipDirection,
+  GFlipTrigger,
 } from './types';
 
 const meta = {
@@ -30,12 +30,12 @@ const meta = {
     },
     direction: {
       control: 'select',
-      options: Object.values(FlipDirection),
+      options: Object.values(GFlipDirection),
       description: 'Flip axis',
     },
     trigger: {
       control: 'select',
-      options: Object.values(FlipTrigger),
+      options: Object.values(GFlipTrigger),
       description: 'What triggers flip. Click (default), hover, or manual',
     },
   },
@@ -73,7 +73,7 @@ const render: Story['render'] = (args) => ({
 export const DefaultFlipStory: Story = {
   args: {
     flipped: false,
-    direction: FlipDirection.Horizontal,
+    direction: GFlipDirection.Horizontal,
   },
   parameters: {
     docs: {
@@ -94,7 +94,7 @@ export const DefaultFlipStory: Story = {
 export const FlippedFlipStory: Story = {
   args: {
     flipped: true,
-    direction: FlipDirection.Horizontal,
+    direction: GFlipDirection.Horizontal,
   },
   parameters: {
     docs: {
@@ -115,7 +115,7 @@ export const FlippedFlipStory: Story = {
 export const VerticalFlipStory: Story = {
   args: {
     flipped: false,
-    direction: FlipDirection.Vertical,
+    direction: GFlipDirection.Vertical,
   },
   parameters: {
     docs: {
@@ -123,7 +123,7 @@ export const VerticalFlipStory: Story = {
         story: 'Vertical flip axis',
       },
       source: {
-        code: `<GFlippable :direction="FlipDirection.Vertical">
+        code: `<GFlippable :direction="GFlipDirection.Vertical">
   <template #front>Front</template>
   <template #back>Back</template>
 </GFlippable>`,
@@ -136,7 +136,7 @@ export const VerticalFlipStory: Story = {
 export const HoverFlipStory: Story = {
   args: {
     flipped: false,
-    trigger: FlipTrigger.Hover,
+    trigger: GFlipTrigger.Hover,
   },
   parameters: {
     docs: {
@@ -144,7 +144,7 @@ export const HoverFlipStory: Story = {
         story: 'Flip on hover, revert on leave',
       },
       source: {
-        code: `<GFlippable :trigger="FlipTrigger.Hover">
+        code: `<GFlippable :trigger="GFlipTrigger.Hover">
   <template #front>Front</template>
   <template #back>Back</template>
 </GFlippable>`,
@@ -178,7 +178,7 @@ export const DisabledFlipStory: Story = {
 export const ProgrammaticFlipStory: Story = {
   args: {
     flipped: false,
-    trigger: FlipTrigger.Manual,
+    trigger: GFlipTrigger.Manual,
   },
   parameters: {
     docs: {
@@ -186,7 +186,7 @@ export const ProgrammaticFlipStory: Story = {
         story: 'Manual trigger, flip via exposed method',
       },
       source: {
-        code: `<GFlippable :trigger="FlipTrigger.Manual" ref="flippable">
+        code: `<GFlippable :trigger="GFlipTrigger.Manual" ref="flippable">
   <template #front>Front</template>
   <template #back>Back</template>
 </GFlippable>

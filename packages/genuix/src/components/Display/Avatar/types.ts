@@ -3,10 +3,10 @@
  */
 
 export {
-  Size as AvatarSize,
+  GSize as GAvatarSize,
 } from '@/types';
 
-export enum AvatarShape {
+export enum GAvatarShape {
   Circle = 'circle',
   Square = 'square',
 }

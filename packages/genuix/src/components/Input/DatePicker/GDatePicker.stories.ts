@@ -14,7 +14,7 @@ import {
 } from 'luxon';
 import GDatePicker from './GDatePicker.vue';
 import {
-  DatePickerSize,
+  GDatePickerSize,
 } from './types';
 
 const meta = {
@@ -24,7 +24,7 @@ const meta = {
   argTypes: {
     size: {
       control: 'select',
-      options: Object.values(DatePickerSize),
+      options: Object.values(GDatePickerSize),
     },
     disabled: {
       control: 'boolean',
@@ -121,16 +121,16 @@ export const SizesDatePickerStory: Story = {
       const date = ref(DateTime.now());
       return {
         date,
-        DatePickerSize,
+        GDatePickerSize,
       };
     },
     template: `
       <div class="p-spacing-4 flex flex-col gap-spacing-2 items-start">
-        <GDatePicker v-model="date" :size="DatePickerSize.Xs" />
-        <GDatePicker v-model="date" :size="DatePickerSize.Sm" />
-        <GDatePicker v-model="date" :size="DatePickerSize.Md" />
-        <GDatePicker v-model="date" :size="DatePickerSize.Lg" />
-        <GDatePicker v-model="date" :size="DatePickerSize.Xl" />
+        <GDatePicker v-model="date" :size="GDatePickerSize.Xs" />
+        <GDatePicker v-model="date" :size="GDatePickerSize.Sm" />
+        <GDatePicker v-model="date" :size="GDatePickerSize.Md" />
+        <GDatePicker v-model="date" :size="GDatePickerSize.Lg" />
+        <GDatePicker v-model="date" :size="GDatePickerSize.Xl" />
       </div>
     `,
   }),

@@ -3,6 +3,6 @@
  */
 
 export {
-  Size as CheckboxSize,
-  Semantic as CheckboxSemantic,
+  GSize as GCheckboxSize,
+  GSemantic as GCheckboxSemantic,
 } from '@/types';

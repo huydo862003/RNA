@@ -28,8 +28,8 @@ import {
   prominenceTokens,
 } from '@/utils/prominence';
 import {
-  Prominence,
-  Semantic,
+  GProminence,
+  GSemantic,
 } from '@/types';
 
 defineOptions({
@@ -39,16 +39,16 @@ defineOptions({
 const {
   id = undefined,
   tex,
-  prominence = Prominence.Tertiary,
-  semantic = Semantic.Neutral,
+  prominence = GProminence.Tertiary,
+  semantic = GSemantic.Neutral,
 } = defineProps<{
   id?: string;
   /** LaTeX expression to render as block */
   tex: string;
   /** Visual prominence */
-  prominence?: Prominence;
+  prominence?: GProminence;
   /** Color role */
-  semantic?: Semantic;
+  semantic?: GSemantic;
 }>();
 
 const tokens = computed(() => prominenceTokens(prominence, semantic));

@@ -8,31 +8,37 @@ import type {
   Ref,
 } from 'vue';
 import type {
-  PillColor,
+  GPillColor,
 } from '@/components/Display/Pill/types';
 import type {
-  Size,
+  GSize,
 } from '@/types';
 
 export {
-  Size as MultiSelectSize,
+  GSize as GMultiSelectSize,
 } from '@/types';
 
-export enum MultiSelectState {
+export enum GMultiSelectState {
   Default = 'default',
   Error = 'error',
   Warning = 'warning',
   Success = 'success',
 }
 
+export enum GMultiSelectVariant {
+  Pill = 'pill',
+  Box = 'box',
+}
+
 export interface MultiSelectOptionRegistration {
   label: string;
-  color?: PillColor;
+  color?: GPillColor;
   visible: boolean;
 }
 
 export interface MultiSelectContext {
-  size: Size;
+  size: GSize;
+  variant: GMultiSelectVariant;
   selectedValues: DeepReadonly<Ref<string[]>>;
   searchValue: DeepReadonly<Ref<string>>;
   focusedValue: DeepReadonly<Ref<string | undefined>>;

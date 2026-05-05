@@ -88,7 +88,7 @@ provide(NAVBAR_KEY, {
 }
 
 .navbar-right {
-  @apply hidden sm:flex items-center gap-md ml-auto;
+  @apply hidden sm:flex items-center gap-xs ml-auto;
 }
 
 .navbar-hamburger {

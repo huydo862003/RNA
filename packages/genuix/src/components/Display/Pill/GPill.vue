@@ -39,12 +39,12 @@ import {
   computed,
 } from 'vue';
 import {
-  PillSize,
-  PillColor,
+  GPillSize,
+  GPillColor,
   PILL_COLORS,
 } from './types';
 import {
-  Prominence,
+  GProminence,
 } from '@/types';
 
 defineOptions({
@@ -53,39 +53,39 @@ defineOptions({
 
 const {
   id = undefined,
-  size = PillSize.Md,
-  color = PillColor.Gray,
-  prominence = Prominence.Secondary,
+  size = GPillSize.Md,
+  color = GPillColor.Gray,
+  prominence = GProminence.Secondary,
 } = defineProps<{
   id?: string;
-  size?: PillSize;
-  color?: PillColor;
-  prominence?: Prominence;
+  size?: GPillSize;
+  color?: GPillColor;
+  prominence?: GProminence;
 }>();
 
 const tokens = computed(() => {
-  const c = PILL_COLORS[color] ?? PILL_COLORS[PillColor.Gray];
+  const c = PILL_COLORS[color] ?? PILL_COLORS[GPillColor.Gray];
 
   switch (prominence) {
-  case Prominence.Primary:
+  case GProminence.Primary:
     return {
       bg: c.solid,
       fg: '#ffffff',
       border: 'transparent',
     };
-  case Prominence.Secondary:
+  case GProminence.Secondary:
     return {
       bg: c.bg,
       fg: c.fg,
       border: 'transparent',
     };
-  case Prominence.Tertiary:
+  case GProminence.Tertiary:
     return {
       bg: 'transparent',
       fg: c.fg,
       border: c.solid,
     };
-  case Prominence.Ghost:
+  case GProminence.Ghost:
     return {
       bg: 'transparent',
       fg: c.fg,
@@ -109,7 +109,7 @@ const tokens = computed(() => {
 
 @layer components {
 .pill {
-  @apply inline-flex items-center gap-xs font-medium whitespace-nowrap select-none rounded-xl;
+  @apply inline-flex items-center gap-xs font-normal whitespace-nowrap select-none rounded-xl;
   background: var(--_bg);
   color: var(--_fg);
   border: 1px solid var(--_border);

@@ -14,6 +14,7 @@
   >
     <slot>
       <GPill
+        v-if="isPill"
         class="max-w-full"
         :size="ctx.size"
         :color="pillColor"
@@ -26,6 +27,10 @@
         </template>
         {{ label ?? value }}
       </GPill>
+      <span
+        v-else
+        class="multiselect-box-option-label"
+      >{{ label ?? value }}</span>
     </slot>
   </button>
 </template>
@@ -44,10 +49,11 @@ import {
   watch,
 } from 'vue';
 import {
+  GMultiSelectVariant,
   MULTI_SELECT_KEY,
 } from './types';
 import {
-  PillColor,
+  GPillColor,
   PILL_COLORS,
 } from '@/components/Display/Pill/types';
 import GPill from '@/components/Display/Pill/GPill.vue';
@@ -68,16 +74,18 @@ const {
   /* Must be unique among the options */
   value: string;
   label?: string;
-  color?: PillColor;
+  color?: GPillColor;
 }>();
 
-const PILL_COLOR_VALUES = Object.values(PillColor);
+const PILL_COLOR_VALUES = Object.values(GPillColor);
 
 const pillColor = computed(
   () => color ?? PILL_COLOR_VALUES[value.length % PILL_COLOR_VALUES.length],
 );
 
-const dotColor = computed(() => (PILL_COLORS[pillColor.value] ?? PILL_COLORS[PillColor.Gray]).solid);
+const dotColor = computed(() => (PILL_COLORS[pillColor.value] ?? PILL_COLORS[GPillColor.Gray]).solid);
+
+const isPill = computed(() => ctx.variant === GMultiSelectVariant.Pill);
 
 const isSelected = computed(() => ctx.selectedValues.value.includes(value));
 const isFocused = computed(() => ctx.focusedValue.value === value);
@@ -126,6 +134,10 @@ onUnmounted(() => ctx.unregister(value));
 
 .multiselect-dot {
   @apply inline-block w-2 h-2 rounded-full shrink-0;
+}
+
+.multiselect-box-option-label {
+  @apply text-sm gui-neutral-fg;
 }
 }
 </style>

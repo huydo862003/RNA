@@ -38,8 +38,8 @@
  */
 
 import {
-  SpinnerSize,
-  SpinnerSpeed,
+  GSpinnerSize,
+  GSpinnerSpeed,
 } from './types';
 
 defineOptions({
@@ -48,13 +48,13 @@ defineOptions({
 
 const {
   id = undefined,
-  size = SpinnerSize.Md,
-  speed = SpinnerSpeed.Normal,
+  size = GSpinnerSize.Md,
+  speed = GSpinnerSpeed.Normal,
   label = 'Loading',
 } = defineProps<{
   id?: string;
-  size?: SpinnerSize;
-  speed?: SpinnerSpeed;
+  size?: GSpinnerSize;
+  speed?: GSpinnerSpeed;
   label?: string;
 }>();
 </script>

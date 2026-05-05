@@ -17,6 +17,7 @@
           'multiselect-trigger',
           `multiselect-trigger-${size}`,
           `multiselect-trigger--${isOpen ? 'open' : 'closed'}`,
+          isPill ? 'multiselect-trigger--pill' : 'multiselect-trigger--box',
         ]"
         :style="{
           '--_bg': tokens.bg,
@@ -26,27 +27,43 @@
         }"
         :data-state="state"
       >
-        <GPill
-          v-for="value in selected"
-          :key="value"
-          class="max-w-full"
-          :size="size"
-          :color="colors.get(value)"
-        >
-          <template #left>
-            <span
-              class="multiselect-dot"
-              :style="{ background: dotColor(colors.get(value)) }"
-            />
-          </template>
-          {{ labels.get(value) ?? value }}
-        </GPill>
+        <template v-if="isPill">
+          <GPill
+            v-for="value in selected"
+            :key="value"
+            class="max-w-full"
+            :size="size"
+            :color="colors.get(value)"
+          >
+            <template #left>
+              <span
+                class="multiselect-dot"
+                :style="{ background: dotColor(colors.get(value)) }"
+              />
+            </template>
+            {{ labels.get(value) ?? value }}
+          </GPill>
+        </template>
+        <template v-else>
+          <span
+            v-for="value in selected"
+            :key="value"
+            class="multiselect-box-tag"
+          >
+            {{ labels.get(value) ?? value }}
+          </span>
+        </template>
         <span
           v-if="selected.length === 0"
           class="gui-neutral-fg-muted"
         >
           {{ placeholder }}
         </span>
+        <GIcon
+          v-if="!isPill"
+          :name="GIconName.ChevronDown"
+          class="multiselect-chevron"
+        />
       </div>
     </template>
     <template #popper>
@@ -56,20 +73,39 @@
       >
         <!-- Search row -->
         <div class="multiselect-search-row">
-          <GPill
-            v-for="val in selected"
-            :key="val"
-            class="max-w-full shrink"
-            :color="colors.get(val)"
-          >
-            <template #left>
-              <span
-                class="multiselect-dot"
-                :style="{ background: dotColor(colors.get(val)) }"
-              />
-            </template>
-            {{ labels.get(val) ?? val }}
-            <template #right>
+          <template v-if="isPill">
+            <GPill
+              v-for="val in selected"
+              :key="val"
+              class="max-w-full shrink"
+              :color="colors.get(val)"
+            >
+              <template #left>
+                <span
+                  class="multiselect-dot"
+                  :style="{ background: dotColor(colors.get(val)) }"
+                />
+              </template>
+              {{ labels.get(val) ?? val }}
+              <template #right>
+                <button
+                  class="multiselect-pill-close"
+                  type="button"
+                  aria-label="Remove"
+                  @click.stop="deselect(val)"
+                >
+                  <GIcon :name="GIconName.X" />
+                </button>
+              </template>
+            </GPill>
+          </template>
+          <template v-else>
+            <span
+              v-for="val in selected"
+              :key="val"
+              class="multiselect-box-tag"
+            >
+              {{ labels.get(val) ?? val }}
               <button
                 class="multiselect-pill-close"
                 type="button"
@@ -78,8 +114,8 @@
               >
                 <GIcon :name="GIconName.X" />
               </button>
-            </template>
-          </GPill>
+            </span>
+          </template>
           <input
             ref="searchRef"
             v-model="search"
@@ -131,13 +167,14 @@ import {
   useTemplateRef,
   watch,
 } from 'vue';
-import {
-  MultiSelectSize,
-  MultiSelectState,
-  MULTI_SELECT_KEY,
-} from './types';
 import type {
   MultiSelectOptionRegistration,
+} from './types';
+import {
+  GMultiSelectSize,
+  GMultiSelectState,
+  MULTI_SELECT_KEY,
+  GMultiSelectVariant,
 } from './types';
 import {
   GKbdKeyName,
@@ -146,11 +183,11 @@ import {
   prominenceTokens,
 } from '@/utils/prominence';
 import {
-  Prominence,
-  Semantic,
+  GProminence,
+  GSemantic,
 } from '@/types';
 import {
-  PillColor,
+  GPillColor,
   PILL_COLORS,
 } from '@/components/Display/Pill/types';
 import {
@@ -173,21 +210,25 @@ const selected = defineModel<string[]>({
 
 const {
   id = undefined,
-  size = MultiSelectSize.Md,
-  state = MultiSelectState.Default,
+  size = GMultiSelectSize.Md,
+  variant = GMultiSelectVariant.Pill,
+  state = GMultiSelectState.Default,
   disabled = false,
   placeholder = 'Empty',
-  searchPlaceholder = 'Select an option or create one',
+  searchPlaceholder = 'Select an option',
 } = defineProps<{
   id?: string;
-  size?: MultiSelectSize;
-  state?: MultiSelectState;
+  size?: GMultiSelectSize;
+  variant?: GMultiSelectVariant;
+  state?: GMultiSelectState;
   disabled?: boolean;
   placeholder?: string;
   searchPlaceholder?: string;
 }>();
 
-const tokens = prominenceTokens(Prominence.Ghost, Semantic.Neutral);
+const isPill = computed(() => variant === GMultiSelectVariant.Pill);
+
+const tokens = prominenceTokens(GProminence.Ghost, GSemantic.Neutral);
 
 const triggerRef = useTemplateRef('triggerRef');
 const triggerHeight = useHeight(triggerRef);
@@ -200,7 +241,7 @@ const visibleValues = reactive(new Set<string>());
 const visibleCount = computed(() => visibleValues.size);
 const allSelected = computed(() => 0 < labels.size && labels.size <= selected.value.length);
 const labels = reactive(new Map<string, string>());
-const colors = reactive(new Map<string, PillColor | undefined>());
+const colors = reactive(new Map<string, GPillColor | undefined>());
 
 // Ordered list of visible values for keyboard navigation
 const visibleList = computed(() => [...labels.keys()].filter((v) => visibleValues.has(v)));
@@ -213,8 +254,8 @@ watch(visibleList, (list) => {
   }
 });
 
-function dotColor (pillColor?: PillColor) {
-  return PILL_COLORS[pillColor ?? PillColor.Gray].solid;
+function dotColor (pillColor?: GPillColor) {
+  return PILL_COLORS[pillColor ?? GPillColor.Gray].solid;
 }
 
 function toggle (value: string) {
@@ -304,6 +345,7 @@ function handleBackspaceWhenEmpty (e: KeyboardEvent) {
 
 provide(MULTI_SELECT_KEY, {
   size,
+  variant,
   selectedValues: readonly(selected),
   searchValue: readonly(search),
   focusedValue: readonly(focusedValue),
@@ -376,22 +418,44 @@ provide(MULTI_SELECT_KEY, {
   --_pill-max-width: 12rem;
 }
 
-/* Pill dot */
-.multiselect-dot {
-  @apply inline-block w-2 h-2 rounded-full shrink-0;
+/* Variants */
+
+/** Box */
+.multiselect-trigger--box {
+  @apply border gui-neutral-border-subtle justify-between;
+
+  .multiselect-pill-close {
+    @apply hidden;
+  }
 }
 
-/* Pill close button */
-.multiselect-pill-close {
-  @apply inline-flex items-center justify-center cursor-pointer rounded-sm border-none bg-transparent;
-  color: inherit;
-  opacity: 0.6;
-  line-height: 1;
-  padding: 0;
+.multiselect-box-tag {
+  @apply inline-flex items-center gap-xs gui-neutral-fg;
 }
 
-.multiselect-pill-close:hover {
-  opacity: 1;
+.multiselect-chevron {
+  @apply shrink-0 gui-neutral-fg-muted;
+}
+
+/** Pill */
+.multiselect-trigger--pill {
+  /* Pill dot */
+  .multiselect-dot {
+    @apply inline-block w-2 h-2 rounded-full shrink-0;
+  }
+
+  /* Pill close button */
+  .multiselect-pill-close {
+    @apply inline-flex items-center justify-center cursor-pointer rounded-sm border-none bg-transparent;
+    color: inherit;
+    opacity: 0.6;
+    line-height: 1;
+    padding: 0;
+  }
+
+  .multiselect-pill-close:hover {
+    opacity: 1;
+  }
 }
 
 /* Search row */

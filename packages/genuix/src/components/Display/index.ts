@@ -28,9 +28,6 @@ export {
   default as GBreadcrumb,
 } from './Breadcrumb/GBreadcrumb.vue';
 
-export type {
-  BreadcrumbItem,
-} from './Breadcrumb/types';
 
 // Avatar
 export {
@@ -38,8 +35,8 @@ export {
 } from './Avatar/GAvatar.vue';
 
 export {
-  AvatarSize,
-  AvatarShape,
+  GAvatarSize,
+  GAvatarShape,
 } from './Avatar/types';
 
 // Badge
@@ -48,12 +45,12 @@ export {
 } from './Badge/GBadge.vue';
 
 export {
-  BadgeSize,
-  BadgeStyle,
+  GBadgeSize,
+  GBadgeStyle,
 } from './Badge/types';
 
 export type {
-  BadgeColor,
+  GBadgeColor,
 } from './Badge/types';
 
 // Hero
@@ -67,7 +64,7 @@ export {
 } from './Logo/GLogo.vue';
 
 export {
-  LogoSize,
+  GLogoSize,
 } from './Logo/types';
 
 // Code
@@ -89,13 +86,19 @@ export {
 } from './Math/GMathBlock.vue';
 
 export {
-  MathBlockProminence,
-  MathBlockSemantic,
+  GMathBlockProminence,
+  GMathBlockSemantic,
 } from './Math/types';
 
 export {
   GCodeLanguage,
-  CodeBlockProminence,
+  GCodeBlockProminence,
+  GHighlightTheme,
+} from './Code/types';
+
+export type {
+  HighlightThemeColors,
+  HighlightThemePreset,
 } from './Code/types';
 
 // Collapsible
@@ -103,14 +106,23 @@ export {
   default as GCollapsible,
 } from './Collapsible/GCollapsible.vue';
 
+// FilterableList
+export {
+  default as GFilterable,
+} from './FilterableList/GFilterable.vue';
+
+export type {
+  FilterableListItem,
+} from './FilterableList/types';
+
 // Flippable
 export {
   default as GFlippable,
 } from './Flippable/GFlippable.vue';
 
 export {
-  FlipDirection,
-  FlipTrigger,
+  GFlipDirection,
+  GFlipTrigger,
 } from './Flippable/types';
 
 // Icon
@@ -141,9 +153,9 @@ export {
 } from './Pill/GPill.vue';
 
 export {
-  PillSize,
-  PillColor,
-  PillProminence,
+  GPillSize,
+  GPillColor,
+  GPillProminence,
   PILL_COLORS,
 } from './Pill/types';
 
@@ -161,9 +173,22 @@ export {
 } from './Tab/GTabPanel.vue';
 
 export {
-  TabSize,
-  TabPlacement,
+  GTabSize,
+  GTabPlacement,
 } from './Tab/types';
+
+// Table
+export {
+  default as GTable,
+} from './Table/GTable.vue';
+
+export type {
+  GTableColumn,
+} from './Table/types';
+
+export {
+  GSortDirection,
+} from './Table/types';
 
 // Spinner
 export {
@@ -171,6 +196,6 @@ export {
 } from './Spinner/GSpinner.vue';
 
 export {
-  SpinnerSize,
-  SpinnerSpeed,
+  GSpinnerSize,
+  GSpinnerSpeed,
 } from './Spinner/types';

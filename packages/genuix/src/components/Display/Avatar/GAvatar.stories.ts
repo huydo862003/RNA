@@ -8,10 +8,10 @@ import type {
 } from '@storybook/vue3-vite';
 import GAvatar from './GAvatar.vue';
 import {
-  AvatarShape,
+  GAvatarShape,
 } from './types';
 import {
-  Size,
+  GSize,
 } from '@/types';
 
 const meta = {
@@ -21,11 +21,11 @@ const meta = {
   argTypes: {
     size: {
       control: 'select',
-      options: Object.values(Size),
+      options: Object.values(GSize),
     },
     shape: {
       control: 'select',
-      options: Object.values(AvatarShape),
+      options: Object.values(GAvatarShape),
     },
   },
 } satisfies Meta;
@@ -104,7 +104,7 @@ export const SizesStory: Story = {
   parameters: {
     docs: {
       source: {
-        code: '<GAvatar :size="Size.Md">MD</GAvatar>',
+        code: '<GAvatar :size="GSize.Md">MD</GAvatar>',
       },
     },
   },
@@ -114,16 +114,16 @@ export const SizesStory: Story = {
     },
     setup () {
       return {
-        Size,
+        GSize,
       };
     },
     template: `
       <div class="flex items-end gap-sm">
-        <GAvatar :size="Size.Xs">XS</GAvatar>
-        <GAvatar :size="Size.Sm">SM</GAvatar>
-        <GAvatar :size="Size.Md">MD</GAvatar>
-        <GAvatar :size="Size.Lg">LG</GAvatar>
-        <GAvatar :size="Size.Xl">XL</GAvatar>
+        <GAvatar :size="GSize.Xs">XS</GAvatar>
+        <GAvatar :size="GSize.Sm">SM</GAvatar>
+        <GAvatar :size="GSize.Md">MD</GAvatar>
+        <GAvatar :size="GSize.Lg">LG</GAvatar>
+        <GAvatar :size="GSize.Xl">XL</GAvatar>
       </div>
     `,
   }),
@@ -133,7 +133,7 @@ export const ShapesStory: Story = {
   parameters: {
     docs: {
       source: {
-        code: '<GAvatar :shape="AvatarShape.Circle">AB</GAvatar>',
+        code: '<GAvatar :shape="GAvatarShape.Circle">AB</GAvatar>',
       },
     },
   },
@@ -143,15 +143,15 @@ export const ShapesStory: Story = {
     },
     setup () {
       return {
-        AvatarShape,
+        GAvatarShape,
       };
     },
     template: `
       <div class="flex items-center gap-sm">
-        <GAvatar :shape="AvatarShape.Circle" class="gui-info-bg-hover gui-info-fg">AB</GAvatar>
-        <GAvatar :shape="AvatarShape.Square" class="gui-info-bg-hover gui-info-fg">AB</GAvatar>
-        <GAvatar :shape="AvatarShape.Circle"><img src="https://i.pravatar.cc/150?u=shape" class="w-full h-full object-cover" /></GAvatar>
-        <GAvatar :shape="AvatarShape.Square"><img src="https://i.pravatar.cc/150?u=shape" class="w-full h-full object-cover" /></GAvatar>
+        <GAvatar :shape="GAvatarShape.Circle" class="gui-info-bg-hover gui-info-fg">AB</GAvatar>
+        <GAvatar :shape="GAvatarShape.Square" class="gui-info-bg-hover gui-info-fg">AB</GAvatar>
+        <GAvatar :shape="GAvatarShape.Circle"><img src="https://i.pravatar.cc/150?u=shape" class="w-full h-full object-cover" /></GAvatar>
+        <GAvatar :shape="GAvatarShape.Square"><img src="https://i.pravatar.cc/150?u=shape" class="w-full h-full object-cover" /></GAvatar>
       </div>
     `,
   }),

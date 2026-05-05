@@ -8,17 +8,22 @@ import type {
   Ref,
 } from 'vue';
 import type {
-  PillColor,
+  GPillColor,
 } from '@/components/Display/Pill/types';
 import type {
-  Size,
+  GSize,
 } from '@/types';
 
 export {
-  Size as SelectSize,
+  GSize as GSelectSize,
 } from '@/types';
 
-export enum SelectState {
+export enum GSelectVariant {
+  Pill = 'pill',
+  Box = 'box',
+}
+
+export enum GSelectState {
   Default = 'default',
   Error = 'error',
   Warning = 'warning',
@@ -27,12 +32,13 @@ export enum SelectState {
 
 export interface SelectOptionRegistration {
   label: string;
-  color?: PillColor;
+  color?: GPillColor;
   visible: boolean;
 }
 
 export interface SelectContext {
-  size: Size;
+  size: GSize;
+  variant: GSelectVariant;
   selectedValue: DeepReadonly<Ref<string | undefined>>;
   searchValue: DeepReadonly<Ref<string>>;
   focusedValue: DeepReadonly<Ref<string | undefined>>;

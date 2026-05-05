@@ -3,17 +3,17 @@
  */
 
 export {
-  Size as TextAreaSize,
+  GSize as GTextAreaSize,
 } from '@/types';
 
-export enum TextAreaState {
+export enum GTextAreaState {
   Default = 'default',
   Error = 'error',
   Warning = 'warning',
   Success = 'success',
 }
 
-export enum TextAreaResize {
+export enum GTextAreaResize {
   Both = 'both',
   X = 'x',
   Y = 'y',

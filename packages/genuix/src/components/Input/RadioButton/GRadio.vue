@@ -48,12 +48,12 @@ import {
   ref,
 } from 'vue';
 import type {
-  RadioSize,
+  GRadioSize,
 } from './types';
 import {
-  Size,
-  Semantic,
-  Prominence,
+  GSize,
+  GSemantic,
+  GProminence,
 } from '@/types';
 import {
   prominenceTokens,
@@ -67,23 +67,23 @@ const selected = defineModel<string>();
 
 const {
   id = undefined,
-  size = Size.Md,
-  semantic = Semantic.Neutral,
+  size = GSize.Md,
+  semantic = GSemantic.Neutral,
   disabled = false,
   label = undefined,
   value,
   name = undefined,
 } = defineProps<{
   id?: string;
-  size?: RadioSize;
-  semantic?: Semantic;
+  size?: GRadioSize;
+  semantic?: GSemantic;
   disabled?: boolean;
   label?: string;
   value: string;
   name?: string;
 }>();
 
-const tokens = computed(() => prominenceTokens(Prominence.Primary, semantic));
+const tokens = computed(() => prominenceTokens(GProminence.Primary, semantic));
 
 const inputRef = ref<HTMLInputElement | null>(null);
 

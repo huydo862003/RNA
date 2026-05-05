@@ -70,15 +70,15 @@ import {
   watch,
 } from 'vue';
 import {
-  NumberInputSize,
-  NumberInputState,
+  GNumberInputSize,
+  GNumberInputState,
 } from './types';
 import {
   prominenceTokens,
 } from '@/utils/prominence';
 import {
-  Prominence,
-  Semantic,
+  GProminence,
+  GSemantic,
 } from '@/types';
 import GIcon from '@/components/Display/Icon/GIcon.vue';
 import {
@@ -101,8 +101,8 @@ const value = defineModel<number | undefined>({
 const {
   id = undefined,
   name = undefined,
-  size = NumberInputSize.Md,
-  state = NumberInputState.Default,
+  size = GNumberInputSize.Md,
+  state = GNumberInputState.Default,
   disabled = false,
   placeholder = '',
   min = undefined,
@@ -114,8 +114,8 @@ const {
 } = defineProps<{
   id?: string;
   name?: string;
-  size?: NumberInputSize;
-  state?: NumberInputState;
+  size?: GNumberInputSize;
+  state?: GNumberInputState;
   disabled?: boolean;
   placeholder?: string;
   required?: boolean;
@@ -128,16 +128,16 @@ const {
   step?: number;
 }>();
 
-const tokens = prominenceTokens(Prominence.Ghost, Semantic.Neutral);
+const tokens = prominenceTokens(GProminence.Ghost, GSemantic.Neutral);
 
 /* Input state */
 const effectiveState = computed(() => {
-  if (value.value === undefined && required) return NumberInputState.Error;
+  if (value.value === undefined && required) return GNumberInputState.Error;
   const numberRegex = integer ? INTEGER_REGEX : NUMBER_REGEX;
-  if (rawInput.value !== '' && !numberRegex.test(rawInput.value)) return NumberInputState.Error;
+  if (rawInput.value !== '' && !numberRegex.test(rawInput.value)) return GNumberInputState.Error;
   if (value.value === undefined) return state;
-  if (max !== undefined && max < value.value) return NumberInputState.Error;
-  if (min !== undefined && value.value < min) return NumberInputState.Error;
+  if (max !== undefined && max < value.value) return GNumberInputState.Error;
+  if (min !== undefined && value.value < min) return GNumberInputState.Error;
   return state;
 });
 
@@ -212,7 +212,7 @@ defineExpose({
   focus,
   increment,
   decrement,
-  isInvalid: computed(() => effectiveState.value === NumberInputState.Error),
+  isInvalid: computed(() => effectiveState.value === GNumberInputState.Error),
 });
 </script>
 

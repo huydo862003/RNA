@@ -37,9 +37,9 @@ import {
   ref,
 } from 'vue';
 import {
-  TextAreaSize,
-  TextAreaState,
-  TextAreaResize,
+  GTextAreaSize,
+  GTextAreaState,
+  GTextAreaResize,
 } from './types';
 import {
   TEXT_INPUT_PATTERNS,
@@ -51,8 +51,8 @@ import {
   prominenceTokens,
 } from '@/utils/prominence';
 import {
-  Prominence,
-  Semantic,
+  GProminence,
+  GSemantic,
 } from '@/types';
 
 defineOptions({
@@ -66,13 +66,13 @@ const text = defineModel<string>({
 const {
   id = undefined,
   name = undefined,
-  size = TextAreaSize.Md,
-  state = TextAreaState.Default,
+  size = GTextAreaSize.Md,
+  state = GTextAreaState.Default,
   disabled = false,
   readonly: _readonly = false,
   placeholder = '',
   rows = 3,
-  resize = TextAreaResize.Y,
+  resize = GTextAreaResize.Y,
   required = false,
   pattern = undefined,
   minLength = undefined,
@@ -80,27 +80,27 @@ const {
 } = defineProps<{
   id?: string;
   name?: string;
-  size?: TextAreaSize;
-  state?: TextAreaState;
+  size?: GTextAreaSize;
+  state?: GTextAreaState;
   disabled?: boolean;
   readonly?: boolean;
   placeholder?: string;
   rows?: number;
-  resize?: TextAreaResize;
+  resize?: GTextAreaResize;
   required?: boolean;
   pattern?: TextInputPattern;
   minLength?: number;
   maxLength?: number;
 }>();
 
-const tokens = prominenceTokens(Prominence.Ghost, Semantic.Neutral);
+const tokens = prominenceTokens(GProminence.Ghost, GSemantic.Neutral);
 
 /* Input state */
 const effectiveState = computed(() => {
-  if (required && !text.value) return TextAreaState.Error;
+  if (required && !text.value) return GTextAreaState.Error;
   if (!text.value) return state;
-  if (minLength !== undefined && text.value.length < minLength) return TextAreaState.Error;
-  if (pattern && !TEXT_INPUT_PATTERNS[pattern].test(text.value)) return TextAreaState.Error;
+  if (minLength !== undefined && text.value.length < minLength) return GTextAreaState.Error;
+  if (pattern && !TEXT_INPUT_PATTERNS[pattern].test(text.value)) return GTextAreaState.Error;
   return state;
 });
 
@@ -117,7 +117,7 @@ function blur () {
 defineExpose({
   focus,
   blur,
-  isInvalid: computed(() => effectiveState.value === TextAreaState.Error),
+  isInvalid: computed(() => effectiveState.value === GTextAreaState.Error),
 });
 </script>
 

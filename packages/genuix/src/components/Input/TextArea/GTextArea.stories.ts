@@ -11,7 +11,7 @@ import {
 } from 'vue';
 import GTextArea from './GTextArea.vue';
 import {
-  TextAreaState,
+  GTextAreaState,
 } from './types';
 
 const meta = {
@@ -59,15 +59,15 @@ export const StatesStory: Story = {
     },
     setup () {
       return {
-        TextAreaState,
+        GTextAreaState,
       };
     },
     template: `
       <div class="flex flex-col gap-sm" style="max-width: 20rem">
         <GTextArea placeholder="Default" />
-        <GTextArea placeholder="Error" :state="TextAreaState.Error" />
-        <GTextArea placeholder="Warning" :state="TextAreaState.Warning" />
-        <GTextArea placeholder="Success" :state="TextAreaState.Success" />
+        <GTextArea placeholder="Error" :state="GTextAreaState.Error" />
+        <GTextArea placeholder="Warning" :state="GTextAreaState.Warning" />
+        <GTextArea placeholder="Success" :state="GTextAreaState.Success" />
         <GTextArea placeholder="Disabled" disabled />
       </div>
     `,

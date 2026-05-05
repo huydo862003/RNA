@@ -53,17 +53,17 @@ import {
   computed,
 } from 'vue';
 import {
-  BadgeStyle,
+  GBadgeStyle,
 } from './types';
 import type {
-  BadgeColor,
-  BadgeSize,
+  GBadgeColor,
+  GBadgeSize,
 } from './types';
 import {
-  Size,
+  GSize,
 } from '@/types';
 import {
-  PillColor,
+  GPillColor,
   PILL_COLORS,
 } from '@/components/Display/Pill/types';
 
@@ -73,22 +73,22 @@ defineOptions({
 
 const {
   id = undefined,
-  size = Size.Sm,
-  badgeStyle = BadgeStyle.Flat,
+  size = GSize.Sm,
+  badgeStyle = GBadgeStyle.Flat,
   label,
   value = undefined,
-  color = PillColor.Blue,
+  color = GPillColor.Blue,
   href = undefined,
 } = defineProps<{
   id?: string;
-  size?: BadgeSize;
-  badgeStyle?: BadgeStyle;
+  size?: GBadgeSize;
+  badgeStyle?: GBadgeStyle;
   /** Left side text (like "license", "version", "build") */
   label: string;
   /** Right side text (like "MIT", "v1.2.0", "passing") */
   value?: string;
   /** Color of the value section */
-  color?: BadgeColor;
+  color?: GBadgeColor;
   /** Optional link URL */
   href?: string;
 }>();
@@ -96,7 +96,7 @@ const {
 const labelBg = '#555';
 
 const valueBg = computed(() => {
-  return PILL_COLORS[color]?.solid ?? PILL_COLORS[PillColor.Blue].solid;
+  return PILL_COLORS[color]?.solid ?? PILL_COLORS[GPillColor.Blue].solid;
 });
 
 const valueFg = '#fff';
@@ -109,6 +109,10 @@ const valueFg = '#fff';
 .badge {
   @apply inline-flex items-stretch font-mono select-none no-underline;
   line-height: 1;
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.2),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
 }
 
 .badge-flat {

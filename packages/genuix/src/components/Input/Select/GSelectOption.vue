@@ -17,19 +17,25 @@
       @click="ctx.select(value)"
     >
       <slot>
-        <GPill
-          class="max-w-full"
-          :size="ctx.size"
-          :color="pillColor"
-        >
-          <template #left>
-            <span
-              class="select-dot"
-              :style="{ background: dotColor }"
-            />
-          </template>
-          {{ label ?? value }}
-        </GPill>
+        <template v-if="ctx.variant === GSelectVariant.Pill">
+          <GPill
+            class="max-w-full"
+            :size="ctx.size"
+            :color="pillColor"
+          >
+            <template #left>
+              <span
+                class="select-dot"
+                :style="{ background: dotColor }"
+              />
+            </template>
+            {{ label ?? value }}
+          </GPill>
+        </template>
+        <span
+          v-else
+          class="select-option-box-label"
+        >{{ label ?? value }}</span>
       </slot>
     </button>
     <template #popper>
@@ -55,9 +61,10 @@ import {
 } from 'vue';
 import {
   SELECT_KEY,
+  GSelectVariant,
 } from './types';
 import {
-  PillColor,
+  GPillColor,
   PILL_COLORS,
 } from '@/components/Display/Pill/types';
 import GPill from '@/components/Display/Pill/GPill.vue';
@@ -79,16 +86,16 @@ const {
   /* Must be unique among the options */
   value: string;
   label?: string;
-  color?: PillColor;
+  color?: GPillColor;
 }>();
 
-const PILL_COLOR_VALUES = Object.values(PillColor);
+const PILL_COLOR_VALUES = Object.values(GPillColor);
 
 const pillColor = computed(
   () => color ?? PILL_COLOR_VALUES[value.length % PILL_COLOR_VALUES.length],
 );
 
-const dotColor = computed(() => (PILL_COLORS[pillColor.value] ?? PILL_COLORS[PillColor.Gray]).solid);
+const dotColor = computed(() => (PILL_COLORS[pillColor.value] ?? PILL_COLORS[GPillColor.Gray]).solid);
 
 // Detect current state of the option
 const isSelected = computed(() => ctx.selectedValue.value === value);
@@ -162,6 +169,11 @@ onUnmounted(() => ctx.unregister(value));
 
 .select-dot {
   @apply inline-block w-2 h-2 rounded-full shrink-0;
+}
+
+.select-option-box-label {
+  @apply overflow-hidden text-ellipsis whitespace-nowrap;
+  font-size: inherit;
 }
 }
 </style>

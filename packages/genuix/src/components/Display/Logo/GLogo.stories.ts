@@ -8,7 +8,7 @@ import type {
 } from '@storybook/vue3-vite';
 import GLogo from './GLogo.vue';
 import {
-  Size,
+  GSize,
 } from '@/types';
 
 const meta = {
@@ -18,7 +18,7 @@ const meta = {
   argTypes: {
     size: {
       control: 'select',
-      options: Object.values(Size),
+      options: Object.values(GSize),
     },
   },
 } satisfies Meta;
@@ -142,7 +142,7 @@ export const SizesStory: Story = {
   parameters: {
     docs: {
       source: {
-        code: '<GLogo :size="Size.Md" src="icon.svg" alt="logo" text="sqlingo.js" />',
+        code: '<GLogo :size="GSize.Md" src="icon.svg" alt="logo" text="sqlingo.js" />',
       },
     },
   },
@@ -152,12 +152,12 @@ export const SizesStory: Story = {
     },
     setup () {
       return {
-        Size,
+        GSize,
       };
     },
     template: `
       <div class="flex flex-col gap-md items-start">
-        <GLogo v-for="s in Object.values(Size)" :key="s" :size="s"
+        <GLogo v-for="s in Object.values(GSize)" :key="s" :size="s"
           src="https://huydo862003.github.io/sqlingo.js/icon.svg"
           alt="sqlingo.js"
           :text="'sqlingo.js (' + s + ')'"

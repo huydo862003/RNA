@@ -35,13 +35,13 @@ import {
   computed,
 } from 'vue';
 import {
-  ButtonProminence,
-  ButtonSemantic,
-  ButtonSize,
+  GButtonProminence,
+  GButtonSemantic,
+  GButtonSize,
 } from './types';
 import GSpinner from '@/components/Display/Spinner/GSpinner.vue';
 import {
-  SpinnerSize,
+  GSpinnerSize,
 } from '@/components/Display/Spinner/types';
 import {
   prominenceTokens,
@@ -53,16 +53,16 @@ defineOptions({
 
 const {
   id = undefined,
-  prominence = ButtonProminence.Primary,
-  semantic = ButtonSemantic.Neutral,
-  size = ButtonSize.Md,
+  prominence = GButtonProminence.Primary,
+  semantic = GButtonSemantic.Neutral,
+  size = GButtonSize.Md,
   disabled = false,
   loading = false,
 } = defineProps<{
   id?: string;
-  prominence?: ButtonProminence;
-  semantic?: ButtonSemantic;
-  size?: ButtonSize;
+  prominence?: GButtonProminence;
+  semantic?: GButtonSemantic;
+  size?: GButtonSize;
   disabled?: boolean;
   loading?: boolean;
 }>();
@@ -72,12 +72,12 @@ const tokens = computed(() => prominenceTokens(prominence, semantic));
 const isInactive = computed(() => disabled || loading);
 
 const spinnerSize = computed(() => {
-  const map: Record<ButtonSize, SpinnerSize> = {
-    [ButtonSize.Xs]: SpinnerSize.Xs,
-    [ButtonSize.Sm]: SpinnerSize.Xs,
-    [ButtonSize.Md]: SpinnerSize.Sm,
-    [ButtonSize.Lg]: SpinnerSize.Md,
-    [ButtonSize.Xl]: SpinnerSize.Md,
+  const map: Record<GButtonSize, GSpinnerSize> = {
+    [GButtonSize.Xs]: GSpinnerSize.Xs,
+    [GButtonSize.Sm]: GSpinnerSize.Xs,
+    [GButtonSize.Md]: GSpinnerSize.Sm,
+    [GButtonSize.Lg]: GSpinnerSize.Md,
+    [GButtonSize.Xl]: GSpinnerSize.Md,
   };
   return map[size];
 });
@@ -159,7 +159,7 @@ const spinnerSize = computed(() => {
 }
 
 .btn-content {
-  @apply opacity-100;
+  @apply opacity-100 inline-flex items-center gap-xs;
   transition: opacity var(--duration-fast) var(--ease-default);
 }
 }

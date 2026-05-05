@@ -8,11 +8,11 @@ import type {
 } from '@storybook/vue3-vite';
 import GPill from './GPill.vue';
 import {
-  PillSize,
-  PillColor,
+  GPillSize,
+  GPillColor,
 } from './types';
 import {
-  Prominence,
+  GProminence,
 } from '@/types';
 
 const meta = {
@@ -22,15 +22,15 @@ const meta = {
   argTypes: {
     size: {
       control: 'select',
-      options: Object.values(PillSize),
+      options: Object.values(GPillSize),
     },
     color: {
       control: 'select',
-      options: Object.values(PillColor),
+      options: Object.values(GPillColor),
     },
     prominence: {
       control: 'select',
-      options: Object.values(Prominence),
+      options: Object.values(GProminence),
     },
   },
 } satisfies Meta;
@@ -62,7 +62,7 @@ export const ColorsPillStory: Story = {
   parameters: {
     docs: {
       source: {
-        code: '<GPill :color="PillColor.Blue">Blue</GPill>',
+        code: '<GPill :color="GPillColor.Blue">Blue</GPill>',
       },
     },
   },
@@ -72,21 +72,21 @@ export const ColorsPillStory: Story = {
     },
     setup () {
       return {
-        PillColor,
+        GPillColor,
       };
     },
     template: `
       <div class="p-spacing-4 flex flex-wrap gap-spacing-2">
-        <GPill :color="PillColor.Gray">Gray</GPill>
-        <GPill :color="PillColor.Red">Red</GPill>
-        <GPill :color="PillColor.Pink">Pink</GPill>
-        <GPill :color="PillColor.Purple">Purple</GPill>
-        <GPill :color="PillColor.Blue">Blue</GPill>
-        <GPill :color="PillColor.Teal">Teal</GPill>
-        <GPill :color="PillColor.Green">Green</GPill>
-        <GPill :color="PillColor.Yellow">Yellow</GPill>
-        <GPill :color="PillColor.Orange">Orange</GPill>
-        <GPill :color="PillColor.Brown">Brown</GPill>
+        <GPill :color="GPillColor.Gray">Gray</GPill>
+        <GPill :color="GPillColor.Red">Red</GPill>
+        <GPill :color="GPillColor.Pink">Pink</GPill>
+        <GPill :color="GPillColor.Purple">Purple</GPill>
+        <GPill :color="GPillColor.Blue">Blue</GPill>
+        <GPill :color="GPillColor.Teal">Teal</GPill>
+        <GPill :color="GPillColor.Green">Green</GPill>
+        <GPill :color="GPillColor.Yellow">Yellow</GPill>
+        <GPill :color="GPillColor.Orange">Orange</GPill>
+        <GPill :color="GPillColor.Brown">Brown</GPill>
       </div>
     `,
   }),
@@ -99,7 +99,7 @@ export const ProminencesPillStory: Story = {
         story: 'All prominence levels for a single color.',
       },
       source: {
-        code: '<GPill :color="PillColor.Blue" :prominence="Prominence.Primary">Primary</GPill>',
+        code: '<GPill :color="GPillColor.Blue" :prominence="GProminence.Primary">Primary</GPill>',
       },
     },
   },
@@ -109,16 +109,16 @@ export const ProminencesPillStory: Story = {
     },
     setup () {
       return {
-        PillColor,
-        Prominence,
+        GPillColor,
+        GProminence,
       };
     },
     template: `
       <div class="p-spacing-4 flex flex-wrap gap-spacing-2">
-        <GPill :color="PillColor.Blue" :prominence="Prominence.Primary">Primary</GPill>
-        <GPill :color="PillColor.Blue" :prominence="Prominence.Secondary">Secondary</GPill>
-        <GPill :color="PillColor.Blue" :prominence="Prominence.Tertiary">Tertiary</GPill>
-        <GPill :color="PillColor.Blue" :prominence="Prominence.Ghost">Ghost</GPill>
+        <GPill :color="GPillColor.Blue" :prominence="GProminence.Primary">Primary</GPill>
+        <GPill :color="GPillColor.Blue" :prominence="GProminence.Secondary">Secondary</GPill>
+        <GPill :color="GPillColor.Blue" :prominence="GProminence.Tertiary">Tertiary</GPill>
+        <GPill :color="GPillColor.Blue" :prominence="GProminence.Ghost">Ghost</GPill>
       </div>
     `,
   }),
@@ -128,7 +128,7 @@ export const SizesPillStory: Story = {
   parameters: {
     docs: {
       source: {
-        code: '<GPill :size="PillSize.Md" :color="PillColor.Blue">Md</GPill>',
+        code: '<GPill :size="GPillSize.Md" :color="GPillColor.Blue">Md</GPill>',
       },
     },
   },
@@ -138,17 +138,17 @@ export const SizesPillStory: Story = {
     },
     setup () {
       return {
-        PillSize,
-        PillColor,
+        GPillSize,
+        GPillColor,
       };
     },
     template: `
       <div class="p-spacing-4 flex flex-wrap items-center gap-spacing-2">
-        <GPill :size="PillSize.Xs" :color="PillColor.Blue">Xs</GPill>
-        <GPill :size="PillSize.Sm" :color="PillColor.Blue">Sm</GPill>
-        <GPill :size="PillSize.Md" :color="PillColor.Blue">Md</GPill>
-        <GPill :size="PillSize.Lg" :color="PillColor.Blue">Lg</GPill>
-        <GPill :size="PillSize.Xl" :color="PillColor.Blue">Xl</GPill>
+        <GPill :size="GPillSize.Xs" :color="GPillColor.Blue">Xs</GPill>
+        <GPill :size="GPillSize.Sm" :color="GPillColor.Blue">Sm</GPill>
+        <GPill :size="GPillSize.Md" :color="GPillColor.Blue">Md</GPill>
+        <GPill :size="GPillSize.Lg" :color="GPillColor.Blue">Lg</GPill>
+        <GPill :size="GPillSize.Xl" :color="GPillColor.Blue">Xl</GPill>
       </div>
     `,
   }),
@@ -161,7 +161,7 @@ export const WithSlotsPillStory: Story = {
         story: 'Left/right slots for attachable behavior.',
       },
       source: {
-        code: `<GPill :color="PillColor.Blue">
+        code: `<GPill :color="GPillColor.Blue">
   <template #left>
     <span style="width:8px;height:8px;border-radius:50%;background:var(--gui-info-solid);display:inline-block" />
   </template>
@@ -176,18 +176,18 @@ export const WithSlotsPillStory: Story = {
     },
     setup () {
       return {
-        PillColor,
+        GPillColor,
       };
     },
     template: `
       <div class="p-spacing-4 flex flex-wrap gap-spacing-2">
-        <GPill :color="PillColor.Blue">
+        <GPill :color="GPillColor.Blue">
           <template #left>
             <span style="width:8px;height:8px;border-radius:50%;background:var(--gui-info-solid);display:inline-block" />
           </template>
           With dot
         </GPill>
-        <GPill :color="PillColor.Red">
+        <GPill :color="GPillColor.Red">
           Red tag
           <template #right>
             <button style="opacity:0.6;cursor:pointer;border:none;background:none;color:inherit;padding:0;display:inline-flex" aria-label="Remove">×</button>

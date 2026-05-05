@@ -36,8 +36,8 @@ import {
   ref,
 } from 'vue';
 import {
-  TextInputSize,
-  TextInputState,
+  GTextInputSize,
+  GTextInputState,
   TEXT_INPUT_PATTERNS,
 } from './types';
 import type {
@@ -47,8 +47,8 @@ import {
   prominenceTokens,
 } from '@/utils/prominence';
 import {
-  Prominence,
-  Semantic,
+  GProminence,
+  GSemantic,
 } from '@/types';
 
 defineOptions({
@@ -62,8 +62,8 @@ const text = defineModel<string>({
 const {
   id = undefined,
   name = undefined,
-  size = TextInputSize.Md,
-  state = TextInputState.Default,
+  size = GTextInputSize.Md,
+  state = GTextInputState.Default,
   disabled = false,
   readonly: _readonly = false,
   placeholder = 'Empty',
@@ -74,8 +74,8 @@ const {
 } = defineProps<{
   id?: string;
   name?: string;
-  size?: TextInputSize;
-  state?: TextInputState;
+  size?: GTextInputSize;
+  state?: GTextInputState;
   disabled?: boolean;
   readonly?: boolean;
   placeholder?: string;
@@ -85,14 +85,14 @@ const {
   maxLength?: number;
 }>();
 
-const tokens = prominenceTokens(Prominence.Ghost, Semantic.Neutral);
+const tokens = prominenceTokens(GProminence.Ghost, GSemantic.Neutral);
 
 /* Input state */
 const effectiveState = computed(() => {
-  if (required && !text.value) return TextInputState.Error;
+  if (required && !text.value) return GTextInputState.Error;
   if (!text.value) return state;
-  if (minLength !== undefined && text.value.length < minLength) return TextInputState.Error;
-  if (pattern && !TEXT_INPUT_PATTERNS[pattern].test(text.value)) return TextInputState.Error;
+  if (minLength !== undefined && text.value.length < minLength) return GTextInputState.Error;
+  if (pattern && !TEXT_INPUT_PATTERNS[pattern].test(text.value)) return GTextInputState.Error;
   return state;
 });
 
@@ -114,7 +114,7 @@ defineExpose({
   focus,
   blur,
   select,
-  isInvalid: computed(() => effectiveState.value === TextInputState.Error),
+  isInvalid: computed(() => effectiveState.value === GTextInputState.Error),
 });
 </script>
 

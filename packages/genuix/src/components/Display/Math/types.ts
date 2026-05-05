@@ -3,6 +3,6 @@
  */
 
 export {
-  Prominence as MathBlockProminence,
-  Semantic as MathBlockSemantic,
+  GProminence as GMathBlockProminence,
+  GSemantic as GMathBlockSemantic,
 } from '@/types';

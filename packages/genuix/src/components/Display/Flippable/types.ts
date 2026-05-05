@@ -1,9 +1,9 @@
-export enum FlipDirection {
+export enum GFlipDirection {
   Horizontal, // Flip horizontally
   Vertical, // Flip vertically
 }
 
-export enum FlipTrigger {
+export enum GFlipTrigger {
   Click = 'click',
   Hover = 'hover',
   Manual = 'manual',

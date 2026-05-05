@@ -8,13 +8,13 @@ import type {
 } from '@storybook/vue3-vite';
 import GBadge from './GBadge.vue';
 import {
-  BadgeStyle,
+  GBadgeStyle,
 } from './types';
 import {
-  Size,
+  GSize,
 } from '@/types';
 import {
-  PillColor,
+  GPillColor,
 } from '@/components/Display/Pill/types';
 
 const meta = {
@@ -24,15 +24,15 @@ const meta = {
   argTypes: {
     size: {
       control: 'select',
-      options: Object.values(Size),
+      options: Object.values(GSize),
     },
     badgeStyle: {
       control: 'select',
-      options: Object.values(BadgeStyle),
+      options: Object.values(GBadgeStyle),
     },
     color: {
       control: 'select',
-      options: Object.values(PillColor),
+      options: Object.values(GPillColor),
     },
   },
   args: {
@@ -124,12 +124,12 @@ export const ColorsBadgeStory: Story = {
     },
     setup () {
       return {
-        PillColor,
+        GPillColor,
       };
     },
     template: `
       <div class="flex flex-wrap gap-sm">
-        <GBadge v-for="c in Object.values(PillColor)" :key="c" label="color" :value="c" :color="c" />
+        <GBadge v-for="c in Object.values(GPillColor)" :key="c" label="color" :value="c" :color="c" />
       </div>
     `,
   }),
@@ -139,7 +139,7 @@ export const SizesBadgeStory: Story = {
   parameters: {
     docs: {
       source: {
-        code: '<GBadge :size="Size.Md" label="size" value="md" color="blue" />',
+        code: '<GBadge :size="GSize.Md" label="size" value="md" color="blue" />',
       },
     },
   },
@@ -149,12 +149,12 @@ export const SizesBadgeStory: Story = {
     },
     setup () {
       return {
-        Size,
+        GSize,
       };
     },
     template: `
       <div class="flex flex-wrap items-end gap-sm">
-        <GBadge v-for="s in Object.values(Size)" :key="s" :size="s" label="size" :value="s" color="blue" />
+        <GBadge v-for="s in Object.values(GSize)" :key="s" :size="s" label="size" :value="s" color="blue" />
       </div>
     `,
   }),

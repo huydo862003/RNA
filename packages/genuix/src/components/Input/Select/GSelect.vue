@@ -18,6 +18,7 @@
           'select-trigger',
           `select-trigger-${size}`,
           `select-trigger--${isOpen ? 'open' : 'closed'}`,
+          !isPill && 'select-trigger--box',
         ]"
         :style="{
           '--_bg': tokens.bg,
@@ -38,19 +39,25 @@
             :value="selected"
             :label="displayValue!"
           >
-            <GPill
-              class="max-w-full"
-              :size="size"
-              :color="colors.get(selected)"
-            >
-              <template #left>
-                <span
-                  class="select-dot"
-                  :style="{ background: dotColor(colors.get(selected)) }"
-                />
-              </template>
-              {{ displayValue }}
-            </GPill>
+            <template v-if="isPill">
+              <GPill
+                class="max-w-full"
+                :size="size"
+                :color="colors.get(selected)"
+              >
+                <template #left>
+                  <span
+                    class="select-dot"
+                    :style="{ background: dotColor(colors.get(selected)) }"
+                  />
+                </template>
+                {{ displayValue }}
+              </GPill>
+            </template>
+            <span
+              v-else
+              class="select-box-label"
+            >{{ displayValue }}</span>
           </slot>
           <span
             v-else
@@ -59,6 +66,11 @@
             {{ placeholder }}
           </span>
         </span>
+        <GIcon
+          v-if="!isPill"
+          :name="GIconName.ChevronDown"
+          class="select-chevron"
+        />
       </button>
     </template>
     <template
@@ -78,19 +90,25 @@
             :value="selected"
             :label="displayValue"
           >
-            <GPill
-              class="max-w-full cursor-default"
-              :size="size"
-              :color="colors.get(selected)"
-            >
-              <template #left>
-                <span
-                  class="select-dot"
-                  :style="{ background: dotColor(colors.get(selected)) }"
-                />
-              </template>
-              {{ displayValue }}
-            </GPill>
+            <template v-if="isPill">
+              <GPill
+                class="max-w-full cursor-default"
+                :size="size"
+                :color="colors.get(selected)"
+              >
+                <template #left>
+                  <span
+                    class="select-dot"
+                    :style="{ background: dotColor(colors.get(selected)) }"
+                  />
+                </template>
+                {{ displayValue }}
+              </GPill>
+            </template>
+            <span
+              v-else
+              class="select-box-label"
+            >{{ displayValue }}</span>
           </slot>
           <!-- size must be set here because browser set size to 20 by default, causing min-width: 0 to have no effect -->
           <input
@@ -143,8 +161,9 @@ import {
   watch,
 } from 'vue';
 import {
-  SelectSize,
-  SelectState,
+  GSelectSize,
+  GSelectState,
+  GSelectVariant,
   SELECT_KEY,
 } from './types';
 import type {
@@ -157,13 +176,17 @@ import {
   prominenceTokens,
 } from '@/utils/prominence';
 import {
-  Prominence,
-  Semantic,
+  GProminence,
+  GSemantic,
 } from '@/types';
 import GDropdown from '@/components/Overlay/Dropdown/GDropdown.vue';
 import GPill from '@/components/Display/Pill/GPill.vue';
+import GIcon from '@/components/Display/Icon/GIcon.vue';
 import {
-  PillColor,
+  GIconName,
+} from '@/components/Display/Icon/types';
+import {
+  GPillColor,
   PILL_COLORS,
 } from '@/components/Display/Pill/types';
 import {
@@ -178,21 +201,25 @@ const selected = defineModel<string | undefined>();
 
 const {
   id = undefined,
-  size = SelectSize.Md,
-  state = SelectState.Default,
+  size = GSelectSize.Md,
+  variant = GSelectVariant.Pill,
+  state = GSelectState.Default,
   disabled = false,
   placeholder = 'Empty',
   searchPlaceholder = 'Search for an option...',
 } = defineProps<{
   id?: string;
-  size?: SelectSize;
-  state?: SelectState;
+  size?: GSelectSize;
+  variant?: GSelectVariant;
+  state?: GSelectState;
   disabled?: boolean;
   placeholder?: string;
   searchPlaceholder?: string;
 }>();
 
-const tokens = prominenceTokens(Prominence.Ghost, Semantic.Neutral);
+const isPill = computed(() => variant === GSelectVariant.Pill);
+
+const tokens = prominenceTokens(GProminence.Ghost, GSemantic.Neutral);
 
 const triggerRef = useTemplateRef('triggerRef');
 const triggerHeight = useHeight(triggerRef);
@@ -206,10 +233,10 @@ const visibleValues = reactive(new Set<string>());
 const visibleCount = computed(() => visibleValues.size);
 
 const labels = reactive(new Map<string, string>());
-const colors = reactive(new Map<string, PillColor | undefined>());
+const colors = reactive(new Map<string, GPillColor | undefined>());
 
-function dotColor (pillColor?: PillColor) {
-  return PILL_COLORS[pillColor ?? PillColor.Gray].solid;
+function dotColor (pillColor?: GPillColor) {
+  return PILL_COLORS[pillColor ?? GPillColor.Gray].solid;
 }
 
 // Ordered list of visible values for keyboard navigation
@@ -267,6 +294,7 @@ function unregister (value: string) {
 
 provide(SELECT_KEY, {
   size,
+  variant,
   selectedValue: readonly(selected),
   searchValue: readonly(search),
   focusedValue: readonly(focusedValue),
@@ -421,6 +449,19 @@ function focusSearchBox () {
 
 .select-search::placeholder {
   @apply text-xs gui-neutral-fg-muted opacity-50;
+}
+
+/* Box variant trigger */
+.select-trigger--box {
+  @apply border gui-neutral-border-subtle;
+}
+
+.select-box-label {
+  @apply overflow-hidden text-ellipsis whitespace-nowrap;
+}
+
+.select-chevron {
+  @apply shrink-0 gui-neutral-fg-muted;
 }
 
 /* Menu */

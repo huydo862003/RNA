@@ -11,8 +11,8 @@ import {
 } from 'vue';
 import GSwitch from './GSwitch.vue';
 import {
-  SwitchSize,
-  SwitchSemantic,
+  GSwitchSize,
+  GSwitchSemantic,
 } from './types';
 
 const meta = {
@@ -26,12 +26,12 @@ const meta = {
     },
     size: {
       control: 'select',
-      options: Object.values(SwitchSize),
+      options: Object.values(GSwitchSize),
       description: 'Switch size',
     },
     semantic: {
       control: 'select',
-      options: Object.values(SwitchSemantic),
+      options: Object.values(GSwitchSemantic),
       description: 'Color role when checked',
     },
     disabled: {
@@ -156,14 +156,14 @@ export const AllSizesSwitchStory: Story = {
         sm,
         md,
         lg,
-        SwitchSize,
+        GSwitchSize,
       };
     },
     template: `
       <div class="flex items-center gap-spacing-4">
-        <GSwitch v-model="sm" :size="SwitchSize.Sm" />
-        <GSwitch v-model="md" :size="SwitchSize.Md" />
-        <GSwitch v-model="lg" :size="SwitchSize.Lg" />
+        <GSwitch v-model="sm" :size="GSwitchSize.Sm" />
+        <GSwitch v-model="md" :size="GSwitchSize.Md" />
+        <GSwitch v-model="lg" :size="GSwitchSize.Lg" />
       </div>
     `,
   }),
@@ -185,7 +185,7 @@ export const AllSemanticsSwitchStory: Story = {
       GSwitch,
     },
     setup () {
-      const semantics = Object.values(SwitchSemantic);
+      const semantics = Object.values(GSwitchSemantic);
       const states = Object.fromEntries(semantics.map((s) => [
         s,
         ref(true),

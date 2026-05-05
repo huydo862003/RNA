@@ -3,10 +3,10 @@
  */
 
 export {
-  Size as SpinnerSize,
+  GSize as GSpinnerSize,
 } from '@/types';
 
-export enum SpinnerSpeed {
+export enum GSpinnerSpeed {
   Slow = 'slow',
   Normal = 'normal',
   Fast = 'fast',

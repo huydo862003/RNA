@@ -13,11 +13,12 @@ import GSelect from './GSelect.vue';
 import GSelectOption from './GSelectOption.vue';
 import GSelectGroup from './GSelectGroup.vue';
 import {
-  SelectSize,
-  SelectState,
+  GSelectSize,
+  GSelectState,
+  GSelectVariant,
 } from './types';
 import {
-  PillColor,
+  GPillColor,
 } from '@/components/Display/Pill/types';
 
 const meta = {
@@ -27,11 +28,15 @@ const meta = {
   argTypes: {
     size: {
       control: 'select',
-      options: Object.values(SelectSize),
+      options: Object.values(GSelectSize),
+    },
+    variant: {
+      control: 'select',
+      options: Object.values(GSelectVariant),
     },
     state: {
       control: 'select',
-      options: Object.values(SelectState),
+      options: Object.values(GSelectState),
     },
     disabled: {
       control: 'boolean',
@@ -69,7 +74,7 @@ export const BasicSelectStory: Story = {
       const value = ref(undefined);
       return {
         value,
-        PillColor,
+        GPillColor,
       };
     },
     template: `
@@ -78,9 +83,9 @@ export const BasicSelectStory: Story = {
           Selected: {{ value ?? 'None' }}
         </p>
         <GSelect v-model="value" placeholder="Pick a fruit">
-          <GSelectOption value="apple" label="Apple" :color="PillColor.Red" />
-          <GSelectOption value="banana" label="Banana" :color="PillColor.Yellow" />
-          <GSelectOption value="cherry" label="Cherry" :color="PillColor.Pink" />
+          <GSelectOption value="apple" label="Apple" :color="GPillColor.Red" />
+          <GSelectOption value="banana" label="Banana" :color="GPillColor.Yellow" />
+          <GSelectOption value="cherry" label="Cherry" :color="GPillColor.Pink" />
         </GSelect>
       </div>
     `,
@@ -110,28 +115,28 @@ export const SizesSelectStory: Story = {
       const value = ref('apple');
       return {
         value,
-        SelectSize,
+        GSelectSize,
       };
     },
     template: `
       <div class="p-spacing-4 flex flex-col gap-spacing-2 items-start">
-        <GSelect v-model="value" :size="SelectSize.Xs">
+        <GSelect v-model="value" :size="GSelectSize.Xs">
           <GSelectOption value="apple" label="Apple" />
           <GSelectOption value="banana" label="Banana" />
         </GSelect>
-        <GSelect v-model="value" :size="SelectSize.Sm">
+        <GSelect v-model="value" :size="GSelectSize.Sm">
           <GSelectOption value="apple" label="Apple" />
           <GSelectOption value="banana" label="Banana" />
         </GSelect>
-        <GSelect v-model="value" :size="SelectSize.Md">
+        <GSelect v-model="value" :size="GSelectSize.Md">
           <GSelectOption value="apple" label="Apple" />
           <GSelectOption value="banana" label="Banana" />
         </GSelect>
-        <GSelect v-model="value" :size="SelectSize.Lg">
+        <GSelect v-model="value" :size="GSelectSize.Lg">
           <GSelectOption value="apple" label="Apple" />
           <GSelectOption value="banana" label="Banana" />
         </GSelect>
-        <GSelect v-model="value" :size="SelectSize.Xl">
+        <GSelect v-model="value" :size="GSelectSize.Xl">
           <GSelectOption value="apple" label="Apple" />
           <GSelectOption value="banana" label="Banana" />
         </GSelect>
@@ -162,32 +167,32 @@ export const StatesSelectStory: Story = {
       const value = ref(undefined);
       return {
         value,
-        SelectState,
+        GSelectState,
       };
     },
     template: `
       <div class="p-spacing-4 flex flex-col gap-spacing-3 items-start">
         <div>
           <p class="text-xs gui-neutral-fg-muted mb-spacing-1">Default</p>
-          <GSelect v-model="value" :state="SelectState.Default">
+          <GSelect v-model="value" :state="GSelectState.Default">
             <GSelectOption value="a" label="Option A" />
           </GSelect>
         </div>
         <div>
           <p class="text-xs gui-danger-fg mb-spacing-1">Error</p>
-          <GSelect v-model="value" :state="SelectState.Error">
+          <GSelect v-model="value" :state="GSelectState.Error">
             <GSelectOption value="a" label="Option A" />
           </GSelect>
         </div>
         <div>
           <p class="text-xs gui-warning-fg mb-spacing-1">Warning</p>
-          <GSelect v-model="value" :state="SelectState.Warning">
+          <GSelect v-model="value" :state="GSelectState.Warning">
             <GSelectOption value="a" label="Option A" />
           </GSelect>
         </div>
         <div>
           <p class="text-xs gui-success-fg mb-spacing-1">Success</p>
-          <GSelect v-model="value" :state="SelectState.Success">
+          <GSelect v-model="value" :state="GSelectState.Success">
             <GSelectOption value="a" label="Option A" />
           </GSelect>
         </div>
@@ -369,6 +374,108 @@ export const GroupedSelectStory: Story = {
             <GSelectOption value="done" label="Done" />
           </GSelectGroup>
         </GSelect>
+      </div>
+    `,
+  }),
+};
+
+export const BoxVariantStory: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Box variant: plain text trigger and options, no colored pills.',
+      },
+      source: {
+        code: `<GSelect v-model="value" :variant="GSelectVariant.Box" placeholder="Pick a dialect">
+  <GSelectOption value="mysql" label="MySQL" />
+  <GSelectOption value="postgres" label="Postgres" />
+</GSelect>`,
+      },
+    },
+  },
+  render: () => ({
+    components: {
+      GSelect,
+      GSelectOption,
+    },
+    setup () {
+      const value = ref(undefined);
+      return {
+        value,
+        GSelectVariant,
+        GSelectSize,
+      };
+    },
+    template: `
+      <div class="p-spacing-4 flex flex-col gap-spacing-4 items-start">
+        <div>
+          <p class="text-xs gui-neutral-fg-muted mb-spacing-1">Box (default size)</p>
+          <GSelect v-model="value" :variant="GSelectVariant.Box" placeholder="Pick a dialect">
+            <GSelectOption value="mysql" label="MySQL" />
+            <GSelectOption value="postgres" label="Postgres" />
+            <GSelectOption value="sqlite" label="SQLite" />
+            <GSelectOption value="duckdb" label="DuckDB" />
+            <GSelectOption value="bigquery" label="BigQuery" />
+          </GSelect>
+        </div>
+        <div>
+          <p class="text-xs gui-neutral-fg-muted mb-spacing-1">Box (xs)</p>
+          <GSelect v-model="value" :variant="GSelectVariant.Box" :size="GSelectSize.Xs" placeholder="Dialect">
+            <GSelectOption value="mysql" label="MySQL" />
+            <GSelectOption value="postgres" label="Postgres" />
+            <GSelectOption value="sqlite" label="SQLite" />
+          </GSelect>
+        </div>
+        <div>
+          <p class="text-xs gui-neutral-fg-muted mb-spacing-1">
+            Selected: {{ value ?? 'None' }}
+          </p>
+        </div>
+      </div>
+    `,
+  }),
+};
+
+export const BoxVsPillStory: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Pill and Box variants side by side for comparison.',
+      },
+    },
+  },
+  render: () => ({
+    components: {
+      GSelect,
+      GSelectOption,
+    },
+    setup () {
+      const pill = ref('postgres');
+      const box = ref('postgres');
+      return {
+        pill,
+        box,
+        GSelectVariant,
+      };
+    },
+    template: `
+      <div class="p-spacing-4 flex gap-spacing-4 items-start">
+        <div>
+          <p class="text-xs gui-neutral-fg-muted mb-spacing-1">Pill (default)</p>
+          <GSelect v-model="pill" :variant="GSelectVariant.Pill">
+            <GSelectOption value="mysql" label="MySQL" />
+            <GSelectOption value="postgres" label="Postgres" />
+            <GSelectOption value="sqlite" label="SQLite" />
+          </GSelect>
+        </div>
+        <div>
+          <p class="text-xs gui-neutral-fg-muted mb-spacing-1">Box</p>
+          <GSelect v-model="box" :variant="GSelectVariant.Box">
+            <GSelectOption value="mysql" label="MySQL" />
+            <GSelectOption value="postgres" label="Postgres" />
+            <GSelectOption value="sqlite" label="SQLite" />
+          </GSelect>
+        </div>
       </div>
     `,
   }),
