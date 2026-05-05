@@ -1,0 +1,14 @@
+/* #human-slop
+ *  https://github.com/huydo862003/Fck-AI-Slop/edit/main/README.md
+ */
+
+/**
+ * @tokens Font weights
+ * @presenter FontWeight
+ */
+@theme {
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+}
+/** @tokens-end */

@@ -28,6 +28,7 @@
   --color-neutral-11: #8b9898;
   --color-neutral-12: #1c2024;
 }
+
 /** @tokens-end */
 
 /**
@@ -51,6 +52,7 @@
   --color-primary-11: #60646c;
   --color-primary-12: #1c2024;
 }
+
 /** @tokens-end */
 
 /**
@@ -74,6 +76,7 @@
   --color-accent-red-11: #ce2c31;
   --color-accent-red-12: #641723;
 }
+
 /** @tokens-end */
 
 /**
@@ -97,6 +100,7 @@
   --color-accent-green-11: #2a7e3b;
   --color-accent-green-12: #203c25;
 }
+
 /** @tokens-end */
 
 /**
@@ -120,6 +124,7 @@
   --color-accent-yellow-11: #ab6400;
   --color-accent-yellow-12: #4f3422;
 }
+
 /** @tokens-end */
 
 /**
@@ -143,6 +148,7 @@
   --color-accent-blue-11: #0d74ce;
   --color-accent-blue-12: #113264;
 }
+
 /** @tokens-end */
 
 /**
@@ -167,3 +173,305 @@
   --color-accent-orange-12: #582d1d;
 }
 /** @tokens-end */
+
+/**
+ * @tokens Pink accent color (Pink)
+ * @presenter Color
+ */
+@theme {
+  /* Corresponds to `pink` in Radix UI */
+  --color-accent-pink-1: #fffcfe;
+  --color-accent-pink-2: #fef7fb;
+  --color-accent-pink-3: #feeef8;
+  --color-accent-pink-4: #fce5f3;
+  --color-accent-pink-5: #f9d8ec;
+  --color-accent-pink-6: #f3c6e2;
+  --color-accent-pink-7: #ecadd4;
+  --color-accent-pink-8: #e38ec3;
+  --color-accent-pink-9: #d6409f;
+  --color-accent-pink-10: #cf3897;
+  --color-accent-pink-11: #c2298a;
+  --color-accent-pink-12: #651249;
+}
+/** @tokens-end */
+
+/**
+ * @tokens Purple accent color (Purple)
+ * @presenter Color
+ */
+@theme {
+  /* Corresponds to `purple` in Radix UI */
+  --color-accent-purple-1: #fefcfe;
+  --color-accent-purple-2: #fbf7fe;
+  --color-accent-purple-3: #f7edfc;
+  --color-accent-purple-4: #f3e7fc;
+  --color-accent-purple-5: #eddbf9;
+  --color-accent-purple-6: #e3ccf4;
+  --color-accent-purple-7: #d3b4ed;
+  --color-accent-purple-8: #be93e4;
+  --color-accent-purple-9: #8e4ec6;
+  --color-accent-purple-10: #8347b9;
+  --color-accent-purple-11: #8145b5;
+  --color-accent-purple-12: #402060;
+}
+/** @tokens-end */
+
+/**
+ * @tokens Violet accent color (Violet)
+ * @presenter Color
+ */
+@theme {
+  /* Corresponds to `violet` in Radix UI */
+  --color-accent-violet-1: #fdfcfe;
+  --color-accent-violet-2: #faf8ff;
+  --color-accent-violet-3: #f4f0fe;
+  --color-accent-violet-4: #ede9fe;
+  --color-accent-violet-5: #e4defc;
+  --color-accent-violet-6: #d7cff9;
+  --color-accent-violet-7: #c4b8f3;
+  --color-accent-violet-8: #aa99ec;
+  --color-accent-violet-9: #6e56cf;
+  --color-accent-violet-10: #654dc4;
+  --color-accent-violet-11: #6550b9;
+  --color-accent-violet-12: #2f265f;
+}
+/** @tokens-end */
+
+/**
+ * @tokens Cyan accent color (Cyan)
+ * @presenter Color
+ */
+@theme {
+  /* Corresponds to `cyan` in Radix UI */
+  --color-accent-cyan-1: #fafdfe;
+  --color-accent-cyan-2: #f2fafb;
+  --color-accent-cyan-3: #e7f9fb;
+  --color-accent-cyan-4: #d8f3f6;
+  --color-accent-cyan-5: #c4eaef;
+  --color-accent-cyan-6: #aadee6;
+  --color-accent-cyan-7: #84cdda;
+  --color-accent-cyan-8: #3db9cf;
+  --color-accent-cyan-9: #00a2c7;
+  --color-accent-cyan-10: #0797b9;
+  --color-accent-cyan-11: #107d98;
+  --color-accent-cyan-12: #0d3c48;
+}
+/** @tokens-end */
+
+/**
+ * @tokens Teal accent color (Teal)
+ * @presenter Color
+ */
+@theme {
+  /* Corresponds to `teal` in Radix UI */
+  --color-accent-teal-1: #fafefd;
+  --color-accent-teal-2: #f3fbf9;
+  --color-accent-teal-3: #e0f8f3;
+  --color-accent-teal-4: #ccf3ea;
+  --color-accent-teal-5: #b8eae0;
+  --color-accent-teal-6: #a1ded2;
+  --color-accent-teal-7: #83cdc1;
+  --color-accent-teal-8: #53b9ab;
+  --color-accent-teal-9: #12a594;
+  --color-accent-teal-10: #0d9b8a;
+  --color-accent-teal-11: #008573;
+  --color-accent-teal-12: #0d3d38;
+}
+/** @tokens-end */
+
+/**
+ * @tokens Brown accent color (Sand)
+ * @presenter Color
+ */
+@theme {
+  /* Corresponds to `sand` in Radix UI */
+  --color-accent-brown-1: #fdfdfc;
+  --color-accent-brown-2: #f9f9f8;
+  --color-accent-brown-3: #f2ede8;
+  --color-accent-brown-4: #e9e4de;
+  --color-accent-brown-5: #e0dbd5;
+  --color-accent-brown-6: #d7d1ca;
+  --color-accent-brown-7: #c8c2ba;
+  --color-accent-brown-8: #b0a99f;
+  --color-accent-brown-9: #a18072;
+  --color-accent-brown-10: #957468;
+  --color-accent-brown-11: #6f5f58;
+  --color-accent-brown-12: #43302b;
+}
+/** @tokens-end */
+
+/* .inverted in dark mode: apply light primitives */
+@layer base {
+  .dark .inverted {
+    color-scheme: light;
+
+    --color-neutral-1: #fcfcfd;
+    --color-neutral-2: #f9f9fb;
+    --color-neutral-3: #f0f0f3;
+    --color-neutral-4: #e8e8ec;
+    --color-neutral-5: #e0e1e6;
+    --color-neutral-6: #d9d9e0;
+    --color-neutral-7: #cdced6;
+    --color-neutral-8: #b9bbc6;
+    --color-neutral-9: #8b8d98;
+    --color-neutral-10: #80838d;
+    --color-neutral-11: #8b9898;
+    --color-neutral-12: #1c2024;
+
+    --color-primary-1: #fcfcfd;
+    --color-primary-2: #f9f9fb;
+    --color-primary-3: #f0f0f3;
+    --color-primary-4: #e8e8ec;
+    --color-primary-5: #e0e1e6;
+    --color-primary-6: #d9d9e0;
+    --color-primary-7: #cdced6;
+    --color-primary-8: #b9bbc6;
+    --color-primary-9: #8b8d98;
+    --color-primary-10: #80838d;
+    --color-primary-11: #60646c;
+    --color-primary-12: #1c2024;
+
+    --color-accent-red-1: #fffcfc;
+    --color-accent-red-2: #fff7f7;
+    --color-accent-red-3: #feebec;
+    --color-accent-red-4: #ffdbdc;
+    --color-accent-red-5: #ffcdce;
+    --color-accent-red-6: #fdbdbe;
+    --color-accent-red-7: #f4a9aa;
+    --color-accent-red-8: #eb8e90;
+    --color-accent-red-9: #e5484d;
+    --color-accent-red-10: #dc3e42;
+    --color-accent-red-11: #ce2c31;
+    --color-accent-red-12: #641723;
+
+    --color-accent-green-1: #fbfefb;
+    --color-accent-green-2: #f5fbf5;
+    --color-accent-green-3: #e9f6e9;
+    --color-accent-green-4: #daf1db;
+    --color-accent-green-5: #c9e8ca;
+    --color-accent-green-6: #b2ddb5;
+    --color-accent-green-7: #94ce9a;
+    --color-accent-green-8: #65ba74;
+    --color-accent-green-9: #46a758;
+    --color-accent-green-10: #3e9b4f;
+    --color-accent-green-11: #2a7e3b;
+    --color-accent-green-12: #203c25;
+
+    --color-accent-yellow-1: #fefdfb;
+    --color-accent-yellow-2: #fefbe9;
+    --color-accent-yellow-3: #fff7c2;
+    --color-accent-yellow-4: #ffee9c;
+    --color-accent-yellow-5: #fbe577;
+    --color-accent-yellow-6: #f3d673;
+    --color-accent-yellow-7: #e9c162;
+    --color-accent-yellow-8: #e2a336;
+    --color-accent-yellow-9: #ffc53d;
+    --color-accent-yellow-10: #ffba18;
+    --color-accent-yellow-11: #ab6400;
+    --color-accent-yellow-12: #4f3422;
+
+    --color-accent-blue-1: #fbfdff;
+    --color-accent-blue-2: #f4faff;
+    --color-accent-blue-3: #e6f4fe;
+    --color-accent-blue-4: #d5efff;
+    --color-accent-blue-5: #c2e5ff;
+    --color-accent-blue-6: #acd8fc;
+    --color-accent-blue-7: #8ec8f6;
+    --color-accent-blue-8: #5eb1ef;
+    --color-accent-blue-9: #0090ff;
+    --color-accent-blue-10: #0588f0;
+    --color-accent-blue-11: #0d74ce;
+    --color-accent-blue-12: #113264;
+
+    --color-accent-orange-1: #fefcfb;
+    --color-accent-orange-2: #fff7ed;
+    --color-accent-orange-3: #ffefd6;
+    --color-accent-orange-4: #ffdfb5;
+    --color-accent-orange-5: #ffd19a;
+    --color-accent-orange-6: #ffc182;
+    --color-accent-orange-7: #f5ae73;
+    --color-accent-orange-8: #ec9455;
+    --color-accent-orange-9: #f76b15;
+    --color-accent-orange-10: #ef5f00;
+    --color-accent-orange-11: #cc4e00;
+    --color-accent-orange-12: #582d1d;
+
+    --color-accent-pink-1: #fffcfe;
+    --color-accent-pink-2: #fef7fb;
+    --color-accent-pink-3: #feeef8;
+    --color-accent-pink-4: #fce5f3;
+    --color-accent-pink-5: #f9d8ec;
+    --color-accent-pink-6: #f3c6e2;
+    --color-accent-pink-7: #ecadd4;
+    --color-accent-pink-8: #e38ec3;
+    --color-accent-pink-9: #d6409f;
+    --color-accent-pink-10: #cf3897;
+    --color-accent-pink-11: #c2298a;
+    --color-accent-pink-12: #651249;
+
+    --color-accent-purple-1: #fefcfe;
+    --color-accent-purple-2: #fbf7fe;
+    --color-accent-purple-3: #f7edfc;
+    --color-accent-purple-4: #f3e7fc;
+    --color-accent-purple-5: #eddbf9;
+    --color-accent-purple-6: #e3ccf4;
+    --color-accent-purple-7: #d3b4ed;
+    --color-accent-purple-8: #be93e4;
+    --color-accent-purple-9: #8e4ec6;
+    --color-accent-purple-10: #8347b9;
+    --color-accent-purple-11: #8145b5;
+    --color-accent-purple-12: #402060;
+
+    --color-accent-violet-1: #fdfcfe;
+    --color-accent-violet-2: #faf8ff;
+    --color-accent-violet-3: #f4f0fe;
+    --color-accent-violet-4: #ede9fe;
+    --color-accent-violet-5: #e4defc;
+    --color-accent-violet-6: #d7cff9;
+    --color-accent-violet-7: #c4b8f3;
+    --color-accent-violet-8: #aa99ec;
+    --color-accent-violet-9: #6e56cf;
+    --color-accent-violet-10: #654dc4;
+    --color-accent-violet-11: #6550b9;
+    --color-accent-violet-12: #2f265f;
+
+    --color-accent-cyan-1: #fafdfe;
+    --color-accent-cyan-2: #f2fafb;
+    --color-accent-cyan-3: #e7f9fb;
+    --color-accent-cyan-4: #d8f3f6;
+    --color-accent-cyan-5: #c4eaef;
+    --color-accent-cyan-6: #aadee6;
+    --color-accent-cyan-7: #84cdda;
+    --color-accent-cyan-8: #3db9cf;
+    --color-accent-cyan-9: #00a2c7;
+    --color-accent-cyan-10: #0797b9;
+    --color-accent-cyan-11: #107d98;
+    --color-accent-cyan-12: #0d3c48;
+
+    --color-accent-teal-1: #fafefd;
+    --color-accent-teal-2: #f3fbf9;
+    --color-accent-teal-3: #e0f8f3;
+    --color-accent-teal-4: #ccf3ea;
+    --color-accent-teal-5: #b8eae0;
+    --color-accent-teal-6: #a1ded2;
+    --color-accent-teal-7: #83cdc1;
+    --color-accent-teal-8: #53b9ab;
+    --color-accent-teal-9: #12a594;
+    --color-accent-teal-10: #0d9b8a;
+    --color-accent-teal-11: #008573;
+    --color-accent-teal-12: #0d3d38;
+
+    --color-accent-brown-1: #fdfdfc;
+    --color-accent-brown-2: #f9f9f8;
+    --color-accent-brown-3: #f2ede8;
+    --color-accent-brown-4: #e9e4de;
+    --color-accent-brown-5: #e0dbd5;
+    --color-accent-brown-6: #d7d1ca;
+    --color-accent-brown-7: #c8c2ba;
+    --color-accent-brown-8: #b0a99f;
+    --color-accent-brown-9: #a18072;
+    --color-accent-brown-10: #957468;
+    --color-accent-brown-11: #6f5f58;
+    --color-accent-brown-12: #43302b;
+  }
+}

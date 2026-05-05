@@ -8,15 +8,15 @@
  */
 @theme {
   /* Font size scale: minor third ratio (1.2)
-   * Good for generic web apps
-   * Base 18px
+   * Tuned for monospace (IBM Plex Mono)
+   * Base 14px
    * */
-  --text-1: 12.5px;
-  --text-2: 15px;
-  --text-3: 18px;
-  --text-4: 21.6px;
-  --text-5: 25.9px;
-  --text-6: 31.1px;
-  --text-7: 37.3px;
+  --text-1: 10px;
+  --text-2: 12px;
+  --text-3: 14px;
+  --text-4: 17px;
+  --text-5: 20px;
+  --text-6: 24px;
+  --text-7: 29px;
 }
 /** @tokens-end */

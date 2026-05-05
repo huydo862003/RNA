@@ -2,11 +2,11 @@
  * https://github.com/huydo862003/Fck-AI-Slop/edit/main/README.md
  */
 
-@import 'tailwindcss';
-@import 'floating-vue/style.css';
-@import '@fontsource/ibm-plex-mono/400.css';
-@import '@fontsource/ibm-plex-mono/500.css';
-@import '@fontsource/ibm-plex-mono/700.css';
+@import "tailwindcss";
+@import "floating-vue/style.css";
+@import "@fontsource/ibm-plex-mono/400.css";
+@import "@fontsource/ibm-plex-mono/500.css";
+@import "@fontsource/ibm-plex-mono/700.css";
 
 @layer components;
 
@@ -14,6 +14,7 @@
 @theme {
   --color-*: initial;
   --font-*: initial;
+  --font-weight-*: initial;
   --text-*: initial;
   --leading-*: initial;
   --spacing-*: initial;
@@ -22,14 +23,15 @@
   --ease-*: initial;
 }
 
-@import './tokens/primitives/base/index.css';
-@import './tokens/primitives/dark/index.css';
-@import './tokens/semantic.css';
+@import "./tokens/primitives/base/index.css";
+@import "./tokens/primitives/dark/index.css";
+@import "./tokens/semantic.css";
 
 /* Base styles */
 body {
   font-family: var(--font-sans);
   font-size: var(--text-md);
+  font-weight: var(--font-weight-normal);
   line-height: var(--leading-3);
   color: var(--gui-neutral-fg);
 }
@@ -38,11 +40,32 @@ body {
 .v-popper__popper {
   border: none;
   border-color: transparent;
+
   .v-popper__wrapper {
     border: none;
     border-color: transparent;
-    .v-popper__inner {
-      @apply border gui-neutral-border-subtle;
-    }
   }
+}
+
+.v-popper--theme-dropdown .v-popper__inner {
+  background: var(--gui-neutral-bg);
+  color: var(--gui-neutral-fg);
+  border: 1px solid var(--gui-neutral-border-subtle);
+  box-shadow: var(--shadow-md);
+}
+
+.v-popper--theme-dropdown .v-popper__arrow-inner {
+  border-color: var(--gui-neutral-bg);
+}
+
+.v-popper--theme-dropdown .v-popper__arrow-outer {
+  border-color: var(--gui-neutral-border-subtle);
+}
+
+.v-popper--theme-tooltip .v-popper__inner {
+  /* Tooltip uses inverted background */
+  background: var(--gui-neutral-solid);
+  /* Tooltip uses inverted foreground */
+  color: var(--gui-neutral-bg);
+  border: none;
 }
