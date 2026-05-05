@@ -2,8 +2,6 @@
   <component
     :is="as"
     v-bind="$attrs"
-    :href="href"
-    :to="to"
     :class="['nav-link', active && 'nav-link--active']"
     role="menuitem"
   >
@@ -35,15 +33,11 @@ defineOptions({
 
 const {
   as = 'a',
-  href = undefined,
-  to = undefined,
   label = undefined,
   icon = undefined,
   active = false,
 } = defineProps<{
   as?: string | Component;
-  href?: string;
-  to?: string | Record<string, unknown>;
   label?: string;
   icon?: GIconName;
   active?: boolean;

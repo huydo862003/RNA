@@ -2,8 +2,6 @@
   <component
     :is="as"
     v-bind="$attrs"
-    :href="href"
-    :to="to"
     class="nav-brand"
   >
     <slot />
@@ -25,12 +23,8 @@ defineOptions({
 
 const {
   as = 'a',
-  href = undefined,
-  to = undefined,
 } = defineProps<{
   as?: string | Component;
-  href?: string;
-  to?: string | Record<string, unknown>;
 }>();
 </script>
 
