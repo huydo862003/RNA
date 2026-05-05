@@ -245,7 +245,6 @@ async function clickCopyButton () {
   @apply overflow-x-auto;
 }
 
-
 .code-header {
   @apply px-3 py-xs gap-6 flex content-between items-center;
   border-bottom: 1px solid var(--_border);

@@ -100,14 +100,22 @@ export {
   default as GCollapsible,
 } from './Collapsible/GCollapsible.vue';
 
-// FilterableList
+// Filterable
 export {
   default as GFilterable,
-} from './FilterableList/GFilterable.vue';
+} from './Filterable/GFilterable.vue';
 
-export type {
-  FilterableListItem,
-} from './FilterableList/types';
+export {
+  default as GFilterableItem,
+} from './Filterable/GFilterableItem.vue';
+
+export {
+  default as GFilterableSearchBox,
+} from './Filterable/GFilterableSearchBox.vue';
+
+export {
+  default as GFilterablePaginator,
+} from './Filterable/GFilterablePaginator.vue';
 
 // Flippable
 export {
@@ -175,6 +183,34 @@ export {
 export {
   default as GTable,
 } from './Table/GTable.vue';
+
+export {
+  default as GTableHeader,
+} from './Table/GTableHeader.vue';
+
+export {
+  default as GTableBody,
+} from './Table/GTableBody.vue';
+
+export {
+  default as GTableRow,
+} from './Table/GTableRow.vue';
+
+export {
+  default as GTableCell,
+} from './Table/GTableCell.vue';
+
+export {
+  default as GTablePaginator,
+} from './Table/GTablePaginator.vue';
+
+export {
+  default as GTableFilter,
+} from './Table/GTableFilter.vue';
+
+export {
+  default as GTableSorter,
+} from './Table/GTableSorter.vue';
 
 export type {
   GTableColumn,

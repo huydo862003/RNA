@@ -36,6 +36,10 @@ body {
   color: var(--gui-neutral-fg);
 }
 
+th {
+  text-align: left;
+}
+
 /* Reset floating-vue styles */
 .v-popper__popper {
   border: none;

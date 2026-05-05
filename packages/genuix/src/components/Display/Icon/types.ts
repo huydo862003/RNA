@@ -5,6 +5,7 @@
 import {
   PhArrowClockwise,
   PhArrowDown,
+  PhArrowsDownUp,
   PhArrowFatLinesUp,
   PhArrowFatUp,
   PhArrowLeft,
@@ -131,6 +132,7 @@ export enum GIconName {
   ArrowRight = 'arrow-right',
   ArrowUp = 'arrow-up',
   ArrowDown = 'arrow-down',
+  ArrowUpDown = 'arrow-up-down',
   ArrowsLeftRight = 'arrows-left-right',
   ChevronLeft = 'chevron-left',
   ChevronRight = 'chevron-right',
@@ -274,6 +276,7 @@ export const iconMap: Record<GIconName, Component> = {
   [GIconName.ArrowRight]: PhArrowRight,
   [GIconName.ArrowUp]: PhArrowUp,
   [GIconName.ArrowDown]: PhArrowDown,
+  [GIconName.ArrowUpDown]: PhArrowsDownUp,
   [GIconName.ArrowsLeftRight]: PhArrowsLeftRight,
   [GIconName.ChevronLeft]: PhCaretLeft,
   [GIconName.ChevronRight]: PhCaretRight,

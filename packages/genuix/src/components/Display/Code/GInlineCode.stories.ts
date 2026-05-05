@@ -80,7 +80,7 @@ export const CustomBgInlineCodeStory: Story = {
     },
     template: `
       <p class="text-sm gui-neutral-fg">
-        Status: <GInlineCode style="--_inline-code-bg: #fef3c7">warning</GInlineCode> and <GInlineCode class="gui-danger-bg">success</GInlineCode>
+        Status: <GInlineCode style="gui-info-bg">warning</GInlineCode> and <GInlineCode class="gui-danger-bg">success</GInlineCode>
       </p>
     `,
   }),
