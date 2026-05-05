@@ -1,5 +1,11 @@
 # genuix
 
+## 0.9.0
+
+### Minor Changes
+
+- Support more themes in code block, support GFilterable and GTable
+
 ## 0.8.0
 
 ### Minor Changes
