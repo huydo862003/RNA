@@ -6,7 +6,7 @@ export {
   useTheme,
 } from './useTheme';
 export type {
-  Theme,
+  GTheme,
 } from './useTheme';
 
 export {

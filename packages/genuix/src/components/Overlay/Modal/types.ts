@@ -8,7 +8,7 @@ import type {
 } from 'vue';
 
 export {
-  Size as ModalSize,
+  GSize as GModalSize,
 } from '@/types';
 
 // Poppers are teleported to body

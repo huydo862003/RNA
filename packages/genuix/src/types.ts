@@ -3,7 +3,7 @@
  */
 
 // Shared semantic roles across components (Button, Switch, etc.)
-export enum Semantic {
+export enum GSemantic {
   Neutral = 'neutral',
   Danger = 'danger',
   Success = 'success',
@@ -13,7 +13,7 @@ export enum Semantic {
 }
 
 // Shared prominence levels across components (Button, Code block, etc.)
-export enum Prominence {
+export enum GProminence {
   Secondary = 'secondary',
   Primary = 'primary',
   Tertiary = 'tertiary',
@@ -21,7 +21,7 @@ export enum Prominence {
 }
 
 // Shared size scale across components
-export enum Size {
+export enum GSize {
   Xs = 'xs',
   Sm = 'sm',
   Md = 'md',

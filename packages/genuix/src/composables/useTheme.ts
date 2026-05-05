@@ -7,16 +7,16 @@ import {
   readonly,
 } from 'vue';
 
-export enum Theme {
+export enum GTheme {
   Light = 'light',
   Dark = 'dark',
   System = 'system',
 }
 
 export function useTheme () {
-  const theme = ref<Theme>(Theme.System);
+  const theme = ref<GTheme>(GTheme.System);
   onMounted(() => {
-    const stored = localStorage.getItem(STORAGE_KEY) as Theme | null;
+    const stored = localStorage.getItem(STORAGE_KEY) as GTheme | null;
     if (stored) {
       theme.value = stored;
     }
@@ -27,8 +27,8 @@ export function useTheme () {
     // And then apply the theme
     window.matchMedia('(prefers-color-scheme: dark)')
       .addEventListener('change', () => {
-        if (theme.value === Theme.System) {
-          applyTheme(Theme.System);
+        if (theme.value === GTheme.System) {
+          applyTheme(GTheme.System);
         }
       });
   });
@@ -38,23 +38,23 @@ export function useTheme () {
     applyTheme(value);
   });
 
-  function setTheme (newTheme: Theme) {
-    theme.value = newTheme;
+  function setGTheme (newGTheme: GTheme) {
+    theme.value = newGTheme;
   }
 
   return {
     theme: readonly(theme),
-    setTheme,
+    setGTheme,
   };
 }
 
 const STORAGE_KEY = '[genuix]-theme';
 
-function getSystemPreference (): Theme.Light | Theme.Dark {
-  return window.matchMedia('(prefers-color-scheme: dark)').matches ? Theme.Dark : Theme.Light;
+function getSystemPreference (): GTheme.Light | GTheme.Dark {
+  return window.matchMedia('(prefers-color-scheme: dark)').matches ? GTheme.Dark : GTheme.Light;
 }
 
-function applyTheme (value: Theme) {
-  const resolved = value === Theme.System ? getSystemPreference() : value;
-  document.documentElement.classList.toggle('dark', resolved === Theme.Dark);
+function applyTheme (value: GTheme) {
+  const resolved = value === GTheme.System ? getSystemPreference() : value;
+  document.documentElement.classList.toggle('dark', resolved === GTheme.Dark);
 }

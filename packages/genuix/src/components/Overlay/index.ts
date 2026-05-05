@@ -15,7 +15,7 @@ export {
 } from './Modal/GModal.vue';
 
 export {
-  ModalSize,
+  GModalSize,
   POPPER_CONTAINER_KEY,
 } from './Modal/types';
 

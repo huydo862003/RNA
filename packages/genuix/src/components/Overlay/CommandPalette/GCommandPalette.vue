@@ -3,7 +3,7 @@
     ref="modalRef"
     v-bind="$attrs"
     :name="COMMAND_PALETTE_KEY"
-    :size="ModalSize.Md"
+    :size="GModalSize.Md"
   >
     <template #header>
       <div class="command-palette-search">
@@ -94,7 +94,7 @@ import {
   watch,
 } from 'vue';
 import {
-  ModalSize,
+  GModalSize,
 } from '../Modal/types';
 import {
   COMMAND_PALETTE_KEY,

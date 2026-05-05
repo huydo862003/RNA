@@ -3,13 +3,13 @@
  */
 
 import type {
-  Semantic,
+  GSemantic,
 } from '@/types';
 import {
-  Prominence,
+  GProminence,
 } from '@/types';
 
-export interface ProminenceTokens {
+export interface GProminenceTokens {
   bg: string;
   bgHover: string;
   subtleBg: string;
@@ -26,11 +26,11 @@ export interface ProminenceTokens {
  * Tertiary  -> transparent bg, semantic fg, subtle border
  * Ghost     -> transparent bg, semantic fg, no border
  */
-export function prominenceTokens (prominence: Prominence, semantic: Semantic): ProminenceTokens {
+export function prominenceTokens (prominence: GProminence, semantic: GSemantic): GProminenceTokens {
   const s = semantic;
 
   switch (prominence) {
-  case Prominence.Primary:
+  case GProminence.Primary:
     return {
       bg: `var(--gui-${s}-solid)`,
       bgHover: `var(--gui-${s}-solid-hover)`,
@@ -39,7 +39,7 @@ export function prominenceTokens (prominence: Prominence, semantic: Semantic): P
       mutedFg: `var(--gui-${s}-bg-subtle)`,
       border: 'transparent',
     };
-  case Prominence.Secondary:
+  case GProminence.Secondary:
     return {
       bg: `var(--gui-${s}-bg-hover)`,
       bgHover: `var(--gui-${s}-bg-active)`,
@@ -48,7 +48,7 @@ export function prominenceTokens (prominence: Prominence, semantic: Semantic): P
       mutedFg: `var(--gui-${s}-fg-muted)`,
       border: 'transparent',
     };
-  case Prominence.Tertiary:
+  case GProminence.Tertiary:
     return {
       bg: 'transparent',
       bgHover: `var(--gui-${s}-bg-hover)`,
@@ -57,7 +57,7 @@ export function prominenceTokens (prominence: Prominence, semantic: Semantic): P
       mutedFg: `var(--gui-${s}-fg-muted)`,
       border: `var(--gui-${s}-border-subtle)`,
     };
-  case Prominence.Ghost:
+  case GProminence.Ghost:
     return {
       bg: 'transparent',
       bgHover: `var(--gui-${s}-bg-hover)`,
@@ -75,7 +75,7 @@ export function prominenceTokens (prominence: Prominence, semantic: Semantic): P
  * (Primary prominence) surface. Apply the returned object as `:style`
  * on the container element.
  */
-export function invertTokens (semantic: Semantic): Record<string, string> {
+export function invertTokens (semantic: GSemantic): Record<string, string> {
   const s = semantic;
   return {
     [`--gui-${s}-fg`]: `var(--gui-${s}-bg)`,

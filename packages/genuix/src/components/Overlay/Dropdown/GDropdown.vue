@@ -119,7 +119,9 @@ const {
 
 const triggerRef = useTemplateRef<HTMLElement>('triggerRef');
 
-const triggerWidth = useWidth(triggerRef);
+// Measure the actual trigger element (first child), not the wrapper div
+const triggerEl = computed(() => triggerRef.value?.firstElementChild as HTMLElement | null ?? triggerRef.value);
+const triggerWidth = useWidth(triggerEl);
 
 // A unique id for the dropdown popper, so we can query the child of the popper using query selector
 const popperUid = `g-dropdown-${getId(Dropdown, getCurrentInstance()!)}`;

@@ -55,13 +55,13 @@ import {
   watch,
 } from 'vue';
 import type {
-  ModalSize,
+  GModalSize,
 } from './types';
 import {
   POPPER_CONTAINER_KEY,
 } from './types';
 import {
-  Size,
+  GSize,
 } from '@/types';
 import {
   useModal,
@@ -78,12 +78,12 @@ defineOptions({
 const {
   id = undefined,
   name,
-  size = Size.Md,
+  size = GSize.Md,
 } = defineProps<{
   id?: string;
   /** Register with global modal stack, this should be unique */
   name: string | symbol;
-  size?: ModalSize;
+  size?: GModalSize;
 }>();
 
 const modal = useModal();
