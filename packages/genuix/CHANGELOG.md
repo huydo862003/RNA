@@ -1,5 +1,11 @@
 # genuix
 
+## 0.10.0
+
+### Minor Changes
+
+- Make breadcrumb more flexible by making it a compound component
+
 ## 0.9.0
 
 ### Minor Changes
