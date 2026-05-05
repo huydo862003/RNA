@@ -2,6 +2,9 @@ import {
   type Preview,
   setup,
 } from '@storybook/vue3-vite';
+import {
+  withThemeByClassName,
+} from '@storybook/addon-themes';
 import '../src/style.css';
 import 'floating-vue/style.css';
 import {
@@ -9,6 +12,15 @@ import {
 } from 'floating-vue';
 
 const preview: Preview = {
+  decorators: [
+    withThemeByClassName({
+      themes: {
+        light: 'light',
+        dark: 'dark',
+      },
+      defaultTheme: 'light',
+    }),
+  ],
   parameters: {
     options: {
       storySort: {
@@ -17,12 +29,6 @@ const preview: Preview = {
           'Components',
         ],
       },
-    },
-    darkMode: {
-      classTarget: 'html',
-      darkClass: 'dark',
-      lightClass: '',
-      stylePreview: true,
     },
     designToken: {
       files: {
