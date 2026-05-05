@@ -1,12 +1,9 @@
-/* #human-slop
- *  https://github.com/huydo862003/Fck-AI-Slop/edit/main/README.md
- */
-
 import type {
   Meta,
   StoryObj,
 } from '@storybook/vue3-vite';
 import GBreadcrumb from './GBreadcrumb.vue';
+import GBreadcrumbItem from './GBreadcrumbItem.vue';
 import {
   GIconName,
 } from '@/components/Display/Icon/types';
@@ -15,9 +12,6 @@ const meta = {
   title: 'Components/Display/GBreadcrumb',
   tags: ['autodocs'],
   component: GBreadcrumb,
-  args: {
-    items: [],
-  },
 } satisfies Meta;
 
 export default meta;
@@ -27,20 +21,21 @@ export const VariantsStory: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Short path, deep path (with ellipsis collapse), single item, icon separator, icons on crumbs, and icon ellipsis.',
+        story: 'Short path, deep path (ellipsis collapse), single item, icon separator.',
       },
       source: {
-        code: `<GBreadcrumb :items="[
-  { label: 'Home', href: '/' },
-  { label: 'Docs', href: '/docs' },
-  { label: 'Getting Started' },
-]" />`,
+        code: `<GBreadcrumb>
+  <GBreadcrumbItem as="a" href="/">Home</GBreadcrumbItem>
+  <GBreadcrumbItem as="a" href="/docs">Docs</GBreadcrumbItem>
+  <GBreadcrumbItem>Getting Started</GBreadcrumbItem>
+</GBreadcrumb>`,
       },
     },
   },
   render: () => ({
     components: {
       GBreadcrumb,
+      GBreadcrumbItem,
     },
     setup () {
       return {
@@ -51,55 +46,43 @@ export const VariantsStory: Story = {
       <div class="flex flex-col gap-lg">
         <div>
           <p class="text-xs gui-neutral-fg-muted mb-xs font-bold">Short path</p>
-          <GBreadcrumb :items="[
-            { label: 'Home', href: '/' },
-            { label: 'Docs', href: '/docs' },
-            { label: 'Getting Started' },
-          ]" />
+          <GBreadcrumb>
+            <GBreadcrumbItem as="a" href="/">Home</GBreadcrumbItem>
+            <GBreadcrumbItem as="a" href="/docs">Docs</GBreadcrumbItem>
+            <GBreadcrumbItem>Getting Started</GBreadcrumbItem>
+          </GBreadcrumb>
         </div>
         <div>
           <p class="text-xs gui-neutral-fg-muted mb-xs font-bold">Deep path (ellipsis collapse)</p>
-          <GBreadcrumb :items="[
-            { label: 'Home', href: '/' },
-            { label: 'Journeys', href: '/journeys' },
-            { label: 'Papers', href: '/journeys/papers' },
-            { label: 'Attention Is All You Need', href: '/journeys/papers/attention' },
-            { label: 'Notes' },
-          ]" />
+          <GBreadcrumb>
+            <GBreadcrumbItem as="a" href="/">Home</GBreadcrumbItem>
+            <GBreadcrumbItem as="a" href="/journeys">Journeys</GBreadcrumbItem>
+            <GBreadcrumbItem as="a" href="/journeys/papers">Papers</GBreadcrumbItem>
+            <GBreadcrumbItem as="a" href="/journeys/papers/attention">Attention Is All You Need</GBreadcrumbItem>
+            <GBreadcrumbItem>Notes</GBreadcrumbItem>
+          </GBreadcrumb>
         </div>
         <div>
           <p class="text-xs gui-neutral-fg-muted mb-xs font-bold">Single item</p>
-          <GBreadcrumb :items="[{ label: 'Home' }]" />
+          <GBreadcrumb>
+            <GBreadcrumbItem>Home</GBreadcrumbItem>
+          </GBreadcrumb>
         </div>
         <div>
-          <p class="text-xs gui-neutral-fg-muted mb-xs font-bold">Icon separator + crumb icons</p>
-          <GBreadcrumb :separator="GIconName.ChevronRight" :items="[
-            { label: 'Home', href: '/', icon: GIconName.Home },
-            { label: 'Settings', href: '/settings', icon: GIconName.Gear },
-            { label: 'Profile', icon: GIconName.User },
-          ]" />
-        </div>
-        <div>
-          <p class="text-xs gui-neutral-fg-muted mb-xs font-bold">Icon ellipsis + icon separator</p>
-          <GBreadcrumb
-            :separator="GIconName.ChevronRight"
-            :ellipsis="GIconName.HEllipsis"
-            :items="[
-              { label: 'Home', href: '/', icon: GIconName.Home },
-              { label: 'Journeys', href: '/journeys' },
-              { label: 'Papers', href: '/journeys/papers' },
-              { label: 'Attention Is All You Need', href: '/journeys/papers/attention' },
-              { label: 'Notes' },
-            ]"
-          />
+          <p class="text-xs gui-neutral-fg-muted mb-xs font-bold">Icon separator</p>
+          <GBreadcrumb :separator="GIconName.ChevronRight">
+            <GBreadcrumbItem as="a" href="/">Home</GBreadcrumbItem>
+            <GBreadcrumbItem as="a" href="/settings">Settings</GBreadcrumbItem>
+            <GBreadcrumbItem>Profile</GBreadcrumbItem>
+          </GBreadcrumb>
         </div>
         <div>
           <p class="text-xs gui-neutral-fg-muted mb-xs font-bold">Custom separator (›)</p>
-          <GBreadcrumb separator="›" :items="[
-            { label: 'Home', href: '/' },
-            { label: 'API Reference', href: '/api' },
-            { label: 'parse()' },
-          ]" />
+          <GBreadcrumb separator="›">
+            <GBreadcrumbItem as="a" href="/">Home</GBreadcrumbItem>
+            <GBreadcrumbItem as="a" href="/api">API Reference</GBreadcrumbItem>
+            <GBreadcrumbItem>parse()</GBreadcrumbItem>
+          </GBreadcrumb>
         </div>
       </div>
     `,
@@ -110,14 +93,13 @@ export const SlotsStory: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'All 4 slots: `#separator`, `#ellipsis`, `#icon="{ item, index }"`, `#dropdown="{ items }"`.',
+        story: 'Available slots: `#separator`, `#ellipsis`, `#dropdown="{ ids }"`. Items are composed via `GBreadcrumbItem`.',
       },
       source: {
-        code: `<GBreadcrumb :items="[
-  { label: 'Home', href: '/' },
-  { label: 'Docs', href: '/docs' },
-  { label: 'Guide' },
-]">
+        code: `<GBreadcrumb>
+  <GBreadcrumbItem as="a" href="/">Home</GBreadcrumbItem>
+  <GBreadcrumbItem as="a" href="/docs">Docs</GBreadcrumbItem>
+  <GBreadcrumbItem>Guide</GBreadcrumbItem>
   <template #separator>
     <span>→</span>
   </template>
@@ -128,16 +110,16 @@ export const SlotsStory: Story = {
   render: () => ({
     components: {
       GBreadcrumb,
+      GBreadcrumbItem,
     },
     template: `
       <div class="flex flex-col gap-lg">
         <div>
           <p class="text-xs gui-neutral-fg-muted mb-xs font-bold">#separator slot</p>
-          <GBreadcrumb :items="[
-            { label: 'Home', href: '/' },
-            { label: 'Docs', href: '/docs' },
-            { label: 'Guide' },
-          ]">
+          <GBreadcrumb>
+            <GBreadcrumbItem as="a" href="/">Home</GBreadcrumbItem>
+            <GBreadcrumbItem as="a" href="/docs">Docs</GBreadcrumbItem>
+            <GBreadcrumbItem>Guide</GBreadcrumbItem>
             <template #separator>
               <span class="mx-1 gui-primary-fg">→</span>
             </template>
@@ -145,49 +127,14 @@ export const SlotsStory: Story = {
         </div>
         <div>
           <p class="text-xs gui-neutral-fg-muted mb-xs font-bold">#ellipsis slot</p>
-          <GBreadcrumb :items="[
-            { label: 'Home', href: '/' },
-            { label: 'A', href: '/a' },
-            { label: 'B', href: '/b' },
-            { label: 'C', href: '/c' },
-            { label: 'Current' },
-          ]">
+          <GBreadcrumb>
+            <GBreadcrumbItem as="a" href="/">Home</GBreadcrumbItem>
+            <GBreadcrumbItem as="a" href="/a">A</GBreadcrumbItem>
+            <GBreadcrumbItem as="a" href="/a/b">B</GBreadcrumbItem>
+            <GBreadcrumbItem as="a" href="/a/b/c">C</GBreadcrumbItem>
+            <GBreadcrumbItem>Current</GBreadcrumbItem>
             <template #ellipsis>
-              <span class="text-xs gui-info-fg">+2 more</span>
-            </template>
-          </GBreadcrumb>
-        </div>
-        <div>
-          <p class="text-xs gui-neutral-fg-muted mb-xs font-bold">#icon scoped slot</p>
-          <GBreadcrumb :items="[
-            { label: 'Home', href: '/' },
-            { label: 'Projects', href: '/projects' },
-            { label: 'genuix' },
-          ]">
-            <template #icon="{ index }">
-              <span class="text-xs mr-1">{{ ['🏠', '📁', '📦'][index] }}</span>
-            </template>
-          </GBreadcrumb>
-        </div>
-        <div>
-          <p class="text-xs gui-neutral-fg-muted mb-xs font-bold">#dropdown scoped slot</p>
-          <GBreadcrumb :items="[
-            { label: 'Home', href: '/' },
-            { label: 'A', href: '/a' },
-            { label: 'B', href: '/b' },
-            { label: 'C', href: '/c' },
-            { label: 'Current' },
-          ]">
-            <template #dropdown="{ items }">
-              <div class="p-sm">
-                <p class="text-xs gui-neutral-fg-muted mb-xs font-bold">Hidden crumbs:</p>
-                <a
-                  v-for="(item, i) in items"
-                  :key="i"
-                  :href="item.href"
-                  class="block text-xs gui-primary-fg no-underline py-xs"
-                >{{ item.label }}</a>
-              </div>
+              <span class="text-xs gui-info-fg">+more</span>
             </template>
           </GBreadcrumb>
         </div>

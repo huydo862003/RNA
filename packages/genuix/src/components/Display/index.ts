@@ -28,6 +28,19 @@ export {
   default as GBreadcrumb,
 } from './Breadcrumb/GBreadcrumb.vue';
 
+export {
+  default as GBreadcrumbItem,
+} from './Breadcrumb/GBreadcrumbItem.vue';
+
+export {
+  BREADCRUMB_KEY,
+} from './Breadcrumb/types';
+
+export type {
+  BreadcrumbItem,
+  BreadcrumbContext,
+} from './Breadcrumb/types';
+
 // Avatar
 export {
   default as GAvatar,

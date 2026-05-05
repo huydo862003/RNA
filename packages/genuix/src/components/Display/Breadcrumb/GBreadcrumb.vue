@@ -4,225 +4,64 @@
     class="breadcrumb"
     aria-label="Breadcrumb"
   >
-    <!-- Short path: show all crumbs -->
-    <template v-if="items.length <= maxVisible">
-      <ol class="inline-flex">
-        <template
-          v-for="(item, i) in items"
-          :key="i"
+    <ol class="breadcrumb-list">
+      <slot />
+      <li
+        v-if="hasEllipsis"
+        class="breadcrumb-ellipsis-item"
+        :style="{ order: 1 }"
+      >
+        <span
+          class="breadcrumb-sep"
+          aria-hidden="true"
         >
-          <span
-            v-if="i > 0"
-            class="breadcrumb-sep"
-            aria-hidden="true"
-          >
-            <slot
-              name="separator"
-            >
+          <slot name="separator">
+            <GIcon
+              v-if="isIconSeparator"
+              :name="separator as GIconName"
+            />
+            <template v-else>{{ separator }}</template>
+          </slot>
+        </span>
+        <GDropdown
+          placement="bottom-start"
+          :distance="4"
+          class="breadcrumb-popper"
+        >
+          <button class="breadcrumb-ellipsis">
+            <slot name="ellipsis">
               <GIcon
-                v-if="isIconSeparator"
-                :name="separator as GIconName"
-              />
-              <template v-else>{{ separator }}</template>
-            </slot>
-          </span>
-          <li>
-            <component
-              :is="item.href && i < items.length - 1 ? 'a' : 'span'"
-              :href="item.href && i < items.length - 1 ? item.href : undefined"
-              :class="i < items.length - 1 ? 'breadcrumb-link' : 'breadcrumb-current'"
-              :aria-current="i === items.length - 1 ? 'page' : undefined"
-            >
-              <slot
-                name="icon"
-                :item="item"
-                :index="i"
-              >
-                <GIcon
-                  v-if="item.icon"
-                  :name="item.icon"
-                  class="breadcrumb-icon"
-                  aria-hidden="true"
-                />
-              </slot>
-              <span class="breadcrumb-label">{{ item.label }}</span>
-            </component>
-          </li>
-        </template>
-      </ol>
-    </template>
-
-    <!-- Long path: first, ellipsis dropdown, second-to-last, current -->
-    <template v-else>
-      <ol class="inline-flex">
-        <!-- First crumb -->
-        <li>
-          <component
-            :is="items[0].href ? 'a' : 'span'"
-            :href="items[0].href"
-            class="breadcrumb-link"
-          >
-            <slot
-              name="icon"
-              :item="items[0]"
-              :index="0"
-            >
-              <GIcon
-                v-if="items[0].icon"
-                :name="items[0].icon"
-                class="breadcrumb-icon"
+                v-if="isIconEllipsis"
+                :name="ellipsis as GIconName"
                 aria-hidden="true"
               />
+              <template v-else>
+                {{ ellipsis }}
+              </template>
             </slot>
-            <span class="breadcrumb-label">{{ items[0].label }}</span>
-          </component>
-        </li>
-
-        <!-- Separator -->
-        <span
-          class="breadcrumb-sep"
-          aria-hidden="true"
-        >
-          <slot name="separator">
-            <GIcon
-              v-if="isIconSeparator"
-              :name="separator as GIconName"
-            />
-            <template v-else>{{ separator }}</template>
-          </slot>
-        </span>
-
-        <!-- Ellipsis with dropdown -->
-        <li>
-          <GDropdown
-            placement="bottom-start"
-            :distance="4"
-            class="breadcrumb-popper"
-          >
-            <button class="breadcrumb-ellipsis">
-              <slot name="ellipsis">
-                <GIcon
-                  v-if="isIconEllipsis"
-                  :name="ellipsis as GIconName"
-                  aria-hidden="true"
-                />
-                <template v-else>
-                  {{ ellipsis }}
-                </template>
-              </slot>
-            </button>
-            <template #popper>
-              <slot
-                name="dropdown"
-                :items="collapsedItems"
-              >
-                <div class="breadcrumb-dropdown">
-                  <a
-                    v-for="(item, i) in collapsedItems"
-                    :key="i"
-                    :href="item.href ?? '#'"
-                    class="breadcrumb-dropdown-item"
-                  >
-                    <GIcon
-                      v-if="item.icon"
-                      :name="item.icon"
-                      class="breadcrumb-icon"
-                      aria-hidden="true"
-                    />
-                    <span class="breadcrumb-label">{{ item.label }}</span>
-                  </a>
-                </div>
-              </slot>
-            </template>
-          </GDropdown>
-        </li>
-
-        <!-- Separator -->
-        <span
-          class="breadcrumb-sep"
-          aria-hidden="true"
-        >
-          <slot name="separator">
-            <GIcon
-              v-if="isIconSeparator"
-              :name="separator as GIconName"
-            />
-            <template v-else>{{ separator }}</template>
-          </slot>
-        </span>
-
-        <!-- Second-to-last crumb -->
-        <li>
-          <component
-            :is="items[items.length - 2].href ? 'a' : 'span'"
-            :href="items[items.length - 2].href"
-            class="breadcrumb-link"
-          >
+          </button>
+          <template #popper>
             <slot
-              name="icon"
-              :item="items[items.length - 2]"
-              :index="items.length - 2"
+              name="dropdown"
+              :ids="collapsedIds"
             >
-              <GIcon
-                v-if="items[items.length - 2].icon"
-                :name="items[items.length - 2].icon"
-                class="breadcrumb-icon"
-                aria-hidden="true"
-              />
+              <div class="breadcrumb-dropdown">
+                <slot name="collapsed-items" />
+              </div>
             </slot>
-            <span class="breadcrumb-label">{{ items[items.length - 2].label }}</span>
-          </component>
-        </li>
-
-        <!-- Separator -->
-        <span
-          class="breadcrumb-sep"
-          aria-hidden="true"
-        >
-          <slot name="separator">
-            <GIcon
-              v-if="isIconSeparator"
-              :name="separator as GIconName"
-            />
-            <template v-else>{{ separator }}</template>
-          </slot>
-        </span>
-
-        <!-- Current (last) -->
-        <li>
-          <span
-            class="breadcrumb-current"
-            aria-current="page"
-          >
-            <slot
-              name="icon"
-              :item="items[items.length - 1]"
-              :index="items.length - 1"
-            >
-              <GIcon
-                v-if="items[items.length - 1].icon"
-                :name="items[items.length - 1].icon"
-                class="breadcrumb-icon"
-              />
-            </slot>
-            <span class="breadcrumb-label">{{ items[items.length - 1].label }}</span>
-          </span>
-        </li>
-      </ol>
-    </template>
+          </template>
+        </GDropdown>
+      </li>
+    </ol>
   </nav>
 </template>
 
 <script setup lang="ts">
-/* #human-slop
- *  https://github.com/huydo862003/Fck-AI-Slop/edit/main/README.md
- */
-
 import {
-  computed,
+  computed, provide, ref,
 } from 'vue';
-import type {
-  BreadcrumbItem,
+import {
+  BREADCRUMB_KEY,
 } from './types';
 import GDropdown from '@/components/Overlay/Dropdown/GDropdown.vue';
 import GIcon from '@/components/Display/Icon/GIcon.vue';
@@ -234,40 +73,49 @@ defineOptions({
   inheritAttrs: false,
 });
 
-defineSlots<{
-  /** Custom separator between crumbs */
-  separator(): any;
-  /** Custom ellipsis trigger content */
-  ellipsis(): any;
-  /** Custom icon per crumb */
-  icon(props: {
-    item: BreadcrumbItem;
-    index: number;
-  }): any;
-  /** Custom dropdown for collapsed crumbs */
-  dropdown(props: { items: BreadcrumbItem[] }): any;
-}>();
-
-const ICON_VALUES = new Set<string>(Object.values(GIconName));
-
 const {
-  items,
   separator = '/',
   ellipsis = '\u2026',
   maxVisible = 3,
 } = defineProps<{
-  items: BreadcrumbItem[];
-  /** Separator: a string or GIconName. Overridden by #separator slot. */
   separator?: string | GIconName;
-  /** Ellipsis trigger: a string or GIconName. Overridden by #ellipsis slot. */
   ellipsis?: string | GIconName;
-  /** Max crumbs before collapsing middle items into ellipsis dropdown */
   maxVisible?: number;
 }>();
 
+const ICON_VALUES = new Set<string>(Object.values(GIconName));
 const isIconSeparator = computed(() => ICON_VALUES.has(separator));
 const isIconEllipsis = computed(() => ICON_VALUES.has(ellipsis));
-const collapsedItems = computed(() => items.slice(1, -2));
+
+const items = ref<symbol[]>([]);
+
+const collapsedSet = computed(() => {
+  if (items.value.length <= maxVisible) return new Set<symbol>();
+  const keep = new Set([
+    items.value[0],
+    ...items.value.slice(-(maxVisible - 1)),
+  ]);
+  return new Set(items.value.filter((id) => !keep.has(id)));
+});
+
+const collapsedIds = computed(() => [...collapsedSet.value]);
+const hasEllipsis = computed(() => 0 < collapsedSet.value.size);
+
+function register (id: symbol) {
+  items.value.push(id);
+}
+
+function unregister (id: symbol) {
+  items.value = items.value.filter((i) => i !== id);
+}
+
+provide(BREADCRUMB_KEY, {
+  items,
+  collapsedSet,
+  register,
+  unregister,
+  separator,
+});
 </script>
 
 <style scoped>
@@ -278,40 +126,26 @@ const collapsedItems = computed(() => items.slice(1, -2));
   @apply flex flex-wrap items-center text-sm gui-neutral-fg-muted;
 }
 
-.breadcrumb-sep {
-  @apply mx-1 gui-neutral-fg-muted opacity-50 inline-flex items-center;
+.breadcrumb-list {
+  @apply flex flex-wrap items-center list-none m-0 p-0;
 }
 
-.breadcrumb-link {
-  @apply no-underline gui-neutral-fg-muted inline-flex items-center gap-xs max-w-48;
-  transition: color var(--duration-fast) var(--ease-default);
-}
-
-.breadcrumb-link:hover {
-  @apply gui-primary-fg no-underline;
-}
-
-.breadcrumb-current {
-  @apply gui-neutral-fg font-medium inline-flex items-center gap-xs max-w-48;
-}
-
-.breadcrumb-label {
-  @apply overflow-hidden whitespace-nowrap;
-  text-overflow: ellipsis;
-}
-
-.breadcrumb-icon {
-  @apply shrink-0;
+.breadcrumb-ellipsis-item {
+  @apply inline-flex items-center;
 }
 
 .breadcrumb-ellipsis {
-  @apply text-sm px-1.5 py-0.5 rounded-sm cursor-pointer border-none gui-neutral-fg-muted inline-flex items-center;
+  @apply text-sm px-1.5 py-0.5 rounded-sm cursor-pointer border-none bg-transparent gui-neutral-fg-muted inline-flex items-center;
   line-height: 1;
-  transition: background var(--duration-fast) var(--ease-default);
+  transition: color var(--duration-fast) var(--ease-default);
 }
 
 .breadcrumb-ellipsis:hover {
   @apply gui-neutral-fg;
+}
+
+.breadcrumb-sep {
+  @apply mx-1 gui-neutral-fg-muted opacity-50 inline-flex items-center;
 }
 }
 </style>
@@ -321,14 +155,5 @@ const collapsedItems = computed(() => items.slice(1, -2));
 
 .breadcrumb-popper .breadcrumb-dropdown {
   @apply flex flex-col p-xs;
-}
-
-.breadcrumb-popper .breadcrumb-dropdown-item {
-  @apply text-sm gui-neutral-fg-muted no-underline px-md py-xs inline-flex items-center gap-xs rounded-sm;
-  transition: background var(--duration-fast) var(--ease-default);
-}
-
-.breadcrumb-popper .breadcrumb-dropdown-item:hover {
-  @apply gui-neutral-bg-hover gui-neutral-fg no-underline;
 }
 </style>
