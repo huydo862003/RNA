@@ -1,5 +1,11 @@
 # genuix
 
+## 0.10.1
+
+### Patch Changes
+
+- Add missing `t` and `T` key in GKbd key name enum
+
 ## 0.10.0
 
 ### Minor Changes
