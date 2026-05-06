@@ -23,7 +23,7 @@ import {
 } from 'vue';
 import DOMPurify from 'dompurify';
 import katex from 'katex';
-import 'katex/dist/katex.min.css';
+import '@/fonts/katex.css';
 import {
   prominenceTokens,
 } from '@/utils/prominence';
