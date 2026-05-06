@@ -1,5 +1,11 @@
 # genuix
 
+## 0.11.0
+
+### Minor Changes
+
+- Enhance tailwind import endpoint to include fonts, base styles
+
 ## 0.10.6
 
 ### Patch Changes
