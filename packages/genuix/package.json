@@ -1,7 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/package",
   "name": "@hdnax/genuix",
-  "version": "0.10.5",
+  "version": "0.10.6",
   "description": "A personal design system - Gene + UI/UX = Genuix.",
   "repository": {
     "type": "git",
@@ -19,13 +19,16 @@
       "import": "./dist/genuix.js",
       "require": "./dist/genuix.umd.cjs"
     },
-    "./style.css": "./dist/genuix.css"
+    "./style.css": "./dist/genuix.css",
+    "./tailwind.css": "./src/style.css"
   },
   "main": "./dist/genuix.umd.cjs",
   "module": "./dist/genuix.js",
   "types": "./dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "src/**/*.css",
+    "src/**/*.vue"
   ],
   "keywords": [
     "design system",

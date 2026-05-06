@@ -1,5 +1,11 @@
 # genuix
 
+## 0.10.6
+
+### Patch Changes
+
+- Expose tailwindcss style for tailwind consumer
+
 ## 0.10.5
 
 ### Patch Changes
