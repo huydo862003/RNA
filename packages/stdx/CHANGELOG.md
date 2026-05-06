@@ -1,5 +1,11 @@
 # @hdnax/stdx
 
+## 0.3.1
+
+### Patch Changes
+
+- Fix vulnerability issues
+
 ## 0.3.0
 
 ### Minor Changes

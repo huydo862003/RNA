@@ -1,5 +1,11 @@
 # nuclint
 
+## 0.14.2
+
+### Patch Changes
+
+- Fix vulnerability issues
+
 ## 0.14.1
 
 ### Patch Changes
