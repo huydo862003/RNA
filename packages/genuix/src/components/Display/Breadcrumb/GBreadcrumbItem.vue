@@ -1,6 +1,6 @@
 <template>
   <li
-    v-show="!isInEllipsis"
+    v-if="!isInEllipsis"
     class="breadcrumb-item"
     :class="{ 'is-last': isLast }"
     :style="{ order: order * 2 }"

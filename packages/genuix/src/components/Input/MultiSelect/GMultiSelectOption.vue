@@ -1,6 +1,6 @@
 <template>
   <button
-    v-show="visible"
+    v-if="visible"
     v-bind="$attrs"
     :id="id"
     :class="[

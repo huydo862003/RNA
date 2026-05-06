@@ -1,6 +1,6 @@
 <template>
   <div
-    v-show="visibleCount > 0"
+    v-if="visibleCount > 0"
     v-bind="$attrs"
     :id="id"
     :class="'select-group'"

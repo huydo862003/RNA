@@ -4,7 +4,7 @@
     :show-delay="500"
   >
     <button
-      v-show="visible"
+      v-if="visible"
       :id="id"
       v-bind="$attrs"
       :class="[

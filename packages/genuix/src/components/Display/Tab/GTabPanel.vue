@@ -1,6 +1,6 @@
 <template>
   <div
-    v-show="isActive"
+    v-if="isActive"
     v-bind="$attrs"
     :id="id"
     class="tab-panel"
