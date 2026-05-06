@@ -1,5 +1,11 @@
 # genuix
 
+## 0.10.2
+
+### Patch Changes
+
+- Use v-if instead of v-show for GTable, GBreadcrumb, GSelectOption, GMultiSelectOption to avoid eager bulk renders
+
 ## 0.10.1
 
 ### Patch Changes
