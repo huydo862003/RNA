@@ -1,5 +1,11 @@
 # nuclint
 
+## 0.14.4
+
+### Patch Changes
+
+- Update dev dependencies to avoid vulnerability issues
+
 ## 0.14.3
 
 ### Patch Changes

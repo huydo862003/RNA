@@ -1,5 +1,13 @@
 # genuix
 
+## 0.10.5
+
+### Patch Changes
+
+- Update dev dependencies to avoid vulnerability issues
+- Updated dependencies
+  - @hdnax/stdx@0.3.3
+
 ## 0.10.4
 
 ### Patch Changes

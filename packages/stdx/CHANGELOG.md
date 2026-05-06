@@ -1,5 +1,11 @@
 # @hdnax/stdx
 
+## 0.3.3
+
+### Patch Changes
+
+- Update dev dependencies to avoid vulnerability issues
+
 ## 0.3.2
 
 ### Patch Changes
