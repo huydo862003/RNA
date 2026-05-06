@@ -51,9 +51,6 @@ importers:
         specifier: ^3.5.26
         version: 3.5.26(typescript@6.0.3)
     devDependencies:
-      '@fontsource/ibm-plex-mono':
-        specifier: ^5.2.7
-        version: 5.2.7
       '@hdnax/nuclint':
         specifier: workspace:*
         version: link:../nuclint
@@ -649,9 +646,6 @@ packages:
 
   '@floating-ui/utils@0.2.11':
     resolution: {integrity: sha512-RiB/yIh78pcIxl6lLMG0CgBXAZ2Y0eVHqMPYugu+9U0AeT6YBeiJpf7lbdJNIugFP5SIjwNRgo4DhR1Qxi26Gg==}
-
-  '@fontsource/ibm-plex-mono@5.2.7':
-    resolution: {integrity: sha512-MKAb8qV+CaiMQn2B0dIi1OV3565NYzp3WN5b4oT6LTkk+F0jR6j0ZN+5BKJiIhffDC3rtBULsYZE65+0018z9w==}
 
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
@@ -5406,8 +5400,6 @@ snapshots:
 
   '@floating-ui/utils@0.2.11': {}
 
-  '@fontsource/ibm-plex-mono@5.2.7': {}
-
   '@humanfs/core@0.19.1': {}
 
   '@humanfs/core@0.19.2':
@@ -6680,7 +6672,7 @@ snapshots:
 
   '@types/node-fetch@2.6.13':
     dependencies:
-      '@types/node': 18.19.130
+      '@types/node': 25.6.0
       form-data: 4.0.5
 
   '@types/node@12.20.55': {}
