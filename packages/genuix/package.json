@@ -19,16 +19,13 @@
       "import": "./dist/genuix.js",
       "require": "./dist/genuix.umd.cjs"
     },
-    "./style.css": "./dist/genuix.css",
-    "./tailwind.css": "./src/tailwind.css"
+    "./style.css": "./dist/genuix.css"
   },
   "main": "./dist/genuix.umd.cjs",
   "module": "./dist/genuix.js",
   "types": "./dist/index.d.ts",
   "files": [
-    "dist",
-    "src/**/*.css",
-    "src/**/*.vue"
+    "dist"
   ],
   "keywords": [
     "design system",
