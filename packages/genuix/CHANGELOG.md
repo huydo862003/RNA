@@ -1,5 +1,11 @@
 # genuix
 
+## 0.13.0
+
+### Minor Changes
+
+- Perfomance optimization: Split katex and ibm fonts out of bundled css
+
 ## 0.12.0
 
 ### Minor Changes
