@@ -30,42 +30,42 @@ export function prominenceTokens (prominence: GProminence, semantic: GSemantic):
   const s = semantic;
 
   switch (prominence) {
-  case GProminence.Primary:
-    return {
-      bg: `var(--gui-${s}-solid)`,
-      bgHover: `var(--gui-${s}-solid-hover)`,
-      subtleBg: `var(--gui-${s}-bg-subtle)`,
-      fg: `var(--gui-${s}-bg)`,
-      mutedFg: `var(--gui-${s}-bg-subtle)`,
-      border: 'transparent',
-    };
-  case GProminence.Secondary:
-    return {
-      bg: `var(--gui-${s}-bg-hover)`,
-      bgHover: `var(--gui-${s}-bg-active)`,
-      subtleBg: `var(--gui-${s}-bg-subtle)`,
-      fg: `var(--gui-${s}-fg)`,
-      mutedFg: `var(--gui-${s}-fg-muted)`,
-      border: 'transparent',
-    };
-  case GProminence.Tertiary:
-    return {
-      bg: 'transparent',
-      bgHover: `var(--gui-${s}-bg-hover)`,
-      subtleBg: `var(--gui-${s}-bg-subtle)`,
-      fg: `var(--gui-${s}-fg)`,
-      mutedFg: `var(--gui-${s}-fg-muted)`,
-      border: `var(--gui-${s}-border-subtle)`,
-    };
-  case GProminence.Ghost:
-    return {
-      bg: 'transparent',
-      bgHover: `var(--gui-${s}-bg-hover)`,
-      subtleBg: `var(--gui-${s}-bg-subtle)`,
-      fg: `var(--gui-${s}-fg)`,
-      mutedFg: `var(--gui-${s}-fg-muted)`,
-      border: 'transparent',
-    };
+    case GProminence.Primary:
+      return {
+        bg: `var(--gui-${s}-solid)`,
+        bgHover: `var(--gui-${s}-solid-hover)`,
+        subtleBg: `var(--gui-${s}-bg-subtle)`,
+        fg: `var(--gui-${s}-bg)`,
+        mutedFg: `var(--gui-${s}-bg-subtle)`,
+        border: 'transparent',
+      };
+    case GProminence.Secondary:
+      return {
+        bg: `var(--gui-${s}-bg-hover)`,
+        bgHover: `var(--gui-${s}-bg-active)`,
+        subtleBg: `var(--gui-${s}-bg-subtle)`,
+        fg: `var(--gui-${s}-fg)`,
+        mutedFg: `var(--gui-${s}-fg-muted)`,
+        border: 'transparent',
+      };
+    case GProminence.Tertiary:
+      return {
+        bg: 'transparent',
+        bgHover: `var(--gui-${s}-bg-hover)`,
+        subtleBg: `var(--gui-${s}-bg-subtle)`,
+        fg: `var(--gui-${s}-fg)`,
+        mutedFg: `var(--gui-${s}-fg-muted)`,
+        border: `var(--gui-${s}-border-subtle)`,
+      };
+    case GProminence.Ghost:
+      return {
+        bg: 'transparent',
+        bgHover: `var(--gui-${s}-bg-hover)`,
+        subtleBg: `var(--gui-${s}-bg-subtle)`,
+        fg: `var(--gui-${s}-fg)`,
+        mutedFg: `var(--gui-${s}-fg-muted)`,
+        border: 'transparent',
+      };
   }
 }
 

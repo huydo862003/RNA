@@ -96,21 +96,21 @@ function isPosition (row: number, col: number, query: Position2D): boolean {
   if (!pos) return false;
   if (pos === query) return true;
   switch (pos) {
-  case 'only': return true;
-  case 'top-left': return query === 'top-edge' || query === 'left-edge';
-  case 'top-right': return query === 'top-edge' || query === 'right-edge';
-  case 'bottom-left': return query === 'bottom-edge' || query === 'left-edge';
-  case 'bottom-right': return query === 'bottom-edge' || query === 'right-edge';
-  case 'top-edge':
-  case 'bottom-edge':
-  case 'left-edge':
-  case 'right-edge':
-  case 'inner':
-    return false;
-  default: {
-    const _exhaustive: never = pos;
-    throw new Error(`Unknown position: ${_exhaustive}`);
-  }
+    case 'only': return true;
+    case 'top-left': return query === 'top-edge' || query === 'left-edge';
+    case 'top-right': return query === 'top-edge' || query === 'right-edge';
+    case 'bottom-left': return query === 'bottom-edge' || query === 'left-edge';
+    case 'bottom-right': return query === 'bottom-edge' || query === 'right-edge';
+    case 'top-edge':
+    case 'bottom-edge':
+    case 'left-edge':
+    case 'right-edge':
+    case 'inner':
+      return false;
+    default: {
+      const _exhaustive: never = pos;
+      throw new Error(`Unknown position: ${_exhaustive}`);
+    }
   }
 }
 

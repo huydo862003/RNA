@@ -79,15 +79,15 @@ function isPosition (index: number, query: Position1D): boolean {
   if (!pos) return false;
   if (pos === query) return true;
   switch (pos) {
-  case 'only': return query === 'start' || query === 'end';
-  case 'start':
-  case 'end':
-  case 'middle':
-    return false;
-  default: {
-    const _exhaustive: never = pos;
-    throw new Error(`Unknown position: ${_exhaustive}`);
-  }
+    case 'only': return query === 'start' || query === 'end';
+    case 'start':
+    case 'end':
+    case 'middle':
+      return false;
+    default: {
+      const _exhaustive: never = pos;
+      throw new Error(`Unknown position: ${_exhaustive}`);
+    }
   }
 }
 

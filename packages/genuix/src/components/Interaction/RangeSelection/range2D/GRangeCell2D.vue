@@ -68,32 +68,32 @@ function onPointerEnter () {
 
 function onKeyDown (e: KeyboardEvent) {
   switch (e.key) {
-  case GKbdKeyName.ArrowUp:
-    e.preventDefault();
-    ctx.moveUp(e.shiftKey);
-    break;
-  case GKbdKeyName.ArrowDown:
-    e.preventDefault();
-    ctx.moveDown(e.shiftKey);
-    break;
-  case GKbdKeyName.ArrowLeft:
-    e.preventDefault();
-    ctx.moveLeft(e.shiftKey);
-    break;
-  case GKbdKeyName.ArrowRight:
-    e.preventDefault();
-    ctx.moveRight(e.shiftKey);
-    break;
-  case GKbdKeyName.a:
-    if (e.ctrlKey || e.metaKey) {
+    case GKbdKeyName.ArrowUp:
       e.preventDefault();
-      ctx.selectAll();
-    }
-    break;
-  case GKbdKeyName.Escape:
-    e.preventDefault();
-    ctx.clearSelection();
-    break;
+      ctx.moveUp(e.shiftKey);
+      break;
+    case GKbdKeyName.ArrowDown:
+      e.preventDefault();
+      ctx.moveDown(e.shiftKey);
+      break;
+    case GKbdKeyName.ArrowLeft:
+      e.preventDefault();
+      ctx.moveLeft(e.shiftKey);
+      break;
+    case GKbdKeyName.ArrowRight:
+      e.preventDefault();
+      ctx.moveRight(e.shiftKey);
+      break;
+    case GKbdKeyName.a:
+      if (e.ctrlKey || e.metaKey) {
+        e.preventDefault();
+        ctx.selectAll();
+      }
+      break;
+    case GKbdKeyName.Escape:
+      e.preventDefault();
+      ctx.clearSelection();
+      break;
   }
 }
 

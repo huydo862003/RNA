@@ -1,12 +1,20 @@
 {
   "extends": "../../tsconfig.base.json",
-  "include": ["*.ts", "src/**/*.ts", "__tests__/**/*.ts"],
+  "include": [
+    "*.ts",
+    "src/**/*.ts",
+    "__tests__/**/*.ts"
+  ],
   "compilerOptions": {
     "rootDir": "./",
-    "baseUrl": "./",
     "paths": {
-      "@/*": ["src/*"],
-      "@tests/*": ["__tests__/*"]
-    }
+      "@/*": [
+        "./src/*"
+      ],
+      "@tests/*": [
+        "./__tests__/*"
+      ]
+    },
+    "ignoreDeprecations": "6.0"
   }
 }

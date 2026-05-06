@@ -67,39 +67,39 @@ const tokens = computed(() => {
   const c = PILL_COLORS[color] ?? PILL_COLORS[GPillColor.Gray];
 
   switch (prominence) {
-  case GProminence.Primary:
-    return {
-      bg: c.solid,
-      fg: '#ffffff',
-      border: 'transparent',
-    };
-  case GProminence.Secondary:
-    return {
-      bg: c.bg,
-      fg: c.fg,
-      border: 'transparent',
-    };
-  case GProminence.Tertiary:
-    return {
-      bg: 'transparent',
-      fg: c.fg,
-      border: c.solid,
-    };
-  case GProminence.Ghost:
-    return {
-      bg: 'transparent',
-      fg: c.fg,
-      border: 'transparent',
-    };
-  default: {
-    const _exhaustive: never = prominence;
-    void _exhaustive;
-    return {
-      bg: 'transparent',
-      fg: c.fg,
-      border: 'transparent',
-    };
-  }
+    case GProminence.Primary:
+      return {
+        bg: c.solid,
+        fg: '#ffffff',
+        border: 'transparent',
+      };
+    case GProminence.Secondary:
+      return {
+        bg: c.bg,
+        fg: c.fg,
+        border: 'transparent',
+      };
+    case GProminence.Tertiary:
+      return {
+        bg: 'transparent',
+        fg: c.fg,
+        border: c.solid,
+      };
+    case GProminence.Ghost:
+      return {
+        bg: 'transparent',
+        fg: c.fg,
+        border: 'transparent',
+      };
+    default: {
+      const _exhaustive: never = prominence;
+      void _exhaustive;
+      return {
+        bg: 'transparent',
+        fg: c.fg,
+        border: 'transparent',
+      };
+    }
   }
 });
 </script>

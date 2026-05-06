@@ -43,20 +43,20 @@ export function getPlatform (): PlatformKind {
       // See type defintion of process platform for possible values
       const platform = process.platform;
       switch (platform) {
-      case 'aix':
-      case 'android':
-      case 'freebsd':
-      case 'haiku':
-      case 'linux':
-      case 'openbsd':
-      case 'sunos':
-      case 'cygwin':
-      case 'netbsd':
-        return PlatformKind.Unix;
-      case 'darwin':
-        return PlatformKind.Mac;
-      case 'win32':
-        return PlatformKind.Windows;
+        case 'aix':
+        case 'android':
+        case 'freebsd':
+        case 'haiku':
+        case 'linux':
+        case 'openbsd':
+        case 'sunos':
+        case 'cygwin':
+        case 'netbsd':
+          return PlatformKind.Unix;
+        case 'darwin':
+          return PlatformKind.Mac;
+        case 'win32':
+          return PlatformKind.Windows;
       }
     }
     return PlatformKind.Unknown;
