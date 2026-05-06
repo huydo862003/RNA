@@ -1,6 +1,6 @@
 <template>
   <tr
-    v-show="visible"
+    v-if="visible"
     v-bind="$attrs"
   >
     <slot />

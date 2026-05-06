@@ -1,5 +1,5 @@
 <template>
-  <li v-show="visible">
+  <li v-if="visible">
     <slot :value="value" />
   </li>
 </template>
