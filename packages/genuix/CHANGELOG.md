@@ -1,5 +1,13 @@
 # genuix
 
+## 0.10.4
+
+### Patch Changes
+
+- Fix typescript build errors and lint issues
+- Updated dependencies
+  - @hdnax/stdx@0.3.2
+
 ## 0.10.3
 
 ### Patch Changes

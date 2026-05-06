@@ -1,5 +1,11 @@
 # @hdnax/stdx
 
+## 0.3.2
+
+### Patch Changes
+
+- Fix typescript build errors and lint issues
+
 ## 0.3.1
 
 ### Patch Changes
