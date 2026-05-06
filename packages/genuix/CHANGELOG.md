@@ -1,5 +1,11 @@
 # genuix
 
+## 0.12.0
+
+### Minor Changes
+
+- Revert tailwind.css endpoint change
+
 ## 0.11.0
 
 ### Minor Changes
