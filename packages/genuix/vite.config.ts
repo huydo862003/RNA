@@ -13,6 +13,7 @@ import tailwindcss from '@tailwindcss/vite';
 import dts from 'vite-plugin-dts';
 
 export default defineConfig({
+  base: './',
   plugins: [
     vue(),
     tailwindcss(),
@@ -27,6 +28,7 @@ export default defineConfig({
     },
   },
   build: {
+    assetsDir: '.',
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
       name: 'Genuix',
