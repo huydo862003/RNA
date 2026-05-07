@@ -495,11 +495,11 @@ export const AutoCloseStory: Story = {
       GSelectOption,
     },
     setup () {
-      const pill = ref('postgres');
-      const box = ref('postgres');
+      const noAutoClose = ref('postgres');
+      const autoClose = ref('postgres');
       return {
-        pill,
-        box,
+        noAutoClose,
+        autoClose,
         GSelectVariant,
       };
     },
@@ -507,7 +507,7 @@ export const AutoCloseStory: Story = {
       <div class="p-spacing-4 flex gap-spacing-4 items-start">
         <div>
           <p class="text-xs gui-neutral-fg-muted mb-spacing-1">Not auto-close (default)</p>
-          <GSelect v-model="pill">
+          <GSelect v-model="noAutoClose">
             <GSelectOption value="mysql" label="MySQL" />
             <GSelectOption value="postgres" label="Postgres" />
             <GSelectOption value="sqlite" label="SQLite" />
@@ -515,7 +515,7 @@ export const AutoCloseStory: Story = {
         </div>
         <div>
           <p class="text-xs gui-neutral-fg-muted mb-spacing-1">Auto-close</p>
-          <GSelect v-model="box" close-on-select>
+          <GSelect v-model="autoClose" close-on-select>
             <GSelectOption value="mysql" label="MySQL" />
             <GSelectOption value="postgres" label="Postgres" />
             <GSelectOption value="sqlite" label="SQLite" />
