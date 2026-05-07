@@ -1,5 +1,11 @@
 # genuix
 
+## 0.13.1
+
+### Patch Changes
+
+- Correct the URL to the shipped fonts
+
 ## 0.13.0
 
 ### Minor Changes
