@@ -1,5 +1,11 @@
 # genuix
 
+## 0.13.2
+
+### Patch Changes
+
+- Support auto close on select in GSelect
+
 ## 0.13.1
 
 ### Patch Changes
