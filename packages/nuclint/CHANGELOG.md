@@ -1,5 +1,11 @@
 # nuclint
 
+## 0.15.0
+
+### Minor Changes
+
+- Properly ignore built output, deps in lint config
+
 ## 0.14.4
 
 ### Patch Changes

@@ -1,5 +1,13 @@
 # genuix
 
+## 0.13.3
+
+### Patch Changes
+
+- Properly ignore built output, deps in lint config
+- Updated dependencies
+  - @hdnax/stdx@0.3.4
+
 ## 0.13.2
 
 ### Patch Changes

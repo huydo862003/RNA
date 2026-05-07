@@ -1,5 +1,11 @@
 # @hdnax/stdx
 
+## 0.3.4
+
+### Patch Changes
+
+- Properly ignore built output, deps in lint config
+
 ## 0.3.3
 
 ### Patch Changes
