@@ -22,7 +22,9 @@ export const typeLiteralNewlineRule: Rule.RuleModule = {
   create (context): Rule.RuleListener {
     const sourceCode = context.sourceCode;
     const listener: Record<string, (node: never) => void> = {
-      TSTypeLiteral (node: Rule.Node & { members: Rule.Node[] }) {
+      TSTypeLiteral (node: Rule.Node & {
+        members: Rule.Node[];
+      }) {
         if (node.members.length === 0) return;
 
         const openBrace = sourceCode.getFirstToken(node)!;

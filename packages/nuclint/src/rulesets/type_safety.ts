@@ -31,9 +31,7 @@ export const typeSafetyRules: Linter.RulesRecord = {
       types: {
         object: {
           message: 'Use a proper interface or Record<string, unknown> instead.',
-          suggest: [
-            'Record<string, unknown>',
-          ],
+          suggest: ['Record<string, unknown>'],
         },
       },
     },

@@ -5,8 +5,8 @@ import type {
 const REPLACEMENTS: Record<string, string> = {
   '\u2014': '-', // em dash
   '\u2013': '-', // en dash
-  '\u2018': "'", // left single quote
-  '\u2019': "'", // right single quote
+  '\u2018': '\'', // left single quote
+  '\u2019': '\'', // right single quote
   '\u201C': '"', // left double quote
   '\u201D': '"', // right double quote
   '\u2026': '...', // ellipsis
@@ -61,7 +61,10 @@ export const noSpecialCharactersRule: Rule.RuleModule = {
             },
             fix (fixer) {
               return fixer.replaceTextRange(
-                [match!.index, match!.index + 1],
+                [
+                  match!.index,
+                  match!.index + 1,
+                ],
                 REPLACEMENTS[char],
               );
             },

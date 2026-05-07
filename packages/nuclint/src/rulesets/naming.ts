@@ -37,6 +37,7 @@ export const namingRules: Linter.RulesRecord = {
       min: 2,
       exceptions: [
         '_',
+        'n',
       ],
     },
   ],

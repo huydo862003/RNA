@@ -17,7 +17,7 @@ import {
 } from '../rules';
 import {
   typeSafetyRules,
-  expressionRules,
+  exprRules,
   statementRules,
   blockRules,
   importRules,
@@ -58,7 +58,7 @@ export const baseConfig: Linter.Config[] = [
     },
     rules: {
       ...typeSafetyRules,
-      ...expressionRules,
+      ...exprRules,
       ...statementRules,
       ...blockRules,
       ...importRules,

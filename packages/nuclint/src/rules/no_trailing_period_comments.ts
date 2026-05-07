@@ -32,7 +32,10 @@ export const noTrailingPeriodCommentsRule: Rule.RuleModule = {
                 const commentEnd = comment.range![1];
                 const offset = comment.value.length - text.length;
                 const periodPos = commentEnd - 1 - offset - (comment.type === 'Block' ? 2 : 0);
-                return fixer.removeRange([periodPos, periodPos + 1]);
+                return fixer.removeRange([
+                  periodPos,
+                  periodPos + 1,
+                ]);
               },
             });
           }

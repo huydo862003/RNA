@@ -30,10 +30,15 @@ export const noHeavyCommentsRule: Rule.RuleModule = {
               loc: comment.loc!,
               messageId: 'noHeavyComment',
               fix (fixer) {
-                const token = sourceCode.getTokenAfter(comment, { includeComments: false });
+                const token = sourceCode.getTokenAfter(comment, {
+                  includeComments: false,
+                });
                 // Remove the comment and any trailing newline
                 const range: [number, number] = token
-                  ? [comment.range![0], token.range[0]]
+                  ? [
+                    comment.range![0],
+                    token.range[0],
+                  ]
                   : comment.range!;
                 return fixer.removeRange(range);
               },

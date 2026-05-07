@@ -4,7 +4,7 @@ import type {
 
 /* Expression rules enforce formatting and spacing within expressions, literals, and operators */
 
-export const expressionRules: Linter.RulesRecord = {
+export const exprRules: Linter.RulesRecord = {
   // Require parentheses around arrow function parameters for consistency
   '@stylistic/arrow-parens': [
     'error',

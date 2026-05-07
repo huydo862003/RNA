@@ -1,4 +1,6 @@
-import config from '@hdnax/nuclint';
+import {
+  baseConfig,
+} from '@hdnax/nuclint';
 
 export default [
   {
@@ -7,5 +9,5 @@ export default [
       'node_modules',
     ],
   },
-  ...config,
+  ...baseConfig,
 ];
