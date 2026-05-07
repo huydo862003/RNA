@@ -1,0 +1,6 @@
+1:16 n/prefer-node-protocol Prefer `node:fs` over `fs`.
+2:18 n/prefer-node-protocol Prefer `node:path` over `path`.
+3:30 n/prefer-node-protocol Prefer `node:events` over `events`.
+4:20 n/prefer-node-protocol Prefer `node:crypto` over `crypto`.
+5:18 n/prefer-node-protocol Prefer `node:http` over `http`.
+6:26 n/prefer-node-protocol Prefer `node:fs/promises` over `fs/promises`.

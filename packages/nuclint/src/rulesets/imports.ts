@@ -20,8 +20,8 @@ export const importRules: Linter.RulesRecord = {
   'import/no-duplicates': 'error',
   // Disallow importing a module from itself
   'import/no-self-import': 'error',
-  // Warn when modules are never used
-  'import/no-unused-modules': 'warn',
+  // Warn when modules are never used (no-op in ESLint 10 due to removed FileEnumerator API)
+  'import/no-unused-modules': 'off',
   // No limit on number of dependencies
   'import/max-dependencies': 'off',
   // Enforce consistent import ordering: builtin, external, internal, parent, sibling, index

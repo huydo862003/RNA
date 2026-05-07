@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {
   ESLint,
+  Linter,
 } from 'eslint';
 import {
   describe, it, expect,
@@ -36,6 +37,12 @@ function getRules (): string[] {
     .filter((f) => fs.statSync(path.join(fixturesDir, f)).isDirectory());
 }
 
+function formatMessages (messages: Linter.LintMessage[]): string {
+  return messages
+    .map((msg) => `${msg.line}:${msg.column} ${msg.ruleId} ${msg.message}`)
+    .join('\n');
+}
+
 getRules().forEach((ruleName) => {
   describe(`Rule: ${ruleName}`, () => {
     const ruleFixturesDir = path.join(fixturesDir, ruleName);
@@ -48,40 +55,35 @@ getRules().forEach((ruleName) => {
         'valid: $name has no errors',
         async (fixture) => {
           const eslint = new ESLint({
+            overrideConfigFile: true,
             overrideConfig: baseConfig,
           });
           const results = await eslint.lintText(fixture.code, {
             filePath: fixture.path,
           });
-          expect(results[0].messages).toHaveLength(0);
+          const ruleMessages = results[0].messages.filter((m) => m.ruleId?.endsWith(ruleName));
+          expect(ruleMessages).toHaveLength(0);
         },
       );
     }
 
     if (fs.existsSync(invalidDir)) {
-      it('invalid fixtures match snapshot', async () => {
-        const eslint = new ESLint({
-          overrideConfig: baseConfig,
-        });
-        const fixtures = loadFixtures(invalidDir);
-
-        const errors = await Promise.all(fixtures.map(async (fixture) => {
+      const invalidFixtures = loadFixtures(invalidDir);
+      it.each(invalidFixtures)(
+        'invalid: $name matches snapshot',
+        async (fixture) => {
+          const eslint = new ESLint({
+            overrideConfigFile: true,
+            overrideConfig: baseConfig,
+          });
           const results = await eslint.lintText(fixture.code, {
             filePath: fixture.path,
           });
-          return {
-            file: fixture.name,
-            messages: results[0].messages.map((msg) => ({
-              line: msg.line,
-              column: msg.column,
-              messageId: msg.messageId,
-              message: msg.message,
-            })),
-          };
-        }));
-
-        expect(errors).toMatchSnapshot();
-      });
+          const ruleMessages = results[0].messages.filter((m) => m.ruleId?.endsWith(ruleName));
+          const snapshotPath = path.join(path.dirname(fixture.path), `${fixture.name}.snap`);
+          await expect(formatMessages(ruleMessages)).toMatchFileSnapshot(snapshotPath);
+        },
+      );
     }
   });
 });
