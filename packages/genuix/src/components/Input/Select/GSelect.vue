@@ -207,6 +207,7 @@ const {
   disabled = false,
   placeholder = 'Empty',
   searchPlaceholder = 'Search for an option...',
+  closeOnSelect,
 } = defineProps<{
   id?: string;
   size?: GSelectSize;
@@ -215,11 +216,14 @@ const {
   disabled?: boolean;
   placeholder?: string;
   searchPlaceholder?: string;
+  closeOnSelect?: boolean;
 }>();
 
 const isPill = computed(() => variant === GSelectVariant.Pill);
 
 const tokens = prominenceTokens(GProminence.Ghost, GSemantic.Neutral);
+
+const dropdownRef = useTemplateRef('dropdownRef');
 
 const triggerRef = useTemplateRef('triggerRef');
 const triggerHeight = useHeight(triggerRef);
@@ -257,7 +261,11 @@ const displayValue = computed(() => {
 function select (value: string) {
   selected.value = value;
   search.value = '';
-  focusSearchBox();
+  if (!closeOnSelect) {
+    focusSearchBox();
+  } else {
+    dropdownRef.value?.hide();
+  }
 }
 
 function handleClose () {

@@ -480,3 +480,48 @@ export const BoxVsPillStory: Story = {
     `,
   }),
 };
+
+export const AutoCloseStory: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Auto close on select',
+      },
+    },
+  },
+  render: () => ({
+    components: {
+      GSelect,
+      GSelectOption,
+    },
+    setup () {
+      const pill = ref('postgres');
+      const box = ref('postgres');
+      return {
+        pill,
+        box,
+        GSelectVariant,
+      };
+    },
+    template: `
+      <div class="p-spacing-4 flex gap-spacing-4 items-start">
+        <div>
+          <p class="text-xs gui-neutral-fg-muted mb-spacing-1">Not auto-close (default)</p>
+          <GSelect v-model="pill">
+            <GSelectOption value="mysql" label="MySQL" />
+            <GSelectOption value="postgres" label="Postgres" />
+            <GSelectOption value="sqlite" label="SQLite" />
+          </GSelect>
+        </div>
+        <div>
+          <p class="text-xs gui-neutral-fg-muted mb-spacing-1">Auto-close</p>
+          <GSelect v-model="box" close-on-select>
+            <GSelectOption value="mysql" label="MySQL" />
+            <GSelectOption value="postgres" label="Postgres" />
+            <GSelectOption value="sqlite" label="SQLite" />
+          </GSelect>
+        </div>
+      </div>
+    `,
+  }),
+};
