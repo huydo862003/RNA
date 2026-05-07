@@ -21,6 +21,24 @@ export const namingRules: Linter.RulesRecord = {
         expression: {
           expr: true,
         },
+        lst: {
+          list: true,
+        },
+        para: {
+          paragraph: true,
+        },
+        txt: {
+          text: true,
+        },
+        tbl: {
+          table: true,
+        },
+        arr: {
+          array: true,
+        },
+        len: {
+          length: true,
+        },
       },
       allowList: {
         // Allow common conventions

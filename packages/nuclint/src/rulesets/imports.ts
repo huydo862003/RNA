@@ -24,6 +24,10 @@ export const importRules: Linter.RulesRecord = {
   'import/no-unused-modules': 'off',
   // No limit on number of dependencies
   'import/max-dependencies': 'off',
+  // Disallow import aliases except for adding/trimming leading _
+  'custom/no-import-alias': 'error',
+  // Disallow namespace imports (import * as foo)
+  'import/no-namespace': 'error',
   // Enforce consistent import ordering: builtin, external, internal, parent, sibling, index
   'import/order': [
     'error',

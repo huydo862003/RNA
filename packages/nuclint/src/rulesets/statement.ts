@@ -25,7 +25,7 @@ export const statementRules: Linter.RulesRecord = {
     'always',
   ],
 
-  // Enforce max line length of 200 characters with exceptions for URLs and comments
+  // Enforce max line length of 200 characters, not applied to comments, strings, URLs, or regexes
   '@stylistic/max-len': [
     'error',
     {

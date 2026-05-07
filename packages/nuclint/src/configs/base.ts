@@ -14,6 +14,7 @@ import {
   noTrailingPeriodCommentsRule,
   noSpecialCharactersRule,
   typeLiteralNewlineRule,
+  noImportAliasRule,
 } from '../rules';
 import {
   typeSafetyRules,
@@ -50,6 +51,7 @@ export const baseConfig: Linter.Config[] = [
           'no-trailing-period-comments': noTrailingPeriodCommentsRule,
           'no-special-characters': noSpecialCharactersRule,
           'type-literal-newline': typeLiteralNewlineRule,
+          'no-import-alias': noImportAliasRule,
         },
       },
     },
