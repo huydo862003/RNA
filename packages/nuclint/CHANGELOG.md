@@ -1,5 +1,11 @@
 # nuclint
 
+## 0.16.0
+
+### Minor Changes
+
+- Support formatting of type literals, comments, variable convention
+
 ## 0.15.0
 
 ### Minor Changes

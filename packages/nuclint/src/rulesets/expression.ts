@@ -148,4 +148,9 @@ export const expressionRules: Linter.RulesRecord = {
     },
   ],
 
+  // Disallow non-keyboard characters like em dash, smart quotes, arrows
+  'custom/no-special-characters': 'error',
+
+  // Enforce newlines in type literal braces when there are members
+  'custom/type-literal-newline': 'error',
 };

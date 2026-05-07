@@ -10,6 +10,10 @@ import unicorn from 'eslint-plugin-unicorn';
 import n from 'eslint-plugin-n';
 import {
   preferLessThanRule,
+  noHeavyCommentsRule,
+  noTrailingPeriodCommentsRule,
+  noSpecialCharactersRule,
+  typeLiteralNewlineRule,
 } from '../rules';
 import {
   typeSafetyRules,
@@ -17,6 +21,8 @@ import {
   statementRules,
   blockRules,
   importRules,
+  namingRules,
+  commentRules,
 } from '../rulesets';
 
 export const baseConfig: Linter.Config[] = [
@@ -40,6 +46,10 @@ export const baseConfig: Linter.Config[] = [
       'custom': {
         rules: {
           'prefer-less-than': preferLessThanRule,
+          'no-heavy-comments': noHeavyCommentsRule,
+          'no-trailing-period-comments': noTrailingPeriodCommentsRule,
+          'no-special-characters': noSpecialCharactersRule,
+          'type-literal-newline': typeLiteralNewlineRule,
         },
       },
     },
@@ -52,6 +62,8 @@ export const baseConfig: Linter.Config[] = [
       ...statementRules,
       ...blockRules,
       ...importRules,
+      ...namingRules,
+      ...commentRules,
     },
   },
 ];

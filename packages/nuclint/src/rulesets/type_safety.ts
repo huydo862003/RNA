@@ -24,4 +24,18 @@ export const typeSafetyRules: Linter.RulesRecord = {
   '@typescript-eslint/no-explicit-any': 'warn',
   // Warn on non-null assertions to encourage proper null checks
   '@typescript-eslint/no-non-null-assertion': 'warn',
+  // Block unsafe built-in types like `object` in type annotations
+  '@typescript-eslint/no-restricted-types': [
+    'error',
+    {
+      types: {
+        object: {
+          message: 'Use a proper interface or Record<string, unknown> instead.',
+          suggest: [
+            'Record<string, unknown>',
+          ],
+        },
+      },
+    },
+  ],
 };
