@@ -4,7 +4,10 @@
 
 ### Minor Changes
 
-- Support formatting of type literals, comments, variable convention
+- Add naming, comment, import, and expression rulesets
+- Add custom rules: type-literal-newline, no-heavy-comments, no-trailing-period-comments, no-special-characters, no-import-alias
+- Export named configs instead of default export
+- Fix global vs scoped ignores in flat config
 
 ## 0.15.0
 
