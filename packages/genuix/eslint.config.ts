@@ -2,7 +2,9 @@
    https://github.com/huydo862003/Fck-AI-Slop/edit/main/README.md
 */
 
-import config from '@hdnax/nuclint';
+import {
+  vueConfig,
+} from '@hdnax/nuclint';
 
 export default [
   {
@@ -14,5 +16,5 @@ export default [
       'templates',
     ],
   },
-  ...config,
+  ...vueConfig,
 ];

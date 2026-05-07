@@ -20,6 +20,15 @@ import {
 } from '../rulesets';
 
 export const baseConfig: Linter.Config[] = [
+  {
+    ignores: [
+      'node_modules',
+      'dist',
+      'storybook-static',
+      'build',
+      'output',
+    ],
+  },
   ...tselint.configs.strict,
   {
     files: ['**/*.{js,ts,vue,jsx,tsx}'],
@@ -34,13 +43,6 @@ export const baseConfig: Linter.Config[] = [
         },
       },
     },
-    ignores: [
-      'node_modules',
-      'dist',
-      'storybook-static',
-      'build',
-      'output',
-    ],
     settings: {
       'import-x/resolver-next': [createNodeResolver()],
     },

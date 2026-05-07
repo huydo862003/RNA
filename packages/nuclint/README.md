@@ -65,6 +65,12 @@ const object = { property: value, field: value };
 | `bracket` | opening `[` or closing `]` bracket |
 | `property` | key name in object key-value pair |
 
+## Findings
+
+### Global vs Scoped `ignores` in ESLint Flat Config
+
+A config entry with only `ignores` is global. Adding any other key (e.g. `files`) makes it scoped to that entry only. Other entries (e.g. `typescript-eslint`) still see the "ignored" paths and may try to parse them, causing parser failures on large `node_modules` files.
+
 ### Testing
 
 Rules are tested using ESLint's `RuleTester` with Vitest:
