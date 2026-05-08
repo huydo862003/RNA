@@ -24,11 +24,13 @@ export const noImportAliasRule: Rule.RuleModule = {
           ? node.imported.name
           : String(node.imported.value);
         const local = node.local.name;
+
         if (imported === local) return;
 
         // Allow adding or trimming a leading _
         const isUnderscoreAlias =
           local === `_${imported}` || imported === `_${local}`;
+
         if (isUnderscoreAlias) return;
 
         context.report({

@@ -7,6 +7,7 @@ import importPlugin, {
   createNodeResolver,
 } from 'eslint-plugin-import-x';
 import unicorn from 'eslint-plugin-unicorn';
+import perfectionist from 'eslint-plugin-perfectionist';
 import n from 'eslint-plugin-n';
 import {
   preferLessThanRule,
@@ -24,6 +25,7 @@ import {
   importRules,
   namingRules,
   commentRules,
+  orderingRules,
 } from '../rulesets';
 
 export const baseConfig: Linter.Config[] = [
@@ -43,6 +45,7 @@ export const baseConfig: Linter.Config[] = [
       '@stylistic': stylistic,
       'import': importPlugin,
       'unicorn': unicorn,
+      'perfectionist': perfectionist,
       'n': n,
       'custom': {
         rules: {
@@ -57,7 +60,14 @@ export const baseConfig: Linter.Config[] = [
     },
     settings: {
       'import-x/resolver-next': [createNodeResolver()],
-      'import-x/ignore': ['node_modules'],
+      'import-x/ignore': [
+        'node_modules',
+        'dist',
+        'storybook-static',
+        'build',
+        'output',
+        '\\.css$',
+      ],
     },
     rules: {
       ...typeSafetyRules,
@@ -67,6 +77,7 @@ export const baseConfig: Linter.Config[] = [
       ...importRules,
       ...namingRules,
       ...commentRules,
+      ...orderingRules,
     },
   },
 ];

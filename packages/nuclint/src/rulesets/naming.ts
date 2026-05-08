@@ -196,6 +196,9 @@ export const namingRules: Linter.RulesRecord = {
         mod: {
           module: true,
         },
+        re: {
+          regex: true,
+        },
         ref: false,
         param: {
           parameter: true,
@@ -240,9 +243,7 @@ export const namingRules: Linter.RulesRecord = {
         addr: {
           address: true,
         },
-        auth: {
-          authentication: true,
-        },
+        auth: false,
         dev: false,
         prod: false,
         dist: false,

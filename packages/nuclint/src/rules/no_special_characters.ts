@@ -39,13 +39,16 @@ export const noSpecialCharactersRule: Rule.RuleModule = {
   },
   create (context) {
     const sourceCode = context.sourceCode;
+
     return {
       Program () {
         const text = sourceCode.getText();
         let match;
+
         while ((match = SPECIAL_CHAR_REGEX.exec(text)) !== null) {
           const char = match[0];
           const location = sourceCode.getLocFromIndex(match.index);
+
           context.report({
             loc: {
               start: location,

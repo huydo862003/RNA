@@ -12,4 +12,12 @@ export default defineConfig({
     'cjs',
     'esm',
   ],
+  external: [
+    'eslint',
+    /eslint-plugin/,
+    '@stylistic/eslint-plugin',
+    'eslint-plugin-perfectionist',
+    'typescript-eslint',
+    'vue-eslint-parser',
+  ],
 });

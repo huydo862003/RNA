@@ -7,6 +7,18 @@ import tseslint from 'typescript-eslint';
 import {
   baseConfig,
 } from '../base';
+import {
+  vueExprRules,
+  vueBlockRules,
+  vueStatementRules,
+  vueStrictRules,
+  vueNamingRules,
+  vueDeclarationRules,
+  vueStructureRules,
+  vueTemplateRules,
+  vueSafetyRules,
+  vueScriptRules,
+} from '../../rulesets';
 
 export const vueConfig: Linter.Config[] = [
   ...baseConfig,
@@ -21,6 +33,20 @@ export const vueConfig: Linter.Config[] = [
         parser: tseslint.parser,
         extraFileExtensions: ['.vue'],
       },
+    },
+    rules: {
+      // Disable @stylistic/indent for .vue files, vue/script-indent handles it
+      '@stylistic/indent': 'off',
+      ...vueExprRules,
+      ...vueBlockRules,
+      ...vueStatementRules,
+      ...vueStrictRules,
+      ...vueNamingRules,
+      ...vueDeclarationRules,
+      ...vueStructureRules,
+      ...vueTemplateRules,
+      ...vueSafetyRules,
+      ...vueScriptRules,
     },
   },
 ];

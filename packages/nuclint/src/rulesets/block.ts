@@ -58,4 +58,43 @@ export const blockRules: Linter.RulesRecord = {
     'error',
     'always',
   ],
+
+  // Require blank lines between certain statement types
+  '@stylistic/padding-line-between-statements': [
+    'error',
+    {
+      blankLine: 'always',
+      prev: '*',
+      next: 'return',
+    },
+    {
+      blankLine: 'always',
+      prev: [
+        'const',
+        'let',
+      ],
+      next: '*',
+    },
+    {
+      blankLine: 'any',
+      prev: [
+        'const',
+        'let',
+      ],
+      next: [
+        'const',
+        'let',
+      ],
+    },
+    {
+      blankLine: 'always',
+      prev: '*',
+      next: 'function',
+    },
+    {
+      blankLine: 'always',
+      prev: 'function',
+      next: '*',
+    },
+  ],
 };

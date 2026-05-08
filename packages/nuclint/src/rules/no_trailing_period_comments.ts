@@ -19,10 +19,12 @@ export const noTrailingPeriodCommentsRule: Rule.RuleModule = {
   },
   create (context) {
     const sourceCode = context.sourceCode;
+
     return {
       Program () {
         for (const comment of sourceCode.getAllComments()) {
           const text = comment.value.trimEnd();
+
           if (text.endsWith('.')) {
             context.report({
               loc: comment.loc!,
@@ -32,6 +34,7 @@ export const noTrailingPeriodCommentsRule: Rule.RuleModule = {
                 const commentEnd = comment.range![1];
                 const offset = comment.value.length - text.length;
                 const periodPosition = commentEnd - 1 - offset - (comment.type === 'Block' ? 2 : 0);
+
                 return fixer.removeRange([
                   periodPosition,
                   periodPosition + 1,

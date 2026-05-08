@@ -45,6 +45,7 @@ export const typeLiteralNewlineRule: Rule.RuleModule = {
 
         // Check newline before closing brace
         const lastToken = sourceCode.getLastToken(lastMember as Rule.Node)!;
+
         if (lastToken.loc.end.line === closeBrace.loc.start.line) {
           context.report({
             loc: closeBrace.loc,
@@ -56,6 +57,7 @@ export const typeLiteralNewlineRule: Rule.RuleModule = {
         }
       },
     };
+
     return listener as Rule.RuleListener;
   },
 };

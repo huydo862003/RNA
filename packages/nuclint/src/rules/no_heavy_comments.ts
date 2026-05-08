@@ -20,10 +20,12 @@ export const noHeavyCommentsRule: Rule.RuleModule = {
   },
   create (context) {
     const sourceCode = context.sourceCode;
+
     return {
       Program () {
         for (const comment of sourceCode.getAllComments()) {
           const text = comment.value.trim();
+
           // Match at-least-3 repeated separator characters
           if (/^[-=*#~_/]{3,}$/.test(text)) {
             context.report({
@@ -40,6 +42,7 @@ export const noHeavyCommentsRule: Rule.RuleModule = {
                     token.range[0],
                   ]
                   : comment.range!;
+
                 return fixer.removeRange(range);
               },
             });

@@ -28,6 +28,18 @@ export const importRules: Linter.RulesRecord = {
   'custom/no-import-alias': 'error',
   // Disallow namespace imports (import * as foo)
   'import/no-namespace': 'error',
+  // Disallow deeply nested relative imports (3+ levels of ../)
+  'no-restricted-imports': [
+    'error',
+    {
+      patterns: [
+        {
+          group: ['../../..*'],
+          message: 'Relative imports deeper than 2 levels are hard to follow. Use a path alias or restructure.',
+        },
+      ],
+    },
+  ],
   // Enforce consistent import ordering: builtin, external, internal, parent, sibling, index
   'import/order': [
     'error',
