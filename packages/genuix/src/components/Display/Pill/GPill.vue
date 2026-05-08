@@ -64,31 +64,31 @@ const {
 }>();
 
 const tokens = computed(() => {
-  const c = PILL_COLORS[color] ?? PILL_COLORS[GPillColor.Gray];
+  const colorSet = PILL_COLORS[color] ?? PILL_COLORS[GPillColor.Gray];
 
   switch (prominence) {
     case GProminence.Primary:
       return {
-        bg: c.solid,
+        bg: colorSet.solid,
         fg: '#ffffff',
         border: 'transparent',
       };
     case GProminence.Secondary:
       return {
-        bg: c.bg,
-        fg: c.fg,
+        bg: colorSet.bg,
+        fg: colorSet.fg,
         border: 'transparent',
       };
     case GProminence.Tertiary:
       return {
         bg: 'transparent',
-        fg: c.fg,
-        border: c.solid,
+        fg: colorSet.fg,
+        border: colorSet.solid,
       };
     case GProminence.Ghost:
       return {
         bg: 'transparent',
-        fg: c.fg,
+        fg: colorSet.fg,
         border: 'transparent',
       };
     default: {
@@ -96,7 +96,7 @@ const tokens = computed(() => {
       void _exhaustive;
       return {
         bg: 'transparent',
-        fg: c.fg,
+        fg: colorSet.fg,
         border: 'transparent',
       };
     }

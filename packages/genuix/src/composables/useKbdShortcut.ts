@@ -33,46 +33,46 @@ const MODIFIERS: Map<string, keyof KeyboardEvent> = new Map([
   ],
 ]);
 
-function matchesKeys (e: KeyboardEvent, keys: GKbdKeyName[]): boolean {
-  const modifiers = keys.filter((k) => MODIFIERS.has(k));
-  const nonModifiers = keys.filter((k) => !MODIFIERS.has(k));
+function matchesKeys (event: KeyboardEvent, keys: GKbdKeyName[]): boolean {
+  const modifiers = keys.filter((key) => MODIFIERS.has(key));
+  const nonModifiers = keys.filter((key) => !MODIFIERS.has(key));
 
   // Must have exactly 1 non-modifier key
   if (nonModifiers.length !== 1) return false;
 
   // Check non-modifier key
-  if (e.key.toLowerCase() !== nonModifiers[0].toLowerCase()) return false;
+  if (event.key.toLowerCase() !== nonModifiers[0].toLowerCase()) return false;
 
   // Check each modifier is pressed
-  for (const mod of modifiers) {
-    if (!e[MODIFIERS.get(mod)!]) return false;
+  for (const module_ of modifiers) {
+    if (!event[MODIFIERS.get(module_)!]) return false;
   }
 
   // Check no extra modifiers are pressed
-  if (e.ctrlKey && !modifiers.includes(GKbdKeyName.Control)) return false;
-  if (e.altKey && !modifiers.includes(GKbdKeyName.Alt)) return false;
-  if (e.shiftKey && !modifiers.includes(GKbdKeyName.Shift)) return false;
-  if (e.metaKey && !modifiers.includes(GKbdKeyName.Meta)) return false;
+  if (event.ctrlKey && !modifiers.includes(GKbdKeyName.Control)) return false;
+  if (event.altKey && !modifiers.includes(GKbdKeyName.Alt)) return false;
+  if (event.shiftKey && !modifiers.includes(GKbdKeyName.Shift)) return false;
+  if (event.metaKey && !modifiers.includes(GKbdKeyName.Meta)) return false;
 
   return true;
 }
 
 interface ShortcutEntry {
   keys: GKbdKeyName[];
-  handler: (e: KeyboardEvent) => void;
+  handler: (event: KeyboardEvent) => void;
 }
 
 /*
- * For registering global keyboard shortcut.
+ * For registering global keyboard shortcut
  */
 export function useKbdShortcut (
   keys: GKbdKeyName[],
-  handler: (e: KeyboardEvent) => void,
+  handler: (event: KeyboardEvent) => void,
 ) {
-  function onKeydown (e: KeyboardEvent) {
-    if (matchesKeys(e, keys)) {
-      e.preventDefault();
-      handler(e);
+  function onKeydown (event: KeyboardEvent) {
+    if (matchesKeys(event, keys)) {
+      event.preventDefault();
+      handler(event);
     }
   }
 
@@ -86,28 +86,28 @@ export function useKbdShortcut (
 export function useLocalKbdShortcuts (element: Ref<HTMLElement | null | undefined>) {
   const entries: ShortcutEntry[] = [];
 
-  function register (keys: GKbdKeyName[], handler: (e: KeyboardEvent) => void) {
+  function register (keys: GKbdKeyName[], handler: (event: KeyboardEvent) => void) {
     entries.push({
       keys,
       handler,
     });
   }
 
-  function onKeydown (e: KeyboardEvent) {
+  function onKeydown (event: KeyboardEvent) {
     for (const entry of entries) {
-      if (matchesKeys(e, entry.keys)) {
-        e.preventDefault();
-        e.stopPropagation();
-        entry.handler(e);
+      if (matchesKeys(event, entry.keys)) {
+        event.preventDefault();
+        event.stopPropagation();
+        entry.handler(event);
         return;
       }
     }
   }
 
   // Watch for element availability
-  watch(element, (newEl, oldEl) => {
-    oldEl?.removeEventListener('keydown', onKeydown);
-    newEl?.addEventListener('keydown', onKeydown);
+  watch(element, (newElement, oldElement) => {
+    oldElement?.removeEventListener('keydown', onKeydown);
+    newElement?.addEventListener('keydown', onKeydown);
   }, {
     immediate: true,
   });

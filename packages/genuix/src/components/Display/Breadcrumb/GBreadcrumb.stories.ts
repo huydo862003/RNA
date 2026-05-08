@@ -101,7 +101,7 @@ export const SlotsStory: Story = {
   <GBreadcrumbItem as="a" href="/docs">Docs</GBreadcrumbItem>
   <GBreadcrumbItem>Guide</GBreadcrumbItem>
   <template #separator>
-    <span>→</span>
+    <span>-></span>
   </template>
 </GBreadcrumb>`,
       },
@@ -121,7 +121,7 @@ export const SlotsStory: Story = {
             <GBreadcrumbItem as="a" href="/docs">Docs</GBreadcrumbItem>
             <GBreadcrumbItem>Guide</GBreadcrumbItem>
             <template #separator>
-              <span class="mx-1 gui-primary-fg">→</span>
+              <span class="mx-1 gui-primary-fg">-></span>
             </template>
           </GBreadcrumb>
         </div>

@@ -50,7 +50,7 @@
 
 import {
   computed,
-  ref,
+  useTemplateRef,
 } from 'vue';
 import type {
   GCheckboxSize,
@@ -94,7 +94,7 @@ const {
 
 const tokens = computed(() => prominenceTokens(GProminence.Primary, semantic));
 
-const inputRef = ref<HTMLInputElement | null>(null);
+const inputRef = useTemplateRef('inputRef');
 
 defineExpose({
   focus: () => inputRef.value?.focus(),

@@ -48,10 +48,10 @@ const cursor = ref<number | undefined>(undefined);
 const dragging = ref(false);
 
 // Ranges can be selected out of order, so we need to normalize
-function normalizeRange (a: number, b: number): Range1D {
+function normalizeRange (from: number, to: number): Range1D {
   return {
-    start: Math.min(a, b),
-    end: Math.max(a, b),
+    start: Math.min(from, to),
+    end: Math.max(from, to),
   };
 }
 
@@ -73,7 +73,7 @@ function getPosition (index: number): Position1D | undefined {
   return 'middle';
 }
 
-// Check if an item matches a position. 'only' matches both 'start' and 'end'.
+// Check if an item matches a position. 'only' matches both 'start' and 'end'
 function isPosition (index: number, query: Position1D): boolean {
   const pos = getPosition(index);
   if (!pos) return false;
@@ -118,7 +118,7 @@ function extendSelection (index: number) {
 }
 
 // Move cursor one step backward (left/up)
-function movePrev (extend: boolean) {
+function movePrevious (extend: boolean) {
   if (cursor.value === undefined) return;
   const next = Math.max(0, cursor.value - 1);
   cursor.value = next;
@@ -174,7 +174,7 @@ provide(RANGE_SELECTION_1D_KEY, {
   setAnchor,
   extendSelection,
   endSelection,
-  movePrev,
+  movePrevious,
   moveNext,
   selectAll,
   clearSelection,

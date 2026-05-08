@@ -29,7 +29,7 @@ defineOptions({
   inheritAttrs: false,
 });
 
-const ctx = inject(FILTERABLE_KEY)!;
+const context = inject(FILTERABLE_KEY)!;
 
 const {
   placeholder = 'Filter...',
@@ -38,7 +38,7 @@ const {
 }>();
 
 const search = computed({
-  get: () => ctx.search.value,
-  set: (val) => ctx.setSearch(val),
+  get: () => context.search.value,
+  set: (value) => context.setSearch(value),
 });
 </script>

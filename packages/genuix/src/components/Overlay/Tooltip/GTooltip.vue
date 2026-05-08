@@ -10,7 +10,7 @@
     :delay="{ show: showDelay, hide: hideDelay }"
     :triggers="triggers"
     :popper-triggers="['hover']"
-    :popper-class="`g-tooltip-popper ${popperClass}`"
+    :popper-class="`tooltip-popper ${popperClass}`"
     :container="popperContainer ?? 'body'"
     no-auto-focus
     @show="isOpen = true; emit('show-start')"
@@ -68,7 +68,7 @@ const popperContainerRef = inject(POPPER_CONTAINER_KEY, null);
 const popperContainer = computed(() => popperContainerRef?.value ?? undefined);
 
 const emit = defineEmits<{
-  (e: 'show-start' | 'show-end' | 'hide'): void;
+  (event: 'show-start' | 'show-end' | 'hide'): void;
 }>();
 
 const {
@@ -105,12 +105,12 @@ const {
 }>();
 
 // A unique id so we can query the child of the current tooltip
-const popperUid = `g-tooltip-${getId(Tooltip, getCurrentInstance()!)}`;
+const popperUid = `tooltip-${getId(Tooltip, getCurrentInstance()!)}`;
 
 const popperClass = computed(() => [
   popperUid,
   _class,
-  !arrow && 'g-popper--no-arrow',
+  !arrow && 'popper--no-arrow',
 ].filter(Boolean).join(' '));
 
 const isOpen = ref(false);
@@ -156,7 +156,7 @@ defineExpose({
 <style>
 @reference '@/style.css';
 
-.g-tooltip-popper {
+.tooltip-popper {
   &.v-popper__popper {
     @apply border-0 border-transparent;
     .v-popper__wrapper {
@@ -169,7 +169,7 @@ defineExpose({
 }
 
 @layer components {
-.g-popper--no-arrow .v-popper__arrow-container {
+.popper--no-arrow .v-popper__arrow-container {
   @apply hidden;
 }
 }

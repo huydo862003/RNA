@@ -12,7 +12,7 @@ export interface FilterableContext {
   page: ComputedRef<number>;
   pages: ComputedRef<number>;
   maxPages: ComputedRef<number>;
-  setSearch (val: string): void;
+  setSearch (value: string): void;
   setPage (n: number): void;
   registerItem (label: string, value: string): void;
   unregisterItem (value: string): void;

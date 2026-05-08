@@ -47,15 +47,15 @@ function Preview () {
     {
       style: 'display: flex; flex-direction: column; gap: 16px;',
     },
-    sizes.map((s) =>
+    sizes.map((size) =>
       h('div', {
         style: 'display: flex; align-items: baseline; gap: 12px;',
       }, [
         h('code', {
           style: 'font-size: 12px; color: #666; min-width: 200px;',
-        }, s.label),
+        }, size.label),
         h('span', {
-          style: `font-size: var(${s.token});`,
+          style: `font-size: var(${size.token});`,
         }, 'The quick brown fox'),
       ])),
   );

@@ -33,7 +33,7 @@
 
 import {
   computed,
-  ref,
+  useTemplateRef,
 } from 'vue';
 import {
   GTextInputSize,
@@ -96,7 +96,7 @@ const effectiveState = computed(() => {
   return state;
 });
 
-const inputRef = ref<HTMLInputElement | null>(null);
+const inputRef = useTemplateRef('inputRef');
 
 function focus () {
   inputRef.value?.focus();

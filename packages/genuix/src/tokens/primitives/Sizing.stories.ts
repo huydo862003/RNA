@@ -51,17 +51,17 @@ function Preview () {
     {
       style: 'display: flex; flex-direction: column; gap: 12px;',
     },
-    sizes.map((s) =>
+    sizes.map((size) =>
       h('div', {
         style: 'display: flex; align-items: center; gap: 12px;',
       }, [
         h('code', {
           style: 'font-size: 12px; color: #666; min-width: 160px;',
-        }, s.label),
+        }, size.label),
         h('div', {
           style: `
-            width: var(${s.token});
-            height: var(${s.token});
+            width: var(${size.token});
+            height: var(${size.token});
             background: var(--color-accent-blue-9);
             border-radius: 2px;
           `,

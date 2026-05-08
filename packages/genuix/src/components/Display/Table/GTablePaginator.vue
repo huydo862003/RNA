@@ -1,23 +1,23 @@
 <template>
   <div
-    v-if="ctx.maxPages.value > 1"
-    class="g-table-pager"
+    v-if="context.maxPages.value > 1"
+    class="table-pager"
   >
     <button
-      :disabled="ctx.page.value <= 1"
-      class="g-table-pager-btn"
-      @click="ctx.setPage(ctx.page.value - 1)"
+      :disabled="context.page.value <= 1"
+      class="table-pager-btn"
+      @click="context.setPage(context.page.value - 1)"
     >
       <GIcon
         :name="GIconName.ArrowLeft"
         :size="12"
       />
     </button>
-    <span class="g-table-pager-info">{{ ctx.page.value }} / {{ ctx.maxPages.value }}</span>
+    <span class="table-pager-info">{{ context.page.value }} / {{ context.maxPages.value }}</span>
     <button
-      :disabled="ctx.page.value >= ctx.maxPages.value"
-      class="g-table-pager-btn"
-      @click="ctx.setPage(ctx.page.value + 1)"
+      :disabled="context.page.value >= context.maxPages.value"
+      class="table-pager-btn"
+      @click="context.setPage(context.page.value + 1)"
     >
       <GIcon
         :name="GIconName.ArrowRight"
@@ -43,14 +43,14 @@ import {
   GIconName,
 } from '@/components/Display/Icon/types';
 
-const ctx = inject(TABLE_KEY)!;
+const context = inject(TABLE_KEY)!;
 </script>
 
 <style scoped>
 @reference '@/style.css';
 
 @layer components {
-.g-table-pager {
+.table-pager {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -58,7 +58,7 @@ const ctx = inject(TABLE_KEY)!;
   margin-top: var(--spacing-lg);
 }
 
-.g-table-pager-btn {
+.table-pager-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -71,16 +71,16 @@ const ctx = inject(TABLE_KEY)!;
   transition: border-color var(--duration-fast) var(--ease-default);
 }
 
-.g-table-pager-btn:hover:not(:disabled) {
+.table-pager-btn:hover:not(:disabled) {
   border-color: var(--gui-neutral-border-strong);
 }
 
-.g-table-pager-btn:disabled {
+.table-pager-btn:disabled {
   opacity: 0.3;
   cursor: default;
 }
 
-.g-table-pager-info {
+.table-pager-info {
   font-size: var(--text-xs);
   color: var(--gui-neutral-fg-muted);
 }

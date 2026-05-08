@@ -59,8 +59,8 @@ function normalizeRange (r1: number, c1: number, r2: number, c2: number): Range2
 // Check if a cell falls within the current selection
 function isSelected (row: number, col: number): boolean {
   if (!selection.value) return false;
-  const s = selection.value;
-  return s.startRow <= row && row <= s.endRow && s.startCol <= col && col <= s.endCol;
+  const sel = selection.value;
+  return sel.startRow <= row && row <= sel.endRow && sel.startCol <= col && col <= sel.endCol;
 }
 
 // Determine where a cell sits in the selection (corner, edge, inner)

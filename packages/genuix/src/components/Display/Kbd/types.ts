@@ -69,11 +69,14 @@ export enum GKbdKeyName {
   b = 'b',
   c = 'c',
   d = 'd',
+  // eslint-disable-next-line
   e = 'e',
   f = 'f',
   g = 'g',
   h = 'h',
+  // eslint-disable-next-line
   i = 'i',
+  // eslint-disable-next-line
   j = 'j',
   k = 'k',
   l = 'l',

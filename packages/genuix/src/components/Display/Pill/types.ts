@@ -34,7 +34,7 @@ export interface PillColorTokens {
  * bg = step 3 (tinted surface)
  * fg = step 12 (high-contrast text)
  * solid = step 9 (solid accent)
- * White/Black use neutral primitive endpoints.
+ * White/Black use neutral primitive endpoints
  */
 export const PILL_COLORS: Record<GPillColor, PillColorTokens> = {
   [GPillColor.White]: {

@@ -67,6 +67,7 @@
 import {
   computed,
   ref,
+  useTemplateRef,
   watch,
 } from 'vue';
 import {
@@ -161,7 +162,7 @@ watch(value, (newValue) => {
 
 // FIXME: this causes a circular watch with value v-model, but it's currently fine as the circle ends because the watched values are set to the same value
 watch(rawInput, (newValue) => {
-  // We allow partially valid states because the user is typing...
+  // We allow partially valid states because the user is typing
   const numberRegex = PARTIAL_NUMBER_REGEX;
   if (numberRegex.test(newValue)) {
     /* Valid/Partially valid state */
@@ -180,7 +181,7 @@ const inputSize = computed(() => {
   return Math.max(...lengths, 5);
 });
 
-const inputRef = ref<HTMLInputElement | null>(null);
+const inputRef = useTemplateRef('inputRef');
 
 function clamp (n: number): number {
   if (min !== undefined && n < min) return min;

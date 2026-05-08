@@ -60,7 +60,7 @@ export const BasicDismissStory: Story = {
         </p>
         <GDismiss @dismiss="dismiss">
           <div
-            class="w-[200px] h-[100px] rounded-md flex items-center justify-center cursor-pointer transition-colors text-sm font-medium"
+            class="w-50 h-25 rounded-md flex items-center justify-center cursor-pointer transition-colors text-sm font-medium"
             :class="active ? 'gui-info-bg-hover gui-info-fg' : 'gui-neutral-bg-subtle gui-neutral-fg-muted'"
             @click="activate"
           >
@@ -112,7 +112,7 @@ export const IgnoreDismissStory: Story = {
       <div class="p-spacing-4 flex gap-spacing-4 items-start">
         <GDismiss :options="{ ignore: [ignoredRef] }" @dismiss="dismiss">
           <div
-            class="w-[200px] h-[100px] rounded-md flex items-center justify-center cursor-pointer transition-colors text-sm font-medium"
+            class="w-50 h-25 rounded-md flex items-center justify-center cursor-pointer transition-colors text-sm font-medium"
             :class="active ? 'gui-info-bg-hover gui-info-fg' : 'gui-neutral-bg-subtle gui-neutral-fg-muted'"
             @click="activate"
           >

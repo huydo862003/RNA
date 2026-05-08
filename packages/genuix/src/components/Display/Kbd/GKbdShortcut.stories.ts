@@ -35,13 +35,13 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const render: Story['render'] = (args) => ({
+const render: Story['render'] = (arguments_) => ({
   components: {
     GKbdShortcut,
   },
   setup () {
     return {
-      args,
+      args: arguments_,
     };
   },
   template: `

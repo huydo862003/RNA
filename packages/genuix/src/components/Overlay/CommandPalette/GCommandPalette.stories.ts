@@ -129,7 +129,9 @@ useKbdShortcut([GKbdKeyName.Meta, GKbdKeyName.k], () => {
         },
       ];
 
-      function onSelect (item: { id: string }) {
+      function onSelect (item: {
+        id: string;
+      }) {
         console.log('Selected:', item.id);
       }
 

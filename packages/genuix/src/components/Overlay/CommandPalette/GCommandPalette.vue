@@ -154,11 +154,11 @@ for (const item of items) {
 
 /* Filtering */
 const filteredItems = computed(() => {
-  const q = query.value.toLowerCase();
-  if (!q) return items;
+  const searchTerm = query.value.toLowerCase();
+  if (!searchTerm) return items;
   return items.filter((item) =>
-    item.label.toLowerCase().includes(q)
-    || item.group?.toLowerCase().includes(q));
+    item.label.toLowerCase().includes(searchTerm)
+    || item.group?.toLowerCase().includes(searchTerm));
 });
 
 /* Group items by group name */
@@ -203,28 +203,28 @@ function selectItem (item: CommandItem) {
 }
 
 /* Keyboard navigation */
-function handleKeydown (e: KeyboardEvent) {
+function handleKeydown (event: KeyboardEvent) {
   const list = flatItems.value;
 
-  if (e.key === GKbdKeyName.ArrowDown) {
-    e.preventDefault();
+  if (event.key === GKbdKeyName.ArrowDown) {
+    event.preventDefault();
     if (!list.length) return;
-    const idx = focusedId.value ? list.findIndex((i) => i.id === focusedId.value) : -1;
-    focusedId.value = list[list.length - 1 <= idx ? 0 : idx + 1].id;
+    const index = focusedId.value ? list.findIndex((index_) => index_.id === focusedId.value) : -1;
+    focusedId.value = list[list.length - 1 <= index ? 0 : index + 1].id;
     return;
   }
 
-  if (e.key === GKbdKeyName.ArrowUp) {
-    e.preventDefault();
+  if (event.key === GKbdKeyName.ArrowUp) {
+    event.preventDefault();
     if (!list.length) return;
-    const idx = focusedId.value ? list.findIndex((i) => i.id === focusedId.value) : -1;
-    focusedId.value = list[idx <= 0 ? list.length - 1 : idx - 1].id;
+    const index = focusedId.value ? list.findIndex((index_) => index_.id === focusedId.value) : -1;
+    focusedId.value = list[index <= 0 ? list.length - 1 : index - 1].id;
     return;
   }
 
-  if (e.key === GKbdKeyName.Enter) {
-    e.preventDefault();
-    const item = list.find((i) => i.id === focusedId.value);
+  if (event.key === GKbdKeyName.Enter) {
+    event.preventDefault();
+    const item = list.find((index) => index.id === focusedId.value);
     if (item) selectItem(item);
     return;
   }

@@ -66,13 +66,13 @@ export const DefaultTooltipStory: Story = {
   args: {
     placement: 'bottom',
   },
-  render: (args) => ({
+  render: (arguments_) => ({
     components: {
       GTooltip,
     },
     setup () {
       return {
-        args,
+        args: arguments_,
       };
     },
     template: `

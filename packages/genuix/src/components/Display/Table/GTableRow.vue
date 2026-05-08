@@ -33,23 +33,23 @@ const {
   rowData?: Record<string, unknown>;
 }>();
 
-const ctx = inject(TABLE_KEY, null);
+const context = inject(TABLE_KEY, null);
 const rowKey = ref<number>(-1);
 
 onMounted(() => {
-  if (ctx) {
-    rowKey.value = ctx.registerRow(rowData);
+  if (context) {
+    rowKey.value = context.registerRow(rowData);
   }
 });
 
 onBeforeUnmount(() => {
-  if (ctx && 0 <= rowKey.value) {
-    ctx.unregisterRow(rowData);
+  if (context && 0 <= rowKey.value) {
+    context.unregisterRow(rowData);
   }
 });
 
 const visible = computed(() =>
-  !ctx || ctx.isVisible(rowKey.value));
+  !context || context.isVisible(rowKey.value));
 </script>
 
 <style scoped>
@@ -57,11 +57,7 @@ const visible = computed(() =>
 
 @layer components {
 tr {
-  border-bottom: 1px solid var(--gui-neutral-border-subtle);
-}
-
-tr:last-child {
-  border-bottom: none;
+  transition: background-color var(--duration-fast) var(--ease-default);
 }
 }
 </style>

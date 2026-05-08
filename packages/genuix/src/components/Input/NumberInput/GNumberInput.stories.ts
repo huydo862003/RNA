@@ -39,9 +39,9 @@ export const DefaultStory: Story = {
       GNumberInput,
     },
     setup () {
-      const val = ref(5);
+      const value = ref(5);
       return {
-        val,
+        val: value,
       };
     },
     template: `
@@ -69,9 +69,9 @@ export const MinMaxStory: Story = {
       GNumberInput,
     },
     setup () {
-      const val = ref(0);
+      const value = ref(0);
       return {
-        val,
+        val: value,
       };
     },
     template: `
@@ -96,9 +96,9 @@ export const SizesStory: Story = {
       GNumberInput,
     },
     setup () {
-      const val = ref(42);
+      const value = ref(42);
       return {
-        val,
+        val: value,
         GSize,
       };
     },
@@ -129,9 +129,9 @@ export const StatesStory: Story = {
       GNumberInput,
     },
     setup () {
-      const val = ref(5);
+      const value = ref(5);
       return {
-        val,
+        val: value,
         GNumberInputState,
       };
     },
@@ -159,9 +159,9 @@ export const DisabledStory: Story = {
       GNumberInput,
     },
     setup () {
-      const val = ref(42);
+      const value = ref(42);
       return {
-        val,
+        val: value,
       };
     },
     template: '<GNumberInput v-model="val" disabled />',
@@ -184,9 +184,9 @@ export const IntegerStory: Story = {
       GNumberInput,
     },
     setup () {
-      const val = ref(0);
+      const value = ref(0);
       return {
-        val,
+        val: value,
       };
     },
     template: `
@@ -214,9 +214,9 @@ export const NoStepperStory: Story = {
       GNumberInput,
     },
     setup () {
-      const val = ref(42);
+      const value = ref(42);
       return {
-        val,
+        val: value,
       };
     },
     template: `
@@ -244,9 +244,9 @@ export const NegativeValuesStory: Story = {
       GNumberInput,
     },
     setup () {
-      const val = ref(0);
+      const value = ref(0);
       return {
-        val,
+        val: value,
       };
     },
     template: `

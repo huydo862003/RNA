@@ -5,19 +5,21 @@
         <th
           v-for="column in columns"
           :key="column.key"
-          :class="[column.class, { 'g-table-sortable': column.sortable }]"
-          @click="column.sortable && (column.onSort ? column.onSort(column.key) : ctx?.handleSort(column.key))"
+          :class="[column.class, { 'table-sortable': column.sortable }]"
+          @click="column.sortable && (column.onSort ? column.onSort(column.key) : context?.handleSort(column.key))"
         >
           <slot
             :name="column.key"
             :column="column"
           >
-            {{ column.label }}
-            <GTableSorter
-              v-if="column.sortable"
-              :col-key="column.key"
-              :on-sort="column.onSort"
-            />
+            <span class="table-th-content">
+              <span>{{ column.label }}</span>
+              <GTableSorter
+                v-if="column.sortable"
+                :col-key="column.key"
+                :on-sort="column.onSort"
+              />
+            </span>
           </slot>
         </th>
       </tr>
@@ -47,21 +49,31 @@ const {
   columns?: GTableColumn[];
 }>();
 
-const ctx = inject(TABLE_KEY, null);
+const context = inject(TABLE_KEY, null);
 </script>
 
 <style scoped>
 @reference '@/style.css';
 
 @layer components {
-.g-table-sortable {
+.table-sortable {
   cursor: pointer;
   user-select: none;
   transition: color var(--duration-fast) var(--ease-default);
 }
 
-.g-table-sortable:hover {
+.table-sortable:hover {
   color: var(--gui-neutral-fg);
+}
+
+.table-th-content {
+  display: flex;
+  align-items: first baseline;
+  gap: var(--spacing-xs);
+}
+
+.table-th-content > span:first-child {
+  flex: 1;
 }
 }
 </style>

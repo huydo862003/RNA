@@ -1,11 +1,14 @@
 <template>
   <div
     v-bind="$attrs"
-    class="g-table-root"
+    class="table-root"
   >
     <slot name="filter" />
-    <div class="g-table-scroll">
-      <table class="g-table">
+    <div class="table-scroll">
+      <table
+        class="table"
+        :class="{ 'table--fixed-rows': fixedRows, 'table--bordered': bordered }"
+      >
         <slot />
       </table>
     </div>
@@ -47,8 +50,12 @@ const page = defineModel<number>('page', {
 
 const {
   pageSize = 10,
+  fixedRows = true,
+  bordered = true,
 } = defineProps<{
   pageSize?: number;
+  fixedRows?: boolean;
+  bordered?: boolean;
 }>();
 
 const filter = ref('');
@@ -88,8 +95,8 @@ function handleSort (key: string) {
   }
 }
 
-function setFilter (val: string) {
-  filter.value = val;
+function setFilter (value: string) {
+  filter.value = value;
 }
 
 function setPage (n: number) {
@@ -97,29 +104,29 @@ function setPage (n: number) {
 }
 
 const filteredRows = computed(() => {
-  const f = filter.value.toLowerCase();
+  const filterText = filter.value.toLowerCase();
   return [...registeredRows.value.entries()].filter(([
     , data,
   ]) =>
-    !f || Object.values(data).some((v) => String(v).toLowerCase()
-      .includes(f)));
+    !filterText || Object.values(data).some((value) => String(value).toLowerCase()
+      .includes(filterText)));
 });
 
 const sortedRows = computed(() => {
   const key = sortKey.value;
   if (!key) return filteredRows.value;
   return [...filteredRows.value].sort(([
-    , a,
+    , rowA,
   ], [
-    , b,
+    , rowB,
   ]) => {
-    const av = a[key];
-    const bv = b[key];
-    const an = Number(av);
-    const bn = Number(bv);
-    const cmp = !Number.isNaN(an) && !Number.isNaN(bn)
-      ? an - bn
-      : String(av).localeCompare(String(bv));
+    const valueA = rowA[key];
+    const valueB = rowB[key];
+    const numberA = Number(valueA);
+    const numberB = Number(valueB);
+    const cmp = !Number.isNaN(numberA) && !Number.isNaN(numberB)
+      ? numberA - numberB
+      : String(valueA).localeCompare(String(valueB));
     return sortAsc.value ? cmp : -cmp;
   });
 });
@@ -166,18 +173,34 @@ provide(TABLE_KEY, {
 @reference '@/style.css';
 
 @layer components {
-.g-table-root {
+.table-root {
   width: 100%;
 }
 
-.g-table-scroll {
+.table-scroll {
   overflow-x: auto;
+  min-height: var(--spacing-3xl);
 }
 
-.g-table {
+.table {
   width: 100%;
   font-size: var(--text-xs);
   border-collapse: collapse;
+}
+
+.table--bordered :deep(tbody tr) {
+  border-bottom: 1px solid var(--gui-neutral-border-subtle);
+}
+
+.table--bordered :deep(tbody tr:last-child) {
+  border-bottom: none;
+}
+
+.table--fixed-rows :deep(tbody td) {
+  height: var(--spacing-3xl);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 }
 </style>

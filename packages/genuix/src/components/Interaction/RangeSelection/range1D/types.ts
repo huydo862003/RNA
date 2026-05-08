@@ -23,7 +23,7 @@ export interface RangeSelectionContext1D {
   setAnchor (index: number): void;
   extendSelection (index: number): void;
   endSelection (): void;
-  movePrev (extend: boolean): void;
+  movePrevious (extend: boolean): void;
   moveNext (extend: boolean): void;
   selectAll (): void;
   clearSelection (): void;

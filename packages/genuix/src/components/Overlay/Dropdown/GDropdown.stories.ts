@@ -73,13 +73,13 @@ export const DefaultDropdownStory: Story = {
   args: {
     placement: 'bottom',
   },
-  render: (args) => ({
+  render: (arguments_) => ({
     components: {
       GDropdown,
     },
     setup () {
       return {
-        args,
+        args: arguments_,
       };
     },
     template: `

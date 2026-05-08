@@ -39,26 +39,26 @@ function Preview () {
       {
         style: 'display: flex; flex-direction: column; gap: 8px;',
       },
-      easings.map((e) =>
+      easings.map((easing) =>
         h('div', {
           style: 'display: flex; align-items: center; gap: 12px;',
         }, [
           h('code', {
             style: 'font-size: 12px; color: #666; min-width: 220px;',
-          }, e.label),
+          }, easing.label),
           h('div', {
             style: `
               width: 40px; height: 40px;
               background: var(--color-accent-blue-9);
               border-radius: 4px;
-              transition: transform 300ms var(${e.token});
+              transition: transform 300ms var(${easing.token});
               cursor: pointer;
             `,
-            onMouseenter: (ev: MouseEvent) => {
-              (ev.target as HTMLElement).style.transform = 'translateX(100px)';
+            onMouseenter: (event: MouseEvent) => {
+              (event.target as HTMLElement).style.transform = 'translateX(100px)';
             },
-            onMouseleave: (ev: MouseEvent) => {
-              (ev.target as HTMLElement).style.transform = '';
+            onMouseleave: (event: MouseEvent) => {
+              (event.target as HTMLElement).style.transform = '';
             },
           }),
         ])),

@@ -100,7 +100,7 @@ export const FileExplorerRangeSelection1DStory: Story = {
       };
     },
     template: `
-      <div class="w-[480px]">
+      <div class="w-120">
         <div class="flex items-center justify-between mb-spacing-2 px-spacing-1">
           <span class="text-xs gui-neutral-fg-muted font-bold">Files</span>
           <span class="text-xs gui-neutral-fg-muted">
@@ -113,8 +113,8 @@ export const FileExplorerRangeSelection1DStory: Story = {
               <thead>
                 <tr class="gui-neutral-bg-subtle gui-neutral-border-subtle border-b">
                   <th class="text-left py-spacing-2 px-spacing-3 gui-neutral-fg-muted font-medium text-xs tracking-wide uppercase">Name</th>
-                  <th class="text-right py-spacing-2 px-spacing-3 gui-neutral-fg-muted font-medium text-xs tracking-wide uppercase w-[80px]">Size</th>
-                  <th class="text-right py-spacing-2 px-spacing-3 gui-neutral-fg-muted font-medium text-xs tracking-wide uppercase w-[120px]">Modified</th>
+                  <th class="text-right py-spacing-2 px-spacing-3 gui-neutral-fg-muted font-medium text-xs tracking-wide uppercase w-20">Size</th>
+                  <th class="text-right py-spacing-2 px-spacing-3 gui-neutral-fg-muted font-medium text-xs tracking-wide uppercase w-30">Modified</th>
                 </tr>
               </thead>
               <tbody>
@@ -215,7 +215,7 @@ export const DayPickerRangeSelection1DStory: Story = {
               v-slot="{ selected, isPosition }"
             >
               <div
-                class="w-[52px] py-spacing-2 text-sm text-center cursor-pointer transition-colors font-medium"
+                class="w-13 py-spacing-2 text-sm text-center cursor-pointer transition-colors font-medium"
                 :class="[
                   selected
                     ? 'gui-info-solid text-white'

@@ -12,9 +12,9 @@
     >
       <GIcon
         v-if="isIconSeparator"
-        :name="ctx.separator as GIconName"
+        :name="context.separator as GIconName"
       />
-      <template v-else>{{ ctx.separator }}</template>
+      <template v-else>{{ context.separator }}</template>
     </span>
     <component
       :is="isLast ? 'span' : (as ?? 'span')"
@@ -50,18 +50,18 @@ defineProps<{
   as?: Component | string;
 }>();
 
-const ctx = inject(BREADCRUMB_KEY)!;
+const context = inject(BREADCRUMB_KEY)!;
 const id = Symbol();
 
-const isLast = computed(() => id === ctx.items.value[ctx.items.value.length - 1]);
-const isInEllipsis = computed(() => ctx.collapsedSet.value.has(id));
-const order = computed(() => ctx.items.value.indexOf(id));
+const isLast = computed(() => id === context.items.value[context.items.value.length - 1]);
+const isInEllipsis = computed(() => context.collapsedSet.value.has(id));
+const order = computed(() => context.items.value.indexOf(id));
 
 const ICON_VALUES = new Set<string>(Object.values(GIconName));
-const isIconSeparator = computed(() => ICON_VALUES.has(ctx.separator));
+const isIconSeparator = computed(() => ICON_VALUES.has(context.separator));
 
-onMounted(() => ctx.register(id));
-onUnmounted(() => ctx.unregister(id));
+onMounted(() => context.register(id));
+onUnmounted(() => context.unregister(id));
 </script>
 
 <style scoped>

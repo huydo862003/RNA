@@ -78,7 +78,7 @@ const popperContainerRef = inject(POPPER_CONTAINER_KEY, null);
 const popperContainer = computed(() => popperContainerRef?.value ?? undefined);
 
 const emit = defineEmits<{
-  (e: 'show-start' | 'show-end' | 'hide'): void;
+  (event: 'show-start' | 'show-end' | 'hide'): void;
 }>();
 
 const {
@@ -120,16 +120,16 @@ const {
 const triggerRef = useTemplateRef<HTMLElement>('triggerRef');
 
 // Measure the actual trigger element (first child), not the wrapper div
-const triggerEl = computed(() => triggerRef.value?.firstElementChild as HTMLElement | null ?? triggerRef.value);
-const triggerWidth = useWidth(triggerEl);
+const triggerElement = computed(() => triggerRef.value?.firstElementChild as HTMLElement | null ?? triggerRef.value);
+const triggerWidth = useWidth(triggerElement);
 
 // A unique id for the dropdown popper, so we can query the child of the popper using query selector
-const popperUid = `g-dropdown-${getId(Dropdown, getCurrentInstance()!)}`;
+const popperUid = `dropdown-${getId(Dropdown, getCurrentInstance()!)}`;
 
 const popperClass = computed(() => [
   popperUid,
   _class,
-  !arrow && 'g-popper--no-arrow',
+  !arrow && 'popper--no-arrow',
 ].filter(Boolean).join(' '));
 
 const isOpen = ref(false);
@@ -181,7 +181,7 @@ defineExpose({
 }
 
 @layer components {
-.g-popper--no-arrow .v-popper__arrow-container {
+.popper--no-arrow .v-popper__arrow-container {
   @apply hidden;
 }
 }

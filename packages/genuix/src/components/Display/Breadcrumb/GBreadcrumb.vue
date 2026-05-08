@@ -106,7 +106,7 @@ function register (id: symbol) {
 }
 
 function unregister (id: symbol) {
-  items.value = items.value.filter((i) => i !== id);
+  items.value = items.value.filter((index) => index !== id);
 }
 
 provide(BREADCRUMB_KEY, {

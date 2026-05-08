@@ -26,7 +26,7 @@ defineOptions({
 
 // A more customizable version of v-dismiss
 const emit = defineEmits<{
-  (e: 'dismiss', event: Event): void; // event is the one that causes the dismiss
+  (name: 'dismiss', event: Event): void; // event is the one that causes the dismiss
 }>();
 
 const {
@@ -39,23 +39,23 @@ const {
   };
 }>();
 
-async function onDismiss (e: Event) {
+async function onDismiss (event: Event) {
   let focusedElement: unknown = null;
-  if (e.type === 'click' || e.type === 'pointerdown') {
-    focusedElement = e.target;
-  } else if (e.type === 'focusout') {
+  if (event.type === 'click' || event.type === 'pointerdown') {
+    focusedElement = event.target;
+  } else if (event.type === 'focusout') {
     await nextTick();
     focusedElement = document.activeElement;
   }
 
   if (focusedElement instanceof HTMLElement) {
-    for (const el of options.ignore || []) {
-      if (el?.contains(focusedElement)) {
+    for (const element of options.ignore || []) {
+      if (element?.contains(focusedElement)) {
         return; // ignore
       }
     }
   }
 
-  emit('dismiss', e);
+  emit('dismiss', event);
 }
 </script>

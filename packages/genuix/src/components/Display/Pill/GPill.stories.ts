@@ -190,7 +190,7 @@ export const WithSlotsPillStory: Story = {
         <GPill :color="GPillColor.Red">
           Red tag
           <template #right>
-            <button style="opacity:0.6;cursor:pointer;border:none;background:none;color:inherit;padding:0;display:inline-flex" aria-label="Remove">×</button>
+            <button style="opacity:0.6;cursor:pointer;border:none;background:none;color:inherit;padding:0;display:inline-flex" aria-label="Remove">*</button>
           </template>
         </GPill>
       </div>

@@ -34,7 +34,7 @@
 
 import {
   computed,
-  ref,
+  useTemplateRef,
 } from 'vue';
 import {
   GTextAreaSize,
@@ -104,7 +104,7 @@ const effectiveState = computed(() => {
   return state;
 });
 
-const textareaRef = ref<HTMLTextAreaElement | null>(null);
+const textareaRef = useTemplateRef('textareaRef');
 
 function focus () {
   textareaRef.value?.focus();

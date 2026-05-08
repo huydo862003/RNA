@@ -66,15 +66,15 @@ export const SpreadsheetRangeSelection2DStory: Story = {
       const rowCount = 10;
       const data = Array.from({
         length: rowCount,
-      }, (_, r) =>
-        headers.map((_, c) => ((r + 1) * 10 + c + 1)));
+      }, (_, row) =>
+        headers.map((_, col) => ((row + 1) * 10 + col + 1)));
       return {
         rangeRef,
         selection,
         headers,
         rows: Array.from({
           length: rowCount,
-        }, (_, i) => i),
+        }, (_, index) => index),
         data,
       };
     },
@@ -180,11 +180,11 @@ export const CalendarRangeSelection2DStory: Story = {
       const weeks = Math.ceil((blanks + days) / 7);
       const grid = Array.from({
         length: weeks,
-      }, (_, w) =>
+      }, (_, week) =>
         Array.from({
           length: 7,
-        }, (_, d) => {
-          const day = w * 7 + d - blanks + 1;
+        }, (_, dayIndex) => {
+          const day = week * 7 + dayIndex - blanks + 1;
           return (1 <= day && day <= days) ? day : null;
         }));
       return {

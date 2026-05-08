@@ -59,16 +59,16 @@ function Preview () {
     {
       style: 'display: flex; flex-direction: column; gap: 12px;',
     },
-    spacings.map((s) =>
+    spacings.map((spacing) =>
       h('div', {
         style: 'display: flex; align-items: center; gap: 12px;',
       }, [
         h('code', {
           style: 'font-size: 12px; color: #666; min-width: 180px;',
-        }, s.label),
+        }, spacing.label),
         h('div', {
           style: `
-            width: var(${s.token});
+            width: var(${spacing.token});
             height: 24px;
             background: var(--color-accent-blue-9);
             border-radius: 2px;

@@ -244,7 +244,7 @@ const labels = reactive(new Map<string, string>());
 const colors = reactive(new Map<string, GPillColor | undefined>());
 
 // Ordered list of visible values for keyboard navigation
-const visibleList = computed(() => [...labels.keys()].filter((v) => visibleValues.has(v)));
+const visibleList = computed(() => [...labels.keys()].filter((value) => visibleValues.has(value)));
 const focusedValue = ref<string | undefined>(undefined);
 
 // Clear focus if the focused value is no longer visible
@@ -259,9 +259,9 @@ function dotColor (pillColor?: GPillColor) {
 }
 
 function toggle (value: string) {
-  const idx = selected.value.indexOf(value);
-  if (0 <= idx) {
-    selected.value = selected.value.filter((v) => v !== value);
+  const index = selected.value.indexOf(value);
+  if (0 <= index) {
+    selected.value = selected.value.filter((value_) => value_ !== value);
   } else {
     selected.value = [
       ...selected.value,
@@ -272,7 +272,7 @@ function toggle (value: string) {
 }
 
 function deselect (value: string) {
-  selected.value = selected.value.filter((v) => v !== value);
+  selected.value = selected.value.filter((value_) => value_ !== value);
 }
 
 function register (value: string, options: MultiSelectOptionRegistration) {
@@ -302,20 +302,20 @@ function unregister (value: string) {
   visibleValues.delete(value);
 }
 
-function handleKeydown (e: KeyboardEvent) {
+function handleKeydown (event: KeyboardEvent) {
   const list = visibleList.value;
   if (!list.length) return;
 
-  const idx = focusedValue.value !== undefined ? list.indexOf(focusedValue.value) : -1;
+  const index = focusedValue.value !== undefined ? list.indexOf(focusedValue.value) : -1;
 
-  if (e.key === GKbdKeyName.ArrowDown) {
-    e.preventDefault();
-    focusedValue.value = list[list.length - 1 <= idx ? 0 : idx + 1];
-  } else if (e.key === GKbdKeyName.ArrowUp) {
-    e.preventDefault();
-    focusedValue.value = list[idx <= 0 ? list.length - 1 : idx - 1];
-  } else if (e.key === GKbdKeyName.Enter) {
-    e.preventDefault();
+  if (event.key === GKbdKeyName.ArrowDown) {
+    event.preventDefault();
+    focusedValue.value = list[list.length - 1 <= index ? 0 : index + 1];
+  } else if (event.key === GKbdKeyName.ArrowUp) {
+    event.preventDefault();
+    focusedValue.value = list[index <= 0 ? list.length - 1 : index - 1];
+  } else if (event.key === GKbdKeyName.Enter) {
+    event.preventDefault();
     if (focusedValue.value !== undefined) {
       toggle(focusedValue.value);
     }
@@ -333,8 +333,8 @@ function handleClose () {
   focusedValue.value = undefined;
 }
 
-function handleBackspaceWhenEmpty (e: KeyboardEvent) {
-  const target = e.target;
+function handleBackspaceWhenEmpty (event: KeyboardEvent) {
+  const target = event.target;
   if (!(target instanceof HTMLInputElement) || target.value !== '') {
     return;
   }

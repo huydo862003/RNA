@@ -9,18 +9,18 @@
       v-bind="$attrs"
       :class="[
         'select-option',
-        `select-option-${ctx.size}`,
+        `select-option-${context.size}`,
         isFocused && 'select-option--focused',
       ]"
       role="option"
       :aria-selected="isSelected"
-      @click="ctx.select(value)"
+      @click="context.select(value)"
     >
       <slot>
-        <template v-if="ctx.variant === GSelectVariant.Pill">
+        <template v-if="context.variant === GSelectVariant.Pill">
           <GPill
             class="max-w-full"
-            :size="ctx.size"
+            :size="context.size"
             :color="pillColor"
           >
             <template #left>
@@ -74,7 +74,7 @@ defineOptions({
   inheritAttrs: false,
 });
 
-const ctx = inject(SELECT_KEY)!;
+const context = inject(SELECT_KEY)!;
 
 const {
   id = undefined,
@@ -98,13 +98,13 @@ const pillColor = computed(
 const dotColor = computed(() => (PILL_COLORS[pillColor.value] ?? PILL_COLORS[GPillColor.Gray]).solid);
 
 // Detect current state of the option
-const isSelected = computed(() => ctx.selectedValue.value === value);
-const isFocused = computed(() => ctx.focusedValue.value === value);
+const isSelected = computed(() => context.selectedValue.value === value);
+const isFocused = computed(() => context.focusedValue.value === value);
 
 const visible = computed(() => {
-  const q = ctx.searchValue.value.toLowerCase();
-  if (!q) return true;
-  return (label ?? value).toLowerCase().includes(q);
+  const query = context.searchValue.value.toLowerCase();
+  if (!query) return true;
+  return (label ?? value).toLowerCase().includes(query);
 });
 
 const options = computed(() => ({
@@ -113,12 +113,12 @@ const options = computed(() => ({
   visible: visible.value,
 }));
 
-onMounted(() => ctx.register(value, options.value));
+onMounted(() => context.register(value, options.value));
 
-onUpdated(() => ctx.update(value, options.value));
-watch(visible, () => ctx.update(value, options.value));
+onUpdated(() => context.update(value, options.value));
+watch(visible, () => context.update(value, options.value));
 
-onUnmounted(() => ctx.unregister(value));
+onUnmounted(() => context.unregister(value));
 </script>
 
 <style scoped>

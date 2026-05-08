@@ -27,43 +27,41 @@ export interface GProminenceTokens {
  * Ghost     -> transparent bg, semantic fg, no border
  */
 export function prominenceTokens (prominence: GProminence, semantic: GSemantic): GProminenceTokens {
-  const s = semantic;
-
   switch (prominence) {
     case GProminence.Primary:
       return {
-        bg: `var(--gui-${s}-solid)`,
-        bgHover: `var(--gui-${s}-solid-hover)`,
-        subtleBg: `var(--gui-${s}-bg-subtle)`,
-        fg: `var(--gui-${s}-bg)`,
-        mutedFg: `var(--gui-${s}-bg-subtle)`,
+        bg: `var(--gui-${semantic}-solid)`,
+        bgHover: `var(--gui-${semantic}-solid-hover)`,
+        subtleBg: `var(--gui-${semantic}-bg-subtle)`,
+        fg: `var(--gui-${semantic}-bg)`,
+        mutedFg: `var(--gui-${semantic}-bg-subtle)`,
         border: 'transparent',
       };
     case GProminence.Secondary:
       return {
-        bg: `var(--gui-${s}-bg-hover)`,
-        bgHover: `var(--gui-${s}-bg-active)`,
-        subtleBg: `var(--gui-${s}-bg-subtle)`,
-        fg: `var(--gui-${s}-fg)`,
-        mutedFg: `var(--gui-${s}-fg-muted)`,
+        bg: `var(--gui-${semantic}-bg-hover)`,
+        bgHover: `var(--gui-${semantic}-bg-active)`,
+        subtleBg: `var(--gui-${semantic}-bg-subtle)`,
+        fg: `var(--gui-${semantic}-fg)`,
+        mutedFg: `var(--gui-${semantic}-fg-muted)`,
         border: 'transparent',
       };
     case GProminence.Tertiary:
       return {
         bg: 'transparent',
-        bgHover: `var(--gui-${s}-bg-hover)`,
-        subtleBg: `var(--gui-${s}-bg-subtle)`,
-        fg: `var(--gui-${s}-fg)`,
-        mutedFg: `var(--gui-${s}-fg-muted)`,
-        border: `var(--gui-${s}-border-subtle)`,
+        bgHover: `var(--gui-${semantic}-bg-hover)`,
+        subtleBg: `var(--gui-${semantic}-bg-subtle)`,
+        fg: `var(--gui-${semantic}-fg)`,
+        mutedFg: `var(--gui-${semantic}-fg-muted)`,
+        border: `var(--gui-${semantic}-border-subtle)`,
       };
     case GProminence.Ghost:
       return {
         bg: 'transparent',
-        bgHover: `var(--gui-${s}-bg-hover)`,
-        subtleBg: `var(--gui-${s}-bg-subtle)`,
-        fg: `var(--gui-${s}-fg)`,
-        mutedFg: `var(--gui-${s}-fg-muted)`,
+        bgHover: `var(--gui-${semantic}-bg-hover)`,
+        subtleBg: `var(--gui-${semantic}-bg-subtle)`,
+        fg: `var(--gui-${semantic}-fg)`,
+        mutedFg: `var(--gui-${semantic}-fg-muted)`,
         border: 'transparent',
       };
   }
@@ -73,16 +71,15 @@ export function prominenceTokens (prominence: GProminence, semantic: GSemantic):
  * Remap `--gui-{semantic}-*` CSS custom properties on a container so
  * child components (buttons, icons, text) stay readable on a solid
  * (Primary prominence) surface. Apply the returned object as `:style`
- * on the container element.
+ * on the container element
  */
 export function invertTokens (semantic: GSemantic): Record<string, string> {
-  const s = semantic;
   return {
-    [`--gui-${s}-fg`]: `var(--gui-${s}-bg)`,
-    [`--gui-${s}-fg-muted`]: `var(--gui-${s}-bg-subtle)`,
-    [`--gui-${s}-border`]: 'var(--gui-neutral-border)',
-    [`--gui-${s}-border-subtle`]: 'var(--gui-neutral-border-subtle)',
-    [`--gui-${s}-bg-hover`]: `var(--gui-${s}-solid-hover)`,
-    [`--gui-${s}-bg-active`]: `var(--gui-${s}-solid-hover)`,
+    [`--gui-${semantic}-fg`]: `var(--gui-${semantic}-bg)`,
+    [`--gui-${semantic}-fg-muted`]: `var(--gui-${semantic}-bg-subtle)`,
+    [`--gui-${semantic}-border`]: 'var(--gui-neutral-border)',
+    [`--gui-${semantic}-border-subtle`]: 'var(--gui-neutral-border-subtle)',
+    [`--gui-${semantic}-bg-hover`]: `var(--gui-${semantic}-solid-hover)`,
+    [`--gui-${semantic}-bg-active`]: `var(--gui-${semantic}-solid-hover)`,
   };
 }

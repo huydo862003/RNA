@@ -29,17 +29,17 @@ interface DismissState {
   listeners: {
     target: EventTarget;
     event: string;
-    listener: (e: Event) => void;
+    listener: (event: Event) => void;
   }[];
 }
 
 const states = new WeakMap<HTMLElement, DismissState>();
 
-function isEventTriggeredOutside (el: HTMLElement, e: Event): boolean {
-  return !e.composedPath().includes(el);
+function isEventTriggeredOutside (element: HTMLElement, event: Event): boolean {
+  return !event.composedPath().includes(element);
 }
 
-function setup (element: HTMLElement, handler: (e: Event) => void) {
+function setup (element: HTMLElement, handler: (event: Event) => void) {
   cleanup(element);
 
   const listeners: DismissState['listeners'] = [];
@@ -68,12 +68,12 @@ function setup (element: HTMLElement, handler: (e: Event) => void) {
 
   // Focusout: Detect focus leaving the element
   Focusout: {
-    const listener = (e: Event) => {
+    const listener = (event: Event) => {
       // focusout fires before the new element receives focus
       // Use requestAnimationFrame to check if focus landed outside
       requestAnimationFrame(() => {
         if (!element.contains(document.activeElement)) {
-          dismiss(e);
+          dismiss(event);
         }
       });
     };
@@ -87,11 +87,11 @@ function setup (element: HTMLElement, handler: (e: Event) => void) {
 
   // Escape: Detect ESC press
   Esc: {
-    const listener = (e: Event) => {
-      if (!(e instanceof KeyboardEvent)) return;
-      if (e.key !== GKbdKeyName.Escape) return;
+    const listener = (event: Event) => {
+      if (!(event instanceof KeyboardEvent)) return;
+      if (event.key !== GKbdKeyName.Escape) return;
       if (element.contains(document.activeElement)) {
-        dismiss(e);
+        dismiss(event);
       }
     };
     document.addEventListener('keydown', listener, true); // Similar

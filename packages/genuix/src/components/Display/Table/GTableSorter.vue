@@ -1,7 +1,7 @@
 <template>
   <span
-    class="g-table-sort-indicator"
-    @click.stop="onSort ? onSort(colKey) : ctx.handleSort(colKey)"
+    class="table-sort-indicator"
+    @click.stop="onSort ? onSort(colKey) : context.handleSort(colKey)"
   >
     <GIcon
       v-if="direction === GSortDirection.Asc"
@@ -17,7 +17,7 @@
       v-else
       :name="GIconName.ArrowUpDown"
       :size="10"
-      class="g-table-sort-indicator--inactive"
+      class="table-sort-indicator--inactive"
     />
   </span>
 </template>
@@ -48,11 +48,11 @@ const {
   onSort?: (key: string) => void;
 }>();
 
-const ctx = inject(TABLE_KEY)!;
+const context = inject(TABLE_KEY)!;
 
 const direction = computed(() => {
-  if (ctx.sortKey.value !== colKey) return GSortDirection.None;
-  return ctx.sortAsc.value ? GSortDirection.Asc : GSortDirection.Desc;
+  if (context.sortKey.value !== colKey) return GSortDirection.None;
+  return context.sortAsc.value ? GSortDirection.Asc : GSortDirection.Desc;
 });
 </script>
 
@@ -60,13 +60,13 @@ const direction = computed(() => {
 @reference '@/style.css';
 
 @layer components {
-.g-table-sort-indicator {
+.table-sort-indicator {
   display: inline-flex;
   margin-left: var(--spacing-xs);
   color: var(--gui-neutral-fg-muted);
 }
 
-.g-table-sort-indicator--inactive {
+.table-sort-indicator--inactive {
   opacity: 0.3;
 }
 }

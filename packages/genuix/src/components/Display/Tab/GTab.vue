@@ -5,14 +5,14 @@
     :class="['tab-root', `tab-root--${placement}`]"
   >
     <div
-      ref="tabBarRef"
+      ref="tabBarElement"
       :class="['tab-bar', `tab-bar--${placement}`]"
       role="tablist"
     >
       <button
         v-for="[name, tab] in tabPanels"
         :key="name"
-        :ref="(element) => triggerRefs.set(name, element as HTMLElement)"
+        :ref="(element) => triggerElements.set(name, element as HTMLElement)"
         :class="[
           'tab-trigger',
           {
@@ -56,6 +56,7 @@ import {
   reactive,
   readonly,
   ref,
+  useTemplateRef,
   watch,
 } from 'vue';
 import type {
@@ -87,16 +88,15 @@ const {
   placement?: GTabPlacement;
 }>();
 
-// Watch hash to navigate to a tab on a specific url
 const activeTab = ref(defaultTab);
 
 const tabPanels = reactive<Map<string, TabPanelRegistration>>(new Map());
 const panelNames = computed(() => [...tabPanels.keys()]);
-const tabBarRef = ref<HTMLElement | null>(null);
+const tabBarElement = useTemplateRef('tabBarElement');
 
 /* Sliding animation */
 // Track all triggers for sliding animation
-const triggerRefs = reactive(new Map<string, HTMLElement>());
+const triggerElements = reactive(new Map<string, HTMLElement>());
 
 // Sliding indicator position
 const indicatorStyle = ref<Record<string, string>>({});
@@ -108,8 +108,8 @@ const isHorizontal = computed(
 // Slide the indicator
 function updateIndicator () {
   if (!activeTab.value) return;
-  const element = triggerRefs.get(activeTab.value);
-  const bar = tabBarRef.value;
+  const element = triggerElements.get(activeTab.value);
+  const bar = tabBarElement.value;
   if (!element || !bar) return;
 
   if (isHorizontal.value) {

@@ -57,7 +57,7 @@
             <button
               class="datepicker-nav-btn"
               aria-label="Previous month"
-              @click="prevMonth"
+              @click="previousMonth"
             >
               <GIcon :name="GIconName.ChevronLeft" />
             </button>
@@ -193,11 +193,11 @@ const startViewDate = ref(DateTime.now().startOf('month'));
 
 const currentMonthLabel = computed(() => startViewDate.value.toFormat('MMM yyyy'));
 
-const weekdays = Info.weekdays('short').map((d) => d.slice(0, 2));
+const weekdays = Info.weekdays('short').map((day) => day.slice(0, 2));
 
 const cells = computed(() => {
   const first = startViewDate.value.startOf('month');
-  // luxon weekday: 1=Mon..7=Sun. Grid starts Monday.
+  // luxon weekday: 1=Mon..7=Sun. Grid starts Monday
   const startOffset = first.weekday - 1;
 
   const gridStart = first.minus({
@@ -207,9 +207,9 @@ const cells = computed(() => {
   const result = [];
   const today = DateTime.now().startOf('day');
   // Always display 6 weeks
-  for (let i = 0; i < 42; i++) {
+  for (let index = 0; index < 42; index++) {
     const datetime = gridStart.plus({
-      days: i,
+      days: index,
     });
     result.push({
       key: datetime.toISODate(),
@@ -231,7 +231,7 @@ function selectDay (datetime: DateTime) {
   date.value = datetime;
 }
 
-function prevMonth () {
+function previousMonth () {
   startViewDate.value = startViewDate.value.minus({
     months: 1,
   });

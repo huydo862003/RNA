@@ -54,8 +54,10 @@ const {
 
 const search = ref('');
 const page = ref(1);
-const registeredItems = ref<Array<{ label: string;
-  value: string; }>>([]);
+const registeredItems = ref<Array<{
+  label: string;
+  value: string;
+}>>([]);
 
 function registerItem (label: string, value: string) {
   registeredItems.value.push({
@@ -68,8 +70,8 @@ function unregisterItem (value: string) {
   registeredItems.value = registeredItems.value.filter((item) => item.value !== value);
 }
 
-function setSearch (val: string) {
-  search.value = val;
+function setSearch (value: string) {
+  search.value = value;
 }
 
 function setPage (n: number) {

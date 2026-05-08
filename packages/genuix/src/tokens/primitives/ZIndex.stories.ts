@@ -47,18 +47,18 @@ function Preview () {
     {
       style: 'display: flex; flex-direction: column; gap: 8px;',
     },
-    layers.map((l, i) =>
+    layers.map((layer, index) =>
       h('div', {
         style: 'display: flex; align-items: center; gap: 12px;',
       }, [
         h('code', {
           style: 'font-size: 12px; color: #666; min-width: 180px;',
-        }, l.label),
+        }, layer.label),
         h('div', {
           style: `
-            width: ${60 + i * 40}px;
+            width: ${60 + index * 40}px;
             height: 28px;
-            background: var(--color-accent-blue-${12 < 3 + i ? 12 : 3 + i});
+            background: var(--color-accent-blue-${12 < 3 + index ? 12 : 3 + index});
             border-radius: 4px;
           `,
         }),

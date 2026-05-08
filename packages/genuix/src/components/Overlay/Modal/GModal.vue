@@ -90,8 +90,8 @@ const modal = useModal();
 
 const isOpen = computed({
   get: () => modal.isOpen(name).value,
-  set: (v: boolean) => {
-    if (v) {
+  set: (open: boolean) => {
+    if (open) {
       modal.push(name);
     } else {
       modal.pop(name);
@@ -127,8 +127,8 @@ function handleNativeClose () {
   isOpen.value = false;
 }
 
-function handleBackdropClick (e: MouseEvent) {
-  if (e.target === dialogRef.value) {
+function handleBackdropClick (event: MouseEvent) {
+  if (event.target === dialogRef.value) {
     close();
   }
 }

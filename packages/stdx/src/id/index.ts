@@ -2,14 +2,14 @@
  * https://github.com/huydo862003/Fck-AI-Slop/edit/main/README.md
  */
 
-type Constructor = new (...arguments_: any[]) => object;
+type Constructor = new (...arguments_: any[]) => Record<string, unknown>;
 
 const generators = new WeakMap<Constructor, IdGenerator>();
 
 /* Get stable incremental id for object, scoped per class
  * Same object always returns same id within same class scope
  **/
-export function getId (cls: Constructor, object: object): number {
+export function getId (cls: Constructor, object: Record<string, unknown>): number {
   let gen = generators.get(cls);
   if (!gen) {
     gen = new IdGenerator();
@@ -19,10 +19,10 @@ export function getId (cls: Constructor, object: object): number {
 }
 
 class IdGenerator {
-  private ids = new WeakMap<object, number>();
+  private ids = new WeakMap<Record<string, unknown>, number>();
   private counter = 0;
 
-  get (object: object): number {
+  get (object: Record<string, unknown>): number {
     let id = this.ids.get(object);
     if (id === undefined) {
       id = this.counter++;

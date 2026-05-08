@@ -1,23 +1,23 @@
 <template>
   <div
-    v-if="ctx.maxPages.value > 1"
+    v-if="context.maxPages.value > 1"
     class="filterable-pager"
   >
     <button
-      :disabled="ctx.page.value <= 1"
+      :disabled="context.page.value <= 1"
       class="filterable-pager-btn"
-      @click="ctx.setPage(ctx.page.value - 1)"
+      @click="context.setPage(context.page.value - 1)"
     >
       <GIcon
         :name="GIconName.ArrowLeft"
         :size="12"
       />
     </button>
-    <span class="filterable-pager-info">{{ ctx.page.value }} / {{ ctx.maxPages.value }}</span>
+    <span class="filterable-pager-info">{{ context.page.value }} / {{ context.maxPages.value }}</span>
     <button
-      :disabled="ctx.page.value >= ctx.maxPages.value"
+      :disabled="context.page.value >= context.maxPages.value"
       class="filterable-pager-btn"
-      @click="ctx.setPage(ctx.page.value + 1)"
+      @click="context.setPage(context.page.value + 1)"
     >
       <GIcon
         :name="GIconName.ArrowRight"
@@ -43,7 +43,7 @@ import {
   GIconName,
 } from '@/components/Display/Icon/types';
 
-const ctx = inject(FILTERABLE_KEY)!;
+const context = inject(FILTERABLE_KEY)!;
 </script>
 
 <style scoped>

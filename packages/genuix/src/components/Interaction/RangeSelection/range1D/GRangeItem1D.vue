@@ -9,7 +9,7 @@
     <slot
       :selected="selected"
       :position="position"
-      :is-position="isPos"
+      :is-position="isPosition"
     />
   </div>
 </template>
@@ -36,11 +36,11 @@ const props = defineProps<{
   index: number;
 }>();
 
-const ctx = inject(RANGE_SELECTION_1D_KEY)!;
+const context = inject(RANGE_SELECTION_1D_KEY)!;
 
-const selected = computed(() => ctx.isSelected(props.index));
-const position = computed(() => ctx.getPosition(props.index));
-const isPos = (query: Position1D) => ctx.isPosition(props.index, query);
+const selected = computed(() => context.isSelected(props.index));
+const position = computed(() => context.getPosition(props.index));
+const isPosition = (query: Position1D) => context.isPosition(props.index, query);
 
 function onPointerDown (event: PointerEvent) {
   // Clear any existing text selection and focus for keyboard nav
@@ -48,44 +48,44 @@ function onPointerDown (event: PointerEvent) {
   (event.currentTarget as HTMLElement)?.focus();
 
   if (event.shiftKey) {
-    ctx.extendSelection(props.index);
+    context.extendSelection(props.index);
   } else {
-    ctx.setAnchor(props.index);
+    context.setAnchor(props.index);
     window.addEventListener('pointerup', onPointerUp);
   }
 }
 
 function onPointerUp () {
-  ctx.endSelection();
+  context.endSelection();
   window.removeEventListener('pointerup', onPointerUp);
 }
 
 function onPointerEnter () {
-  if (!ctx.dragging.value) return;
-  ctx.extendSelection(props.index);
+  if (!context.dragging.value) return;
+  context.extendSelection(props.index);
 }
 
-function onKeyDown (e: KeyboardEvent) {
-  switch (e.key) {
+function onKeyDown (event: KeyboardEvent) {
+  switch (event.key) {
     case GKbdKeyName.ArrowLeft:
     case GKbdKeyName.ArrowUp:
-      e.preventDefault();
-      ctx.movePrev(e.shiftKey);
+      event.preventDefault();
+      context.movePrevious(event.shiftKey);
       break;
     case GKbdKeyName.ArrowRight:
     case GKbdKeyName.ArrowDown:
-      e.preventDefault();
-      ctx.moveNext(e.shiftKey);
+      event.preventDefault();
+      context.moveNext(event.shiftKey);
       break;
     case GKbdKeyName.a:
-      if (e.ctrlKey || e.metaKey) {
-        e.preventDefault();
-        ctx.selectAll();
+      if (event.ctrlKey || event.metaKey) {
+        event.preventDefault();
+        context.selectAll();
       }
       break;
     case GKbdKeyName.Escape:
-      e.preventDefault();
-      ctx.clearSelection();
+      event.preventDefault();
+      context.clearSelection();
       break;
   }
 }

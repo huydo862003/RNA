@@ -47,16 +47,16 @@ function Preview () {
     {
       style: 'display: flex; flex-direction: column; gap: 16px;',
     },
-    heights.map((s) =>
+    heights.map((height) =>
       h('div', {
         style: 'display: flex; align-items: center; gap: 12px;',
       }, [
         h('code', {
           style: 'font-size: 12px; color: #666; min-width: 200px;',
-        }, s.label),
+        }, height.label),
         h('div', {
           style: `
-            line-height: var(${s.token});
+            line-height: var(${height.token});
             font-size: 14px;
             background: rgba(0,0,0,0.05);
             padding: 0 8px;

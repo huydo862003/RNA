@@ -45,13 +45,13 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const render: Story['render'] = (args) => ({
+const render: Story['render'] = (arguments_) => ({
   components: {
     GFlippable,
   },
   setup () {
     return {
-      args,
+      args: arguments_,
     };
   },
   template: `
@@ -194,14 +194,14 @@ export const ProgrammaticFlipStory: Story = {
       },
     },
   },
-  render: (args) => ({
+  render: (arguments_) => ({
     components: {
       GFlippable,
     },
     setup () {
       const flippable = ref(null);
       return {
-        args,
+        args: arguments_,
         flippable,
       };
     },
@@ -210,12 +210,12 @@ export const ProgrammaticFlipStory: Story = {
         <button @click="flippable?.flip()" class="mb-spacing-2 gui-neutral-border border py-xs px-lg gui-neutral-bg-active rounded-md cursor-pointer mb-2">Flip</button>
         <GFlippable v-bind="args" ref="flippable">
           <template #front>
-            <div class="flex items-center justify-center w-[200px] h-[120px] rounded-lg font-bold gui-info-bg-hover gui-info-fg">
+            <div class="flex items-center justify-center w-50 h-30 rounded-lg font-bold gui-info-bg-hover gui-info-fg">
               Front
             </div>
           </template>
           <template #back>
-            <div class="flex items-center justify-center w-[200px] h-[120px] rounded-lg font-bold gui-success-bg-hover gui-success-fg">
+            <div class="flex items-center justify-center w-50 h-30 rounded-lg font-bold gui-success-bg-hover gui-success-fg">
               Back
             </div>
           </template>

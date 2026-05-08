@@ -27,15 +27,15 @@ const {
   label?: string;
 }>();
 
-const ctx = inject(FILTERABLE_KEY)!;
+const context = inject(FILTERABLE_KEY)!;
 
 onMounted(() => {
-  ctx.registerItem(label, value);
+  context.registerItem(label, value);
 });
 
 onBeforeUnmount(() => {
-  ctx.unregisterItem(value);
+  context.unregisterItem(value);
 });
 
-const visible = computed(() => ctx.isVisible(value));
+const visible = computed(() => context.isVisible(value));
 </script>

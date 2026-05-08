@@ -39,7 +39,7 @@ function Preview () {
     {
       style: 'display: flex; gap: 16px; flex-wrap: wrap;',
     },
-    radii.map((r) =>
+    radii.map((radius) =>
       h('div', {
         style: 'display: flex; flex-direction: column; align-items: center; gap: 8px;',
       }, [
@@ -48,12 +48,12 @@ function Preview () {
             width: 64px;
             height: 64px;
             background: var(--color-accent-blue-9);
-            border-radius: var(${r.token});
+            border-radius: var(${radius.token});
           `,
         }),
         h('code', {
           style: 'font-size: 11px; color: #666;',
-        }, r.label),
+        }, radius.label),
       ])),
   );
 }

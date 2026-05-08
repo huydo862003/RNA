@@ -244,7 +244,7 @@ function dotColor (pillColor?: GPillColor) {
 }
 
 // Ordered list of visible values for keyboard navigation
-const visibleList = computed(() => [...labels.keys()].filter((v) => visibleValues.has(v)));
+const visibleList = computed(() => [...labels.keys()].filter((value) => visibleValues.has(value)));
 const focusedValue = ref<string | undefined>(undefined);
 
 watch(visibleList, (list) => {
@@ -312,28 +312,28 @@ provide(SELECT_KEY, {
   unregister,
 });
 
-function handleKeydown (e: KeyboardEvent) {
+function handleKeydown (event: KeyboardEvent) {
   const list = visibleList.value;
   if (!list.length) return;
 
-  const idx = focusedValue.value !== undefined ? list.indexOf(focusedValue.value) : -1;
+  const index = focusedValue.value !== undefined ? list.indexOf(focusedValue.value) : -1;
 
-  if (e.key === GKbdKeyName.ArrowDown) {
-    e.preventDefault();
-    focusedValue.value = list[list.length - 1 <= idx ? 0 : idx + 1];
-  } else if (e.key === GKbdKeyName.ArrowUp) {
-    e.preventDefault();
-    focusedValue.value = list[idx <= 0 ? list.length - 1 : idx - 1];
-  } else if (e.key === GKbdKeyName.Enter) {
-    e.preventDefault();
+  if (event.key === GKbdKeyName.ArrowDown) {
+    event.preventDefault();
+    focusedValue.value = list[list.length - 1 <= index ? 0 : index + 1];
+  } else if (event.key === GKbdKeyName.ArrowUp) {
+    event.preventDefault();
+    focusedValue.value = list[index <= 0 ? list.length - 1 : index - 1];
+  } else if (event.key === GKbdKeyName.Enter) {
+    event.preventDefault();
     if (focusedValue.value !== undefined) {
       select(focusedValue.value);
     }
   }
 }
 
-function handleBackspaceWhenEmpty (e: KeyboardEvent) {
-  const target = e.target;
+function handleBackspaceWhenEmpty (event: KeyboardEvent) {
+  const target = event.target;
   if (!(target instanceof HTMLInputElement) || target.value !== '') {
     return;
   }

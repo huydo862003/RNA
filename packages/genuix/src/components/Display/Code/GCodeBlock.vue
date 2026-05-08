@@ -192,19 +192,19 @@ function clearLineSelection () {
 /* Format the code block and highlight */
 const code = computed(() => {
   // FIXME: don't do this, should use CSS
-  let res = rawCode.replace('\n\n', '\n \n'); // Empty lines have smaller sizes than others... so we add a whitespace
+  let result = rawCode.replace('\n\n', '\n \n'); // Empty lines have smaller sizes than others... so we add a whitespace
   if (rawCode.startsWith('\n')) {
-    res = rawCode.slice(1);
+    result = rawCode.slice(1);
   } else if (rawCode.startsWith('\r\n')) {
-    res = rawCode.slice(2);
+    result = rawCode.slice(2);
   }
 
-  if (res.endsWith('\r\n')) {
-    res = res.slice(0, -2);
-  } else if (res.endsWith('\n')) {
-    res = res.slice(0, -1);
+  if (result.endsWith('\r\n')) {
+    result = result.slice(0, -2);
+  } else if (result.endsWith('\n')) {
+    result = result.slice(0, -1);
   }
-  return res;
+  return result;
 });
 
 const highlightedLines = computed(() => {

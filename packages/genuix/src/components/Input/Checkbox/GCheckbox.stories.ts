@@ -65,20 +65,20 @@ export const GroupStory: Story = {
       GCheckbox,
     },
     setup () {
-      const a = ref(true);
-      const b = ref(false);
-      const c = ref(false);
+      const optionA = ref(true);
+      const optionB = ref(false);
+      const optionC = ref(false);
       return {
-        a,
-        b,
-        c,
+        optionA,
+        optionB,
+        optionC,
       };
     },
     template: `
       <div class="flex flex-col gap-sm">
-        <GCheckbox v-model="a" label="Option A" />
-        <GCheckbox v-model="b" label="Option B" />
-        <GCheckbox v-model="c" label="Option C" />
+        <GCheckbox v-model="optionA" label="Option A" />
+        <GCheckbox v-model="optionB" label="Option B" />
+        <GCheckbox v-model="optionC" label="Option C" />
       </div>
     `,
   }),

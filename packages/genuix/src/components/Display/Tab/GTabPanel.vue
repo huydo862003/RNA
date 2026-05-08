@@ -32,7 +32,7 @@ defineOptions({
   inheritAttrs: false,
 });
 
-const ctx = inject(TAB_KEY)!;
+const context = inject(TAB_KEY)!;
 
 const {
   id = undefined,
@@ -48,11 +48,11 @@ const {
   icon?: GIconName;
 }>();
 
-const isActive = computed(() => ctx.activeTab.value === name);
+const isActive = computed(() => context.activeTab.value === name);
 
-onMounted(() => ctx.register(name, {
+onMounted(() => context.register(name, {
   label: label ?? name,
   icon,
 }));
-onUnmounted(() => ctx.unregister(name));
+onUnmounted(() => context.unregister(name));
 </script>

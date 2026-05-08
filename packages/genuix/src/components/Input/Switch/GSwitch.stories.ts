@@ -186,8 +186,8 @@ export const AllSemanticsSwitchStory: Story = {
     },
     setup () {
       const semantics = Object.values(GSwitchSemantic);
-      const states = Object.fromEntries(semantics.map((s) => [
-        s,
+      const states = Object.fromEntries(semantics.map((semantic) => [
+        semantic,
         ref(true),
       ]));
       return {
@@ -197,9 +197,9 @@ export const AllSemanticsSwitchStory: Story = {
     },
     template: `
       <div class="flex items-center gap-spacing-4 flex-wrap">
-        <div v-for="s in semantics" :key="s" class="flex flex-col items-center gap-spacing-1">
-          <GSwitch v-model="states[s].value" :semantic="s" />
-          <span class="text-xs gui-neutral-fg-muted">{{ s }}</span>
+        <div v-for="semantic in semantics" :key="semantic" class="flex flex-col items-center gap-spacing-1">
+          <GSwitch v-model="states[semantic].value" :semantic="semantic" />
+          <span class="text-xs gui-neutral-fg-muted">{{ semantic }}</span>
         </div>
       </div>
     `,

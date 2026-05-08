@@ -17,7 +17,7 @@ const stack = ref<ModalEntry[]>([]);
 export function useModal () {
   function push (name: string | symbol, data: Record<string, unknown> = {}) {
     // Don't push if already in stack
-    if (stack.value.some((m) => m.name === name)) return;
+    if (stack.value.some((modal) => modal.name === name)) return;
     stack.value = [
       ...stack.value,
       {
@@ -28,15 +28,15 @@ export function useModal () {
   }
 
   function pop (name: string | symbol) {
-    stack.value = stack.value.filter((m) => m.name !== name);
+    stack.value = stack.value.filter((modal) => modal.name !== name);
   }
 
   function isOpen (name: string | symbol) {
-    return computed(() => stack.value.some((m) => m.name === name));
+    return computed(() => stack.value.some((modal) => modal.name === name));
   }
 
   function get (name: string | symbol) {
-    return computed(() => stack.value.find((m) => m.name === name));
+    return computed(() => stack.value.find((modal) => modal.name === name));
   }
 
   // The topmost modal

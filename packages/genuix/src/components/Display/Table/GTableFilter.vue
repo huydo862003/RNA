@@ -1,15 +1,15 @@
 <template>
-  <div class="g-table-filter">
+  <div class="table-filter">
     <GIcon
       :name="GIconName.Search"
-      class="g-table-filter-icon"
+      class="table-filter-icon"
     />
     <GTextInput
       v-bind="$attrs"
       v-model="filter"
       :placeholder="placeholder"
       :size="GTextInputSize.Sm"
-      class="g-table-filter-input"
+      class="table-filter-input"
     />
   </div>
 </template>
@@ -39,7 +39,7 @@ defineOptions({
   inheritAttrs: false,
 });
 
-const ctx = inject(TABLE_KEY)!;
+const context = inject(TABLE_KEY)!;
 
 const {
   placeholder = 'Filter...',
@@ -48,8 +48,8 @@ const {
 }>();
 
 const filter = computed({
-  get: () => ctx.filter.value,
-  set: (val) => ctx.setFilter(val),
+  get: () => context.filter.value,
+  set: (value) => context.setFilter(value),
 });
 </script>
 
@@ -57,16 +57,16 @@ const filter = computed({
 @reference '@/style.css';
 
 @layer components {
-.g-table-filter {
-  @apply flex items-center gap-xs px-sm py-xs rounded-md border gui-neutral-border-subtle gui-neutral-bg-hover;
+.table-filter {
+  @apply flex items-center gap-xs px-sm py-xs rounded-md border gui-neutral-border-subtle gui-neutral-bg-hover w-full;
   margin-bottom: var(--spacing-sm);
 }
 
-.g-table-filter-icon {
+.table-filter-icon {
   @apply gui-neutral-fg-muted shrink-0;
 }
 
-.g-table-filter-input {
+.table-filter-input {
   @apply bg-transparent border-none outline-none text-xs gui-neutral-fg w-full;
 }
 }

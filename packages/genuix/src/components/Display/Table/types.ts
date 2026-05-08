@@ -30,7 +30,7 @@ export interface TableContext {
   maxPages: ComputedRef<number>;
   handleSort (key: string): void;
   setPage (n: number): void;
-  setFilter (val: string): void;
+  setFilter (value: string): void;
   registerRow (rowData: Record<string, unknown>): number;
   unregisterRow (rowData: Record<string, unknown>): void;
   isVisible (rowKey: number): boolean;

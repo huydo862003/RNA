@@ -10,13 +10,13 @@
     ]"
     role="option"
     :aria-selected="isSelected"
-    @click="ctx.toggle(value)"
+    @click="context.toggle(value)"
   >
     <slot>
       <GPill
         v-if="isPill"
         class="max-w-full"
-        :size="ctx.size"
+        :size="context.size"
         :color="pillColor"
       >
         <template #left>
@@ -62,7 +62,7 @@ defineOptions({
   inheritAttrs: false,
 });
 
-const ctx = inject(MULTI_SELECT_KEY)!;
+const context = inject(MULTI_SELECT_KEY)!;
 
 const {
   id = undefined,
@@ -85,16 +85,16 @@ const pillColor = computed(
 
 const dotColor = computed(() => (PILL_COLORS[pillColor.value] ?? PILL_COLORS[GPillColor.Gray]).solid);
 
-const isPill = computed(() => ctx.variant === GMultiSelectVariant.Pill);
+const isPill = computed(() => context.variant === GMultiSelectVariant.Pill);
 
-const isSelected = computed(() => ctx.selectedValues.value.includes(value));
-const isFocused = computed(() => ctx.focusedValue.value === value);
+const isSelected = computed(() => context.selectedValues.value.includes(value));
+const isFocused = computed(() => context.focusedValue.value === value);
 
 const visible = computed(() => {
-  if (ctx.selectedValues.value.includes(value)) return false;
-  const q = ctx.searchValue.value.toLowerCase();
-  if (!q) return true;
-  return (label ?? value).toLowerCase().includes(q);
+  if (context.selectedValues.value.includes(value)) return false;
+  const query = context.searchValue.value.toLowerCase();
+  if (!query) return true;
+  return (label ?? value).toLowerCase().includes(query);
 });
 
 const options = computed(() => ({
@@ -103,12 +103,12 @@ const options = computed(() => ({
   visible: visible.value,
 }));
 
-onMounted(() => ctx.register(value, options.value));
+onMounted(() => context.register(value, options.value));
 
-onUpdated(() => ctx.update(value, options.value));
-watch(visible, () => ctx.update(value, options.value));
+onUpdated(() => context.update(value, options.value));
+watch(visible, () => context.update(value, options.value));
 
-onUnmounted(() => ctx.unregister(value));
+onUnmounted(() => context.unregister(value));
 </script>
 
 <style scoped>
