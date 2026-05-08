@@ -122,10 +122,10 @@ const sortedRows = computed(() => {
   ]) => {
     const valueA = rowA[key];
     const valueB = rowB[key];
-    const numberA = Number(valueA);
-    const numberB = Number(valueB);
-    const cmp = !Number.isNaN(numberA) && !Number.isNaN(numberB)
-      ? numberA - numberB
+    const numA = Number(valueA);
+    const numB = Number(valueB);
+    const cmp = !Number.isNaN(numA) && !Number.isNaN(numB)
+      ? numA - numB
       : String(valueA).localeCompare(String(valueB));
     return sortAsc.value ? cmp : -cmp;
   });

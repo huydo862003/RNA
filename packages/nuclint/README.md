@@ -9,6 +9,7 @@ Shared ESLint configuration for the RNA monorepo.
 ## Development Guides
 
 ### Commands
+
 ```
 pnpm install                       # Install the dependencies
 
@@ -46,7 +47,6 @@ const array = [element, element];
 //        ↑   ↑
 //   bracket element (array field)
 
-
 const object = { property: value, field: value };
 //        ↑    ↑        ↑      ↑    ↑
 //     curly property  newline field newline
@@ -54,22 +54,32 @@ const object = { property: value, field: value };
 
 **Term meanings**:
 
-| Term | Meaning |
-|------|---------|
-| `array` | square bracket container `[ ]` |
-| `element` | item inside array (array field) |
-| `newline` | linebreak between array/object items |
-| `object` | curly bracket container `{ }` |
-| `field` | key-value pair in object |
-| `curly` | opening `{` or closing `}` brace |
-| `bracket` | opening `[` or closing `]` bracket |
-| `property` | key name in object key-value pair |
+#### Global vs Scoped `ignores` in ESLint Flat Config
+
+| Term       | Meaning                              |
+| ---------- | ------------------------------------ |
+| `array`    | square bracket container `[ ]`       |
+| `element`  | item inside array (array field)      |
+| `newline`  | linebreak between array/object items |
+| `object`   | curly bracket container `{ }`        |
+| `field`    | key-value pair in object             |
+| `curly`    | opening `{` or closing `}` brace     |
+| `bracket`  | opening `[` or closing `]` bracket   |
+| `property` | key name in object key-value pair    |
 
 ## Findings
 
-### Global vs Scoped `ignores` in ESLint Flat Config
+### Properly Ignore Files & Folders
 
-A config entry with only `ignores` is global. Adding any other key (e.g. `files`) makes it scoped to that entry only. Other entries (e.g. `typescript-eslint`) still see the "ignored" paths and may try to parse them, causing parser failures on large `node_modules` files.
+Refer to this doc: https://eslint.org/docs/latest/use/configure/ignore
+
+Key findings:
+
+- A config entry with only `ignores` is global. Adding any other key (e.g. `files`) makes it scoped to that entry only. Other entries (e.g. `typescript-eslint`) still see the "ignored" paths and may try to parse them, causing parser failures on large `node_modules` files.
+- Should use `globalIgnores` function to define ignores.
+- File patterns can be specified using globs & Folders can be ignored simply by specifying the folder name.
+- NOTE: Only folders in the same directory as the config file will be ignored.
+- NOTE: ESLint-level ignores do not prevent plugins from independently resolving and parsing ignored files. For example, `eslint-plugin-import-x` follows pnpm symlinks into `node_modules` and tries to parse resolved modules, causing errors on large barrel files. Each plugin may need its own ignore config (e.g. `'import-x/ignore': ['node_modules']`).
 
 ### Testing
 
@@ -84,14 +94,12 @@ pnpm run test:ui        # Run tests with UI
 Each rule has a corresponding test file in `src/__tests__/` with positive (valid) and negative (invalid) examples:
 
 ```typescript
-ruleTester.run('rule-name', rule, {
-  valid: [
-    'code that should pass',
-  ],
+ruleTester.run("rule-name", rule, {
+  valid: ["code that should pass"],
   invalid: [
     {
-      code: 'code that should fail',
-      errors: [{ messageId: 'errorId' }],
+      code: "code that should fail",
+      errors: [{ messageId: "errorId" }],
     },
   ],
 });

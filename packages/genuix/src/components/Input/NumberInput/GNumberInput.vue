@@ -134,8 +134,8 @@ const tokens = prominenceTokens(GProminence.Ghost, GSemantic.Neutral);
 /* Input state */
 const effectiveState = computed(() => {
   if (value.value === undefined && required) return GNumberInputState.Error;
-  const numberRegex = integer ? INTEGER_REGEX : NUMBER_REGEX;
-  if (rawInput.value !== '' && !numberRegex.test(rawInput.value)) return GNumberInputState.Error;
+  const numRegex = integer ? INTEGER_REGEX : NUMBER_REGEX;
+  if (rawInput.value !== '' && !numRegex.test(rawInput.value)) return GNumberInputState.Error;
   if (value.value === undefined) return state;
   if (max !== undefined && max < value.value) return GNumberInputState.Error;
   if (min !== undefined && value.value < min) return GNumberInputState.Error;
@@ -163,13 +163,13 @@ watch(value, (newValue) => {
 // FIXME: this causes a circular watch with value v-model, but it's currently fine as the circle ends because the watched values are set to the same value
 watch(rawInput, (newValue) => {
   // We allow partially valid states because the user is typing
-  const numberRegex = PARTIAL_NUMBER_REGEX;
-  if (numberRegex.test(newValue)) {
+  const numRegex = PARTIAL_NUMBER_REGEX;
+  if (numRegex.test(newValue)) {
     /* Valid/Partially valid state */
     if (integer && newValue.includes('.')) return;
-    const number = integer ? parseInt(newValue, 10) : parseFloat(newValue);
-    if (Number.isNaN(number)) return; // Partial state: Do not set the v-model
-    value.value = number;
+    const num = integer ? parseInt(newValue, 10) : parseFloat(newValue);
+    if (Number.isNaN(num)) return; // Partial state: Do not set the v-model
+    value.value = num;
   }
 });
 

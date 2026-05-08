@@ -104,7 +104,7 @@ export const CustomIconStory: Story = {
         h('circle', {
           cx: 12,
           cy: 12,
-          r: 10, // eslint-disable-line id-length
+          r: 10,
         }),
       ]);
       return {

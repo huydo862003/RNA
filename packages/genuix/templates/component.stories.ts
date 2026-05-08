@@ -35,13 +35,17 @@ export const BasicStory: Story = {
       },
     },
     source: {
-      code: ``, // Minimal working code snippet
+      code: '', // Minimal working code snippet
     },
   },
   render: (args) => ({
-    components: { Component },
-    setup() {
-      return { args };
+    components: {
+      Component,
+    },
+    setup () {
+      return {
+        args,
+      };
     },
     template: `
       <code snippet to render here>

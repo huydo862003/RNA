@@ -10,12 +10,12 @@ const generators = new WeakMap<Constructor, IdGenerator>();
  * Same object always returns same id within same class scope
  **/
 export function getId (cls: Constructor, object: Record<string, unknown>): number {
-  let gen = generators.get(cls);
-  if (!gen) {
-    gen = new IdGenerator();
-    generators.set(cls, gen);
+  let generate = generators.get(cls);
+  if (!generate) {
+    generate = new IdGenerator();
+    generators.set(cls, generate);
   }
-  return gen.get(object);
+  return generate.get(object);
 }
 
 class IdGenerator {

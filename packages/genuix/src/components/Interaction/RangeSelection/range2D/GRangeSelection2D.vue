@@ -37,14 +37,14 @@ const selection = defineModel<Range2D | undefined>('selection');
 
 // The first selected cell (used as the anchor for the next selects)
 const anchorRow = ref<number | undefined>(undefined);
-const anchorCol = ref<number | undefined>(undefined);
+const anchorColumn = ref<number | undefined>(undefined);
 
 // Whether we're dragging
 const dragging = ref(false);
 
 // Keyboard cursor position (moves independently of normalized bounds)
 const cursorRow = ref<number | undefined>(undefined);
-const cursorCol = ref<number | undefined>(undefined);
+const cursorColumn = ref<number | undefined>(undefined);
 
 // Ranges can be selected out of order, so we need to normalize
 function normalizeRange (r1: number, c1: number, r2: number, c2: number): Range2D {
@@ -57,15 +57,15 @@ function normalizeRange (r1: number, c1: number, r2: number, c2: number): Range2
 }
 
 // Check if a cell falls within the current selection
-function isSelected (row: number, col: number): boolean {
+function isSelected (row: number, column: number): boolean {
   if (!selection.value) return false;
-  const sel = selection.value;
-  return sel.startRow <= row && row <= sel.endRow && sel.startCol <= col && col <= sel.endCol;
+  const selection_ = selection.value;
+  return selection_.startRow <= row && row <= selection_.endRow && selection_.startCol <= column && column <= selection_.endCol;
 }
 
 // Determine where a cell sits in the selection (corner, edge, inner)
-function getPosition (row: number, col: number): Position2D | undefined {
-  if (!selection.value || !isSelected(row, col)) return undefined;
+function getPosition (row: number, column: number): Position2D | undefined {
+  if (!selection.value || !isSelected(row, column)) return undefined;
   const {
     startRow, startCol, endRow, endCol,
   } = selection.value;
@@ -74,8 +74,8 @@ function getPosition (row: number, col: number): Position2D | undefined {
 
   const top = row === startRow;
   const bottom = row === endRow;
-  const left = col === startCol;
-  const right = col === endCol;
+  const left = column === startCol;
+  const right = column === endCol;
 
   if (top && left) return 'top-left';
   if (top && right) return 'top-right';
@@ -91,11 +91,11 @@ function getPosition (row: number, col: number): Position2D | undefined {
 // Check if a cell matches a position query
 // 'only' matches all corners/edges since a single cell is everything at once
 // Corners match their edges (top-left matches top-edge and left-edge)
-function isPosition (row: number, col: number, query: Position2D): boolean {
-  const pos = getPosition(row, col);
-  if (!pos) return false;
-  if (pos === query) return true;
-  switch (pos) {
+function isPosition (row: number, column: number, query: Position2D): boolean {
+  const position = getPosition(row, column);
+  if (!position) return false;
+  if (position === query) return true;
+  switch (position) {
     case 'only': return true;
     case 'top-left': return query === 'top-edge' || query === 'left-edge';
     case 'top-right': return query === 'top-edge' || query === 'right-edge';
@@ -108,24 +108,24 @@ function isPosition (row: number, col: number, query: Position2D): boolean {
     case 'inner':
       return false;
     default: {
-      const _exhaustive: never = pos;
+      const _exhaustive: never = position;
       throw new Error(`Unknown position: ${_exhaustive}`);
     }
   }
 }
 
 // Begin a new selection from this cell
-function setAnchor (row: number, col: number) {
+function setAnchor (row: number, column: number) {
   anchorRow.value = row;
-  anchorCol.value = col;
+  anchorColumn.value = column;
   cursorRow.value = row;
-  cursorCol.value = col;
+  cursorColumn.value = column;
   dragging.value = true;
   selection.value = {
     startRow: row,
-    startCol: col,
+    startCol: column,
     endRow: row,
-    endCol: col,
+    endCol: column,
   };
 }
 
@@ -135,33 +135,33 @@ function endSelection () {
 }
 
 // Grow or extend selection from anchor to this cell
-function extendSelection (row: number, col: number) {
-  if (anchorRow.value === undefined || anchorCol.value === undefined) {
-    setAnchor(row, col);
+function extendSelection (row: number, column: number) {
+  if (anchorRow.value === undefined || anchorColumn.value === undefined) {
+    setAnchor(row, column);
   } else {
     cursorRow.value = row;
-    cursorCol.value = col;
-    selection.value = normalizeRange(anchorRow.value, anchorCol.value, row, col);
+    cursorColumn.value = column;
+    selection.value = normalizeRange(anchorRow.value, anchorColumn.value, row, column);
   }
 }
 
 // Move cursor by delta, or extend from anchor
-function move (dRow: number, dCol: number, extend: boolean) {
-  if (cursorRow.value === undefined || cursorCol.value === undefined) return;
+function move (dRow: number, dColumn: number, extend: boolean) {
+  if (cursorRow.value === undefined || cursorColumn.value === undefined) return;
   const nextRow = Math.max(0, Math.min(rows - 1, cursorRow.value + dRow));
-  const nextCol = Math.max(0, Math.min(cols - 1, cursorCol.value + dCol));
+  const nextColumn = Math.max(0, Math.min(cols - 1, cursorColumn.value + dColumn));
   cursorRow.value = nextRow;
-  cursorCol.value = nextCol;
+  cursorColumn.value = nextColumn;
   if (extend) {
-    selection.value = normalizeRange(anchorRow.value!, anchorCol.value!, nextRow, nextCol);
+    selection.value = normalizeRange(anchorRow.value!, anchorColumn.value!, nextRow, nextColumn);
   } else {
     anchorRow.value = nextRow;
-    anchorCol.value = nextCol;
+    anchorColumn.value = nextColumn;
     selection.value = {
       startRow: nextRow,
-      startCol: nextCol,
+      startCol: nextColumn,
       endRow: nextRow,
-      endCol: nextCol,
+      endCol: nextColumn,
     };
   }
 }
@@ -182,7 +182,7 @@ function moveRight (extend: boolean) {
 // Select all cells
 function selectAll () {
   anchorRow.value = 0;
-  anchorCol.value = 0;
+  anchorColumn.value = 0;
   selection.value = {
     startRow: 0,
     startCol: 0,
@@ -194,9 +194,9 @@ function selectAll () {
 // Reset selection
 function clearSelection () {
   anchorRow.value = undefined;
-  anchorCol.value = undefined;
+  anchorColumn.value = undefined;
   cursorRow.value = undefined;
-  cursorCol.value = undefined;
+  cursorColumn.value = undefined;
   selection.value = undefined;
 }
 

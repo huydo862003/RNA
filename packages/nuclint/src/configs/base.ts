@@ -29,11 +29,11 @@ import {
 export const baseConfig: Linter.Config[] = [
   {
     ignores: [
-      'node_modules',
-      'dist',
-      'storybook-static',
-      'build',
-      'output',
+      '**/node_modules/',
+      '**/dist/',
+      '**/storybook-static/',
+      '**/build/',
+      '**/output/',
     ],
   },
   ...tselint.configs.strict,
@@ -57,6 +57,7 @@ export const baseConfig: Linter.Config[] = [
     },
     settings: {
       'import-x/resolver-next': [createNodeResolver()],
+      'import-x/ignore': ['node_modules'],
     },
     rules: {
       ...typeSafetyRules,

@@ -67,7 +67,7 @@ export const SpreadsheetRangeSelection2DStory: Story = {
       const data = Array.from({
         length: rowCount,
       }, (_, row) =>
-        headers.map((_, col) => ((row + 1) * 10 + col + 1)));
+        headers.map((_, column) => ((row + 1) * 10 + column + 1)));
       return {
         rangeRef,
         selection,

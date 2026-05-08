@@ -45,13 +45,13 @@ export const noSpecialCharactersRule: Rule.RuleModule = {
         let match;
         while ((match = SPECIAL_CHAR_REGEX.exec(text)) !== null) {
           const char = match[0];
-          const loc = sourceCode.getLocFromIndex(match.index);
+          const location = sourceCode.getLocFromIndex(match.index);
           context.report({
             loc: {
-              start: loc,
+              start: location,
               end: {
-                line: loc.line,
-                column: loc.column + 1,
+                line: location.line,
+                column: location.column + 1,
               },
             },
             messageId: 'noSpecialChar',

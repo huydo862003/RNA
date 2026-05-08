@@ -75,17 +75,17 @@ function getPosition (index: number): Position1D | undefined {
 
 // Check if an item matches a position. 'only' matches both 'start' and 'end'
 function isPosition (index: number, query: Position1D): boolean {
-  const pos = getPosition(index);
-  if (!pos) return false;
-  if (pos === query) return true;
-  switch (pos) {
+  const position = getPosition(index);
+  if (!position) return false;
+  if (position === query) return true;
+  switch (position) {
     case 'only': return query === 'start' || query === 'end';
     case 'start':
     case 'end':
     case 'middle':
       return false;
     default: {
-      const _exhaustive: never = pos;
+      const _exhaustive: never = position;
       throw new Error(`Unknown position: ${_exhaustive}`);
     }
   }

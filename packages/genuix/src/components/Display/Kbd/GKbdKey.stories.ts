@@ -117,7 +117,7 @@ export const EscapeKeyStory: Story = {
   render,
 };
 
-export const FunctionKeyStory: Story = {
+export const FnKeyStory: Story = {
   args: {
     name: GKbdKeyName.F1,
   },

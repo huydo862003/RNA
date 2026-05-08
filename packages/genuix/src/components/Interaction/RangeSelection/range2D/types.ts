@@ -23,11 +23,11 @@ export type Position2D =
 export interface RangeSelectionContext2D {
   selection: Ref<Range2D | undefined>;
   dragging: Ref<boolean>;
-  isSelected (row: number, col: number): boolean;
-  getPosition (row: number, col: number): Position2D | undefined;
-  isPosition (row: number, col: number, query: Position2D): boolean;
-  setAnchor (row: number, col: number): void;
-  extendSelection (row: number, col: number): void;
+  isSelected (row: number, column: number): boolean;
+  getPosition (row: number, column: number): Position2D | undefined;
+  isPosition (row: number, column: number, query: Position2D): boolean;
+  setAnchor (row: number, column: number): void;
+  extendSelection (row: number, column: number): void;
   endSelection (): void;
   moveUp (extend: boolean): void;
   moveDown (extend: boolean): void;

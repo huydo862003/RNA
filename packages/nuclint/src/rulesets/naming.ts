@@ -28,9 +28,7 @@ export const namingRules: Linter.RulesRecord = {
         pos: {
           position: true,
         },
-        number: {
-          num: true,
-        },
+        num: false,
         function: {
           fn: true,
         },
@@ -135,9 +133,8 @@ export const namingRules: Linter.RulesRecord = {
         sep: {
           separator: true,
         },
-        desc: {
-          description: true,
-        },
+        // desc is ambiguous: description or descending. Allow both
+        desc: false,
         lbl: {
           label: true,
         },
@@ -156,12 +153,6 @@ export const namingRules: Linter.RulesRecord = {
         cnt: {
           count: true,
         },
-        max: {
-          maximum: true,
-        },
-        min: {
-          minimum: true,
-        },
         avg: {
           average: true,
         },
@@ -177,17 +168,15 @@ export const namingRules: Linter.RulesRecord = {
         sel: {
           selection: true,
         },
-        nav: {
-          navigation: true,
-        },
+        nav: false,
         lang: {
           language: true,
         },
         temp: {
           temperature: true,
         },
-        char: {
-          character: true,
+        loc: {
+          location: true,
         },
         calc: {
           calculate: true,
@@ -207,17 +196,13 @@ export const namingRules: Linter.RulesRecord = {
         mod: {
           module: true,
         },
-        ref: {
-          reference: true,
-        },
+        ref: false,
         param: {
           parameter: true,
         },
-        config: {
-          configuration: true,
-        },
+        config: false,
         conf: {
-          configuration: true,
+          config: true,
         },
         prop: {
           property: true,
@@ -294,6 +279,7 @@ export const namingRules: Linter.RulesRecord = {
         num: true,
         fn: true,
         NumsLock: true,
+        config: true,
       },
     },
   ],
