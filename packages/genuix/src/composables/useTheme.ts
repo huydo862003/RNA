@@ -38,13 +38,19 @@ export function useTheme () {
     applyTheme(value);
   });
 
-  function setGTheme (newGTheme: GTheme) {
-    theme.value = newGTheme;
+  function setTheme (newTheme: GTheme) {
+    theme.value = newTheme;
+  }
+
+  function getEffectiveTheme (): GTheme {
+    if (theme.value === GTheme.System) return getSystemPreference();
+    return theme.value;
   }
 
   return {
     theme: readonly(theme),
-    setGTheme,
+    setTheme,
+    getEffectiveTheme,
   };
 }
 

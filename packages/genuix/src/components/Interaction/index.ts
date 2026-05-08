@@ -21,3 +21,7 @@ export {
 export {
   default as GDismiss,
 } from './Dismiss/GDismiss.vue';
+
+export {
+  default as GThemeToggle,
+} from './ThemeToggle/GThemeToggle.vue';
