@@ -11,10 +11,12 @@ const generators = new WeakMap<Constructor, IdGenerator>();
  **/
 export function getId (cls: Constructor, object: Record<string, unknown>): number {
   let generate = generators.get(cls);
+
   if (!generate) {
     generate = new IdGenerator();
     generators.set(cls, generate);
   }
+
   return generate.get(object);
 }
 
@@ -24,10 +26,12 @@ class IdGenerator {
 
   get (object: Record<string, unknown>): number {
     let id = this.ids.get(object);
+
     if (id === undefined) {
       id = this.counter++;
       this.ids.set(object, id);
     }
+
     return id;
   }
 }

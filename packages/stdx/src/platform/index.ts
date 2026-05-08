@@ -9,18 +9,6 @@ export enum PlatformKind {
   Unknown = 'unknown',
 }
 
-/* Return whether the code is running within a browser
- **/
-export function isBrowser (): boolean {
-  return typeof window !== 'undefined';
-}
-
-/* Return whether the code is running within node-like environment
- **/
-export function isNode (): boolean {
-  return typeof process !== 'undefined';
-}
-
 /* Return the name of the current platform
  **/
 export function getPlatform (): PlatformKind {
@@ -29,6 +17,7 @@ export function getPlatform (): PlatformKind {
       const userAgent = navigator.userAgent.toLowerCase();
       const platform = navigator.platform.toLowerCase();
       const concatted = `${userAgent}\0${platform}`;
+
       if (/(unix|linux|aix|android|darwin|freebsd|haiku|openbsd|sunos|netbsd|cygwin)/.test(concatted)) {
         return PlatformKind.Unix;
       }
@@ -42,6 +31,7 @@ export function getPlatform (): PlatformKind {
     if (isNode()) {
       // See type defintion of process platform for possible values
       const platform = process.platform;
+
       switch (platform) {
         case 'aix':
         case 'android':
@@ -59,8 +49,21 @@ export function getPlatform (): PlatformKind {
           return PlatformKind.Windows;
       }
     }
+
     return PlatformKind.Unknown;
   } catch {
     return PlatformKind.Unknown;
   }
+}
+
+/* Return whether the code is running within a browser
+ **/
+export function isBrowser (): boolean {
+  return typeof window !== 'undefined';
+}
+
+/* Return whether the code is running within node-like environment
+ **/
+export function isNode (): boolean {
+  return typeof process !== 'undefined';
 }
