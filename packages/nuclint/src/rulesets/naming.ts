@@ -21,12 +21,25 @@ export const namingRules: Linter.RulesRecord = {
         expression: {
           expr: true,
         },
+        identifier: {
+          ident: true,
+        },
+        pos: {
+          position: true,
+        },
+        number: {
+          num: true,
+        },
+        function: {
+          fn: true,
+        },
         lst: {
           list: true,
         },
         para: {
           paragraph: true,
         },
+        args: false,
         txt: {
           text: true,
         },
@@ -39,12 +52,28 @@ export const namingRules: Linter.RulesRecord = {
         len: {
           length: true,
         },
+        cmd: {
+          command: true,
+        },
+        btn: {
+          button: true,
+        },
+        evt: {
+          event: true,
+        },
+        doc: {
+          document: true,
+        },
       },
       allowList: {
         // Allow common conventions
         props: true,
         ref: true,
         env: true,
+        ident: true,
+        num: true,
+        fn: true,
+        NumsLock: true,
       },
     },
   ],
