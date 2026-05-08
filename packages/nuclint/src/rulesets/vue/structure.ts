@@ -48,7 +48,7 @@ export const vueStructureRules: Linter.RulesRecord = {
   ],
   // Disallow <style> blocks
   'vue/no-restricted-block': [
-    'error',
+    'warn',
     {
       'element': 'style',
       'message': 'Do not use <style> block in this project.',
