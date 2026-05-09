@@ -73,9 +73,6 @@ export const vueExprRules: Linter.RulesRecord = {
   'vue/object-curly-spacing': [
     'error',
     'always',
-    {
-      emptyObjects: 'never',
-    },
   ],
   // Enforce each object property on its own line
   'vue/object-property-newline': [
