@@ -1,5 +1,11 @@
 # nuclint
 
+## 0.17.3
+
+### Patch Changes
+
+- patch vue/block-tag-newline rule config for singleline
+
 ## 0.17.2
 
 ### Patch Changes
