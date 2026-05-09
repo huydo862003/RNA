@@ -27,7 +27,7 @@ export const vueStructureRules: Linter.RulesRecord = {
   'vue/block-tag-newline': [
     'error',
     {
-      singleline: 'never',
+      singleline: 'always',
       multiline: 'always',
     },
   ],
