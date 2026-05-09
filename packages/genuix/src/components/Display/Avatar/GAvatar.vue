@@ -1,10 +1,29 @@
 <template>
-  <GTooltip
-    v-if="label"
-    placement="bottom"
-    :show-delay="300"
-  >
+  <template v-if="!avatarGroup || avatarGroup.isVisible(getCurrentInstance())">
+    <GTooltip
+      v-if="label"
+      placement="bottom"
+      :show-delay="300"
+    >
+      <span
+        v-bind="$attrs"
+        :id="id"
+        class="avatar"
+        :class="[
+          `avatar-${size}`,
+          `avatar-${shape}`,
+        ]"
+        role="img"
+        :aria-label="label"
+      >
+        <slot />
+      </span>
+      <template #popper>
+        {{ label }}
+      </template>
+    </GTooltip>
     <span
+      v-else
       v-bind="$attrs"
       :id="id"
       class="avatar"
@@ -13,28 +32,11 @@
         `avatar-${shape}`,
       ]"
       role="img"
-      :aria-label="label"
+      aria-label=""
     >
       <slot />
     </span>
-    <template #popper>
-      {{ label }}
-    </template>
-  </GTooltip>
-  <span
-    v-else
-    v-bind="$attrs"
-    :id="id"
-    class="avatar"
-    :class="[
-      `avatar-${size}`,
-      `avatar-${shape}`,
-    ]"
-    role="img"
-    aria-label=""
-  >
-    <slot />
-  </span>
+  </template>
 </template>
 
 <script setup lang="ts">
@@ -52,6 +54,8 @@ import {
   GSize,
 } from '@/types';
 import GTooltip from '@/components/Overlay/Tooltip/GTooltip.vue';
+import { getCurrentInstance, inject, onMounted, onUnmounted } from 'vue';
+import { AVATAR_GROUP_KEY } from '../AvatarGroup/types';
 
 defineOptions({
   inheritAttrs: false,
@@ -72,6 +76,14 @@ const {
   /** Accessible name, also shown as tooltip on hover */
   label?: string;
 }>();
+
+const avatarGroup = inject(AVATAR_GROUP_KEY);
+onMounted(() => {
+  avatarGroup?.register(getCurrentInstance());
+});
+onUnmounted(() => {
+  avatarGroup?.unregister(getCurrentInstance());
+});
 </script>
 
 <style scoped>
