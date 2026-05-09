@@ -8,22 +8,12 @@ import type {
 } from '@storybook/vue3-vite';
 import GDataTable from './GDataTable.vue';
 
-const meta = {
-  title: 'Components/Display/GDataTable',
-  tags: ['autodocs'],
-  component: GDataTable,
-} satisfies Meta;
-
 interface Repo {
   name: string;
   language: string;
   stars: string;
   license: string;
 }
-
-export default meta;
-
-type Story = StoryObj<typeof meta>;
 
 const columns = [
   {
@@ -72,6 +62,21 @@ const rows: Repo[] = [
     license: 'MIT',
   },
 ];
+
+const meta = {
+  title: 'Components/Display/GDataTable',
+  tags: ['autodocs'],
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  component: GDataTable as any,
+  args: {
+    columns,
+    rows,
+  },
+} satisfies Meta;
+
+export default meta;
+
+type Story = StoryObj<typeof meta>;
 
 export const DefaultStory: Story = {
   parameters: {

@@ -13,13 +13,9 @@
           class="emoji-picker-trigger-emoji"
         >{{ modelValue }}</span>
         <span
-          v-else-if="placeholder"
-          class="emoji-picker-trigger-placeholder"
-        >{{ placeholder }}</span>
-        <span
           v-else
           class="emoji-picker-trigger-placeholder"
-        >Empty</span>
+        >{{ placeholder }}</span>
       </button>
     </slot>
     <template #popper>
@@ -38,12 +34,12 @@
         <div class="emoji-picker-categories">
           <GTooltip
             v-for="category in categories"
+            :key="category.name"
             :distance="8"
             arrow
             placement="bottom"
           >
             <button
-              :key="category.name"
               type="button"
               class="emoji-picker-category-btn"
               :class="{
@@ -109,14 +105,16 @@ import {
   computed,
   useTemplateRef,
 } from 'vue';
+import GTextInput from '../TextInput/GTextInput.vue';
+import {
+  GTextInputSize,
+} from '../TextInput/types';
 import {
   EMOJI_CATEGORIES,
 } from './types';
 import type {
   EmojiCategory,
 } from './types';
-import GTextInput from '../TextInput/GTextInput.vue';
-import { GTextInputSize } from '../TextInput/types';
 import GDropdown from '@/components/Overlay/Dropdown/GDropdown.vue';
 import GTooltip from '@/components/Overlay/Tooltip/GTooltip.vue';
 
@@ -124,17 +122,19 @@ defineOptions({
   inheritAttrs: false,
 });
 
+const modelValue = defineModel<string>({
+  default: '',
+});
+
 const {
   categories = EMOJI_CATEGORIES,
-  placeholder,
+  placeholder = 'Empty',
 } = defineProps<{
   /** Emoji categories to display */
   categories?: EmojiCategory[];
   /** Placeholder shown in default trigger when no emoji selected */
   placeholder?: string;
 }>();
-
-const modelValue = defineModel<string>({ default: '' });
 
 const dropdownRef = useTemplateRef<InstanceType<typeof GDropdown>>('dropdownRef');
 
@@ -172,8 +172,8 @@ const filteredCategories = computed(() => {
   align-items: center;
   justify-content: center;
   min-width: 32px;
-  padding-left: var(--spacing-1); 
-  padding-right: var(--spacing-1); 
+  padding-left: var(--spacing-1);
+  padding-right: var(--spacing-1);
   height: 32px;
   border: none;
   border-radius: var(--radius-sm);

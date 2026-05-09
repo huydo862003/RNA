@@ -2,229 +2,781 @@
  *  https://github.com/huydo862003/Fck-AI-Slop/edit/main/README.md
  */
 
-export interface GEmoji {
-  unicode: string;
-  name: string;
-}
-
 export interface EmojiCategory {
   name: string;
   emojis: GEmoji[];
+}
+
+export interface GEmoji {
+  unicode: string;
+  name: string;
 }
 
 export const EMOJI_CATEGORIES: EmojiCategory[] = [
   {
     name: 'Smileys',
     emojis: [
-      { unicode: '😀', name: 'Grinning Face' },
-      { unicode: '😃', name: 'Grinning Face with Big Eyes' },
-      { unicode: '😄', name: 'Grinning Face with Smiling Eyes' },
-      { unicode: '😁', name: 'Beaming Face with Smiling Eyes' },
-      { unicode: '😆', name: 'Grinning Squinting Face' },
-      { unicode: '😅', name: 'Grinning Face with Sweat' },
-      { unicode: '🤣', name: 'Rolling on the Floor Laughing' },
-      { unicode: '😂', name: 'Face with Tears of Joy' },
-      { unicode: '🙂', name: 'Slightly Smiling Face' },
-      { unicode: '😊', name: 'Smiling Face with Smiling Eyes' },
-      { unicode: '😇', name: 'Smiling Face with Halo' },
-      { unicode: '🥰', name: 'Smiling Face with Hearts' },
-      { unicode: '😍', name: 'Smiling Face with Heart Eyes' },
-      { unicode: '🤩', name: 'Star Struck' },
-      { unicode: '😘', name: 'Face Blowing a Kiss' },
-      { unicode: '😗', name: 'Kissing Face' },
-      { unicode: '😋', name: 'Face Savoring Food' },
-      { unicode: '😛', name: 'Face with Tongue' },
-      { unicode: '😜', name: 'Winking Face with Tongue' },
-      { unicode: '🤪', name: 'Zany Face' },
-      { unicode: '😝', name: 'Squinting Face with Tongue' },
-      { unicode: '🤑', name: 'Money Mouth Face' },
-      { unicode: '🤗', name: 'Smiling Face with Open Hands' },
-      { unicode: '🤭', name: 'Face with Hand Over Mouth' },
-      { unicode: '🤫', name: 'Shushing Face' },
-      { unicode: '🤔', name: 'Thinking Face' },
-      { unicode: '🫡', name: 'Saluting Face' },
-      { unicode: '🤐', name: 'Zipper Mouth Face' },
-      { unicode: '🤨', name: 'Face with Raised Eyebrow' },
-      { unicode: '😐', name: 'Neutral Face' },
-      { unicode: '😑', name: 'Expressionless Face' },
-      { unicode: '😶', name: 'Face Without Mouth' },
+      {
+        unicode: '😀',
+        name: 'Grinning Face',
+      },
+      {
+        unicode: '😃',
+        name: 'Grinning Face with Big Eyes',
+      },
+      {
+        unicode: '😄',
+        name: 'Grinning Face with Smiling Eyes',
+      },
+      {
+        unicode: '😁',
+        name: 'Beaming Face with Smiling Eyes',
+      },
+      {
+        unicode: '😆',
+        name: 'Grinning Squinting Face',
+      },
+      {
+        unicode: '😅',
+        name: 'Grinning Face with Sweat',
+      },
+      {
+        unicode: '🤣',
+        name: 'Rolling on the Floor Laughing',
+      },
+      {
+        unicode: '😂',
+        name: 'Face with Tears of Joy',
+      },
+      {
+        unicode: '🙂',
+        name: 'Slightly Smiling Face',
+      },
+      {
+        unicode: '😊',
+        name: 'Smiling Face with Smiling Eyes',
+      },
+      {
+        unicode: '😇',
+        name: 'Smiling Face with Halo',
+      },
+      {
+        unicode: '🥰',
+        name: 'Smiling Face with Hearts',
+      },
+      {
+        unicode: '😍',
+        name: 'Smiling Face with Heart Eyes',
+      },
+      {
+        unicode: '🤩',
+        name: 'Star Struck',
+      },
+      {
+        unicode: '😘',
+        name: 'Face Blowing a Kiss',
+      },
+      {
+        unicode: '😗',
+        name: 'Kissing Face',
+      },
+      {
+        unicode: '😋',
+        name: 'Face Savoring Food',
+      },
+      {
+        unicode: '😛',
+        name: 'Face with Tongue',
+      },
+      {
+        unicode: '😜',
+        name: 'Winking Face with Tongue',
+      },
+      {
+        unicode: '🤪',
+        name: 'Zany Face',
+      },
+      {
+        unicode: '😝',
+        name: 'Squinting Face with Tongue',
+      },
+      {
+        unicode: '🤑',
+        name: 'Money Mouth Face',
+      },
+      {
+        unicode: '🤗',
+        name: 'Smiling Face with Open Hands',
+      },
+      {
+        unicode: '🤭',
+        name: 'Face with Hand Over Mouth',
+      },
+      {
+        unicode: '🤫',
+        name: 'Shushing Face',
+      },
+      {
+        unicode: '🤔',
+        name: 'Thinking Face',
+      },
+      {
+        unicode: '🫡',
+        name: 'Saluting Face',
+      },
+      {
+        unicode: '🤐',
+        name: 'Zipper Mouth Face',
+      },
+      {
+        unicode: '🤨',
+        name: 'Face with Raised Eyebrow',
+      },
+      {
+        unicode: '😐',
+        name: 'Neutral Face',
+      },
+      {
+        unicode: '😑',
+        name: 'Expressionless Face',
+      },
+      {
+        unicode: '😶',
+        name: 'Face Without Mouth',
+      },
     ],
   },
   {
     name: 'Gestures',
     emojis: [
-      { unicode: '👋', name: 'Waving Hand' },
-      { unicode: '🤚', name: 'Raised Back of Hand' },
-      { unicode: '🖐️', name: 'Hand with Fingers Splayed' },
-      { unicode: '✋', name: 'Raised Hand' },
-      { unicode: '🖖', name: 'Vulcan Salute' },
-      { unicode: '🫱', name: 'Rightwards Hand' },
-      { unicode: '🫲', name: 'Leftwards Hand' },
-      { unicode: '👌', name: 'OK Hand' },
-      { unicode: '🤌', name: 'Pinched Fingers' },
-      { unicode: '🤏', name: 'Pinching Hand' },
-      { unicode: '✌️', name: 'Victory Hand' },
-      { unicode: '🤞', name: 'Crossed Fingers' },
-      { unicode: '🫰', name: 'Hand with Index Finger and Thumb Crossed' },
-      { unicode: '🤟', name: 'Love You Gesture' },
-      { unicode: '🤘', name: 'Sign of the Horns' },
-      { unicode: '🤙', name: 'Call Me Hand' },
-      { unicode: '👈', name: 'Backhand Index Pointing Left' },
-      { unicode: '👉', name: 'Backhand Index Pointing Right' },
-      { unicode: '👆', name: 'Backhand Index Pointing Up' },
-      { unicode: '👇', name: 'Backhand Index Pointing Down' },
-      { unicode: '☝️', name: 'Index Pointing Up' },
-      { unicode: '👍', name: 'Thumbs Up' },
-      { unicode: '👎', name: 'Thumbs Down' },
-      { unicode: '✊', name: 'Raised Fist' },
-      { unicode: '👊', name: 'Oncoming Fist' },
-      { unicode: '🤛', name: 'Left Facing Fist' },
-      { unicode: '🤜', name: 'Right Facing Fist' },
-      { unicode: '👏', name: 'Clapping Hands' },
-      { unicode: '🙌', name: 'Raising Hands' },
-      { unicode: '🫶', name: 'Heart Hands' },
-      { unicode: '👐', name: 'Open Hands' },
-      { unicode: '🤝', name: 'Handshake' },
+      {
+        unicode: '👋',
+        name: 'Waving Hand',
+      },
+      {
+        unicode: '🤚',
+        name: 'Raised Back of Hand',
+      },
+      {
+        unicode: '🖐️',
+        name: 'Hand with Fingers Splayed',
+      },
+      {
+        unicode: '✋',
+        name: 'Raised Hand',
+      },
+      {
+        unicode: '🖖',
+        name: 'Vulcan Salute',
+      },
+      {
+        unicode: '🫱',
+        name: 'Rightwards Hand',
+      },
+      {
+        unicode: '🫲',
+        name: 'Leftwards Hand',
+      },
+      {
+        unicode: '👌',
+        name: 'OK Hand',
+      },
+      {
+        unicode: '🤌',
+        name: 'Pinched Fingers',
+      },
+      {
+        unicode: '🤏',
+        name: 'Pinching Hand',
+      },
+      {
+        unicode: '✌️',
+        name: 'Victory Hand',
+      },
+      {
+        unicode: '🤞',
+        name: 'Crossed Fingers',
+      },
+      {
+        unicode: '🫰',
+        name: 'Hand with Index Finger and Thumb Crossed',
+      },
+      {
+        unicode: '🤟',
+        name: 'Love You Gesture',
+      },
+      {
+        unicode: '🤘',
+        name: 'Sign of the Horns',
+      },
+      {
+        unicode: '🤙',
+        name: 'Call Me Hand',
+      },
+      {
+        unicode: '👈',
+        name: 'Backhand Index Pointing Left',
+      },
+      {
+        unicode: '👉',
+        name: 'Backhand Index Pointing Right',
+      },
+      {
+        unicode: '👆',
+        name: 'Backhand Index Pointing Up',
+      },
+      {
+        unicode: '👇',
+        name: 'Backhand Index Pointing Down',
+      },
+      {
+        unicode: '☝️',
+        name: 'Index Pointing Up',
+      },
+      {
+        unicode: '👍',
+        name: 'Thumbs Up',
+      },
+      {
+        unicode: '👎',
+        name: 'Thumbs Down',
+      },
+      {
+        unicode: '✊',
+        name: 'Raised Fist',
+      },
+      {
+        unicode: '👊',
+        name: 'Oncoming Fist',
+      },
+      {
+        unicode: '🤛',
+        name: 'Left Facing Fist',
+      },
+      {
+        unicode: '🤜',
+        name: 'Right Facing Fist',
+      },
+      {
+        unicode: '👏',
+        name: 'Clapping Hands',
+      },
+      {
+        unicode: '🙌',
+        name: 'Raising Hands',
+      },
+      {
+        unicode: '🫶',
+        name: 'Heart Hands',
+      },
+      {
+        unicode: '👐',
+        name: 'Open Hands',
+      },
+      {
+        unicode: '🤝',
+        name: 'Handshake',
+      },
     ],
   },
   {
     name: 'Objects',
     emojis: [
-      { unicode: '📝', name: 'Memo' },
-      { unicode: '📌', name: 'Pushpin' },
-      { unicode: '📎', name: 'Paperclip' },
-      { unicode: '🔗', name: 'Link' },
-      { unicode: '📐', name: 'Triangular Ruler' },
-      { unicode: '📏', name: 'Straight Ruler' },
-      { unicode: '🔧', name: 'Wrench' },
-      { unicode: '🔨', name: 'Hammer' },
-      { unicode: '💡', name: 'Light Bulb' },
-      { unicode: '🔔', name: 'Bell' },
-      { unicode: '📢', name: 'Loudspeaker' },
-      { unicode: '🎯', name: 'Bullseye' },
-      { unicode: '🏷️', name: 'Label' },
-      { unicode: '📦', name: 'Package' },
-      { unicode: '🗂️', name: 'Card Index Dividers' },
-      { unicode: '📁', name: 'File Folder' },
-      { unicode: '📊', name: 'Bar Chart' },
-      { unicode: '📈', name: 'Chart Increasing' },
-      { unicode: '📉', name: 'Chart Decreasing' },
-      { unicode: '🗓️', name: 'Spiral Calendar' },
-      { unicode: '⏰', name: 'Alarm Clock' },
-      { unicode: '🔒', name: 'Locked' },
-      { unicode: '🔑', name: 'Key' },
-      { unicode: '🛠️', name: 'Hammer and Wrench' },
-      { unicode: '⚙️', name: 'Gear' },
-      { unicode: '💾', name: 'Floppy Disk' },
-      { unicode: '💿', name: 'Optical Disk' },
-      { unicode: '🖥️', name: 'Desktop Computer' },
-      { unicode: '💻', name: 'Laptop' },
-      { unicode: '📱', name: 'Mobile Phone' },
-      { unicode: '☎️', name: 'Telephone' },
-      { unicode: '🔋', name: 'Battery' },
+      {
+        unicode: '📝',
+        name: 'Memo',
+      },
+      {
+        unicode: '📌',
+        name: 'Pushpin',
+      },
+      {
+        unicode: '📎',
+        name: 'Paperclip',
+      },
+      {
+        unicode: '🔗',
+        name: 'Link',
+      },
+      {
+        unicode: '📐',
+        name: 'Triangular Ruler',
+      },
+      {
+        unicode: '📏',
+        name: 'Straight Ruler',
+      },
+      {
+        unicode: '🔧',
+        name: 'Wrench',
+      },
+      {
+        unicode: '🔨',
+        name: 'Hammer',
+      },
+      {
+        unicode: '💡',
+        name: 'Light Bulb',
+      },
+      {
+        unicode: '🔔',
+        name: 'Bell',
+      },
+      {
+        unicode: '📢',
+        name: 'Loudspeaker',
+      },
+      {
+        unicode: '🎯',
+        name: 'Bullseye',
+      },
+      {
+        unicode: '🏷️',
+        name: 'Label',
+      },
+      {
+        unicode: '📦',
+        name: 'Package',
+      },
+      {
+        unicode: '🗂️',
+        name: 'Card Index Dividers',
+      },
+      {
+        unicode: '📁',
+        name: 'File Folder',
+      },
+      {
+        unicode: '📊',
+        name: 'Bar Chart',
+      },
+      {
+        unicode: '📈',
+        name: 'Chart Increasing',
+      },
+      {
+        unicode: '📉',
+        name: 'Chart Decreasing',
+      },
+      {
+        unicode: '🗓️',
+        name: 'Spiral Calendar',
+      },
+      {
+        unicode: '⏰',
+        name: 'Alarm Clock',
+      },
+      {
+        unicode: '🔒',
+        name: 'Locked',
+      },
+      {
+        unicode: '🔑',
+        name: 'Key',
+      },
+      {
+        unicode: '🛠️',
+        name: 'Hammer and Wrench',
+      },
+      {
+        unicode: '⚙️',
+        name: 'Gear',
+      },
+      {
+        unicode: '💾',
+        name: 'Floppy Disk',
+      },
+      {
+        unicode: '💿',
+        name: 'Optical Disk',
+      },
+      {
+        unicode: '🖥️',
+        name: 'Desktop Computer',
+      },
+      {
+        unicode: '💻',
+        name: 'Laptop',
+      },
+      {
+        unicode: '📱',
+        name: 'Mobile Phone',
+      },
+      {
+        unicode: '☎️',
+        name: 'Telephone',
+      },
+      {
+        unicode: '🔋',
+        name: 'Battery',
+      },
     ],
   },
   {
     name: 'Nature',
     emojis: [
-      { unicode: '🌸', name: 'Cherry Blossom' },
-      { unicode: '🌺', name: 'Hibiscus' },
-      { unicode: '🌻', name: 'Sunflower' },
-      { unicode: '🌹', name: 'Rose' },
-      { unicode: '🌷', name: 'Tulip' },
-      { unicode: '🌱', name: 'Seedling' },
-      { unicode: '🌿', name: 'Herb' },
-      { unicode: '🍀', name: 'Four Leaf Clover' },
-      { unicode: '🍁', name: 'Maple Leaf' },
-      { unicode: '🍂', name: 'Fallen Leaf' },
-      { unicode: '🌳', name: 'Deciduous Tree' },
-      { unicode: '🌴', name: 'Palm Tree' },
-      { unicode: '🌵', name: 'Cactus' },
-      { unicode: '🌾', name: 'Sheaf of Rice' },
-      { unicode: '🍄', name: 'Mushroom' },
-      { unicode: '🐚', name: 'Spiral Shell' },
-      { unicode: '🌙', name: 'Crescent Moon' },
-      { unicode: '⭐', name: 'Star' },
-      { unicode: '🌟', name: 'Glowing Star' },
-      { unicode: '☀️', name: 'Sun' },
-      { unicode: '🌈', name: 'Rainbow' },
-      { unicode: '☁️', name: 'Cloud' },
-      { unicode: '❄️', name: 'Snowflake' },
-      { unicode: '🔥', name: 'Fire' },
-      { unicode: '💧', name: 'Droplet' },
-      { unicode: '🌊', name: 'Water Wave' },
-      { unicode: '🐶', name: 'Dog Face' },
-      { unicode: '🐱', name: 'Cat Face' },
-      { unicode: '🐦', name: 'Bird' },
-      { unicode: '🦋', name: 'Butterfly' },
-      { unicode: '🐝', name: 'Honeybee' },
-      { unicode: '🐞', name: 'Lady Beetle' },
+      {
+        unicode: '🌸',
+        name: 'Cherry Blossom',
+      },
+      {
+        unicode: '🌺',
+        name: 'Hibiscus',
+      },
+      {
+        unicode: '🌻',
+        name: 'Sunflower',
+      },
+      {
+        unicode: '🌹',
+        name: 'Rose',
+      },
+      {
+        unicode: '🌷',
+        name: 'Tulip',
+      },
+      {
+        unicode: '🌱',
+        name: 'Seedling',
+      },
+      {
+        unicode: '🌿',
+        name: 'Herb',
+      },
+      {
+        unicode: '🍀',
+        name: 'Four Leaf Clover',
+      },
+      {
+        unicode: '🍁',
+        name: 'Maple Leaf',
+      },
+      {
+        unicode: '🍂',
+        name: 'Fallen Leaf',
+      },
+      {
+        unicode: '🌳',
+        name: 'Deciduous Tree',
+      },
+      {
+        unicode: '🌴',
+        name: 'Palm Tree',
+      },
+      {
+        unicode: '🌵',
+        name: 'Cactus',
+      },
+      {
+        unicode: '🌾',
+        name: 'Sheaf of Rice',
+      },
+      {
+        unicode: '🍄',
+        name: 'Mushroom',
+      },
+      {
+        unicode: '🐚',
+        name: 'Spiral Shell',
+      },
+      {
+        unicode: '🌙',
+        name: 'Crescent Moon',
+      },
+      {
+        unicode: '⭐',
+        name: 'Star',
+      },
+      {
+        unicode: '🌟',
+        name: 'Glowing Star',
+      },
+      {
+        unicode: '☀️',
+        name: 'Sun',
+      },
+      {
+        unicode: '🌈',
+        name: 'Rainbow',
+      },
+      {
+        unicode: '☁️',
+        name: 'Cloud',
+      },
+      {
+        unicode: '❄️',
+        name: 'Snowflake',
+      },
+      {
+        unicode: '🔥',
+        name: 'Fire',
+      },
+      {
+        unicode: '💧',
+        name: 'Droplet',
+      },
+      {
+        unicode: '🌊',
+        name: 'Water Wave',
+      },
+      {
+        unicode: '🐶',
+        name: 'Dog Face',
+      },
+      {
+        unicode: '🐱',
+        name: 'Cat Face',
+      },
+      {
+        unicode: '🐦',
+        name: 'Bird',
+      },
+      {
+        unicode: '🦋',
+        name: 'Butterfly',
+      },
+      {
+        unicode: '🐝',
+        name: 'Honeybee',
+      },
+      {
+        unicode: '🐞',
+        name: 'Lady Beetle',
+      },
     ],
   },
   {
     name: 'Food',
     emojis: [
-      { unicode: '🍎', name: 'Red Apple' },
-      { unicode: '🍊', name: 'Tangerine' },
-      { unicode: '🍋', name: 'Lemon' },
-      { unicode: '🍇', name: 'Grapes' },
-      { unicode: '🍓', name: 'Strawberry' },
-      { unicode: '🍑', name: 'Peach' },
-      { unicode: '🥑', name: 'Avocado' },
-      { unicode: '🥕', name: 'Carrot' },
-      { unicode: '🌽', name: 'Ear of Corn' },
-      { unicode: '🍕', name: 'Pizza' },
-      { unicode: '🍔', name: 'Hamburger' },
-      { unicode: '🌮', name: 'Taco' },
-      { unicode: '🍣', name: 'Sushi' },
-      { unicode: '🍰', name: 'Shortcake' },
-      { unicode: '🎂', name: 'Birthday Cake' },
-      { unicode: '🍩', name: 'Doughnut' },
-      { unicode: '☕', name: 'Hot Beverage' },
-      { unicode: '🍵', name: 'Teacup Without Handle' },
-      { unicode: '🧃', name: 'Beverage Box' },
-      { unicode: '🍺', name: 'Beer Mug' },
-      { unicode: '🍷', name: 'Wine Glass' },
-      { unicode: '🥤', name: 'Cup with Straw' },
-      { unicode: '🧁', name: 'Cupcake' },
-      { unicode: '🍫', name: 'Chocolate Bar' },
+      {
+        unicode: '🍎',
+        name: 'Red Apple',
+      },
+      {
+        unicode: '🍊',
+        name: 'Tangerine',
+      },
+      {
+        unicode: '🍋',
+        name: 'Lemon',
+      },
+      {
+        unicode: '🍇',
+        name: 'Grapes',
+      },
+      {
+        unicode: '🍓',
+        name: 'Strawberry',
+      },
+      {
+        unicode: '🍑',
+        name: 'Peach',
+      },
+      {
+        unicode: '🥑',
+        name: 'Avocado',
+      },
+      {
+        unicode: '🥕',
+        name: 'Carrot',
+      },
+      {
+        unicode: '🌽',
+        name: 'Ear of Corn',
+      },
+      {
+        unicode: '🍕',
+        name: 'Pizza',
+      },
+      {
+        unicode: '🍔',
+        name: 'Hamburger',
+      },
+      {
+        unicode: '🌮',
+        name: 'Taco',
+      },
+      {
+        unicode: '🍣',
+        name: 'Sushi',
+      },
+      {
+        unicode: '🍰',
+        name: 'Shortcake',
+      },
+      {
+        unicode: '🎂',
+        name: 'Birthday Cake',
+      },
+      {
+        unicode: '🍩',
+        name: 'Doughnut',
+      },
+      {
+        unicode: '☕',
+        name: 'Hot Beverage',
+      },
+      {
+        unicode: '🍵',
+        name: 'Teacup Without Handle',
+      },
+      {
+        unicode: '🧃',
+        name: 'Beverage Box',
+      },
+      {
+        unicode: '🍺',
+        name: 'Beer Mug',
+      },
+      {
+        unicode: '🍷',
+        name: 'Wine Glass',
+      },
+      {
+        unicode: '🥤',
+        name: 'Cup with Straw',
+      },
+      {
+        unicode: '🧁',
+        name: 'Cupcake',
+      },
+      {
+        unicode: '🍫',
+        name: 'Chocolate Bar',
+      },
     ],
   },
   {
     name: 'Symbols',
     emojis: [
-      { unicode: '❤️', name: 'Red Heart' },
-      { unicode: '🧡', name: 'Orange Heart' },
-      { unicode: '💛', name: 'Yellow Heart' },
-      { unicode: '💚', name: 'Green Heart' },
-      { unicode: '💙', name: 'Blue Heart' },
-      { unicode: '💜', name: 'Purple Heart' },
-      { unicode: '🖤', name: 'Black Heart' },
-      { unicode: '🤍', name: 'White Heart' },
-      { unicode: '💯', name: 'Hundred Points' },
-      { unicode: '✅', name: 'Check Mark Button' },
-      { unicode: '❌', name: 'Cross Mark' },
-      { unicode: '⭕', name: 'Hollow Red Circle' },
-      { unicode: '❗', name: 'Exclamation Mark' },
-      { unicode: '❓', name: 'Question Mark' },
-      { unicode: '💫', name: 'Dizzy' },
-      { unicode: '💥', name: 'Collision' },
-      { unicode: '🔴', name: 'Red Circle' },
-      { unicode: '🟠', name: 'Orange Circle' },
-      { unicode: '🟡', name: 'Yellow Circle' },
-      { unicode: '🟢', name: 'Green Circle' },
-      { unicode: '🔵', name: 'Blue Circle' },
-      { unicode: '🟣', name: 'Purple Circle' },
-      { unicode: '⚫', name: 'Black Circle' },
-      { unicode: '⚪', name: 'White Circle' },
-      { unicode: '🏁', name: 'Chequered Flag' },
-      { unicode: '🚩', name: 'Triangular Flag' },
-      { unicode: '🎌', name: 'Crossed Flags' },
-      { unicode: '🏴', name: 'Black Flag' },
-      { unicode: '🏳️', name: 'White Flag' },
-      { unicode: '⚡', name: 'High Voltage' },
-      { unicode: '♻️', name: 'Recycling Symbol' },
-      { unicode: '🔱', name: 'Trident Emblem' },
+      {
+        unicode: '❤️',
+        name: 'Red Heart',
+      },
+      {
+        unicode: '🧡',
+        name: 'Orange Heart',
+      },
+      {
+        unicode: '💛',
+        name: 'Yellow Heart',
+      },
+      {
+        unicode: '💚',
+        name: 'Green Heart',
+      },
+      {
+        unicode: '💙',
+        name: 'Blue Heart',
+      },
+      {
+        unicode: '💜',
+        name: 'Purple Heart',
+      },
+      {
+        unicode: '🖤',
+        name: 'Black Heart',
+      },
+      {
+        unicode: '🤍',
+        name: 'White Heart',
+      },
+      {
+        unicode: '💯',
+        name: 'Hundred Points',
+      },
+      {
+        unicode: '✅',
+        name: 'Check Mark Button',
+      },
+      {
+        unicode: '❌',
+        name: 'Cross Mark',
+      },
+      {
+        unicode: '⭕',
+        name: 'Hollow Red Circle',
+      },
+      {
+        unicode: '❗',
+        name: 'Exclamation Mark',
+      },
+      {
+        unicode: '❓',
+        name: 'Question Mark',
+      },
+      {
+        unicode: '💫',
+        name: 'Dizzy',
+      },
+      {
+        unicode: '💥',
+        name: 'Collision',
+      },
+      {
+        unicode: '🔴',
+        name: 'Red Circle',
+      },
+      {
+        unicode: '🟠',
+        name: 'Orange Circle',
+      },
+      {
+        unicode: '🟡',
+        name: 'Yellow Circle',
+      },
+      {
+        unicode: '🟢',
+        name: 'Green Circle',
+      },
+      {
+        unicode: '🔵',
+        name: 'Blue Circle',
+      },
+      {
+        unicode: '🟣',
+        name: 'Purple Circle',
+      },
+      {
+        unicode: '⚫',
+        name: 'Black Circle',
+      },
+      {
+        unicode: '⚪',
+        name: 'White Circle',
+      },
+      {
+        unicode: '🏁',
+        name: 'Chequered Flag',
+      },
+      {
+        unicode: '🚩',
+        name: 'Triangular Flag',
+      },
+      {
+        unicode: '🎌',
+        name: 'Crossed Flags',
+      },
+      {
+        unicode: '🏴',
+        name: 'Black Flag',
+      },
+      {
+        unicode: '🏳️',
+        name: 'White Flag',
+      },
+      {
+        unicode: '⚡',
+        name: 'High Voltage',
+      },
+      {
+        unicode: '♻️',
+        name: 'Recycling Symbol',
+      },
+      {
+        unicode: '🔱',
+        name: 'Trident Emblem',
+      },
     ],
   },
 ];

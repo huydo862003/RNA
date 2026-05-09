@@ -25,8 +25,8 @@
           </div>
           <ul
             v-if="$slots.children"
+            class="toc-item-children"
             :class="{
-              'toc-item-children': true,
               'toc-item-children--no-leading': !$slots.leading,
             }"
           >

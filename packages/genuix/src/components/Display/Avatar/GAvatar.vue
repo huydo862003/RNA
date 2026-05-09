@@ -1,8 +1,8 @@
 <template>
   <template v-if="!avatarGroup || avatarGroup.isVisible(getCurrentInstance())">
     <GTooltip
-      arrow
       v-if="label"
+      arrow
       placement="bottom"
       :show-delay="300"
     >

@@ -1,5 +1,8 @@
 <template>
-  <GTooltip arrow class="text-xs">
+  <GTooltip
+    arrow
+    class="text-xs"
+  >
     <span
       v-bind="$attrs"
       :id="id"

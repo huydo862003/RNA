@@ -25,7 +25,7 @@
     >
       <span
         :style="{
-          background: selectedSwatch.value
+          background: selectedSwatch.value,
         }"
         class="color-chip"
       />
@@ -42,15 +42,15 @@
         aria-label="Color picker"
       >
         <GButton
-          class="color-button"
-          :prominence="GButtonProminence.Ghost"
           v-for="color in colors"
           :key="`${color.value}-${color.name}`"
+          class="color-button"
+          :prominence="GButtonProminence.Ghost"
           @click="() => selectColor(color)"
         >
           <div
             :style="{
-              background: color.value
+              background: color.value,
             }"
             class="color-chip"
           />
@@ -67,20 +67,27 @@
 /* #human-slop
  *  https://github.com/huydo862003/Fck-AI-Slop/edit/main/README.md
  */
-/* global HTMLInputElement */
-import { prominenceTokens } from '@/utils/prominence';
+import {
+  computed, useTemplateRef, watch,
+} from 'vue';
+import GButton from '../Button/GButton.vue';
+import {
+  GButtonProminence,
+} from '../Button/types';
+import type {
+  ColorSwatch,
+} from './types';
 import {
   DEFAULT_COLORS,
-} from './types';
-import {
-  ColorSwatch,
   GColorPickerSize,
 } from './types';
-import { GProminence, GSemantic } from '@/types';
-import { computed, useTemplateRef, watch } from 'vue';
+import {
+  prominenceTokens,
+} from '@/utils/prominence';
+import {
+  GProminence, GSemantic,
+} from '@/types';
 import GDropdown from '@/components/Overlay/Dropdown/GDropdown.vue';
-import GButton from '../Button/GButton.vue';
-import { GButtonProminence } from '../Button/types';
 
 defineOptions({
   inheritAttrs: false,
@@ -108,7 +115,7 @@ const dropdownRef = useTemplateRef('dropdownRef');
 const tokens = prominenceTokens(GProminence.Ghost, GSemantic.Neutral);
 
 const selectedSwatch = computed<ColorSwatch>(() => {
-  return colors.find((c) => c.value === color.value) ?? DEFAULT_COLORS[0];
+  return colors.find((color) => color.value === color.value) ?? DEFAULT_COLORS[0];
 });
 
 watch(() => colors, () => {
@@ -116,7 +123,7 @@ watch(() => colors, () => {
 }, {
   immediate: true,
   deep: true,
-})
+});
 
 function selectColor (selectedColor: ColorSwatch) {
   color.value = selectedColor.value;

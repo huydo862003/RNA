@@ -15,6 +15,7 @@
         <span class="toast-message">{{ toast.message }}</span>
         <button
           v-inverted
+          type="button"
           class="cursor-pointer gui-neutral-fg"
           :prominence="GButtonProminence.Ghost"
           aria-label="Dismiss"
