@@ -20,6 +20,10 @@ export {
 } from './Modal/types';
 
 export {
+  default as GToast,
+} from './Toast/GToast.vue';
+
+export {
   default as GCommandPalette,
 } from './CommandPalette/GCommandPalette.vue';
 

@@ -12,6 +12,10 @@ export {
 } from './useHash';
 
 export {
+  useToast,
+} from './useToast';
+
+export {
   useModal,
 } from './useModal';
 
