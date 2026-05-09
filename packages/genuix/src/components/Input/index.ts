@@ -101,3 +101,11 @@ export {
   GSelectState,
   GSelectVariant,
 } from './Select/types';
+
+export {
+  default as GColorPicker,
+} from './ColorPicker/GColorPicker.vue';
+
+export {
+  default as GEmojiPicker,
+} from './EmojiPicker/GEmojiPicker.vue';
