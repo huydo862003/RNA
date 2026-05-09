@@ -1,5 +1,11 @@
 # @hdnax/stdx
 
+## 0.3.5
+
+### Patch Changes
+
+- Fix signature of getId to accept object, instead of Record<string, unknown>, which is too restrictive
+
 ## 0.3.4
 
 ### Patch Changes

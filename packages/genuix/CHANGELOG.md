@@ -1,5 +1,16 @@
 # genuix
 
+## 0.15.0
+
+### Minor Changes
+
+- Support vInverted, GColorPicker, GEmojiPicker, GSkeleton, GDataTable, GAnchor, GAffix, GTimeline, GToc, GLink, GDivider, GAvatarGroup
+
+### Patch Changes
+
+- Updated dependencies
+  - @hdnax/stdx@0.3.5
+
 ## 0.14.0
 
 ### Minor Changes

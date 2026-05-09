@@ -1,6 +1,16 @@
 # nuclint
 
-## 0.16.1
+## 0.17.1
+
+### Patch Changes
+
+- Fix the inverted-color story and lint issues
+
+## 0.17.0
+
+### Minor Changes
+
+- Enrich vue and tailwindcss rulesets.
 
 ### Patch Changes
 
