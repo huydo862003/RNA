@@ -176,7 +176,7 @@ defineExpose({
 </script>
 
 <!-- eslint-disable vue/enforce-style-attribute -->
-<style lang="scss">
+<style>
 @reference '@/style.css';
 
 .tooltip-popper {

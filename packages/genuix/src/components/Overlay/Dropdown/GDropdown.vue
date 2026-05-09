@@ -198,17 +198,15 @@ defineExpose({
 </script>
 
 <!-- eslint-disable vue/enforce-style-attribute -->
-<style lang="scss">
+<style>
 @reference '@/style.css';
 
 .v-popper__inner {
   @apply overflow-visible w-full h-full;
 }
 
-@layer components {
 .popper--no-arrow .v-popper__arrow-container {
   @apply hidden;
-}
 }
 </style>
 <!-- eslint-enable vue/enforce-style-attribute -->

@@ -1,6 +1,5 @@
 <template>
   <GDropdown
-    :arrow="false"
     placement="bottom-start"
     @show-end="focusDateInput"
   >

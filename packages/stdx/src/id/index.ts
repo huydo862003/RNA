@@ -1,15 +1,16 @@
+/* eslint-disable @typescript-eslint/no-restricted-types */
 /* #human-slop
  * https://github.com/huydo862003/Fck-AI-Slop/edit/main/README.md
  */
 
-type Constructor = new (...arguments_: any[]) => Record<string, unknown>;
+type Constructor = new (...arguments_: any[]) => object;
 
 const generators = new WeakMap<Constructor, IdGenerator>();
 
 /* Get stable incremental id for object, scoped per class
  * Same object always returns same id within same class scope
  **/
-export function getId (cls: Constructor, object: Record<string, unknown>): number {
+export function getId (cls: Constructor, object: object): number {
   let generate = generators.get(cls);
 
   if (!generate) {
@@ -21,10 +22,10 @@ export function getId (cls: Constructor, object: Record<string, unknown>): numbe
 }
 
 class IdGenerator {
-  private ids = new WeakMap<Record<string, unknown>, number>();
+  private ids = new WeakMap<object, number>();
   private counter = 0;
 
-  get (object: Record<string, unknown>): number {
+  get (object: object): number {
     let id = this.ids.get(object);
 
     if (id === undefined) {
