@@ -29,7 +29,6 @@ export const vueStructureRules: Linter.RulesRecord = {
     {
       singleline: 'never',
       multiline: 'always',
-      maxEmptyLines: 1, // Allow some spaces betweentags
     },
   ],
   // Disallow empty <template>, <script>, or <style> blocks
