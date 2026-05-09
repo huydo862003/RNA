@@ -233,6 +233,96 @@ export {
   GSortDirection,
 } from './Table/types';
 
+// Affix
+export {
+  default as GAffix,
+} from './Affix/GAffix.vue';
+
+export {
+  default as GAnchor,
+} from './Affix/GAnchor.vue';
+
+export {
+  GAffixPosition,
+} from './Affix/types';
+
+// Link
+export {
+  default as GInternalLink,
+} from './Link/GInternalLink.vue';
+
+export {
+  default as GExternalLink,
+} from './Link/GExternalLink.vue';
+
+export {
+  default as GBackLink,
+} from './Link/GBackLink.vue';
+
+export {
+  default as GForwardLink,
+} from './Link/GForwardLink.vue';
+
+// Card
+export {
+  default as GCard,
+} from './Card/GCard.vue';
+
+// DataTable
+export {
+  default as GDataTable,
+} from './DataTable/GDataTable.vue';
+
+export type {
+  DataTableColumn,
+} from './DataTable/types';
+
+// Toc
+export {
+  default as GToc,
+} from './Toc/GToc.vue';
+
+export {
+  default as GTocItem,
+} from './Toc/GTocItem.vue';
+
+// Timeline
+export {
+  default as GTimeline,
+} from './Timeline/GTimeline.vue';
+
+export {
+  default as GTimelineItem,
+} from './Timeline/GTimelineItem.vue';
+
+// Alert
+export {
+  default as GAlert,
+} from './Alert/GAlert.vue';
+
+export {
+  GAlertSemantic,
+} from './Alert/types';
+
+// Skeleton
+export {
+  default as GSkeleton,
+} from './Skeleton/GSkeleton.vue';
+
+// AvatarGroup
+export {
+  default as GAvatarGroup,
+} from './AvatarGroup/GAvatarGroup.vue';
+
+// Divider
+export {
+  default as GDivider,
+} from './Divider/GDivider.vue';
+
+export {
+  GDividerOrientation,
+} from './Divider/types';
+
 // Spinner
 export {
   default as GSpinner,
