@@ -268,6 +268,9 @@ export const namingRules: Linter.RulesRecord = {
         frag: {
           fragment: true,
         },
+        cols: {
+          columns: true,
+        },
       },
       extendDefaultAllowList: false,
       checkFilenames: false,

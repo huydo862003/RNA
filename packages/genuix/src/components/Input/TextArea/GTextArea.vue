@@ -1,11 +1,10 @@
 <template>
   <textarea
-    :id="id"
     ref="textareaRef"
     v-bind="$attrs"
     v-model="text"
+    class="textarea"
     :class="[
-      'textarea',
       `textarea-${size}`,
       `textarea-resize-${resize}`,
     ]"
@@ -64,7 +63,6 @@ const text = defineModel<string>({
 });
 
 const {
-  id = undefined,
   name = undefined,
   size = GTextAreaSize.Md,
   state = GTextAreaState.Default,
@@ -78,19 +76,31 @@ const {
   minLength = undefined,
   maxLength = undefined,
 } = defineProps<{
-  id?: string;
-  name?: string;
-  size?: GTextAreaSize;
-  state?: GTextAreaState;
-  disabled?: boolean;
-  readonly?: boolean;
-  placeholder?: string;
+  /** The number of rows for text area */
   rows?: number;
+  /** Whether the text area is resizable */
   resize?: GTextAreaResize;
+  /** The name of the input that will be sent in the HTML form */
+  name?: string;
+  /** The size of the text input: xs, sm, md, lg, xl */
+  size?: GTextAreaSize;
+  /** The state of the text input: error, warning, success, default */
+  state?: GTextAreaState;
+  /** Whether the input is disabled: Input is not editable and not included in the HTML form */
+  disabled?: boolean;
+  /** Whether the input is readonly: Input is not editable but still included in the HTML form */
+  readonly?: boolean;
+  /** Placeholder text of the input */
+  placeholder?: string;
+  /** Whether the input is required */
   required?: boolean;
+  /** Predefined input pattern to use */
   pattern?: TextInputPattern;
+  /** The minimum length of input */
   minLength?: number;
+  /** The maximum length of input */
   maxLength?: number;
+
 }>();
 
 const tokens = prominenceTokens(GProminence.Ghost, GSemantic.Neutral);
@@ -101,17 +111,18 @@ const effectiveState = computed(() => {
   if (!text.value) return state;
   if (minLength !== undefined && text.value.length < minLength) return GTextAreaState.Error;
   if (pattern && !TEXT_INPUT_PATTERNS[pattern].test(text.value)) return GTextAreaState.Error;
+
   return state;
 });
 
 const textareaRef = useTemplateRef('textareaRef');
 
-function focus () {
-  textareaRef.value?.focus();
-}
-
 function blur () {
   textareaRef.value?.blur();
+}
+
+function focus () {
+  textareaRef.value?.focus();
 }
 
 defineExpose({

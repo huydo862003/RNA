@@ -61,6 +61,7 @@ export const DefaultSwitchStory: Story = {
     },
     setup () {
       const checked = ref(false);
+
       return {
         checked,
       };
@@ -91,6 +92,7 @@ export const CheckedSwitchStory: Story = {
     },
     setup () {
       const checked = ref(true);
+
       return {
         checked,
       };
@@ -119,6 +121,7 @@ export const DisabledSwitchStory: Story = {
     setup () {
       const on = ref(false);
       const off = ref(true);
+
       return {
         on,
         off,
@@ -152,6 +155,7 @@ export const AllSizesSwitchStory: Story = {
       const sm = ref(true);
       const md = ref(true);
       const lg = ref(true);
+
       return {
         sm,
         md,
@@ -190,6 +194,7 @@ export const AllSemanticsSwitchStory: Story = {
         semantic,
         ref(true),
       ]));
+
       return {
         semantics,
         states,

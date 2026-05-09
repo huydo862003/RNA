@@ -1,5 +1,6 @@
 <template>
   <button
+    type="button"
     v-bind="$attrs"
     class="theme-toggle"
     :title="label"
@@ -7,12 +8,14 @@
     @click="toggle"
   >
     <GIcon
-      v-if="effectiveTheme === GTheme.Light"
+      v-if="theme.effectiveTheme === GTheme.Light"
+      key="icon-sun"
       :name="GIconName.Sun"
       :size="size"
     />
     <GIcon
       v-else
+      key="icon-moon"
       :name="GIconName.Moon"
       :size="size"
     />
@@ -43,20 +46,17 @@ defineOptions({
 const {
   size = 18,
 } = defineProps<{
+  /** The size of the icon of the theme toggle */
   size?: number;
 }>();
 
-const {
-  setTheme, getEffectiveTheme,
-} = useTheme();
-
-const effectiveTheme = computed(() => getEffectiveTheme());
+const theme = useTheme();
 
 const label = computed(() =>
-  effectiveTheme.value === GTheme.Light ? 'Switch to dark mode' : 'Switch to light mode');
+  theme.effectiveTheme === GTheme.Light ? 'Switch to dark mode' : 'Switch to light mode');
 
 function toggle () {
-  setTheme(effectiveTheme.value === GTheme.Light ? GTheme.Dark : GTheme.Light);
+  theme.setTheme(theme.effectiveTheme === GTheme.Light ? GTheme.Dark : GTheme.Light);
 }
 </script>
 

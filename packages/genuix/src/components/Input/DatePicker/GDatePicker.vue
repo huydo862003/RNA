@@ -7,6 +7,7 @@
     <!-- Datepicker trigger -->
     <button
       :id="id"
+      type="button"
       v-bind="$attrs"
       aria-haspopup="dialog"
       :disabled="disabled"
@@ -16,8 +17,8 @@
         '--_bg': tokens.bg,
         '--_border': tokens.border,
       }"
+      class="datepicker-trigger"
       :class="{
-        'datepicker-trigger': true,
         'cursor-pointer': !disabled,
         [`datepicker-trigger-${size}`]: true,
       }"
@@ -36,8 +37,8 @@
         <input
           ref="dateInputRef"
           v-model="rawDateInput"
+          class="datepicker-input"
           :class="{
-            'datepicker-input': true,
             'datepicker-input--valid': isValidDateInput,
             'datepicker-input--invalid': !isValidDateInput,
           }"
@@ -49,12 +50,14 @@
           <span class="datepicker-month-label">{{ currentMonthLabel }}</span>
           <div class="datepicker-nav">
             <button
+              type="button"
               class="datepicker-nav-btn"
               @click="goToday"
             >
               Today
             </button>
             <button
+              type="button"
               class="datepicker-nav-btn"
               aria-label="Previous month"
               @click="previousMonth"
@@ -62,6 +65,7 @@
               <GIcon :name="GIconName.ChevronLeft" />
             </button>
             <button
+              type="button"
               class="datepicker-nav-btn"
               aria-label="Next month"
               @click="nextMonth"
@@ -88,6 +92,7 @@
           <button
             v-for="cell in cells"
             :key="cell.key"
+            type="button"
             role="gridcell"
             class="datepicker-day"
             :class="{
@@ -98,7 +103,7 @@
             :aria-selected="cell.selected"
             :aria-current="cell.isToday ? 'date' : undefined"
             :aria-label="cell.datetime.toFormat('MMMM d, y')"
-            @click="selectDay(cell.datetime)"
+            @click="() => selectDay(cell.datetime)"
           >
             {{ cell.day }}
           </button>
@@ -148,15 +153,22 @@ defineOptions({
   inheritAttrs: false,
 });
 
+/* Supplied date - the single source of truth, to avoid circular watch, don't update this on watch */
+const date = defineModel<DateTime | undefined>();
+
 const {
   id = undefined,
   size = GDatePickerSize.Md,
   disabled = false,
   placeholder = 'No Date',
 } = defineProps<{
+  /** HTML id attribute */
   id?: string;
+  /** Size variant */
   size?: GDatePickerSize;
+  /** Disable the component */
   disabled?: boolean;
+  /** Input placeholder text */
   placeholder?: string;
 }>();
 
@@ -173,9 +185,6 @@ watch(parsedDateInput, (newDate) => {
   if (!newDate) return; // Ignore temporarily invalid date
   displayDate.value = formatDate(newDate) || displayDate.value;
 });
-
-/* Supplied date - the single source of truth, to avoid circular watch, don't update this on watch */
-const date = defineModel<DateTime | undefined>();
 
 watch(
   date,
@@ -206,11 +215,13 @@ const cells = computed(() => {
 
   const result = [];
   const today = DateTime.now().startOf('day');
+
   // Always display 6 weeks
   for (let index = 0; index < 42; index++) {
     const datetime = gridStart.plus({
       days: index,
     });
+
     result.push({
       key: datetime.toISODate(),
       datetime,
@@ -220,15 +231,14 @@ const cells = computed(() => {
       selected: date.value ? datetime.hasSame(date.value, 'day') : false,
     });
   }
+
   return result;
 });
 
-/* Actions */
-function selectDay (datetime: DateTime) {
-  if (!datetime.hasSame(startViewDate.value, 'month')) {
-    startViewDate.value = datetime.startOf('month');
-  }
-  date.value = datetime;
+function nextMonth () {
+  startViewDate.value = startViewDate.value.plus({
+    months: 1,
+  });
 }
 
 function previousMonth () {
@@ -237,10 +247,12 @@ function previousMonth () {
   });
 }
 
-function nextMonth () {
-  startViewDate.value = startViewDate.value.plus({
-    months: 1,
-  });
+/* Actions */
+function selectDay (datetime: DateTime) {
+  if (!datetime.hasSame(startViewDate.value, 'month')) {
+    startViewDate.value = datetime.startOf('month');
+  }
+  date.value = datetime;
 }
 
 const dateInputRef = useTemplateRef<HTMLInputElement>('dateInputRef');
@@ -253,6 +265,7 @@ function focusDateInput () {
 
 function goToday () {
   const todayDate = today();
+
   startViewDate.value = todayDate.startOf('month');
   date.value = todayDate;
 }

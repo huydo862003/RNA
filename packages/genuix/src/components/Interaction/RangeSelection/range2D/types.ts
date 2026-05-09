@@ -7,18 +7,18 @@ import type {
   Ref,
 } from 'vue';
 
+export type Position2D =
+  | 'top-left' | 'top-edge' | 'top-right'
+  | 'left-edge' | 'inner' | 'right-edge'
+  | 'bottom-left' | 'bottom-edge' | 'bottom-right'
+  | 'only';
+
 export interface Range2D {
   startRow: number;
   startCol: number;
   endRow: number;
   endCol: number;
 }
-
-export type Position2D =
-  | 'top-left' | 'top-edge' | 'top-right'
-  | 'left-edge' | 'inner' | 'right-edge'
-  | 'bottom-left' | 'bottom-edge' | 'bottom-right'
-  | 'only';
 
 export interface RangeSelectionContext2D {
   selection: Ref<Range2D | undefined>;

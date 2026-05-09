@@ -25,7 +25,7 @@ type Story = StoryObj<typeof meta>;
 export const SpreadsheetRangeSelection2DStory: Story = {
   args: {
     rows: 10,
-    cols: 6,
+    columns: 6,
   },
   parameters: {
     docs: {
@@ -33,10 +33,10 @@ export const SpreadsheetRangeSelection2DStory: Story = {
         story: 'Excel-style spreadsheet with cell range selection',
       },
       source: {
-        code: `<GRangeSelection2D ref="rangeRef" :rows="rows" :cols="cols">
+        code: `<GRangeSelection2D ref="rangeRef" :rows="rows" :columns="columns">
   <tr v-for="r in rows" :key="r">
-    <td v-for="c in cols" :key="c">
-      <GRangeCell2D :row="r" :col="c" v-slot="{ selected, isPosition }">
+    <td v-for="c in columns" :key="c">
+      <GRangeCell2D :row="r" :column="c" v-slot="{ selected, isPosition }">
         <div :class="selected ? 'selected' : ''">
           {{ data[r][c] }}
         </div>
@@ -68,6 +68,7 @@ export const SpreadsheetRangeSelection2DStory: Story = {
         length: rowCount,
       }, (_, row) =>
         headers.map((_, column) => ((row + 1) * 10 + column + 1)));
+
       return {
         rangeRef,
         selection,
@@ -86,15 +87,15 @@ export const SpreadsheetRangeSelection2DStory: Story = {
               + ' (' + ((selection.endRow - selection.startRow + 1) * (selection.endCol - selection.startCol + 1)) + ' cells)'
             : 'Click and drag to select cells' }}
         </div>
-        <GRangeSelection2D ref="rangeRef" :rows="rows.length" :cols="headers.length">
+        <GRangeSelection2D ref="rangeRef" :rows="rows.length" :columns="headers.length">
           <table class="border-collapse border gui-neutral-border rounded-md overflow-hidden text-sm">
             <thead>
               <tr class="gui-neutral-bg-subtle">
-                <th class="w-[40px] h-size-4 gui-neutral-border border-r border-b gui-neutral-fg-muted font-normal text-xs"></th>
+                <th class="w-10 h-size-4 gui-neutral-border border-r border-b gui-neutral-fg-muted font-normal text-xs"></th>
                 <th
                   v-for="(h, c) in headers"
                   :key="c"
-                  class="w-[72px] h-size-4 gui-neutral-border border-r border-b gui-neutral-fg-muted font-medium text-xs text-center"
+                  class="w-18 h-size-4 gui-neutral-border border-r border-b gui-neutral-fg-muted font-medium text-xs text-center"
                 >{{ h }}</th>
               </tr>
             </thead>
@@ -108,7 +109,7 @@ export const SpreadsheetRangeSelection2DStory: Story = {
                   :key="c"
                   class="p-0 gui-neutral-border border-r border-b"
                 >
-                  <GRangeCell2D :row="r" :col="c" v-slot="{ selected, isPosition }">
+                  <GRangeCell2D :row="r" :column="c" v-slot="{ selected, isPosition }">
                     <div
                       class="w-full px-spacing-2 py-spacing-1 cursor-cell select-none transition-colors text-right tabular-nums"
                       :class="[
@@ -135,7 +136,7 @@ export const SpreadsheetRangeSelection2DStory: Story = {
 export const CalendarRangeSelection2DStory: Story = {
   args: {
     rows: 5,
-    cols: 7,
+    columns: 7,
   },
   parameters: {
     docs: {
@@ -143,10 +144,10 @@ export const CalendarRangeSelection2DStory: Story = {
         story: 'Calendar month view with date range selection',
       },
       source: {
-        code: `<GRangeSelection2D ref="rangeRef" :rows="grid.length" :cols="7">
+        code: `<GRangeSelection2D ref="rangeRef" :rows="grid.length" :columns="7">
   <tr v-for="(week, r) in grid" :key="r">
     <td v-for="(day, c) in week" :key="c">
-      <GRangeCell2D :row="r" :col="c" v-slot="{ selected, isPosition }">
+      <GRangeCell2D :row="r" :column="c" v-slot="{ selected, isPosition }">
         <div :class="selected ? 'selected' : ''">
           {{ day }}
         </div>
@@ -185,8 +186,10 @@ export const CalendarRangeSelection2DStory: Story = {
           length: 7,
         }, (_, dayIndex) => {
           const day = week * 7 + dayIndex - blanks + 1;
+
           return (1 <= day && day <= days) ? day : null;
         }));
+
       return {
         rangeRef,
         selection,
@@ -200,7 +203,7 @@ export const CalendarRangeSelection2DStory: Story = {
         <div class="text-xs gui-neutral-fg-muted mb-spacing-2">
           {{ selection ? 'Selected range' : 'Drag to select date range' }}
         </div>
-        <GRangeSelection2D ref="rangeRef" :rows="grid.length" :cols="weekdays.length">
+        <GRangeSelection2D ref="rangeRef" :rows="grid.length" :columns="weekdays.length">
           <table class="border-collapse text-sm">
             <thead>
               <tr>
@@ -215,7 +218,7 @@ export const CalendarRangeSelection2DStory: Story = {
               <tr v-for="(week, r) in grid" :key="r">
                 <td v-for="(day, c) in week" :key="c" class="p-0">
                   <template v-if="day">
-                    <GRangeCell2D :row="r" :col="c" v-slot="{ selected, isPosition }">
+                    <GRangeCell2D :row="r" :column="c" v-slot="{ selected, isPosition }">
                       <div
                         class="w-size-6 h-size-6 flex items-center justify-center cursor-pointer select-none transition-colors"
                         :class="[

@@ -29,6 +29,7 @@ const {
   id = undefined,
   tex,
 } = defineProps<{
+  /** HTML id attribute */
   id?: string;
   /** LaTeX expression to render inline */
   tex: string;
@@ -41,6 +42,7 @@ const rendered = computed(() => {
       throwOnError: false,
       trust: false,
     });
+
     return DOMPurify.sanitize(html);
   } catch {
     return DOMPurify.sanitize(tex);

@@ -8,8 +8,7 @@
       <slot />
       <li
         v-if="hasEllipsis"
-        class="breadcrumb-ellipsis-item"
-        :style="{ order: 1 }"
+        class="breadcrumb-ellipsis-item breadcrumb-ellipsis-item--first"
       >
         <span
           class="breadcrumb-sep"
@@ -28,7 +27,10 @@
           :distance="4"
           class="breadcrumb-popper"
         >
-          <button class="breadcrumb-ellipsis">
+          <button
+            type="button"
+            class="breadcrumb-ellipsis"
+          >
             <slot name="ellipsis">
               <GIcon
                 v-if="isIconEllipsis"
@@ -78,8 +80,11 @@ const {
   ellipsis = '\u2026',
   maxVisible = 3,
 } = defineProps<{
+  /** Separator character or icon between breadcrumb items */
   separator?: string | GIconName;
+  /** Character or icon used when items are collapsed */
   ellipsis?: string | GIconName;
+  /** Maximum number of items to show before collapsing */
   maxVisible?: number;
 }>();
 
@@ -95,6 +100,7 @@ const collapsedSet = computed(() => {
     items.value[0],
     ...items.value.slice(-(maxVisible - 1)),
   ]);
+
   return new Set(items.value.filter((id) => !keep.has(id)));
 });
 
@@ -118,6 +124,18 @@ provide(BREADCRUMB_KEY, {
 });
 </script>
 
+<!-- eslint-disable -->
+<style>
+@layer components {
+.breadcrumb-popper .breadcrumb-dropdown {
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-xs);
+}
+}
+</style>
+<!-- eslint-enable -->
+
 <style scoped>
 @reference '@/style.css';
 
@@ -134,6 +152,10 @@ provide(BREADCRUMB_KEY, {
   @apply inline-flex items-center;
 }
 
+.breadcrumb-ellipsis-item--first {
+  order: 1;
+}
+
 .breadcrumb-ellipsis {
   @apply text-sm px-1.5 py-0.5 rounded-sm cursor-pointer border-none bg-transparent gui-neutral-fg-muted inline-flex items-center;
   line-height: 1;
@@ -147,13 +169,5 @@ provide(BREADCRUMB_KEY, {
 .breadcrumb-sep {
   @apply mx-1 gui-neutral-fg-muted opacity-50 inline-flex items-center;
 }
-}
-</style>
-
-<style>
-@reference '@/style.css';
-
-.breadcrumb-popper .breadcrumb-dropdown {
-  @apply flex flex-col p-xs;
 }
 </style>

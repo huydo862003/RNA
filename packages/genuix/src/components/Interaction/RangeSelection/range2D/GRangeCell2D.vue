@@ -1,7 +1,7 @@
 <template>
   <div
     tabindex="0"
-    style="user-select: none;"
+    class="select-none"
     @pointerdown="onPointerDown"
     @pointerenter="onPointerEnter"
     @keydown="onKeyDown"
@@ -33,68 +33,73 @@ import {
   GKbdKeyName,
 } from '@/components/Display/Kbd/types';
 
-const props = defineProps<{
+const {
+  row,
+  column,
+} = defineProps<{
+  /** The row number of the cell */
   row: number;
-  col: number;
+  /** The column number of the cell */
+  column: number;
 }>();
 
 const context = inject(RANGE_SELECTION_2D_KEY)!;
 
-const selected = computed(() => context.isSelected(props.row, props.col));
-const position = computed(() => context.getPosition(props.row, props.col));
-const isPosition = (query: Position2D) => context.isPosition(props.row, props.col, query);
+const selected = computed(() => context.isSelected(row, column));
+const position = computed(() => context.getPosition(row, column));
+const isPosition = (query: Position2D) => context.isPosition(row, column, query);
+
+function onKeyDown (event: KeyboardEvent) {
+  switch (event.key) {
+  case GKbdKeyName.ArrowUp:
+    event.preventDefault();
+    context.moveUp(event.shiftKey);
+    break;
+  case GKbdKeyName.ArrowDown:
+    event.preventDefault();
+    context.moveDown(event.shiftKey);
+    break;
+  case GKbdKeyName.ArrowLeft:
+    event.preventDefault();
+    context.moveLeft(event.shiftKey);
+    break;
+  case GKbdKeyName.ArrowRight:
+    event.preventDefault();
+    context.moveRight(event.shiftKey);
+    break;
+  case GKbdKeyName.a:
+    if (event.ctrlKey || event.metaKey) {
+      event.preventDefault();
+      context.selectAll();
+    }
+    break;
+  case GKbdKeyName.Escape:
+    event.preventDefault();
+    context.clearSelection();
+    break;
+  }
+}
 
 function onPointerDown (event: PointerEvent) {
   window.getSelection()?.removeAllRanges();
   (event.currentTarget as HTMLElement)?.focus();
 
   if (event.shiftKey) {
-    context.extendSelection(props.row, props.col);
+    context.extendSelection(row, column);
   } else {
-    context.setAnchor(props.row, props.col);
+    context.setAnchor(row, column);
     window.addEventListener('pointerup', onPointerUp);
   }
+}
+
+function onPointerEnter () {
+  if (!context.dragging.value) return;
+  context.extendSelection(row, column);
 }
 
 function onPointerUp () {
   context.endSelection();
   window.removeEventListener('pointerup', onPointerUp);
-}
-
-function onPointerEnter () {
-  if (!context.dragging.value) return;
-  context.extendSelection(props.row, props.col);
-}
-
-function onKeyDown (event: KeyboardEvent) {
-  switch (event.key) {
-    case GKbdKeyName.ArrowUp:
-      event.preventDefault();
-      context.moveUp(event.shiftKey);
-      break;
-    case GKbdKeyName.ArrowDown:
-      event.preventDefault();
-      context.moveDown(event.shiftKey);
-      break;
-    case GKbdKeyName.ArrowLeft:
-      event.preventDefault();
-      context.moveLeft(event.shiftKey);
-      break;
-    case GKbdKeyName.ArrowRight:
-      event.preventDefault();
-      context.moveRight(event.shiftKey);
-      break;
-    case GKbdKeyName.a:
-      if (event.ctrlKey || event.metaKey) {
-        event.preventDefault();
-        context.selectAll();
-      }
-      break;
-    case GKbdKeyName.Escape:
-      event.preventDefault();
-      context.clearSelection();
-      break;
-  }
 }
 
 defineExpose({

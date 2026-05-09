@@ -6,15 +6,16 @@
     <button
       v-if="visible"
       :id="id"
+      type="button"
       v-bind="$attrs"
+      class="select-option"
       :class="[
-        'select-option',
         `select-option-${context.size}`,
         isFocused && 'select-option--focused',
       ]"
       role="option"
       :aria-selected="isSelected"
-      @click="context.select(value)"
+      @click="selectOption"
     >
       <slot>
         <template v-if="context.variant === GSelectVariant.Pill">
@@ -26,7 +27,9 @@
             <template #left>
               <span
                 class="select-dot"
-                :style="{ background: dotColor }"
+                :style="{
+                  background: dotColor,
+                }"
               />
             </template>
             {{ label ?? value }}
@@ -74,20 +77,27 @@ defineOptions({
   inheritAttrs: false,
 });
 
-const context = inject(SELECT_KEY)!;
-
 const {
   id = undefined,
   value,
   label = undefined,
   color = undefined,
 } = defineProps<{
+  /** HTML id attribute */
   id?: string;
-  /* Must be unique among the options */
+  /** Must be unique among the options */
   value: string;
+  /** Display label */
   label?: string;
+  /** Pill color for this option */
   color?: GPillColor;
 }>();
+
+const context = inject(SELECT_KEY)!;
+
+function selectOption () {
+  context.select(value);
+}
 
 const PILL_COLOR_VALUES = Object.values(GPillColor);
 
@@ -103,7 +113,9 @@ const isFocused = computed(() => context.focusedValue.value === value);
 
 const visible = computed(() => {
   const query = context.searchValue.value.toLowerCase();
+
   if (!query) return true;
+
   return (label ?? value).toLowerCase().includes(query);
 });
 

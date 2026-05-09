@@ -37,6 +37,7 @@ export const DefaultStory: Story = {
     },
     setup () {
       const checked = ref(false);
+
       return {
         checked,
       };
@@ -68,6 +69,7 @@ export const GroupStory: Story = {
       const optionA = ref(true);
       const optionB = ref(false);
       const optionC = ref(false);
+
       return {
         optionA,
         optionB,

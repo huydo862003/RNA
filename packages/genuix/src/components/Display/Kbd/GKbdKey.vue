@@ -58,6 +58,7 @@ const {
   id = undefined,
   name,
 } = defineProps<{
+  /** HTML id attribute */
   id?: string;
   /** Key name following the W3C KeyboardEvent.key spec */
   name: GKbdKeyName;
@@ -75,145 +76,145 @@ interface KeyMeta {
 const keyMeta = computed((): KeyMeta => {
   switch (name) {
   // Arrows
-    case GKbdKeyName.ArrowDown:
-      return {
-        icon: GIconName.ArrowDown,
-        tooltipContent: 'Arrow Down',
-      };
-    case GKbdKeyName.ArrowUp:
-      return {
-        icon: GIconName.ArrowUp,
-        tooltipContent: 'Arrow Up',
-      };
-    case GKbdKeyName.ArrowLeft:
-      return {
-        icon: GIconName.ArrowLeft,
-        tooltipContent: 'Arrow Left',
-      };
-    case GKbdKeyName.ArrowRight:
-      return {
-        icon: GIconName.ArrowRight,
-        tooltipContent: 'Arrow Right',
-      };
+  case GKbdKeyName.ArrowDown:
+    return {
+      icon: GIconName.ArrowDown,
+      tooltipContent: 'Arrow Down',
+    };
+  case GKbdKeyName.ArrowUp:
+    return {
+      icon: GIconName.ArrowUp,
+      tooltipContent: 'Arrow Up',
+    };
+  case GKbdKeyName.ArrowLeft:
+    return {
+      icon: GIconName.ArrowLeft,
+      tooltipContent: 'Arrow Left',
+    };
+  case GKbdKeyName.ArrowRight:
+    return {
+      icon: GIconName.ArrowRight,
+      tooltipContent: 'Arrow Right',
+    };
 
-      // Whitespace
-    case GKbdKeyName.Enter:
-      return {
-        label: '↵',
-        tooltipContent: 'Enter',
-      };
-    case GKbdKeyName.Tab:
-      return {
-        label: 'Tab',
-      };
-    case GKbdKeyName.Space:
-      return {
-        label: '␣',
-        tooltipContent: 'Space',
-      };
+  // Whitespace
+  case GKbdKeyName.Enter:
+    return {
+      label: '↵',
+      tooltipContent: 'Enter',
+    };
+  case GKbdKeyName.Tab:
+    return {
+      label: 'Tab',
+    };
+  case GKbdKeyName.Space:
+    return {
+      label: '␣',
+      tooltipContent: 'Space',
+    };
 
-      // Modifier keys
-    case GKbdKeyName.Control:
-      return {
-        label: '⌃',
-        tooltipContent: 'Control',
+  // Modifier keys
+  case GKbdKeyName.Control:
+    return {
+      label: '⌃',
+      tooltipContent: 'Control',
+    };
+  case GKbdKeyName.Alt:
+    return isMac
+      ? {
+        icon: GIconName.Option,
+        tooltipContent: 'Option',
+      }
+      : {
+        label: 'Alt',
       };
-    case GKbdKeyName.Alt:
-      return isMac
-        ? {
-          icon: GIconName.Option,
-          tooltipContent: 'Option',
-        }
-        : {
-          label: 'Alt',
-        };
-    case GKbdKeyName.Shift:
-      return {
-        icon: GIconName.ShiftKey,
-        tooltipContent: 'Shift',
-      };
-    case GKbdKeyName.Meta:
-      return {
-        icon: isMac ? GIconName.Command : GIconName.WindowsLogo,
-        tooltipContent: isMac ? 'Command' : 'Windows',
-      };
-    case GKbdKeyName.Escape:
-      return {
-        label: 'Esc',
-        tooltipContent: 'Escape',
-      };
+  case GKbdKeyName.Shift:
+    return {
+      icon: GIconName.ShiftKey,
+      tooltipContent: 'Shift',
+    };
+  case GKbdKeyName.Meta:
+    return {
+      icon: isMac ? GIconName.Command : GIconName.WindowsLogo,
+      tooltipContent: isMac ? 'Command' : 'Windows',
+    };
+  case GKbdKeyName.Escape:
+    return {
+      label: 'Esc',
+      tooltipContent: 'Escape',
+    };
 
-      // Edit keys
-    case GKbdKeyName.Backspace:
-      return {
-        icon: GIconName.Backspace,
-        tooltipContent: 'Backspace',
-      };
-    case GKbdKeyName.Delete:
-      return {
-        label: 'Del',
-        tooltipContent: 'Delete',
-      };
-    case GKbdKeyName.Insert:
-      return {
-        label: 'Ins',
-        tooltipContent: 'Insert',
-      };
+  // Edit keys
+  case GKbdKeyName.Backspace:
+    return {
+      icon: GIconName.Backspace,
+      tooltipContent: 'Backspace',
+    };
+  case GKbdKeyName.Delete:
+    return {
+      label: 'Del',
+      tooltipContent: 'Delete',
+    };
+  case GKbdKeyName.Insert:
+    return {
+      label: 'Ins',
+      tooltipContent: 'Insert',
+    };
 
-      // Lock keys
-    case GKbdKeyName.CapsLock:
-      return {
-        icon: GIconName.CapsLockKey,
-        tooltipContent: 'Caps Lock',
-      };
-    case GKbdKeyName.NumLock:
-      return {
-        label: 'Num',
-        tooltipContent: 'Num Lock',
-      };
+  // Lock keys
+  case GKbdKeyName.CapsLock:
+    return {
+      icon: GIconName.CapsLockKey,
+      tooltipContent: 'Caps Lock',
+    };
+  case GKbdKeyName.NumLock:
+    return {
+      label: 'Num',
+      tooltipContent: 'Num Lock',
+    };
 
-      // Navigation
-    case GKbdKeyName.End:
-      return {
-        label: 'End',
-      };
-    case GKbdKeyName.Home:
-      return {
-        label: 'Home',
-      };
-    case GKbdKeyName.PageDown:
-      return {
-        label: 'PgDn',
-        tooltipContent: 'Page Down',
-      };
-    case GKbdKeyName.PageUp:
-      return {
-        label: 'PgUp',
-        tooltipContent: 'Page Up',
-      };
+  // Navigation
+  case GKbdKeyName.End:
+    return {
+      label: 'End',
+    };
+  case GKbdKeyName.Home:
+    return {
+      label: 'Home',
+    };
+  case GKbdKeyName.PageDown:
+    return {
+      label: 'PgDn',
+      tooltipContent: 'Page Down',
+    };
+  case GKbdKeyName.PageUp:
+    return {
+      label: 'PgUp',
+      tooltipContent: 'Page Up',
+    };
 
-      // Function keys
-    case GKbdKeyName.F1:
-    case GKbdKeyName.F2:
-    case GKbdKeyName.F3:
-    case GKbdKeyName.F4:
-    case GKbdKeyName.F5:
-    case GKbdKeyName.F6:
-    case GKbdKeyName.F7:
-    case GKbdKeyName.F8:
-    case GKbdKeyName.F9:
-    case GKbdKeyName.F10:
-    case GKbdKeyName.F11:
-    case GKbdKeyName.F12:
-      return {
-        label: name,
-      };
+  // Function keys
+  case GKbdKeyName.F1:
+  case GKbdKeyName.F2:
+  case GKbdKeyName.F3:
+  case GKbdKeyName.F4:
+  case GKbdKeyName.F5:
+  case GKbdKeyName.F6:
+  case GKbdKeyName.F7:
+  case GKbdKeyName.F8:
+  case GKbdKeyName.F9:
+  case GKbdKeyName.F10:
+  case GKbdKeyName.F11:
+  case GKbdKeyName.F12:
+    return {
+      label: name,
+    };
 
-      // Everything else (letters, digits, punctuation) are displayed as-is
-    default:
-      return {
-        label: name,
-      };
+  // Everything else (letters, digits, punctuation) are displayed as-is
+  default:
+    return {
+      label: name,
+    };
   }
 });
 </script>

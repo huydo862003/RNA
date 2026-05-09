@@ -6,7 +6,7 @@
  * @tokens Sizing
  * @presenter Spacing
  */
-@theme {
+@theme static {
   /* Generic sizing scale on 4px grid */
   --size-1: 12px;
   --size-2: 16px;

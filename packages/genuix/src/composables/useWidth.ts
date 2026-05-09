@@ -19,6 +19,7 @@ export function useWidth (elementRef: Ref<HTMLElement | null | undefined>) {
 
     if (!element) {
       width.value = undefined;
+
       return;
     }
 

@@ -2,8 +2,12 @@
   <li
     v-if="!isInEllipsis"
     class="breadcrumb-item"
-    :class="{ 'is-last': isLast }"
-    :style="{ order: order * 2 }"
+    :class="{
+      'is-last': isLast,
+    }"
+    :style="{
+      order: order * 2,
+    }"
   >
     <span
       v-if="order > 0"
@@ -46,7 +50,10 @@ defineOptions({
   inheritAttrs: false,
 });
 
-defineProps<{
+const {
+  as = undefined,
+} = defineProps<{
+  /** Element or component to render as */
   as?: Component | string;
 }>();
 

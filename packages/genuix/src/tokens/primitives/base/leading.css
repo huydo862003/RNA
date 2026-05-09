@@ -6,7 +6,7 @@
  * @tokens Line heights
  * @presenter LineHeight
  */
-@theme {
+@theme static {
   /* Fixed values, scaled for 14px mono base */
   --leading-1: 16px;
   --leading-2: 20px;
@@ -15,5 +15,6 @@
   --leading-5: 28px;
   --leading-6: 32px;
   --leading-7: 36px;
+  --leading-8: 44px;
 }
 /** @tokens-end */

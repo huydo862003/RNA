@@ -1,5 +1,16 @@
 # genuix
 
+## 0.14.0
+
+### Minor Changes
+
+- Fix inverted color token issues not being applied
+- ae47b51: Add text size tokens 4xl through 9xl with corresponding line-height tokens; fix duplicate text-3xl token; text-5xl and above use line-height 1 for display use
+
+### Patch Changes
+
+- @hdnax/stdx@0.3.4
+
 ## 0.13.3
 
 ### Patch Changes

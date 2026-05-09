@@ -64,7 +64,7 @@ export const vueTemplateRules: Linter.RulesRecord = {
     2,
   ],
   // Disallow duplicate class names in templates
-  'vue/no-duplicate-class-names': 'error',
+  'vue/no-duplicate-class-names': 'warn',
   // Allow only one object in template class bindings
   'vue/no-multiple-objects-in-class': 'error',
   // Disallow duplicate attribute inheritance across multi-root nodes

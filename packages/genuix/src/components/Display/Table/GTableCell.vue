@@ -25,6 +25,7 @@ defineOptions({
 const {
   header = false,
 } = defineProps<{
+  /** Whether this cell renders as a header cell */
   header?: boolean;
 }>();
 </script>
@@ -40,7 +41,6 @@ th {
   color: var(--gui-neutral-fg-muted);
   padding-bottom: var(--spacing-sm);
   padding-right: var(--spacing-md);
-  border-bottom: 1px solid var(--gui-neutral-border);
 }
 
 td {

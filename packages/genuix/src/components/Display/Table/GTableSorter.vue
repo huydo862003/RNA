@@ -1,20 +1,23 @@
 <template>
   <span
     class="table-sort-indicator"
-    @click.stop="onSort ? onSort(colKey) : context.handleSort(colKey)"
+    @click.stop="handleSortClick"
   >
     <GIcon
       v-if="direction === GSortDirection.Asc"
+      key="icon-1"
       :name="GIconName.ArrowUp"
       :size="10"
     />
     <GIcon
       v-else-if="direction === GSortDirection.Desc"
+      key="icon-2"
       :name="GIconName.ArrowDown"
       :size="10"
     />
     <GIcon
       v-else
+      key="icon-3"
       :name="GIconName.ArrowUpDown"
       :size="10"
       class="table-sort-indicator--inactive"
@@ -44,14 +47,25 @@ const {
   colKey,
   onSort = undefined,
 } = defineProps<{
+  /** Column key this sorter controls */
   colKey: string;
+  /** Callback invoked when sort direction changes */
   onSort?: (key: string) => void;
 }>();
 
 const context = inject(TABLE_KEY)!;
 
+function handleSortClick () {
+  if (onSort) {
+    onSort(colKey);
+  } else {
+    context.handleSort(colKey);
+  }
+}
+
 const direction = computed(() => {
   if (context.sortKey.value !== colKey) return GSortDirection.None;
+
   return context.sortAsc.value ? GSortDirection.Asc : GSortDirection.Desc;
 });
 </script>
@@ -67,7 +81,7 @@ const direction = computed(() => {
 }
 
 .table-sort-indicator--inactive {
-  opacity: 0.3;
+  opacity: 0.8;
 }
 }
 </style>

@@ -2,10 +2,12 @@
   <label
     v-bind="$attrs"
     :for="id"
+    class="radio"
     :class="[
-      'radio',
       `radio-${size}`,
-      { 'radio--disabled': disabled },
+      {
+        'radio--disabled': disabled,
+      },
     ]"
     :style="{
       '--_checked-border': tokens.bg,
@@ -21,7 +23,7 @@
       :disabled="disabled"
       :name="name"
       :value="value"
-      @change="selected = value"
+      @change="selectValue"
     >
     <span class="radio-circle">
       <span
@@ -74,16 +76,27 @@ const {
   value,
   name = undefined,
 } = defineProps<{
+  /** HTML id attribute */
   id?: string;
+  /** Size variant */
   size?: GRadioSize;
+  /** Color role */
   semantic?: GSemantic;
+  /** Disable the component */
   disabled?: boolean;
+  /** Display label */
   label?: string;
+  /** Value emitted when this radio is selected */
   value: string;
+  /** Input name attribute */
   name?: string;
 }>();
 
 const tokens = computed(() => prominenceTokens(GProminence.Primary, semantic));
+
+function selectValue () {
+  selected.value = value;
+}
 
 const inputRef = useTemplateRef('inputRef');
 

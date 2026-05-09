@@ -7,7 +7,14 @@
     <div class="table-scroll">
       <table
         class="table"
-        :class="{ 'table--fixed-rows': fixedRows, 'table--bordered': bordered }"
+        :class="{
+          'table--bordered': !noBorder,
+        }"
+        :style="rowHeight
+          ? {
+            '--table-row-height': rowHeight,
+          }
+          : undefined"
       >
         <slot />
       </table>
@@ -50,12 +57,15 @@ const page = defineModel<number>('page', {
 
 const {
   pageSize = 10,
-  fixedRows = true,
-  bordered = true,
+  rowHeight = 'var(--spacing-3xl)',
+  noBorder = false,
 } = defineProps<{
+  /** Number of rows per page */
   pageSize?: number;
-  fixedRows?: boolean;
-  bordered?: boolean;
+  /** CSS height for each row */
+  rowHeight?: string | null;
+  /** Hide borders between cells */
+  noBorder?: boolean;
 }>();
 
 const filter = ref('');
@@ -65,24 +75,6 @@ const rowKeyMap = new WeakMap<Record<string, unknown>, number>();
 
 let rowKeyCounter = 0;
 const registeredRows = ref<Map<number, Record<string, unknown>>>(new Map());
-
-function registerRow (rowData: Record<string, unknown>) {
-  if (!rowKeyMap.has(rowData)) {
-    rowKeyMap.set(rowData, rowKeyCounter++);
-  }
-  const rowKey = rowKeyMap.get(rowData)!;
-  registeredRows.value.set(rowKey, rowData);
-  registeredRows.value = new Map(registeredRows.value);
-  return rowKey;
-}
-
-function unregisterRow (rowData: Record<string, unknown>) {
-  const rowKey = rowKeyMap.get(rowData);
-  if (rowKey !== undefined) {
-    registeredRows.value.delete(rowKey);
-    registeredRows.value = new Map(registeredRows.value);
-  }
-}
 
 function handleSort (key: string) {
   if (sortKey.value !== key) {
@@ -95,6 +87,18 @@ function handleSort (key: string) {
   }
 }
 
+function registerRow (rowData: Record<string, unknown>) {
+  if (!rowKeyMap.has(rowData)) {
+    rowKeyMap.set(rowData, rowKeyCounter++);
+  }
+  const rowKey = rowKeyMap.get(rowData)!;
+
+  registeredRows.value.set(rowKey, rowData);
+  registeredRows.value = new Map(registeredRows.value);
+
+  return rowKey;
+}
+
 function setFilter (value: string) {
   filter.value = value;
 }
@@ -103,8 +107,18 @@ function setPage (n: number) {
   page.value = n;
 }
 
+function unregisterRow (rowData: Record<string, unknown>) {
+  const rowKey = rowKeyMap.get(rowData);
+
+  if (rowKey !== undefined) {
+    registeredRows.value.delete(rowKey);
+    registeredRows.value = new Map(registeredRows.value);
+  }
+}
+
 const filteredRows = computed(() => {
   const filterText = filter.value.toLowerCase();
+
   return [...registeredRows.value.entries()].filter(([
     , data,
   ]) =>
@@ -114,7 +128,9 @@ const filteredRows = computed(() => {
 
 const sortedRows = computed(() => {
   const key = sortKey.value;
+
   if (!key) return filteredRows.value;
+
   return [...filteredRows.value].sort(([
     , rowA,
   ], [
@@ -127,6 +143,7 @@ const sortedRows = computed(() => {
     const cmp = !Number.isNaN(numA) && !Number.isNaN(numB)
       ? numA - numB
       : String(valueA).localeCompare(String(valueB));
+
     return sortAsc.value ? cmp : -cmp;
   });
 });
@@ -137,6 +154,7 @@ const itemsPerPage = computed(() => {
 
 const paginatedRows = computed(() => {
   const start = (page.value - 1) * itemsPerPage.value;
+
   return sortedRows.value.slice(start, start + itemsPerPage.value);
 });
 
@@ -144,10 +162,15 @@ const paginatedRowKeys = computed(() => paginatedRows.value.map(([key]) => key))
 
 const maxPages = computed(() => {
   const size = itemsPerPage.value;
+
   return 0 < size ? Math.ceil(sortedRows.value.length / size) : 1;
 });
 
 const isVisible = (rowKey: number) => paginatedRowKeys.value.includes(rowKey);
+const getOrder = (rowKey: number) => paginatedRowKeys.value.indexOf(rowKey);
+const paginatedData = computed(() => paginatedRows.value.map(([
+  , data,
+]) => data));
 
 watch(filter, () => {
   page.value = 1;
@@ -166,6 +189,8 @@ provide(TABLE_KEY, {
   registerRow,
   unregisterRow,
   isVisible,
+  getOrder,
+  paginatedData,
 });
 </script>
 
@@ -188,6 +213,10 @@ provide(TABLE_KEY, {
   border-collapse: collapse;
 }
 
+.table--bordered :deep(thead tr) {
+  border-bottom: 1px solid var(--gui-neutral-border);
+}
+
 .table--bordered :deep(tbody tr) {
   border-bottom: 1px solid var(--gui-neutral-border-subtle);
 }
@@ -196,8 +225,9 @@ provide(TABLE_KEY, {
   border-bottom: none;
 }
 
-.table--fixed-rows :deep(tbody td) {
-  height: var(--spacing-3xl);
+.table :deep(th),
+.table :deep(td) {
+  height: var(--table-row-height, auto);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

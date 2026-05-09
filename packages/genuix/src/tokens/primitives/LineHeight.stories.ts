@@ -21,23 +21,27 @@ const heights = [
   },
   {
     token: '--leading-3',
-    label: 'leading-3 (24px)',
+    label: 'leading-3 (22px)',
   },
   {
     token: '--leading-4',
-    label: 'leading-4 (28px)',
+    label: 'leading-4 (25px)',
   },
   {
     token: '--leading-5',
-    label: 'leading-5 (32px)',
+    label: 'leading-5 (28px)',
   },
   {
     token: '--leading-6',
-    label: 'leading-6 (36px)',
+    label: 'leading-6 (32px)',
   },
   {
     token: '--leading-7',
-    label: 'leading-7 (40px)',
+    label: 'leading-7 (36px)',
+  },
+  {
+    token: '--leading-8',
+    label: 'leading-8 (44px)',
   },
 ];
 

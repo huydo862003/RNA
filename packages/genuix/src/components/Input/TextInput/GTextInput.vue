@@ -1,13 +1,10 @@
 <template>
   <input
-    :id="id"
     ref="inputRef"
     v-bind="$attrs"
     v-model="text"
-    :class="[
-      'text-input',
-      `text-input-${size}`,
-    ]"
+    class="text-input"
+    :class="[`text-input-${size}`]"
     :style="{
       '--_bg': tokens.bg,
       '--_bg-hover': tokens.bgHover,
@@ -60,7 +57,6 @@ const text = defineModel<string>({
 });
 
 const {
-  id = undefined,
   name = undefined,
   size = GTextInputSize.Md,
   state = GTextInputState.Default,
@@ -72,16 +68,25 @@ const {
   minLength = undefined,
   maxLength = undefined,
 } = defineProps<{
-  id?: string;
+  /** The name of the input that will be sent in the HTML form */
   name?: string;
+  /** The size of the text input: xs, sm, md, lg, xl */
   size?: GTextInputSize;
+  /** The state of the text input: error, warning, success, default */
   state?: GTextInputState;
+  /** Whether the input is disabled: Input is not editable and not included in the HTML form */
   disabled?: boolean;
+  /** Whether the input is readonly: Input is not editable but still included in the HTML form */
   readonly?: boolean;
+  /** Placeholder text of the input */
   placeholder?: string;
+  /** Whether the input is required */
   required?: boolean;
+  /** Predefined input pattern to use */
   pattern?: TextInputPattern;
+  /** The minimum length of input */
   minLength?: number;
+  /** The maximum length of input */
   maxLength?: number;
 }>();
 
@@ -93,17 +98,18 @@ const effectiveState = computed(() => {
   if (!text.value) return state;
   if (minLength !== undefined && text.value.length < minLength) return GTextInputState.Error;
   if (pattern && !TEXT_INPUT_PATTERNS[pattern].test(text.value)) return GTextInputState.Error;
+
   return state;
 });
 
 const inputRef = useTemplateRef('inputRef');
 
-function focus () {
-  inputRef.value?.focus();
-}
-
 function blur () {
   inputRef.value?.blur();
+}
+
+function focus () {
+  inputRef.value?.focus();
 }
 
 function select () {

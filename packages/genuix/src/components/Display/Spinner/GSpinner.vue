@@ -6,7 +6,11 @@
   <svg
     v-bind="$attrs"
     :id="id"
-    :class="['spinner', `spinner-${size}`, `spinner-${speed}`]"
+    class="spinner"
+    :class="[
+      `spinner-${size}`,
+      `spinner-${speed}`,
+    ]"
     viewBox="0 0 24 24"
     fill="none"
     role="status"
@@ -52,9 +56,13 @@ const {
   speed = GSpinnerSpeed.Normal,
   label = 'Loading',
 } = defineProps<{
+  /** HTML id attribute */
   id?: string;
+  /** Size variant */
   size?: GSpinnerSize;
+  /** Animation speed */
   speed?: GSpinnerSpeed;
+  /** Accessible label for screen readers */
   label?: string;
 }>();
 </script>

@@ -32,21 +32,23 @@ defineOptions({
   inheritAttrs: false,
 });
 
-const context = inject(TAB_KEY)!;
-
 const {
   id = undefined,
   name,
   label = undefined,
   icon = undefined,
 } = defineProps<{
+  /** HTML id attribute */
   id?: string;
+  /** Unique name used to identify and activate this panel */
   name: string;
   /** Display label in tab bar, defaults to name */
   label?: string;
   /** Icon shown before label in tab bar */
   icon?: GIconName;
 }>();
+
+const context = inject(TAB_KEY)!;
 
 const isActive = computed(() => context.activeTab.value === name);
 

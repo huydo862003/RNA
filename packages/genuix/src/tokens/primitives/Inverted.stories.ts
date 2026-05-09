@@ -62,6 +62,24 @@ const tokenGroups = [
   },
 ];
 
+function Panel (label: string, inverted: boolean) {
+  return h('div', {
+    class: inverted ? 'inverted' : undefined,
+    style: `
+      padding: 24px;
+      border-radius: 8px;
+      background: var(--gui-neutral-bg);
+      border: 1px solid var(--gui-neutral-border-subtle);
+      color: var(--gui-neutral-fg);
+    `,
+  }, [
+    h('h2', {
+      style: 'font-size: 16px; font-weight: 700; margin-bottom: 16px;',
+    }, label),
+    ...roles.map(SwatchRow),
+  ]);
+}
+
 function SwatchRow (role: string) {
   return h('div', {
     style: 'margin-bottom: 24px;',
@@ -80,6 +98,7 @@ function SwatchRow (role: string) {
           const token = `--gui-${role}-${group.suffix}${step}`;
           const isBorder = group.prop === 'border-color';
           const isFg = group.prop === 'color';
+
           return h('div', {
             style: `
               width: 48px; height: 32px;
@@ -92,24 +111,6 @@ function SwatchRow (role: string) {
           }, isFg ? 'Aa' : undefined);
         }),
       ])),
-  ]);
-}
-
-function Panel (label: string, inverted: boolean) {
-  return h('div', {
-    class: inverted ? 'inverted' : undefined,
-    style: `
-      padding: 24px;
-      border-radius: 8px;
-      background: var(--gui-neutral-bg);
-      border: 1px solid var(--gui-neutral-border-subtle);
-      color: var(--gui-neutral-fg);
-    `,
-  }, [
-    h('h2', {
-      style: 'font-size: 16px; font-weight: 700; margin-bottom: 16px;',
-    }, label),
-    ...roles.map(SwatchRow),
   ]);
 }
 

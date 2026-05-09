@@ -20,6 +20,7 @@ defineOptions({
 const {
   id = undefined,
 } = defineProps<{
+  /** HTML id attribute */
   id?: string;
 }>();
 </script>

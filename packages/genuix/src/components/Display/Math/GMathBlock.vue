@@ -2,7 +2,7 @@
   <div
     v-bind="$attrs"
     :id="id"
-    :class="'math-block'"
+    class="math-block"
     role="math"
     :aria-label="tex"
     :style="{
@@ -42,6 +42,7 @@ const {
   prominence = GProminence.Tertiary,
   semantic = GSemantic.Neutral,
 } = defineProps<{
+  /** HTML id attribute */
   id?: string;
   /** LaTeX expression to render as block */
   tex: string;
@@ -60,6 +61,7 @@ const rendered = computed(() => {
       throwOnError: false,
       trust: false,
     });
+
     return DOMPurify.sanitize(html);
   } catch {
     return DOMPurify.sanitize(tex);

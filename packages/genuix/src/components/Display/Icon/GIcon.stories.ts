@@ -107,6 +107,7 @@ export const CustomIconStory: Story = {
           r: 10,
         }),
       ]);
+
       return {
         customSvg,
       };

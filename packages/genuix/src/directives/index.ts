@@ -5,3 +5,6 @@
 export {
   vDismiss,
 } from './vDismiss';
+export {
+  vInverted,
+} from './vInverted';

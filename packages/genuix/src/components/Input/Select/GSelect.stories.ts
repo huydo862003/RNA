@@ -72,6 +72,7 @@ export const BasicSelectStory: Story = {
     },
     setup () {
       const value = ref(undefined);
+
       return {
         value,
         GPillColor,
@@ -113,6 +114,7 @@ export const SizesSelectStory: Story = {
     },
     setup () {
       const value = ref('apple');
+
       return {
         value,
         GSelectSize,
@@ -165,6 +167,7 @@ export const StatesSelectStory: Story = {
     },
     setup () {
       const value = ref(undefined);
+
       return {
         value,
         GSelectState,
@@ -219,6 +222,7 @@ export const DisabledSelectStory: Story = {
     },
     setup () {
       const value = ref('banana');
+
       return {
         value,
       };
@@ -255,6 +259,7 @@ export const LongOptionSelectStory: Story = {
     },
     setup () {
       const value = ref(undefined);
+
       return {
         value,
       };
@@ -296,6 +301,7 @@ export const FixedWidthSelectStory: Story = {
     setup () {
       const narrow = ref('long');
       const wide = ref(undefined);
+
       return {
         narrow,
         wide,
@@ -353,6 +359,7 @@ export const GroupedSelectStory: Story = {
     },
     setup () {
       const value = ref('done');
+
       return {
         value,
       };
@@ -400,6 +407,7 @@ export const BoxVariantStory: Story = {
     },
     setup () {
       const value = ref(undefined);
+
       return {
         value,
         GSelectVariant,
@@ -452,6 +460,7 @@ export const BoxVsPillStory: Story = {
     setup () {
       const pill = ref('postgres');
       const box = ref('postgres');
+
       return {
         pill,
         box,
@@ -497,6 +506,7 @@ export const AutoCloseStory: Story = {
     setup () {
       const noAutoClose = ref('postgres');
       const autoClose = ref('postgres');
+
       return {
         noAutoClose,
         autoClose,

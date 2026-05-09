@@ -35,6 +35,18 @@ interface DismissState {
 
 const states = new WeakMap<HTMLElement, DismissState>();
 
+function cleanup (element: HTMLElement) {
+  const state = states.get(element);
+
+  if (!state) return;
+  for (const {
+    target, event, listener,
+  } of state.listeners) {
+    target.removeEventListener(event, listener);
+  }
+  states.delete(element);
+}
+
 function isEventTriggeredOutside (element: HTMLElement, event: Event): boolean {
   return !event.composedPath().includes(element);
 }
@@ -58,6 +70,7 @@ function setup (element: HTMLElement, handler: (event: Event) => void) {
     const listener = (event: Event) => {
       if (isEventTriggeredOutside(element, event)) dismiss(event);
     };
+
     document.addEventListener('pointerdown', listener, true); // Triggered during the "capturing phase", so the listener is triggered first before the event ever reaches the element, allowing us to peak into the path before the event ever triggers anything else. This is needed because we don't want the listener to trigger on the bubbled event
     listeners.push({
       target: document,
@@ -77,6 +90,7 @@ function setup (element: HTMLElement, handler: (event: Event) => void) {
         }
       });
     };
+
     element.addEventListener('focusout', listener);
     listeners.push({
       target: element,
@@ -94,6 +108,7 @@ function setup (element: HTMLElement, handler: (event: Event) => void) {
         dismiss(event);
       }
     };
+
     document.addEventListener('keydown', listener, true); // Similar
     listeners.push({
       target: document,
@@ -105,17 +120,6 @@ function setup (element: HTMLElement, handler: (event: Event) => void) {
   states.set(element, {
     listeners,
   });
-}
-
-function cleanup (element: HTMLElement) {
-  const state = states.get(element);
-  if (!state) return;
-  for (const {
-    target, event, listener,
-  } of state.listeners) {
-    target.removeEventListener(event, listener);
-  }
-  states.delete(element);
 }
 
 export const vDismiss: ObjectDirective<HTMLElement, (event: Event) => void> = {

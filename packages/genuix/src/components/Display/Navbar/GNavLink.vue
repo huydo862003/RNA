@@ -2,7 +2,8 @@
   <component
     :is="as"
     v-bind="$attrs"
-    :class="['nav-link', active && 'nav-link--active']"
+    class="nav-link"
+    :class="[active && 'nav-link--active']"
     role="menuitem"
   >
     <GIcon
@@ -37,9 +38,13 @@ const {
   icon = undefined,
   active = false,
 } = defineProps<{
+  /** Element or component to render as */
   as?: string | Component;
+  /** Display label */
   label?: string;
+  /** Icon shown before label */
   icon?: GIconName;
+  /** Whether this link is the active route */
   active?: boolean;
 }>();
 </script>

@@ -23,7 +23,9 @@ const {
   value,
   label = '',
 } = defineProps<{
+  /** Value used for filtering and identification */
   value: string;
+  /** Display label for this item */
   label?: string;
 }>();
 

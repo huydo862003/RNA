@@ -5,41 +5,51 @@
     :id="id"
     :href="href"
     target="_blank"
-    rel="noopener"
+    rel="noopener noreferrer"
+    class="badge"
     :class="[
-      'badge',
       `badge-${badgeStyle}`,
       `badge-${size}`,
     ]"
   >
     <span
       class="badge-label"
-      :style="{ background: labelBg }"
+      :style="{
+        background: labelBg,
+      }"
     >{{ label }}</span>
     <span
       v-if="value"
       class="badge-value"
-      :style="{ background: valueBg, color: valueFg }"
+      :style="{
+        background: valueBg,
+        color: valueFg,
+      }"
     >{{ value }}</span>
   </a>
   <span
     v-else
     v-bind="$attrs"
     :id="id"
+    class="badge"
     :class="[
-      'badge',
       `badge-${badgeStyle}`,
       `badge-${size}`,
     ]"
   >
     <span
       class="badge-label"
-      :style="{ background: labelBg }"
+      :style="{
+        background: labelBg,
+      }"
     >{{ label }}</span>
     <span
       v-if="value"
       class="badge-value"
-      :style="{ background: valueBg, color: valueFg }"
+      :style="{
+        background: valueBg,
+        color: valueFg,
+      }"
     >{{ value }}</span>
   </span>
 </template>
@@ -80,8 +90,11 @@ const {
   color = GPillColor.Blue,
   href = undefined,
 } = defineProps<{
+  /** HTML id attribute */
   id?: string;
+  /** Size variant */
   size?: GBadgeSize;
+  /** Visual style variant */
   badgeStyle?: GBadgeStyle;
   /** Left side text (like "license", "version", "build") */
   label: string;

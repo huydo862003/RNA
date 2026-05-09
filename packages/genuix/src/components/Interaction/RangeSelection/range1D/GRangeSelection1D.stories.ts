@@ -93,6 +93,7 @@ export const FileExplorerRangeSelection1DStory: Story = {
           modified: 'Apr 16, 2026',
         },
       ];
+
       return {
         rangeRef,
         selection,
@@ -195,6 +196,7 @@ export const DayPickerRangeSelection1DStory: Story = {
         'Sat',
         'Sun',
       ];
+
       return {
         rangeRef,
         selection,

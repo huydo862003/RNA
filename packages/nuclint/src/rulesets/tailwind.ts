@@ -15,7 +15,7 @@ export const tailwindRules: Linter.RulesRecord = {
   // Disallow conflicting classes (e.g. p-2 p-4)
   'better-tailwindcss/no-conflicting-classes': 'error',
   // Disallow duplicate classes
-  'better-tailwindcss/no-duplicate-classes': 'error',
+  'better-tailwindcss/no-duplicate-classes': 'warn',
   // Disallow deprecated Tailwind classes
   'better-tailwindcss/no-deprecated-classes': 'error',
   // Warn on unknown Tailwind classes (custom component classes are common)

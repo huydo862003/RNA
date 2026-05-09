@@ -41,12 +41,15 @@ export const BasicDismissStory: Story = {
     },
     setup () {
       const active = ref(false);
+
       function activate () {
         active.value = true;
       }
+
       function dismiss () {
         active.value = false;
       }
+
       return {
         active,
         activate,
@@ -95,12 +98,15 @@ export const IgnoreDismissStory: Story = {
     setup () {
       const active = ref(false);
       const ignoredRef = ref(null);
+
       function activate () {
         active.value = true;
       }
+
       function dismiss () {
         active.value = false;
       }
+
       return {
         active,
         ignoredRef,

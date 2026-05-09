@@ -12,6 +12,8 @@ import {
   PhArrowRight,
   PhArrowSquareOut,
   PhArrowUp,
+  PhArrowUpRight,
+  PhArrowDownLeft,
   PhArrowsIn,
   PhArrowsLeftRight,
   PhArrowsOut,
@@ -145,6 +147,8 @@ export enum GIconName {
   Crosshair = 'crosshair',
   Compass = 'compass',
   ArrowClockwise = 'arrow-clockwise',
+  ArrowUpRight = 'arrow-up-right',
+  ArrowDownLeft = 'arrow-down-left',
   SidebarSimple = 'sidebar-simple',
 
   // Actions
@@ -289,6 +293,8 @@ export const iconMap: Record<GIconName, Component> = {
   [GIconName.Crosshair]: PhCrosshair,
   [GIconName.Compass]: PhCompass,
   [GIconName.ArrowClockwise]: PhArrowClockwise,
+  [GIconName.ArrowUpRight]: PhArrowUpRight,
+  [GIconName.ArrowDownLeft]: PhArrowDownLeft,
   [GIconName.SidebarSimple]: PhSidebarSimple,
 
   // Actions

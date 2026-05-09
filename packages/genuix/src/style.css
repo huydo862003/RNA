@@ -69,3 +69,23 @@ th {
   color: var(--gui-neutral-bg);
   border: none;
 }
+
+/* GSelectGroup: teleported option group styles */
+@layer components {
+.select-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: var(--spacing-sm);
+}
+
+.select-group + .select-group {
+  border-top: 1px solid var(--gui-neutral-border-subtle);
+  border-style: solid;
+}
+
+.select-group-label {
+  font-size: var(--text-xs);
+  color: var(--gui-neutral-fg-muted);
+  padding: var(--spacing-sm) var(--spacing-sm) var(--spacing-xs) var(--spacing-sm);
+}
+}

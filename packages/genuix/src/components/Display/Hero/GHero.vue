@@ -18,9 +18,6 @@
   </section>
 </template>
 
-<script setup lang="ts">
-</script>
-
 <style scoped>
 @reference '@/style.css';
 

@@ -200,6 +200,7 @@ export const ProgrammaticFlipStory: Story = {
     },
     setup () {
       const flippable = ref(null);
+
       return {
         args: arguments_,
         flippable,

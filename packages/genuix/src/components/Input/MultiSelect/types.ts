@@ -30,12 +30,6 @@ export enum GMultiSelectVariant {
   Box = 'box',
 }
 
-export interface MultiSelectOptionRegistration {
-  label: string;
-  color?: GPillColor;
-  visible: boolean;
-}
-
 export interface MultiSelectContext {
   size: GSize;
   variant: GMultiSelectVariant;
@@ -47,6 +41,12 @@ export interface MultiSelectContext {
   register (value: string, options: MultiSelectOptionRegistration): void;
   update (value: string, options: MultiSelectOptionRegistration): void;
   unregister (value: string): void;
+}
+
+export interface MultiSelectOptionRegistration {
+  label: string;
+  color?: GPillColor;
+  visible: boolean;
 }
 
 export const MULTI_SELECT_KEY: InjectionKey<MultiSelectContext> = Symbol('GMultiSelect');

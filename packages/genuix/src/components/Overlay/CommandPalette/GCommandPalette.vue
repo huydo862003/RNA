@@ -36,10 +36,15 @@
           <button
             v-for="item in group.items"
             :key="item.id"
-            :class="['command-palette-item', { 'command-palette-item--focused': focusedId === item.id }]"
             type="button"
-            @click="selectItem(item)"
-            @mouseenter="focusedId = item.id"
+            class="command-palette-item"
+            :class="[
+              {
+                'command-palette-item--focused': focusedId === item.id,
+              },
+            ]"
+            @click="() => selectItem(item)"
+            @mouseenter="() => focusedId = item.id"
           >
             <GIcon
               v-if="item.icon"
@@ -91,6 +96,7 @@ import {
   computed,
   nextTick,
   ref,
+  useTemplateRef,
   watch,
 } from 'vue';
 import {
@@ -123,29 +129,31 @@ defineOptions({
   inheritAttrs: false,
 });
 
-const modal = useModal();
-
-const isOpen = computed(() => modal.isOpen(COMMAND_PALETTE_KEY).value);
+const {
+  items,
+  placeholder = 'Search commands...',
+} = defineProps<{
+  /** The items in the command pallete **/
+  items: CommandItem[];
+  /** The placeholder text in the search box of the command pallete */
+  placeholder?: string;
+}>();
 
 const emit = defineEmits<{
   select: [item: CommandItem];
 }>();
 
-const {
-  items,
-  placeholder = 'Search commands...',
-} = defineProps<{
-  items: CommandItem[];
-  placeholder?: string;
-}>();
+const modal = useModal();
 
-const modalRef = ref<InstanceType<typeof GModal> | null>(null);
-const dialogElement = computed(() => modalRef.value?.dialogRef ?? null);
-const searchRef = ref<HTMLInputElement | null>(null);
+const isOpen = computed(() => modal.isOpen(COMMAND_PALETTE_KEY).value);
+
+const modalRef = useTemplateRef<InstanceType<typeof GModal> | null>('modalRef');
+const searchRef = useTemplateRef<HTMLInputElement | null>('searchRef');
 const query = ref('');
 const focusedId = ref<string | undefined>(undefined);
 
-const localShortcuts = useLocalKbdShortcuts(dialogElement);
+const localShortcuts = useLocalKbdShortcuts(modalRef);
+
 for (const item of items) {
   if (item.shortcut) {
     localShortcuts.register(item.shortcut, () => selectItem(item));
@@ -155,7 +163,9 @@ for (const item of items) {
 /* Filtering */
 const filteredItems = computed(() => {
   const searchTerm = query.value.toLowerCase();
+
   if (!searchTerm) return items;
+
   return items.filter((item) =>
     item.label.toLowerCase().includes(searchTerm)
     || item.group?.toLowerCase().includes(searchTerm));
@@ -164,11 +174,14 @@ const filteredItems = computed(() => {
 /* Group items by group name */
 const groupedItems = computed(() => {
   const groups = new Map<string, CommandItem[]>();
+
   for (const item of filteredItems.value) {
     const key = item.group ?? '';
+
     if (!groups.has(key)) groups.set(key, []);
     groups.get(key)!.push(item);
   }
+
   return [...groups.entries()].map(([
     label,
     groupItems,
@@ -194,14 +207,6 @@ function close () {
   modal.pop(COMMAND_PALETTE_KEY);
 }
 
-function selectItem (item: CommandItem) {
-  close();
-  if (item.action) {
-    item.action();
-  }
-  emit('select', item);
-}
-
 /* Keyboard navigation */
 function handleKeydown (event: KeyboardEvent) {
   const list = flatItems.value;
@@ -210,7 +215,9 @@ function handleKeydown (event: KeyboardEvent) {
     event.preventDefault();
     if (!list.length) return;
     const index = focusedId.value ? list.findIndex((index_) => index_.id === focusedId.value) : -1;
+
     focusedId.value = list[list.length - 1 <= index ? 0 : index + 1].id;
+
     return;
   }
 
@@ -218,16 +225,28 @@ function handleKeydown (event: KeyboardEvent) {
     event.preventDefault();
     if (!list.length) return;
     const index = focusedId.value ? list.findIndex((index_) => index_.id === focusedId.value) : -1;
+
     focusedId.value = list[index <= 0 ? list.length - 1 : index - 1].id;
+
     return;
   }
 
   if (event.key === GKbdKeyName.Enter) {
     event.preventDefault();
     const item = list.find((index) => index.id === focusedId.value);
+
     if (item) selectItem(item);
+
     return;
   }
+}
+
+function selectItem (item: CommandItem) {
+  close();
+  if (item.action) {
+    item.action();
+  }
+  emit('select', item);
 }
 
 // Reset focus when query changes

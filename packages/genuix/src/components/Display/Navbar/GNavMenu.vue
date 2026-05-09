@@ -8,8 +8,8 @@
     :distance="isNested ? 8 : 4"
   >
     <button
-      class="nav-menu-trigger"
       type="button"
+      class="nav-menu-trigger"
       role="menuitem"
       aria-haspopup="true"
     >
@@ -61,7 +61,9 @@ const {
   label,
   icon = undefined,
 } = defineProps<{
+  /** Display label */
   label: string;
+  /** Icon shown before label */
   icon?: GIconName;
 }>();
 

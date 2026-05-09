@@ -48,6 +48,7 @@ const preview: Preview = {
     },
   },
 };
+
 setup((app) => {
   app.directive('tooltip', vTooltip);
   app.directive('close-popper', vClosePopper);

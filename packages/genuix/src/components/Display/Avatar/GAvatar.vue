@@ -7,8 +7,8 @@
     <span
       v-bind="$attrs"
       :id="id"
+      class="avatar"
       :class="[
-        'avatar',
         `avatar-${size}`,
         `avatar-${shape}`,
       ]"
@@ -25,8 +25,8 @@
     v-else
     v-bind="$attrs"
     :id="id"
+    class="avatar"
     :class="[
-      'avatar',
       `avatar-${size}`,
       `avatar-${shape}`,
     ]"
@@ -63,8 +63,11 @@ const {
   shape = GAvatarShape.Circle,
   label = undefined,
 } = defineProps<{
+  /** HTML id attribute */
   id?: string;
+  /** Size variant */
   size?: GAvatarSize;
+  /** Shape of the avatar */
   shape?: GAvatarShape;
   /** Accessible name, also shown as tooltip on hover */
   label?: string;

@@ -2,10 +2,8 @@
   <div
     v-bind="$attrs"
     :id="id"
-    :class="[
-      'number-input',
-      `number-input-${size}`,
-    ]"
+    class="number-input"
+    :class="[`number-input-${size}`]"
     :style="{
       '--_bg': tokens.bg,
       '--_bg-hover': tokens.bgHover,
@@ -13,7 +11,7 @@
       '--_border': tokens.border,
     }"
     :data-state="effectiveState"
-    @click="inputRef?.focus()"
+    @click="focusInput"
   >
     <input
       ref="inputRef"
@@ -32,8 +30,8 @@
       class="number-input-steppers"
     >
       <button
-        class="number-input-stepper"
         type="button"
+        class="number-input-stepper"
         :disabled="disabled || (value !== undefined && max !== undefined && value >= max)"
         tabindex="-1"
         @click="increment"
@@ -44,8 +42,8 @@
         />
       </button>
       <button
-        class="number-input-stepper"
         type="button"
+        class="number-input-stepper"
         :disabled="disabled || (value !== undefined && min !== undefined && value <= min)"
         tabindex="-1"
         @click="decrement"
@@ -86,19 +84,12 @@ import {
   GIconName,
 } from '@/components/Display/Icon/types';
 
-const INTEGER_REGEX = /^-?[0-9]*$/;
-const NUMBER_REGEX = /^-?[0-9]*(\.[0-9]*)?$/;
-// Allows partially typed numbers like "-", "3.", "-." so the user can keep typing
-const PARTIAL_NUMBER_REGEX = /^(-?[0-9]*\.?|-?[0-9]*\.[0-9]*)$/;
-
 defineOptions({
   inheritAttrs: false,
 });
-
 const value = defineModel<number | undefined>({
   default: undefined,
 });
-
 const {
   id = undefined,
   name = undefined,
@@ -113,21 +104,35 @@ const {
   noStepper = false,
   step = 1,
 } = defineProps<{
+  /** HTML id attribute */
   id?: string;
+  /** Input name attribute */
   name?: string;
+  /** Size variant */
   size?: GNumberInputSize;
+  /** Validation state */
   state?: GNumberInputState;
+  /** Disable the component */
   disabled?: boolean;
+  /** Input placeholder text */
   placeholder?: string;
+  /** Mark the input as required */
   required?: boolean;
   /** Only allow integers (no decimal point) */
   integer?: boolean;
   /** Hide stepper buttons */
   noStepper?: boolean;
+  /** Minimum allowed value */
   min?: number;
+  /** Maximum allowed value */
   max?: number;
+  /** Step increment for the stepper */
   step?: number;
 }>();
+const INTEGER_REGEX = /^-?[0-9]*$/;
+const NUMBER_REGEX = /^-?[0-9]*(\.[0-9]*)?$/;
+// Allows partially typed numbers like "-", "3.", "-." so the user can keep typing
+const PARTIAL_NUMBER_REGEX = /^(-?[0-9]*\.?|-?[0-9]*\.[0-9]*)$/;
 
 const tokens = prominenceTokens(GProminence.Ghost, GSemantic.Neutral);
 
@@ -135,15 +140,18 @@ const tokens = prominenceTokens(GProminence.Ghost, GSemantic.Neutral);
 const effectiveState = computed(() => {
   if (value.value === undefined && required) return GNumberInputState.Error;
   const numRegex = integer ? INTEGER_REGEX : NUMBER_REGEX;
+
   if (rawInput.value !== '' && !numRegex.test(rawInput.value)) return GNumberInputState.Error;
   if (value.value === undefined) return state;
   if (max !== undefined && max < value.value) return GNumberInputState.Error;
   if (min !== undefined && value.value < min) return GNumberInputState.Error;
+
   return state;
 });
 
 /* Number input handling */
 const rawInput = ref(''); // Raw input that syncs with the `value` model
+
 // FIXME: this causes a circular watch with rawInput, but it's currently fine as the circle ends because the watched values are set to the same value
 watch(value, (newValue) => {
   // Do not set rawInput.value if it already equals to newValue
@@ -164,10 +172,12 @@ watch(value, (newValue) => {
 watch(rawInput, (newValue) => {
   // We allow partially valid states because the user is typing
   const numRegex = PARTIAL_NUMBER_REGEX;
+
   if (numRegex.test(newValue)) {
     /* Valid/Partially valid state */
     if (integer && newValue.includes('.')) return;
     const num = integer ? parseInt(newValue, 10) : parseFloat(newValue);
+
     if (Number.isNaN(num)) return; // Partial state: Do not set the v-model
     value.value = num;
   }
@@ -178,6 +188,7 @@ const inputSize = computed(() => {
     String(min ?? 0).length,
     String(max ?? 0).length,
   ];
+
   return Math.max(...lengths, 5);
 });
 
@@ -186,20 +197,14 @@ const inputRef = useTemplateRef('inputRef');
 function clamp (n: number): number {
   if (min !== undefined && n < min) return min;
   if (max !== undefined && max < n) return max;
-  return n;
-}
 
-function increment () {
-  if (value.value === undefined) {
-    value.value = min;
-    return;
-  }
-  value.value = clamp(value.value + step);
+  return n;
 }
 
 function decrement () {
   if (value.value === undefined) {
     value.value = max;
+
     return;
   }
   value.value = clamp(value.value - step);
@@ -207,6 +212,19 @@ function decrement () {
 
 function focus () {
   inputRef.value?.focus();
+}
+
+function focusInput () {
+  inputRef.value?.focus();
+}
+
+function increment () {
+  if (value.value === undefined) {
+    value.value = min;
+
+    return;
+  }
+  value.value = clamp(value.value + step);
 }
 
 defineExpose({

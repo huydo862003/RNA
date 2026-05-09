@@ -10,12 +10,15 @@
     :popper-class="popperClass"
     :distance="distance"
     :flip="flip"
-    :delay="{ show: showDelay, hide: hideDelay }"
+    :delay="{
+      show: showDelay,
+      hide: hideDelay,
+    }"
     :container="popperContainer ?? 'body'"
     no-auto-focus
-    @show="isOpen = true; emit('show-start')"
-    @apply-show="emit('show-end')"
-    @hide="isOpen = false; emit('hide')"
+    @show="handleShow"
+    @apply-show="handleApplyShow"
+    @hide="handleHide"
   >
     <div
       ref="triggerRef"
@@ -24,11 +27,14 @@
     </div>
     <template #popper>
       <div
-        :style="{ width: width === 'trigger' && triggerWidth ? `${triggerWidth}px` : undefined }"
+        :style="{
+          width: width === 'trigger' && triggerWidth ? `${triggerWidth}px` : undefined,
+        }"
       >
         <slot
           name="popper"
           :is-open="isOpen"
+          v-bind="$attrs"
         />
       </div>
     </template>
@@ -66,34 +72,28 @@ import {
   useWidth,
 } from '@/composables/useWidth';
 
-type Side = 'top' | 'bottom' | 'left' | 'right';
 type Alignment = 'start' | 'end';
 type Placement = Side | `${Side}-${Alignment}`;
+type Side = 'top' | 'bottom' | 'left' | 'right';
 
 defineOptions({
   inheritAttrs: false,
 });
-
-const popperContainerRef = inject(POPPER_CONTAINER_KEY, null);
-const popperContainer = computed(() => popperContainerRef?.value ?? undefined);
-
-const emit = defineEmits<{
-  (event: 'show-start' | 'show-end' | 'hide'): void;
-}>();
 
 const {
   id = undefined,
   class: _class = '',
   placement = 'bottom',
   distance = 0,
-  shown = undefined,
-  arrow = true,
-  flip = true,
+  shown = false,
+  arrow = false,
+  flip = false,
   triggers = ['click'],
   showDelay = 0,
   hideDelay = 0,
   width = 'auto',
 } = defineProps<{
+  /** The HTML id of the dropdown wrapper */
   id?: string;
   /** CSS classes applied to the popper element */
   class?: string;
@@ -116,6 +116,13 @@ const {
   /** Popper width: 'auto' (content-sized) or 'trigger' (match trigger width) */
   width?: 'auto' | 'trigger';
 }>();
+const emit = defineEmits<{
+  'show-start': [];
+  'show-end': [];
+  'hide': [];
+}>();
+const popperContainerRef = inject(POPPER_CONTAINER_KEY, null);
+const popperContainer = computed(() => popperContainerRef?.value ?? undefined);
 
 const triggerRef = useTemplateRef<HTMLElement>('triggerRef');
 
@@ -140,21 +147,38 @@ const popperRef = useTemplateRef<InstanceType<typeof Dropdown> | null>('popperRe
 // We read the trigger's computed display and replicate that
 watch(popperRef, () => nextTick(() => {
   const wrapper = popperRef.value?.$el;
+
   if (!wrapper) return;
   const trigger = wrapper.firstElementChild;
+
   if (!trigger) return;
   const display = getComputedStyle(trigger).display;
+
   wrapper.style.display = display === 'inline' ? 'inline' : display.startsWith('inline') ? 'inline-block' : 'block';
 }), {
   immediate: true,
 });
 
-function show () {
-  popperRef.value?.show();
+function handleApplyShow () {
+  emit('show-end');
+}
+
+function handleHide () {
+  isOpen.value = false;
+  emit('hide');
+}
+
+function handleShow () {
+  isOpen.value = true;
+  emit('show-start');
 }
 
 function hide () {
   popperRef.value?.hide();
+}
+
+function show () {
+  popperRef.value?.show();
 }
 
 function toggle () {
@@ -173,7 +197,8 @@ defineExpose({
 });
 </script>
 
-<style>
+<!-- eslint-disable vue/enforce-style-attribute -->
+<style lang="scss">
 @reference '@/style.css';
 
 .v-popper__inner {
@@ -186,3 +211,4 @@ defineExpose({
 }
 }
 </style>
+<!-- eslint-enable vue/enforce-style-attribute -->

@@ -1,5 +1,11 @@
 # nuclint
 
+## 0.16.1
+
+### Patch Changes
+
+- ae47b51: Disable nav and num abbreviation expansions in naming rules
+
 ## 0.16.0
 
 ### Minor Changes
@@ -117,7 +123,6 @@
 ### Minor Changes
 
 - Add comprehensive ESLint rules for better code quality and consistency:
-
   - Add TypeScript rules: consistent-type-imports, consistent-type-definitions, no-explicit-any, no-non-null-assertion
   - Add stylistic rules: array-bracket-spacing, brace-style, comma-dangle, comma-spacing, eol-last, key-spacing, multiline-ternary, no-multiple-empty-lines, no-trailing-spaces, object-curly-spacing
   - Add import rules: named, no-cycle, no-deprecated, no-self-import, no-unused-modules

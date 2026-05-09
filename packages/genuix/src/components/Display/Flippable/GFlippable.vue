@@ -2,8 +2,8 @@
   <div
     v-bind="$attrs"
     :id="id"
+    class="flippable"
     :class="[
-      'flippable',
       {
         'is-flipped': isFlipped,
         'is-vertical': direction === GFlipDirection.Vertical,
@@ -12,9 +12,9 @@
         'trigger-on-click': trigger === GFlipTrigger.Click,
       },
     ]"
-    @click="trigger === GFlipTrigger.Click && flip()"
-    @mouseenter="trigger === GFlipTrigger.Hover && showBack()"
-    @mouseleave="trigger === GFlipTrigger.Hover && showFront()"
+    @click="handleClick"
+    @mouseenter="handleMouseenter"
+    @mouseleave="handleMouseleave"
   >
     <div class="flippable-front">
       <slot name="front" />
@@ -51,14 +51,20 @@ const {
   direction = GFlipDirection.Horizontal,
   trigger = GFlipTrigger.Click,
 } = defineProps<{
+  /** HTML id attribute */
   id?: string;
+  /** Whether the component is in the flipped state */
   flipped?: boolean;
+  /** Disable flipping interaction */
   disabled?: boolean;
+  /** Direction of the flip animation */
   direction?: GFlipDirection;
+  /** Interaction that triggers the flip */
   trigger?: GFlipTrigger;
 }>();
 
 const isFlipped = ref(initialState);
+
 watch(() => initialState, () => {
   isFlipped.value = initialState;
 });
@@ -66,19 +72,37 @@ watch(() => initialState, () => {
 function flip (): boolean {
   if (disabled) return isFlipped.value;
   const oldValue = isFlipped.value;
+
   isFlipped.value = !isFlipped.value;
+
+  return oldValue;
+}
+
+function handleClick () {
+  if (trigger === GFlipTrigger.Click) flip();
+}
+
+function handleMouseenter () {
+  if (trigger === GFlipTrigger.Hover) showBack();
+}
+
+function handleMouseleave () {
+  if (trigger === GFlipTrigger.Hover) showFront();
+}
+
+function showBack (): boolean {
+  const oldValue = isFlipped.value;
+
+  isFlipped.value = true;
+
   return oldValue;
 }
 
 function showFront (): boolean {
   const oldValue = isFlipped.value;
-  isFlipped.value = false;
-  return oldValue;
-}
 
-function showBack (): boolean {
-  const oldValue = isFlipped.value;
-  isFlipped.value = true;
+  isFlipped.value = false;
+
   return oldValue;
 }
 

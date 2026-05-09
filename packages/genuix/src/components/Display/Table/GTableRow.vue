@@ -1,8 +1,5 @@
 <template>
-  <tr
-    v-if="visible"
-    v-bind="$attrs"
-  >
+  <tr v-bind="$attrs">
     <slot />
   </tr>
 </template>
@@ -13,7 +10,6 @@
  */
 
 import {
-  computed,
   inject,
   onMounted,
   onBeforeUnmount,
@@ -30,6 +26,7 @@ defineOptions({
 const {
   rowData = {},
 } = defineProps<{
+  /** Data record for this row */
   rowData?: Record<string, unknown>;
 }>();
 
@@ -48,8 +45,6 @@ onBeforeUnmount(() => {
   }
 });
 
-const visible = computed(() =>
-  !context || context.isVisible(rowKey.value));
 </script>
 
 <style scoped>

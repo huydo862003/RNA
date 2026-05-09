@@ -4,8 +4,6 @@
 
 export {
   useTheme,
-} from './useTheme';
-export type {
   GTheme,
 } from './useTheme';
 
@@ -25,3 +23,16 @@ export {
   useKbdShortcut,
   useLocalKbdShortcuts,
 } from './useKbdShortcut';
+
+export {
+  useLocalStorage,
+} from './useLocalStorage';
+
+export {
+  useClipboard,
+} from './useClipboard';
+
+export {
+  useBreakpoint,
+  GBreakpoint,
+} from './useBreakpoint';

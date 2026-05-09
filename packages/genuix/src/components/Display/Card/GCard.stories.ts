@@ -100,6 +100,7 @@ export const Grid: Story = {
           desc: 'Run SQL in-process for tests and sandboxes.',
         },
       ];
+
       return {
         features,
       };

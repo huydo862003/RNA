@@ -23,6 +23,7 @@ export function useHash (defaultValue = '') {
 
   watch(hash, (value) => {
     const current = window.location.hash.slice(1);
+
     if (value !== current) {
       history.replaceState(null, '', value ? `#${value}` : window.location.pathname);
     }

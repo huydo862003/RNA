@@ -10,7 +10,7 @@
  * @tokens Spacing
  * @presenter Spacing
  */
-@theme {
+@theme static {
   --spacing: 4px; /* Base unit for TW4 multiplier system */
   --spacing-1: 4px;
   --spacing-2: 8px;

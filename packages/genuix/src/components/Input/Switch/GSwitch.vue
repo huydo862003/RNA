@@ -1,13 +1,15 @@
 <template>
   <button
     v-bind="$attrs"
-    :id="id"
     type="button"
     role="switch"
+    class="switch"
     :class="[
-      'switch',
       `switch-${size}`,
-      { 'is-checked': modelValue, 'is-disabled': disabled },
+      {
+        'is-checked': modelValue,
+        'is-disabled': disabled,
+      },
     ]"
     :style="{
       '--_solid': `var(--gui-${semantic}-solid)`,
@@ -35,40 +37,45 @@ defineOptions({
   inheritAttrs: false,
 });
 
+const modelValue = defineModel<boolean>({
+  default: false,
+});
+
 const {
-  id = undefined,
-  modelValue = false,
   disabled = false,
   size = GSwitchSize.Md,
   semantic = GSwitchSemantic.Neutral,
 } = defineProps<{
-  id?: string;
-  modelValue?: boolean;
+  /** Whether the switch is disabled */
   disabled?: boolean;
+  /** The switch size */
   size?: GSwitchSize;
+  /** The switch semantic */
   semantic?: GSwitchSemantic;
 }>();
 
-const emit = defineEmits<{
-  'update:modelValue': [value: boolean];
-}>();
+function check (): boolean {
+  const oldValue = modelValue.value;
 
-function toggle (): boolean {
-  if (disabled) return modelValue;
-  const oldValue = modelValue;
-  emit('update:modelValue', !modelValue);
+  modelValue.value = true;
+
   return oldValue;
 }
 
-function check (): boolean {
-  const oldValue = modelValue;
-  emit('update:modelValue', true);
+function toggle (): boolean {
+  if (disabled) return modelValue.value;
+  const oldValue = modelValue.value;
+
+  modelValue.value = !modelValue.value;
+
   return oldValue;
 }
 
 function uncheck (): boolean {
-  const oldValue = modelValue;
-  emit('update:modelValue', false);
+  const oldValue = modelValue.value;
+
+  modelValue.value = false;
+
   return oldValue;
 }
 

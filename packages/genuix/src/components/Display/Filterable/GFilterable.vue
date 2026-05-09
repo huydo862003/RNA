@@ -47,8 +47,11 @@ const {
   columns = 2,
   pageSize = 10,
 } = defineProps<{
+  /** Accessible label for the filterable group */
   label?: string;
+  /** Number of columns in the item grid */
   columns?: 1 | 2 | 3;
+  /** Number of items visible per page */
   pageSize?: number;
 }>();
 
@@ -66,21 +69,23 @@ function registerItem (label: string, value: string) {
   });
 }
 
-function unregisterItem (value: string) {
-  registeredItems.value = registeredItems.value.filter((item) => item.value !== value);
+function setPage (n: number) {
+  page.value = n;
 }
 
 function setSearch (value: string) {
   search.value = value;
 }
 
-function setPage (n: number) {
-  page.value = n;
+function unregisterItem (value: string) {
+  registeredItems.value = registeredItems.value.filter((item) => item.value !== value);
 }
 
 const filteredItems = computed(() => {
   const searchText = search.value.toLowerCase();
+
   if (!searchText) return registeredItems.value;
+
   return registeredItems.value.filter((item) =>
     item.label.toLowerCase().includes(searchText));
 });
@@ -92,6 +97,7 @@ const itemsPerPage = computed(() => {
 const paginatedItems = computed(() => {
   const start = (page.value - 1) * itemsPerPage.value;
   const end = start + itemsPerPage.value;
+
   return filteredItems.value.slice(start, end);
 });
 
@@ -99,6 +105,7 @@ const paginatedItemValues = computed(() => paginatedItems.value.map((item) => it
 
 const maxPages = computed(() => {
   const size = itemsPerPage.value;
+
   return 0 < size ? Math.ceil(filteredItems.value.length / size) : 1;
 });
 

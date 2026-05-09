@@ -29,13 +29,14 @@ defineOptions({
   inheritAttrs: false,
 });
 
-const context = inject(FILTERABLE_KEY)!;
-
 const {
   placeholder = 'Filter...',
 } = defineProps<{
+  /** Placeholder text for the search input */
   placeholder?: string;
 }>();
+
+const context = inject(FILTERABLE_KEY)!;
 
 const search = computed({
   get: () => context.search.value,

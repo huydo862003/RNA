@@ -2,10 +2,8 @@
   <span
     v-bind="$attrs"
     :id="id"
-    :class="[
-      'pill',
-      `pill-${size}`,
-    ]"
+    class="pill"
+    :class="[`pill-${size}`]"
     :style="{
       '--_bg': tokens.bg,
       '--_fg': tokens.fg,
@@ -57,9 +55,13 @@ const {
   color = GPillColor.Gray,
   prominence = GProminence.Secondary,
 } = defineProps<{
+  /** HTML id attribute */
   id?: string;
+  /** Size variant */
   size?: GPillSize;
+  /** Color palette for the pill */
   color?: GPillColor;
+  /** Visual prominence */
   prominence?: GProminence;
 }>();
 
@@ -67,39 +69,41 @@ const tokens = computed(() => {
   const colorSet = PILL_COLORS[color] ?? PILL_COLORS[GPillColor.Gray];
 
   switch (prominence) {
-    case GProminence.Primary:
-      return {
-        bg: colorSet.solid,
-        fg: '#ffffff',
-        border: 'transparent',
-      };
-    case GProminence.Secondary:
-      return {
-        bg: colorSet.bg,
-        fg: colorSet.fg,
-        border: 'transparent',
-      };
-    case GProminence.Tertiary:
-      return {
-        bg: 'transparent',
-        fg: colorSet.fg,
-        border: colorSet.solid,
-      };
-    case GProminence.Ghost:
-      return {
-        bg: 'transparent',
-        fg: colorSet.fg,
-        border: 'transparent',
-      };
-    default: {
-      const _exhaustive: never = prominence;
-      void _exhaustive;
-      return {
-        bg: 'transparent',
-        fg: colorSet.fg,
-        border: 'transparent',
-      };
-    }
+  case GProminence.Primary:
+    return {
+      bg: colorSet.solid,
+      fg: '#ffffff',
+      border: 'transparent',
+    };
+  case GProminence.Secondary:
+    return {
+      bg: colorSet.bg,
+      fg: colorSet.fg,
+      border: 'transparent',
+    };
+  case GProminence.Tertiary:
+    return {
+      bg: 'transparent',
+      fg: colorSet.fg,
+      border: colorSet.solid,
+    };
+  case GProminence.Ghost:
+    return {
+      bg: 'transparent',
+      fg: colorSet.fg,
+      border: 'transparent',
+    };
+  default: {
+    const _exhaustive: never = prominence;
+
+    void _exhaustive;
+
+    return {
+      bg: 'transparent',
+      fg: colorSet.fg,
+      border: 'transparent',
+    };
+  }
   }
 });
 </script>

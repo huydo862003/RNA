@@ -2,16 +2,18 @@
   <div
     v-bind="$attrs"
     :id="id"
-    :class="'collapsible'"
+    class="collapsible"
   >
     <button
-      class="collapsible-summary"
       type="button"
-      @click="isOpen = !isOpen"
+      class="collapsible-summary"
+      @click="toggleOpen"
     >
       <span
         class="collapsible-toggle-icon"
-        :class="{ 'is-open': isOpen }"
+        :class="{
+          'is-open': isOpen,
+        }"
       >
         <GIcon :name="GIconName.ChevronRight" />
       </span>
@@ -50,12 +52,19 @@ const {
   id = undefined,
   open: initialState = false,
 } = defineProps<{
+  /** HTML id attribute */
   id?: string;
+  /** Whether the collapsible is initially open */
   open?: boolean;
 }>();
 
 // Allow reactive props to override the current value
 const isOpen = ref(initialState);
+
+function toggleOpen () {
+  isOpen.value = !isOpen.value;
+}
+
 watch(() => initialState, () => {
   isOpen.value = initialState;
 }, {
@@ -66,7 +75,9 @@ watch(() => initialState, () => {
 // And return the previous state
 function collapse (): boolean {
   const oldValue = isOpen.value;
+
   isOpen.value = false;
+
   return oldValue;
 }
 
@@ -74,7 +85,9 @@ function collapse (): boolean {
 // And return the previous state
 function expand (): boolean {
   const oldValue = isOpen.value;
+
   isOpen.value = true;
+
   return oldValue;
 }
 
@@ -82,7 +95,9 @@ function expand (): boolean {
 // And return the previous state
 function toggle (): boolean {
   const oldValue = isOpen.value;
+
   isOpen.value = !isOpen.value;
+
   return oldValue;
 }
 

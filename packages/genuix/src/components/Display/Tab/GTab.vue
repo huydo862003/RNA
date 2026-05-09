@@ -2,41 +2,61 @@
   <div
     v-bind="$attrs"
     :id="id"
-    :class="['tab-root', `tab-root--${placement}`]"
+    class="tab-root"
+    :class="[`tab-root--${placement}`]"
   >
-    <div
-      ref="tabBarElement"
-      :class="['tab-bar', `tab-bar--${placement}`]"
-      role="tablist"
+    <slot
+      name="tab-bar"
+      :tabs="tabPanels"
+      :active-tab="activeTab"
+      :select-tab="selectTab"
     >
-      <button
-        v-for="[name, tab] in tabPanels"
-        :key="name"
-        :ref="(element) => triggerElements.set(name, element as HTMLElement)"
-        :class="[
-          'tab-trigger',
-          {
-            'tab-trigger--active': activeTab === name,
-          },
-        ]"
-        role="tab"
-        :tabindex="activeTab === name ? 0 : -1"
-        :aria-selected="activeTab === name"
-        @click="selectTab(name)"
+      <div
+        ref="tabBarElement"
+        class="tab-bar"
+        :class="[`tab-bar--${placement}`]"
+        role="tablist"
       >
-        <GIcon
-          v-if="tab.icon"
-          :name="tab.icon"
-          class="tab-trigger-icon"
+        <button
+          v-for="[
+            name,
+            tab,
+          ] in tabPanels"
+          :key="name"
+          :ref="(element) => triggerElements.set(name, element as HTMLElement)"
+          type="button"
+          class="tab-trigger"
+          :class="[
+            {
+              'tab-trigger--active': activeTab === name,
+            },
+          ]"
+          role="tab"
+          :tabindex="activeTab === name ? 0 : -1"
+          :aria-selected="activeTab === name"
+          @click="() => selectTab(name)"
+        >
+          <slot
+            name="tab-trigger"
+            :tab-name="name"
+            :tab="tab"
+            :active="activeTab === name"
+          >
+            <GIcon
+              v-if="tab.icon"
+              :name="tab.icon"
+              class="tab-trigger-icon"
+            />
+            {{ tab.label }}
+          </slot>
+        </button>
+        <!-- This is used to create the sliding tab underline animation -->
+        <span
+          class="tab-indicator"
+          :style="indicatorStyle"
         />
-        {{ tab.label }}
-      </button>
-      <!-- This is used to create the sliding tab underline animation -->
-      <span
-        class="tab-indicator"
-        :style="indicatorStyle"
-      />
-    </div>
+      </div>
+    </slot>
     <div class="tab-panels">
       <slot />
     </div>
@@ -47,6 +67,7 @@
 /* #human-slop
  *  https://github.com/huydo862003/Fck-AI-Slop/edit/main/README.md
  */
+/* global HTMLElement */
 
 import {
   computed,
@@ -72,20 +93,21 @@ defineOptions({
   inheritAttrs: false,
 });
 
-const emit = defineEmits<{
-  select: [name: string];
-}>();
-
 const {
   id = undefined,
   default: defaultTab = undefined,
   placement = GTabPlacement.Top,
 } = defineProps<{
+  /** HTML id attribute */
   id?: string;
   /** Name of the tab to activate by default */
   default?: string;
   /** Position of the tab bar */
   placement?: GTabPlacement;
+}>();
+
+const emit = defineEmits<{
+  select: [name: string];
 }>();
 
 const activeTab = ref(defaultTab);
@@ -110,6 +132,7 @@ function updateIndicator () {
   if (!activeTab.value) return;
   const element = triggerElements.get(activeTab.value);
   const bar = tabBarElement.value;
+
   if (!element || !bar) return;
 
   if (isHorizontal.value) {
@@ -142,13 +165,13 @@ function registerTab (name: string, registration: TabPanelRegistration) {
   tabPanels.set(name, registration);
 }
 
-function unregisterTab (name: string) {
-  tabPanels.delete(name);
-}
-
 function selectTab (name: string) {
   activeTab.value = name;
   emit('select', name);
+}
+
+function unregisterTab (name: string) {
+  tabPanels.delete(name);
 }
 
 provide(TAB_KEY, {

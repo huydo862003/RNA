@@ -4,10 +4,8 @@
     v-bind="$attrs"
     :id="id"
     :href="href"
-    :class="[
-      'logo',
-      `logo-${size}`,
-    ]"
+    class="logo"
+    :class="[`logo-${size}`]"
   >
     <img
       v-if="src"
@@ -27,10 +25,8 @@
     v-else
     v-bind="$attrs"
     :id="id"
-    :class="[
-      'logo',
-      `logo-${size}`,
-    ]"
+    class="logo"
+    :class="[`logo-${size}`]"
   >
     <img
       v-if="src"
@@ -72,7 +68,9 @@ const {
   text = undefined,
   href = undefined,
 } = defineProps<{
+  /** HTML id attribute */
   id?: string;
+  /** Size variant */
   size?: GLogoSize;
   /** Brand image URL */
   src?: string;

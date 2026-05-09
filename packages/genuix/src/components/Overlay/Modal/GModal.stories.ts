@@ -48,6 +48,7 @@ modal.push('confirm');
     },
     setup () {
       const modal = useModal();
+
       return {
         modal,
       };
@@ -90,6 +91,7 @@ modal.push('inner');`,
     },
     setup () {
       const modal = useModal();
+
       return {
         modal,
       };
@@ -136,6 +138,7 @@ export const SizesStory: Story = {
     },
     setup () {
       const modal = useModal();
+
       return {
         modal,
       };

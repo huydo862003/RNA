@@ -4,10 +4,8 @@
       v-bind="$attrs"
       :id="id"
       ref="dialogRef"
-      :class="[
-        'modal',
-        `modal-${size}`,
-      ]"
+      class="modal"
+      :class="[`modal-${size}`]"
       @close="handleNativeClose"
       @click="handleBackdropClick"
     >
@@ -21,8 +19,8 @@
         >
           <slot name="header" />
           <button
-            class="modal-close"
             type="button"
+            class="modal-close"
             @click="close"
           >
             <GIcon :name="GIconName.X" />
@@ -51,7 +49,7 @@ import {
   computed,
   nextTick,
   provide,
-  ref,
+  useTemplateRef,
   watch,
 } from 'vue';
 import type {
@@ -80,9 +78,11 @@ const {
   name,
   size = GSize.Md,
 } = defineProps<{
+  /** The HTML id of the underlying dialog */
   id?: string;
   /** Register with global modal stack, this should be unique */
   name: string | symbol;
+  /** The size of the modal */
   size?: GModalSize;
 }>();
 
@@ -99,7 +99,7 @@ const isOpen = computed({
   },
 });
 
-const dialogRef = ref<HTMLDialogElement | null>(null);
+const dialogRef = useTemplateRef<HTMLDialogElement | null>('dialogRef');
 
 // Nested tooltips/dropdowns should render inside the dialog, not body
 provide(POPPER_CONTAINER_KEY, dialogRef);
@@ -118,8 +118,10 @@ function close () {
   isOpen.value = false;
 }
 
-function open () {
-  isOpen.value = true;
+function handleBackdropClick (event: MouseEvent) {
+  if (event.target === dialogRef.value) {
+    close();
+  }
 }
 
 // Native <dialog> fires 'close' on Escape
@@ -127,10 +129,8 @@ function handleNativeClose () {
   isOpen.value = false;
 }
 
-function handleBackdropClick (event: MouseEvent) {
-  if (event.target === dialogRef.value) {
-    close();
-  }
+function open () {
+  isOpen.value = true;
 }
 
 defineExpose({

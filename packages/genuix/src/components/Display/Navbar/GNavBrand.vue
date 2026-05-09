@@ -24,6 +24,7 @@ defineOptions({
 const {
   as = 'a',
 } = defineProps<{
+  /** Element or component to render as */
   as?: string | Component;
 }>();
 </script>

@@ -39,6 +39,7 @@ export const DefaultStory: Story = {
     },
     setup () {
       const selected = ref('a');
+
       return {
         selected,
       };
@@ -71,6 +72,7 @@ export const DisabledStory: Story = {
     },
     setup () {
       const selected = ref('a');
+
       return {
         selected,
       };

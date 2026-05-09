@@ -3,9 +3,12 @@
  */
 
 import {
-  ref, watch, onMounted,
-  readonly,
+  computed,
+  ref,
 } from 'vue';
+import {
+  defineStore,
+} from 'pinia';
 
 export enum GTheme {
   Light = 'light',
@@ -13,54 +16,73 @@ export enum GTheme {
   System = 'system',
 }
 
-export function useTheme () {
+const DEFAULT_STORAGE_KEY = '[genuix]-theme';
+
+export interface ThemeStoreOptions {
+  storageKey?: string;
+}
+
+export const useTheme = defineStore('genuix-theme', () => {
   const theme = ref<GTheme>(GTheme.System);
-  onMounted(() => {
-    const stored = localStorage.getItem(STORAGE_KEY) as GTheme | null;
-    if (stored) {
-      theme.value = stored;
+  const storageKey = ref(DEFAULT_STORAGE_KEY);
+  let initialized = false;
+
+  const effectiveTheme = computed(() =>
+    theme.value === GTheme.System ? getSystemPreference() : theme.value);
+
+  function configure (options: ThemeStoreOptions) {
+    if (options.storageKey) {
+      storageKey.value = options.storageKey;
     }
+  }
+
+  function setTheme (newTheme: GTheme) {
+    theme.value = newTheme;
+    if (typeof window !== 'undefined') {
+      localStorage.setItem(storageKey.value, newTheme);
+    }
+    applyTheme(newTheme);
+  }
+
+  function initialize () {
+    if (initialized || typeof window === 'undefined') return;
+    initialized = true;
+
+    const stored = localStorage.getItem(storageKey.value);
+    const validThemes: string[] = Object.values(GTheme);
+
+    theme.value = stored && validThemes.includes(stored)
+      ? stored as GTheme
+      : GTheme.System;
     applyTheme(theme.value);
 
-    // If theme is system,
-    // Watch the changes to the color scheme preferences
-    // And then apply the theme
     window.matchMedia('(prefers-color-scheme: dark)')
       .addEventListener('change', () => {
         if (theme.value === GTheme.System) {
           applyTheme(GTheme.System);
         }
       });
-  });
-
-  watch(theme, (value) => {
-    localStorage.setItem(STORAGE_KEY, value);
-    applyTheme(value);
-  });
-
-  function setTheme (newTheme: GTheme) {
-    theme.value = newTheme;
   }
 
-  function getEffectiveTheme (): GTheme {
-    if (theme.value === GTheme.System) return getSystemPreference();
-    return theme.value;
-  }
+  initialize();
 
   return {
-    theme: readonly(theme),
+    theme,
+    effectiveTheme,
+    configure,
     setTheme,
-    getEffectiveTheme,
   };
-}
-
-const STORAGE_KEY = '[genuix]-theme';
-
-function getSystemPreference (): GTheme.Light | GTheme.Dark {
-  return window.matchMedia('(prefers-color-scheme: dark)').matches ? GTheme.Dark : GTheme.Light;
-}
+});
 
 function applyTheme (value: GTheme) {
+  if (typeof document === 'undefined') return;
   const resolved = value === GTheme.System ? getSystemPreference() : value;
+
   document.documentElement.classList.toggle('dark', resolved === GTheme.Dark);
+}
+
+function getSystemPreference (): GTheme.Light | GTheme.Dark {
+  if (typeof window === 'undefined') return GTheme.Light;
+
+  return window.matchMedia('(prefers-color-scheme: dark)').matches ? GTheme.Dark : GTheme.Light;
 }

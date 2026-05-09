@@ -14,8 +14,8 @@
       </div>
       <!-- Mobile hamburger -->
       <button
-        class="navbar-hamburger"
         type="button"
+        class="navbar-hamburger"
         :aria-expanded="!collapsed"
         :aria-label="collapsed ? 'Open menu' : 'Close menu'"
         @click="toggle"

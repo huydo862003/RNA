@@ -7,21 +7,25 @@
     :placement="placement"
     :shown="shown"
     :distance="distance"
-    :delay="{ show: showDelay, hide: hideDelay }"
+    :delay="{
+      show: showDelay,
+      hide: hideDelay,
+    }"
     :triggers="triggers"
     :popper-triggers="['hover']"
     :popper-class="`tooltip-popper ${popperClass}`"
     :container="popperContainer ?? 'body'"
     no-auto-focus
-    @show="isOpen = true; emit('show-start')"
-    @apply-show="emit('show-end')"
-    @hide="isOpen = false; emit('hide')"
+    @show="handleShow"
+    @apply-show="handleApplyShow"
+    @hide="handleHide"
   >
     <slot :is-open="isOpen" />
     <template #popper>
       <slot
         name="popper"
         :is-open="isOpen"
+        v-bind="$attrs"
       />
     </template>
   </Tooltip>
@@ -55,29 +59,21 @@ import {
   POPPER_CONTAINER_KEY,
 } from '@/components/Overlay/Modal/types';
 
-type Side = 'top' | 'bottom' | 'left' | 'right';
 type Alignment = 'start' | 'end';
 type Placement = Side | `${Side}-${Alignment}`;
+type Side = 'top' | 'bottom' | 'left' | 'right';
 
 defineOptions({
   inheritAttrs: false,
 });
-
-// If inside a modal/dialog, render popper inside it instead of body
-const popperContainerRef = inject(POPPER_CONTAINER_KEY, null);
-const popperContainer = computed(() => popperContainerRef?.value ?? undefined);
-
-const emit = defineEmits<{
-  (event: 'show-start' | 'show-end' | 'hide'): void;
-}>();
 
 const {
   id = undefined,
   class: _class = '',
   placement = 'bottom',
   distance = 0,
-  shown = undefined,
-  arrow = true,
+  shown = false,
+  arrow = false,
   triggers = [
     'hover',
     'focus',
@@ -85,6 +81,7 @@ const {
   showDelay = 0,
   hideDelay = 0,
 } = defineProps<{
+  /** The HTML id of the tooltip wrapper */
   id?: string;
   /** CSS classes applied to the popper element */
   class?: string;
@@ -103,6 +100,14 @@ const {
   /** Delay in ms before hiding */
   hideDelay?: number;
 }>();
+const emit = defineEmits<{
+  'show-start': [];
+  'show-end': [];
+  'hide': [];
+}>();
+// If inside a modal/dialog, render popper inside it instead of body
+const popperContainerRef = inject(POPPER_CONTAINER_KEY, null);
+const popperContainer = computed(() => popperContainerRef?.value ?? undefined);
 
 // A unique id so we can query the child of the current tooltip
 const popperUid = `tooltip-${getId(Tooltip, getCurrentInstance()!)}`;
@@ -120,21 +125,38 @@ const popperRef = useTemplateRef<InstanceType<typeof Tooltip> | null>('popperRef
 // We read the trigger's computed display and replicate that to the wrapper to not break layout
 watch(popperRef, () => nextTick(() => {
   const wrapper = popperRef.value?.$el;
+
   if (!wrapper) return;
   const trigger = wrapper.firstElementChild;
+
   if (!trigger) return;
   const display = getComputedStyle(trigger).display;
+
   wrapper.style.display = display === 'inline' ? 'inline' : display.startsWith('inline') ? 'inline-block' : 'block';
 }), {
   immediate: true,
 });
 
-function show () {
-  popperRef.value?.show();
+function handleApplyShow () {
+  emit('show-end');
+}
+
+function handleHide () {
+  isOpen.value = false;
+  emit('hide');
+}
+
+function handleShow () {
+  isOpen.value = true;
+  emit('show-start');
 }
 
 function hide () {
   popperRef.value?.hide();
+}
+
+function show () {
+  popperRef.value?.show();
 }
 
 function toggle () {
@@ -153,7 +175,8 @@ defineExpose({
 });
 </script>
 
-<style>
+<!-- eslint-disable vue/enforce-style-attribute -->
+<style lang="scss">
 @reference '@/style.css';
 
 .tooltip-popper {
@@ -174,3 +197,4 @@ defineExpose({
 }
 }
 </style>
+<!-- eslint-enable vue/enforce-style-attribute -->

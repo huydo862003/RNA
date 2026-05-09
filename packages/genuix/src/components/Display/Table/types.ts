@@ -7,18 +7,18 @@ import type {
   InjectionKey,
 } from 'vue';
 
+export enum GSortDirection {
+  Asc = 'asc',
+  Desc = 'desc',
+  None = 'none',
+}
+
 export interface GTableColumn {
   key: string;
   label: string;
   sortable?: boolean;
   class?: string;
   onSort?: (key: string) => void;
-}
-
-export enum GSortDirection {
-  Asc = 'asc',
-  Desc = 'desc',
-  None = 'none',
 }
 
 export interface TableContext {
@@ -34,6 +34,8 @@ export interface TableContext {
   registerRow (rowData: Record<string, unknown>): number;
   unregisterRow (rowData: Record<string, unknown>): void;
   isVisible (rowKey: number): boolean;
+  getOrder (rowKey: number): number;
+  paginatedData: ComputedRef<Record<string, unknown>[]>;
 }
 
 export const TABLE_KEY: InjectionKey<TableContext> = Symbol('GTable');

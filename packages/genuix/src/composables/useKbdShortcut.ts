@@ -3,7 +3,8 @@
  */
 
 import type {
-  Ref,
+  ComponentInstance,
+  TemplateRef,
 } from 'vue';
 import {
   onMounted,
@@ -33,6 +34,71 @@ const MODIFIERS: Map<string, keyof KeyboardEvent> = new Map([
   ],
 ]);
 
+/*
+ * For registering global keyboard shortcut
+ */
+export function useKbdShortcut (
+  keys: GKbdKeyName[],
+  handler: (event: KeyboardEvent) => void,
+) {
+  function onKeydown (event: KeyboardEvent) {
+    if (matchesKeys(event, keys)) {
+      event.preventDefault();
+      handler(event);
+    }
+  }
+
+  onMounted(() => window.addEventListener('keydown', onKeydown));
+  onUnmounted(() => window.removeEventListener('keydown', onKeydown));
+}
+
+/*
+ * Local keyboard shortcut registry bound to an element
+ */
+export function useLocalKbdShortcuts (element: TemplateRef<HTMLElement | ComponentInstance<any> | null | undefined>) {
+  const entries: ShortcutEntry[] = [];
+
+  function register (keys: GKbdKeyName[], handler: (event: KeyboardEvent) => void) {
+    entries.push({
+      keys,
+      handler,
+    });
+  }
+
+  function onKeydown (event: KeyboardEvent) {
+    for (const entry of entries) {
+      if (matchesKeys(event, entry.keys)) {
+        event.preventDefault();
+        event.stopPropagation();
+        entry.handler(event);
+
+        return;
+      }
+    }
+  }
+
+  // Watch for element availability
+  watch(element, (newElement, oldElement) => {
+    oldElement?.removeEventListener('keydown', onKeydown);
+    newElement?.addEventListener('keydown', onKeydown);
+  }, {
+    immediate: true,
+  });
+
+  onUnmounted(() => {
+    element.value?.removeEventListener('keydown', onKeydown);
+  });
+
+  return {
+    register,
+  };
+}
+
+interface ShortcutEntry {
+  keys: GKbdKeyName[];
+  handler: (event: KeyboardEvent) => void;
+}
+
 function matchesKeys (event: KeyboardEvent, keys: GKbdKeyName[]): boolean {
   const modifiers = keys.filter((key) => MODIFIERS.has(key));
   const nonModifiers = keys.filter((key) => !MODIFIERS.has(key));
@@ -55,68 +121,4 @@ function matchesKeys (event: KeyboardEvent, keys: GKbdKeyName[]): boolean {
   if (event.metaKey && !modifiers.includes(GKbdKeyName.Meta)) return false;
 
   return true;
-}
-
-interface ShortcutEntry {
-  keys: GKbdKeyName[];
-  handler: (event: KeyboardEvent) => void;
-}
-
-/*
- * For registering global keyboard shortcut
- */
-export function useKbdShortcut (
-  keys: GKbdKeyName[],
-  handler: (event: KeyboardEvent) => void,
-) {
-  function onKeydown (event: KeyboardEvent) {
-    if (matchesKeys(event, keys)) {
-      event.preventDefault();
-      handler(event);
-    }
-  }
-
-  onMounted(() => window.addEventListener('keydown', onKeydown));
-  onUnmounted(() => window.removeEventListener('keydown', onKeydown));
-}
-
-/*
- * Local keyboard shortcut registry bound to an element
- */
-export function useLocalKbdShortcuts (element: Ref<HTMLElement | null | undefined>) {
-  const entries: ShortcutEntry[] = [];
-
-  function register (keys: GKbdKeyName[], handler: (event: KeyboardEvent) => void) {
-    entries.push({
-      keys,
-      handler,
-    });
-  }
-
-  function onKeydown (event: KeyboardEvent) {
-    for (const entry of entries) {
-      if (matchesKeys(event, entry.keys)) {
-        event.preventDefault();
-        event.stopPropagation();
-        entry.handler(event);
-        return;
-      }
-    }
-  }
-
-  // Watch for element availability
-  watch(element, (newElement, oldElement) => {
-    oldElement?.removeEventListener('keydown', onKeydown);
-    newElement?.addEventListener('keydown', onKeydown);
-  }, {
-    immediate: true,
-  });
-
-  onUnmounted(() => {
-    element.value?.removeEventListener('keydown', onKeydown);
-  });
-
-  return {
-    register,
-  };
 }

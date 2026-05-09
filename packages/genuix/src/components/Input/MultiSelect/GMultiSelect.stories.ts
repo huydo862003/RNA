@@ -61,6 +61,7 @@ export const BasicMultiSelectStory: Story = {
     },
     setup () {
       const selected = ref(['apple']);
+
       return {
         selected,
         GPillColor,
@@ -102,6 +103,7 @@ export const SizesMultiSelectStory: Story = {
         'apple',
         'cherry',
       ]);
+
       return {
         selected,
         GMultiSelectSize,
@@ -166,6 +168,7 @@ export const FixedWidthMultiSelectStory: Story = {
         'cherry',
       ]);
       const wide = ref(['apple']);
+
       return {
         narrow,
         wide,
@@ -224,6 +227,7 @@ export const BoxMultiSelectStory: Story = {
     },
     setup () {
       const selected = ref<string[]>([]);
+
       return {
         selected,
         GMultiSelectVariant,

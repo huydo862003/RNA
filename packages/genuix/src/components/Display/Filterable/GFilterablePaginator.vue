@@ -4,9 +4,10 @@
     class="filterable-pager"
   >
     <button
+      type="button"
       :disabled="context.page.value <= 1"
       class="filterable-pager-btn"
-      @click="context.setPage(context.page.value - 1)"
+      @click="goToPreviousPage"
     >
       <GIcon
         :name="GIconName.ArrowLeft"
@@ -15,9 +16,10 @@
     </button>
     <span class="filterable-pager-info">{{ context.page.value }} / {{ context.maxPages.value }}</span>
     <button
+      type="button"
       :disabled="context.page.value >= context.maxPages.value"
       class="filterable-pager-btn"
-      @click="context.setPage(context.page.value + 1)"
+      @click="goToNextPage"
     >
       <GIcon
         :name="GIconName.ArrowRight"
@@ -44,6 +46,14 @@ import {
 } from '@/components/Display/Icon/types';
 
 const context = inject(FILTERABLE_KEY)!;
+
+function goToNextPage () {
+  context.setPage(context.page.value + 1);
+}
+
+function goToPreviousPage () {
+  context.setPage(context.page.value - 1);
+}
 </script>
 
 <style scoped>

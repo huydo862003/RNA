@@ -2,10 +2,12 @@
   <label
     v-bind="$attrs"
     :for="id"
+    class="checkbox"
     :class="[
-      'checkbox',
       `checkbox-${size}`,
-      { 'checkbox--disabled': disabled },
+      {
+        'checkbox--disabled': disabled,
+      },
     ]"
     :style="{
       '--_checked-bg': tokens.bg,
@@ -84,11 +86,17 @@ const {
   disabled = false,
   label = undefined,
 } = defineProps<{
+  /** HTML id attribute */
   id?: string;
+  /** Input name attribute */
   name?: string;
+  /** Size variant */
   size?: GCheckboxSize;
+  /** Color role */
   semantic?: GSemantic;
+  /** Disable the component */
   disabled?: boolean;
+  /** Display label */
   label?: string;
 }>();
 

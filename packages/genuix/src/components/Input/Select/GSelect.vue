@@ -9,13 +9,18 @@
     @hide="handleClose"
     @show-end="focusSearchBox"
   >
-    <template #default="{ isOpen }">
+    <template
+      #default="{
+        isOpen,
+      }"
+    >
       <button
         :id="id"
         ref="triggerRef"
+        type="button"
         v-bind="$attrs"
+        class="select-trigger"
         :class="[
-          'select-trigger',
           `select-trigger-${size}`,
           `select-trigger--${isOpen ? 'open' : 'closed'}`,
           !isPill && 'select-trigger--box',
@@ -28,7 +33,6 @@
         }"
         :data-state="state"
         :disabled="disabled"
-        type="button"
         role="combobox"
         aria-haspopup="listbox"
       >
@@ -48,7 +52,9 @@
                 <template #left>
                   <span
                     class="select-dot"
-                    :style="{ background: dotColor(colors.get(selected)) }"
+                    :style="{
+                      background: dotColor(colors.get(selected)),
+                    }"
                   />
                 </template>
                 {{ displayValue }}
@@ -81,7 +87,8 @@
         @keydown="handleKeydown"
       >
         <div
-          :class="['select-search-row', `select-search-row-${size}`]"
+          class="select-search-row"
+          :class="[`select-search-row-${size}`]"
           @click="focusSearchBox"
         >
           <slot
@@ -99,7 +106,9 @@
                 <template #left>
                   <span
                     class="select-dot"
-                    :style="{ background: dotColor(colors.get(selected)) }"
+                    :style="{
+                      background: dotColor(colors.get(selected)),
+                    }"
                   />
                 </template>
                 {{ displayValue }}
@@ -121,13 +130,13 @@
             @keydown.backspace="handleBackspaceWhenEmpty"
           >
         </div>
-        <p class="text-xs m-sm mb-xs font-extralight gui-neutral-fg-muted select-none">
+        <p class="font-extralight m-sm mb-xs text-xs gui-neutral-fg-muted select-none">
           {{ visibleCount > 0 ? 'Select an option' : 'No option found' }}
         </p>
         <div
           ref="menuRef"
+          class="select-menu"
           :class="{
-            'select-menu': true,
             'select-menu--empty': visibleCount === 0,
           }"
           role="listbox"
@@ -136,7 +145,7 @@
     </template>
   </GDropdown>
   <!-- Options always render for label/color registration, teleported into popper menu when available -->
-  <div v-show="false">
+  <div hidden>
     <Teleport
       :to="menuElement"
       :disabled="!menuElement"
@@ -209,13 +218,21 @@ const {
   searchPlaceholder = 'Search for an option...',
   closeOnSelect,
 } = defineProps<{
+  /** HTML id attribute */
   id?: string;
+  /** Size variant */
   size?: GSelectSize;
+  /** Visual style variant */
   variant?: GSelectVariant;
+  /** Validation state */
   state?: GSelectState;
+  /** Disable the component */
   disabled?: boolean;
+  /** Input placeholder text */
   placeholder?: string;
+  /** Placeholder for the search input */
   searchPlaceholder?: string;
+  /** Close the dropdown after selecting an option */
   closeOnSelect?: boolean;
 }>();
 
@@ -255,18 +272,9 @@ watch(visibleList, (list) => {
 
 const displayValue = computed(() => {
   if (!selected.value) return undefined;
+
   return labels.get(selected.value) ?? selected.value;
 });
-
-function select (value: string) {
-  selected.value = value;
-  search.value = '';
-  if (!closeOnSelect) {
-    focusSearchBox();
-  } else {
-    dropdownRef.value?.hide();
-  }
-}
 
 function handleClose () {
   search.value = '';
@@ -279,6 +287,22 @@ function register (value: string, options: SelectOptionRegistration) {
   if (options.visible) {
     visibleValues.add(value);
   }
+}
+
+function select (value: string) {
+  selected.value = value;
+  search.value = '';
+  if (!closeOnSelect) {
+    focusSearchBox();
+  } else {
+    dropdownRef.value?.hide();
+  }
+}
+
+function unregister (value: string) {
+  labels.delete(value);
+  colors.delete(value);
+  visibleValues.delete(value);
 }
 
 function update (value: string, options: SelectOptionRegistration) {
@@ -294,12 +318,6 @@ function update (value: string, options: SelectOptionRegistration) {
   }
 }
 
-function unregister (value: string) {
-  labels.delete(value);
-  colors.delete(value);
-  visibleValues.delete(value);
-}
-
 provide(SELECT_KEY, {
   size,
   variant,
@@ -312,8 +330,26 @@ provide(SELECT_KEY, {
   unregister,
 });
 
+function focusSearchBox () {
+  requestAnimationFrame(() => {
+    searchRef.value?.focus();
+  });
+}
+
+function handleBackspaceWhenEmpty (event: KeyboardEvent) {
+  const target = event.target;
+
+  if (!(target instanceof HTMLInputElement) || target.value !== '') {
+    return;
+  }
+  if (selected.value !== undefined) {
+    selected.value = undefined;
+  }
+}
+
 function handleKeydown (event: KeyboardEvent) {
   const list = visibleList.value;
+
   if (!list.length) return;
 
   const index = focusedValue.value !== undefined ? list.indexOf(focusedValue.value) : -1;
@@ -330,22 +366,6 @@ function handleKeydown (event: KeyboardEvent) {
       select(focusedValue.value);
     }
   }
-}
-
-function handleBackspaceWhenEmpty (event: KeyboardEvent) {
-  const target = event.target;
-  if (!(target instanceof HTMLInputElement) || target.value !== '') {
-    return;
-  }
-  if (selected.value !== undefined) {
-    selected.value = undefined;
-  }
-}
-
-function focusSearchBox () {
-  requestAnimationFrame(() => {
-    searchRef.value?.focus();
-  });
 }
 </script>
 

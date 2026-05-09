@@ -2,10 +2,10 @@
   <div
     v-bind="$attrs"
     :id="id"
+    class="code-block"
     :class="[
-      'code-block',
       {
-        'code-block--scroll': !wordWrap,
+        'code-block--scroll': noWordWrap,
         [highlightTheme]: true,
       },
     ]"
@@ -18,9 +18,8 @@
     }"
   >
     <div
-      v-if="showHeader"
+      v-if="!hideHeader"
       class="code-header"
-      :style="prominence === GProminence.Primary ? invertedTokens : undefined"
     >
       <span
         class="code-title"
@@ -75,7 +74,9 @@
             :key="i"
           >
 <GRangeItem1D
-              v-slot="{ selected, isPosition }"
+              v-slot="{
+                selected, isPosition,
+              }"
               :index="i"
             ><span
               :id="`${id}-L${i + 1}`"
@@ -140,7 +141,6 @@ import {
 } from '@/types';
 import {
   prominenceTokens,
-  invertTokens,
 } from '@/utils/prominence';
 
 defineOptions({
@@ -154,20 +154,28 @@ const {
   code: rawCode,
   language,
   showLineNumbers = false,
-  wordWrap = true,
-  showHeader = true,
+  noWordWrap = false,
+  hideHeader = false,
   prominence = GProminence.Tertiary,
   semantic = GSemantic.Neutral,
   highlightTheme = GHighlightTheme.Github,
 } = defineProps<{
+  /** HTML id attribute */
   id: string;
+  /** Optional title shown in the code block header */
   title?: string;
+  /** Optional icon shown in the header */
   icon?: GIconName;
+  /** Source code to display */
   code: string;
+  /** Programming language for syntax highlighting */
   language: GCodeLanguage;
+  /** Whether to show line numbers */
   showLineNumbers?: boolean;
-  wordWrap?: boolean;
-  showHeader?: boolean;
+  /** Whether to wrap long lines */
+  noWordWrap?: boolean;
+  /** Whether to hide the header bar */
+  hideHeader?: boolean;
   /** Prominence level: tertiary (default), secondary (tinted bg), primary (filled header) */
   prominence?: GProminence;
   /** Color role for block border, header, and language label */
@@ -178,7 +186,6 @@ const {
 
 /* Theme */
 const tokens = computed(() => prominenceTokens(prominence, semantic));
-const invertedTokens = computed(() => invertTokens(semantic));
 
 /* Human-friendly language label */
 const languageLabel = computed(() => GCodeLanguageLabel[language]);
@@ -193,6 +200,7 @@ function clearLineSelection () {
 const code = computed(() => {
   // FIXME: don't do this, should use CSS
   let result = rawCode.replace('\n\n', '\n \n'); // Empty lines have smaller sizes than others... so we add a whitespace
+
   if (rawCode.startsWith('\n')) {
     result = rawCode.slice(1);
   } else if (rawCode.startsWith('\r\n')) {
@@ -204,6 +212,7 @@ const code = computed(() => {
   } else if (result.endsWith('\n')) {
     result = result.slice(0, -1);
   }
+
   return result;
 });
 
@@ -212,6 +221,7 @@ const highlightedLines = computed(() => {
     language: language,
   }).value;
   const sanitized = DOMPurify.sanitize(highlighted);
+
   return sanitized.split(/(?:\n|\r\n)/);
 });
 
@@ -227,9 +237,11 @@ async function clickCopyButton () {
 }
 </script>
 
+<!-- eslint-disable -->
 <style lang="scss">
 @use './themes.scss';
 </style>
+<!-- eslint-enable -->
 
 <style scoped>
 @reference '@/style.css';

@@ -7,12 +7,12 @@ import type {
   Ref,
 } from 'vue';
 
+export type Position1D = 'start' | 'end' | 'middle' | 'only';
+
 export interface Range1D {
   start: number;
   end: number;
 }
-
-export type Position1D = 'start' | 'end' | 'middle' | 'only';
 
 export interface RangeSelectionContext1D {
   selection: Ref<Range1D | undefined>;

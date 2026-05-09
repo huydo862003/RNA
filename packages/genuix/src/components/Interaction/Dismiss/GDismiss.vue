@@ -1,9 +1,8 @@
 <template>
   <div
-    v-bind="$attrs"
-    :id="id"
     v-dismiss="onDismiss"
-    :class="'contents'"
+    v-bind="$attrs"
+    class="contents"
   >
     <slot />
   </div>
@@ -24,23 +23,24 @@ defineOptions({
   inheritAttrs: false,
 });
 
-// A more customizable version of v-dismiss
-const emit = defineEmits<{
-  (name: 'dismiss', event: Event): void; // event is the one that causes the dismiss
-}>();
-
 const {
-  id = undefined,
   options = {},
 } = defineProps<{
-  id?: string;
+  /** The dismiss options */
   options?: {
+    /** The ignored elements: clicking on these would not fire a dismiss */
     ignore?: (HTMLElement | null)[];
   };
 }>();
 
+// A more customizable version of v-dismiss
+const emit = defineEmits<{
+  dismiss: [event: Event]; // event is the one that causes the dismiss
+}>();
+
 async function onDismiss (event: Event) {
   let focusedElement: unknown = null;
+
   if (event.type === 'click' || event.type === 'pointerdown') {
     focusedElement = event.target;
   } else if (event.type === 'focusout') {

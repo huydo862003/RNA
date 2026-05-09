@@ -37,6 +37,7 @@ export default defineConfig({
     rollupOptions: {
       external: [
         'vue',
+        'pinia',
         '@phosphor-icons/vue',
       ],
       output: {

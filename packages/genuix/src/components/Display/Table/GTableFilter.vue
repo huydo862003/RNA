@@ -39,13 +39,14 @@ defineOptions({
   inheritAttrs: false,
 });
 
-const context = inject(TABLE_KEY)!;
-
 const {
   placeholder = 'Filter...',
 } = defineProps<{
+  /** Input placeholder text */
   placeholder?: string;
 }>();
+
+const context = inject(TABLE_KEY)!;
 
 const filter = computed({
   get: () => context.filter.value,
@@ -58,7 +59,7 @@ const filter = computed({
 
 @layer components {
 .table-filter {
-  @apply flex items-center gap-xs px-sm py-xs rounded-md border gui-neutral-border-subtle gui-neutral-bg-hover w-full;
+  @apply flex items-center gap-xs px-sm py-xs rounded-md border gui-neutral-border-subtle w-full;
   margin-bottom: var(--spacing-sm);
 }
 

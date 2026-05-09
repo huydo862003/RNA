@@ -3,7 +3,7 @@
     v-if="visibleCount > 0"
     v-bind="$attrs"
     :id="id"
-    :class="'select-group'"
+    class="select-group"
     role="group"
     :aria-label="label"
   >
@@ -41,7 +41,9 @@ const {
   id = undefined,
   label = undefined,
 } = defineProps<{
+  /** HTML id attribute */
   id?: string;
+  /** Display label for the option group */
   label?: string;
 }>();
 
@@ -75,21 +77,3 @@ provide(SELECT_KEY, {
   },
 });
 </script>
-
-<style>
-@reference '@/style.css';
-
-@layer components {
-.select-group {
-  @apply flex flex-col mb-sm;
-}
-
-.select-group + .select-group {
-  @apply gui-neutral-border-subtle border-t border-solid;
-}
-
-.select-group-label {
-  @apply text-xs gui-neutral-fg-muted px-sm pt-sm pb-xs;
-}
-}
-</style>

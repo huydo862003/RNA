@@ -1,6 +1,5 @@
 <template>
   <GDropdown
-    ref="dropdownRef"
     :arrow="false"
     placement="bottom-start"
     :distance="-(triggerHeight || 0)"
@@ -8,13 +7,17 @@
     @hide="handleClose"
     @show-end="focusSearchBox"
   >
-    <template #default="{ isOpen }">
+    <template
+      #default="{
+        isOpen,
+      }"
+    >
       <div
         :id="id"
         ref="triggerRef"
         v-bind="$attrs"
+        class="multiselect-trigger"
         :class="[
-          'multiselect-trigger',
           `multiselect-trigger-${size}`,
           `multiselect-trigger--${isOpen ? 'open' : 'closed'}`,
           isPill ? 'multiselect-trigger--pill' : 'multiselect-trigger--box',
@@ -38,7 +41,9 @@
             <template #left>
               <span
                 class="multiselect-dot"
-                :style="{ background: dotColor(colors.get(value)) }"
+                :style="{
+                  background: dotColor(colors.get(value)),
+                }"
               />
             </template>
             {{ labels.get(value) ?? value }}
@@ -83,16 +88,18 @@
               <template #left>
                 <span
                   class="multiselect-dot"
-                  :style="{ background: dotColor(colors.get(val)) }"
+                  :style="{
+                    background: dotColor(colors.get(val)),
+                  }"
                 />
               </template>
               {{ labels.get(val) ?? val }}
               <template #right>
                 <button
-                  class="multiselect-pill-close"
                   type="button"
+                  class="multiselect-pill-close"
                   aria-label="Remove"
-                  @click.stop="deselect(val)"
+                  @click.stop="() => deselect(val)"
                 >
                   <GIcon :name="GIconName.X" />
                 </button>
@@ -107,10 +114,10 @@
             >
               {{ labels.get(val) ?? val }}
               <button
-                class="multiselect-pill-close"
                 type="button"
+                class="multiselect-pill-close"
                 aria-label="Remove"
-                @click.stop="deselect(val)"
+                @click.stop="() => deselect(val)"
               >
                 <GIcon :name="GIconName.X" />
               </button>
@@ -127,13 +134,13 @@
           >
         </div>
         <template v-if="!allSelected">
-          <p class="text-xs m-sm mb-xs font-extralight gui-neutral-fg-muted select-none">
+          <p class="font-extralight m-sm mb-xs text-xs gui-neutral-fg-muted select-none">
             {{ visibleCount > 0 ? 'Select an option' : 'No option found' }}
           </p>
           <div
             ref="menuRef"
+            class="multiselect-menu"
             :class="{
-              'multiselect-menu': true,
               'multiselect-menu--empty': visibleCount === 0,
             }"
             role="listbox"
@@ -144,7 +151,7 @@
     </template>
   </GDropdown>
   <!-- Options always render for label/color registration, teleported into popper menu when available -->
-  <div v-show="false">
+  <div hidden>
     <Teleport
       :to="menuElement"
       :disabled="!menuElement"
@@ -217,12 +224,19 @@ const {
   placeholder = 'Empty',
   searchPlaceholder = 'Select an option',
 } = defineProps<{
+  /** HTML id attribute */
   id?: string;
+  /** Size variant */
   size?: GMultiSelectSize;
+  /** Visual style variant */
   variant?: GMultiSelectVariant;
+  /** Validation state */
   state?: GMultiSelectState;
+  /** Disable the component */
   disabled?: boolean;
+  /** Input placeholder text */
   placeholder?: string;
+  /** Placeholder for the search input */
   searchPlaceholder?: string;
 }>();
 
@@ -254,56 +268,39 @@ watch(visibleList, (list) => {
   }
 });
 
-function dotColor (pillColor?: GPillColor) {
-  return PILL_COLORS[pillColor ?? GPillColor.Gray].solid;
-}
-
-function toggle (value: string) {
-  const index = selected.value.indexOf(value);
-  if (0 <= index) {
-    selected.value = selected.value.filter((value_) => value_ !== value);
-  } else {
-    selected.value = [
-      ...selected.value,
-      value,
-    ];
-  }
-  focusSearchBox();
-}
-
 function deselect (value: string) {
   selected.value = selected.value.filter((value_) => value_ !== value);
 }
 
-function register (value: string, options: MultiSelectOptionRegistration) {
-  labels.set(value, options.label);
-  colors.set(value, options.color);
-  if (options.visible) {
-    visibleValues.add(value);
+function dotColor (pillColor?: GPillColor) {
+  return PILL_COLORS[pillColor ?? GPillColor.Gray].solid;
+}
+
+function focusSearchBox () {
+  requestAnimationFrame(() => {
+    searchRef.value?.focus();
+  });
+}
+
+function handleBackspaceWhenEmpty (event: KeyboardEvent) {
+  const target = event.target;
+
+  if (!(target instanceof HTMLInputElement) || target.value !== '') {
+    return;
+  }
+  if (0 < selected.value.length) {
+    selected.value = selected.value.slice(0, -1);
   }
 }
 
-function update (value: string, options: MultiSelectOptionRegistration) {
-  labels.set(value, options.label);
-  colors.set(value, options.color);
-
-  const wasVisible = visibleValues.has(value);
-
-  if (options.visible && !wasVisible) {
-    visibleValues.add(value);
-  } else if (!options.visible && wasVisible) {
-    visibleValues.delete(value);
-  }
-}
-
-function unregister (value: string) {
-  labels.delete(value);
-  colors.delete(value);
-  visibleValues.delete(value);
+function handleClose () {
+  search.value = '';
+  focusedValue.value = undefined;
 }
 
 function handleKeydown (event: KeyboardEvent) {
   const list = visibleList.value;
+
   if (!list.length) return;
 
   const index = focusedValue.value !== undefined ? list.indexOf(focusedValue.value) : -1;
@@ -322,24 +319,44 @@ function handleKeydown (event: KeyboardEvent) {
   }
 }
 
-function focusSearchBox () {
-  requestAnimationFrame(() => {
-    searchRef.value?.focus();
-  });
-}
-
-function handleClose () {
-  search.value = '';
-  focusedValue.value = undefined;
-}
-
-function handleBackspaceWhenEmpty (event: KeyboardEvent) {
-  const target = event.target;
-  if (!(target instanceof HTMLInputElement) || target.value !== '') {
-    return;
+function register (value: string, options: MultiSelectOptionRegistration) {
+  labels.set(value, options.label);
+  colors.set(value, options.color);
+  if (options.visible) {
+    visibleValues.add(value);
   }
-  if (0 < selected.value.length) {
-    selected.value = selected.value.slice(0, -1);
+}
+
+function toggle (value: string) {
+  const index = selected.value.indexOf(value);
+
+  if (0 <= index) {
+    selected.value = selected.value.filter((value_) => value_ !== value);
+  } else {
+    selected.value = [
+      ...selected.value,
+      value,
+    ];
+  }
+  focusSearchBox();
+}
+
+function unregister (value: string) {
+  labels.delete(value);
+  colors.delete(value);
+  visibleValues.delete(value);
+}
+
+function update (value: string, options: MultiSelectOptionRegistration) {
+  labels.set(value, options.label);
+  colors.set(value, options.color);
+
+  const wasVisible = visibleValues.has(value);
+
+  if (options.visible && !wasVisible) {
+    visibleValues.add(value);
+  } else if (!options.visible && wasVisible) {
+    visibleValues.delete(value);
   }
 }
 

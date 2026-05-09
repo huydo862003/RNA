@@ -6,7 +6,7 @@
  * @tokens Border radius
  * @presenter BorderRadius
  */
-@theme {
+@theme static {
   /* Snapped to 2/4px grid for consistency with spacing */
   --radius-1: 2px;
   --radius-2: 4px;

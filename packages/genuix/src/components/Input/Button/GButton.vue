@@ -2,10 +2,13 @@
   <button
     v-bind="$attrs"
     :id="id"
+    type="button"
+    class="btn"
     :class="[
-      'btn',
       `btn-${size}`,
-      { 'is-loading': loading },
+      {
+        'is-loading': loading,
+      },
     ]"
     :style="{
       '--_bg': tokens.bg,
@@ -59,11 +62,17 @@ const {
   disabled = false,
   loading = false,
 } = defineProps<{
+  /** HTML id attribute */
   id?: string;
+  /** Visual prominence */
   prominence?: GButtonProminence;
+  /** Color role */
   semantic?: GButtonSemantic;
+  /** Size variant */
   size?: GButtonSize;
+  /** Disable the component */
   disabled?: boolean;
+  /** Show a loading spinner and disable the button */
   loading?: boolean;
 }>();
 
@@ -79,6 +88,7 @@ const spinnerSize = computed(() => {
     [GButtonSize.Lg]: GSpinnerSize.Md,
     [GButtonSize.Xl]: GSpinnerSize.Md,
   };
+
   return map[size];
 });
 </script>

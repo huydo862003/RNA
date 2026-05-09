@@ -6,7 +6,7 @@
  * @tokens Font sizes
  * @presenter FontSize
  */
-@theme {
+@theme static {
   /* Font size scale: minor third ratio (1.2)
    * Tuned for monospace (IBM Plex Mono)
    * Base 14px
@@ -18,5 +18,11 @@
   --text-5: 20px;
   --text-6: 24px;
   --text-7: 29px;
+  --text-8: 35px;
+  --text-9: 42px;
+  --text-10: 50px;
+  --text-11: 60px;
+  --text-12: 72px;
+  --text-13: 86px;
 }
 /** @tokens-end */

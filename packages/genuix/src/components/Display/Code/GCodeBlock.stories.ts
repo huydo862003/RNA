@@ -190,7 +190,7 @@ export const AllSemanticsCodeBlockStory: Story = {
   }),
 };
 
-export const AllGProminencesCodeBlockStory: Story = {
+export const AllProminencesCodeBlockStory: Story = {
   args: {
     id: 'prominences',
     language: GCodeLanguage.Bash,
@@ -332,7 +332,7 @@ export const NoHeaderStory: Story = {
     id: 'no-header',
     language: GCodeLanguage.Typescript,
     showLineNumbers: true,
-    showHeader: false,
+    hideHeader: true,
     code: `function hello() {
   console.log("no header");
 }`,

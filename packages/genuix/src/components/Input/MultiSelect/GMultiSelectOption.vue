@@ -3,14 +3,15 @@
     v-if="visible"
     v-bind="$attrs"
     :id="id"
+    type="button"
+    class="multiselect-option"
     :class="[
-      'multiselect-option',
       isSelected && 'multiselect-option--selected',
       isFocused && 'multiselect-option--focused',
     ]"
     role="option"
     :aria-selected="isSelected"
-    @click="context.toggle(value)"
+    @click="toggle"
   >
     <slot>
       <GPill
@@ -22,7 +23,9 @@
         <template #left>
           <span
             class="multiselect-dot"
-            :style="{ background: dotColor }"
+            :style="{
+              background: dotColor,
+            }"
           />
         </template>
         {{ label ?? value }}
@@ -62,20 +65,27 @@ defineOptions({
   inheritAttrs: false,
 });
 
-const context = inject(MULTI_SELECT_KEY)!;
-
 const {
   id = undefined,
   value,
   label = undefined,
   color = undefined,
 } = defineProps<{
+  /** HTML id attribute */
   id?: string;
-  /* Must be unique among the options */
+  /** Must be unique among the options */
   value: string;
+  /** Display label */
   label?: string;
+  /** Pill color for this option */
   color?: GPillColor;
 }>();
+
+const context = inject(MULTI_SELECT_KEY)!;
+
+function toggle () {
+  context.toggle(value);
+}
 
 const PILL_COLOR_VALUES = Object.values(GPillColor);
 
@@ -93,7 +103,9 @@ const isFocused = computed(() => context.focusedValue.value === value);
 const visible = computed(() => {
   if (context.selectedValues.value.includes(value)) return false;
   const query = context.searchValue.value.toLowerCase();
+
   if (!query) return true;
+
   return (label ?? value).toLowerCase().includes(query);
 });
 

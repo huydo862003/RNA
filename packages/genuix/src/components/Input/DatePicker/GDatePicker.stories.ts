@@ -55,6 +55,7 @@ export const BasicDatePickerStory: Story = {
     },
     setup () {
       const date = ref(DateTime.now());
+
       return {
         date,
       };
@@ -87,6 +88,7 @@ export const EmptyDatePickerStory: Story = {
     },
     setup () {
       const date = ref(undefined);
+
       return {
         date,
       };
@@ -119,6 +121,7 @@ export const SizesDatePickerStory: Story = {
     },
     setup () {
       const date = ref(DateTime.now());
+
       return {
         date,
         GDatePickerSize,
@@ -158,6 +161,7 @@ export const CustomPanelDatePickerStory: Story = {
     setup () {
       const date = ref(DateTime.now());
       const includeTime = ref(false);
+
       return {
         date,
         includeTime,
@@ -205,6 +209,7 @@ export const DisabledDatePickerStory: Story = {
     },
     setup () {
       const date = ref(DateTime.now());
+
       return {
         date,
       };

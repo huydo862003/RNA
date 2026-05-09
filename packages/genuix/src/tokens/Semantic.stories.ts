@@ -62,39 +62,6 @@ const tokenGroups = [
   },
 ];
 
-function SwatchRow (role: string) {
-  return h('div', {
-    style: 'margin-bottom: 24px;',
-  }, [
-    h('h3', {
-      style: 'margin-bottom: 8px; font-size: 14px; font-weight: 600; text-transform: capitalize;',
-    }, role),
-    ...tokenGroups.map((group) =>
-      h('div', {
-        style: 'display: flex; align-items: center; gap: 4px; margin-bottom: 4px;',
-      }, [
-        h('code', {
-          style: 'font-size: 11px; color: #666; min-width: 100px;',
-        }, group.label),
-        ...group.steps.map((step) => {
-          const token = `--gui-${role}-${group.suffix}${step}`;
-          const isBorder = group.prop === 'border-color';
-          const isFg = group.prop === 'color';
-          return h('div', {
-            style: `
-              width: 48px; height: 32px;
-              border-radius: 4px;
-              ${isBorder ? `border: 3px solid var(${token}); background: transparent;` : ''}
-              ${isFg ? `background: transparent; color: var(${token}); font-size: 11px; display: flex; align-items: center; justify-content: center; font-weight: 600;` : ''}
-              ${!isBorder && !isFg ? `background: var(${token});` : ''}
-            `,
-            title: token,
-          }, isFg ? 'Aa' : undefined);
-        }),
-      ])),
-  ]);
-}
-
 function Preview () {
   return h('div', [
     ...roles.map(SwatchRow),
@@ -113,6 +80,40 @@ function Preview () {
         title: '--gui-overlay-bg',
       }),
     ]),
+  ]);
+}
+
+function SwatchRow (role: string) {
+  return h('div', {
+    style: 'margin-bottom: 24px;',
+  }, [
+    h('h3', {
+      style: 'margin-bottom: 8px; font-size: 14px; font-weight: 600; text-transform: capitalize;',
+    }, role),
+    ...tokenGroups.map((group) =>
+      h('div', {
+        style: 'display: flex; align-items: center; gap: 4px; margin-bottom: 4px;',
+      }, [
+        h('code', {
+          style: 'font-size: 11px; color: #666; min-width: 100px;',
+        }, group.label),
+        ...group.steps.map((step) => {
+          const token = `--gui-${role}-${group.suffix}${step}`;
+          const isBorder = group.prop === 'border-color';
+          const isFg = group.prop === 'color';
+
+          return h('div', {
+            style: `
+              width: 48px; height: 32px;
+              border-radius: 4px;
+              ${isBorder ? `border: 3px solid var(${token}); background: transparent;` : ''}
+              ${isFg ? `background: transparent; color: var(${token}); font-size: 11px; display: flex; align-items: center; justify-content: center; font-weight: 600;` : ''}
+              ${!isBorder && !isFg ? `background: var(${token});` : ''}
+            `,
+            title: token,
+          }, isFg ? 'Aa' : undefined);
+        }),
+      ])),
   ]);
 }
 

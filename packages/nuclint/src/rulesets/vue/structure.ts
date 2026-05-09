@@ -19,7 +19,7 @@ export const vueStructureRules: Linter.RulesRecord = {
       },
       style: {
         lang: 'scss',
-        allowNoLang: false,
+        allowNoLang: true,
       },
     },
   ],

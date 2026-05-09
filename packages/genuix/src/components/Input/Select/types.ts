@@ -18,11 +18,6 @@ export {
   GSize as GSelectSize,
 } from '@/types';
 
-export enum GSelectVariant {
-  Pill = 'pill',
-  Box = 'box',
-}
-
 export enum GSelectState {
   Default = 'default',
   Error = 'error',
@@ -30,10 +25,9 @@ export enum GSelectState {
   Success = 'success',
 }
 
-export interface SelectOptionRegistration {
-  label: string;
-  color?: GPillColor;
-  visible: boolean;
+export enum GSelectVariant {
+  Pill = 'pill',
+  Box = 'box',
 }
 
 export interface SelectContext {
@@ -48,6 +42,12 @@ export interface SelectContext {
   register (value: string, options: SelectOptionRegistration): void;
   update (value: string, options: SelectOptionRegistration): void;
   unregister (value: string): void;
+}
+
+export interface SelectOptionRegistration {
+  label: string;
+  color?: GPillColor;
+  visible: boolean;
 }
 
 export const SELECT_KEY: InjectionKey<SelectContext> = Symbol('GSelect');

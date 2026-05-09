@@ -1,8 +1,8 @@
 <template>
   <button
+    type="button"
     v-bind="$attrs"
     class="nav-button"
-    type="button"
     role="menuitem"
   >
     <slot />

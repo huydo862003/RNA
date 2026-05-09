@@ -4,6 +4,10 @@
 
 import {
   vueConfig,
+  tailwindConfig,
 } from '@hdnax/nuclint';
 
-export default [...vueConfig];
+export default [
+  ...vueConfig,
+  ...tailwindConfig('./src/style.css'),
+];

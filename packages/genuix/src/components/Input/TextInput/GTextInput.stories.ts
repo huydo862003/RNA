@@ -60,6 +60,7 @@ export const BasicTextInputStory: Story = {
     },
     setup () {
       const value = ref('');
+
       return {
         value,
       };
@@ -92,6 +93,7 @@ export const SizesTextInputStory: Story = {
     },
     setup () {
       const value = ref('Hello');
+
       return {
         value,
         GTextInputSize,
@@ -169,6 +171,7 @@ export const DisabledTextInputStory: Story = {
     },
     setup () {
       const value = ref('Cannot edit this');
+
       return {
         value,
       };
@@ -198,6 +201,7 @@ export const ReadonlyTextInputStory: Story = {
     },
     setup () {
       const value = ref('Read only text');
+
       return {
         value,
       };
@@ -227,6 +231,7 @@ export const RequiredTextInputStory: Story = {
     },
     setup () {
       const value = ref('');
+
       return {
         value,
       };
@@ -260,6 +265,7 @@ export const ValidationTextInputStory: Story = {
       const email = ref('');
       const url = ref('');
       const name = ref('');
+
       return {
         email,
         url,

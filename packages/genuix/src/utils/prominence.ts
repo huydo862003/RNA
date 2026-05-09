@@ -66,20 +66,3 @@ export function prominenceTokens (prominence: GProminence, semantic: GSemantic):
       };
   }
 }
-
-/**
- * Remap `--gui-{semantic}-*` CSS custom properties on a container so
- * child components (buttons, icons, text) stay readable on a solid
- * (Primary prominence) surface. Apply the returned object as `:style`
- * on the container element
- */
-export function invertTokens (semantic: GSemantic): Record<string, string> {
-  return {
-    [`--gui-${semantic}-fg`]: `var(--gui-${semantic}-bg)`,
-    [`--gui-${semantic}-fg-muted`]: `var(--gui-${semantic}-bg-subtle)`,
-    [`--gui-${semantic}-border`]: 'var(--gui-neutral-border)',
-    [`--gui-${semantic}-border-subtle`]: 'var(--gui-neutral-border-subtle)',
-    [`--gui-${semantic}-bg-hover`]: `var(--gui-${semantic}-solid-hover)`,
-    [`--gui-${semantic}-bg-active`]: `var(--gui-${semantic}-solid-hover)`,
-  };
-}

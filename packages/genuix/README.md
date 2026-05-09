@@ -191,3 +191,30 @@ The solution I found is using `sass`:
   }
 }
 ```
+
+## Should Set Explicit Button Type
+
+By default, buttons default to the `submit` type, which is almost always undesriable for SPA apps.
+
+## Transitive Cascading of CSS Variables
+
+When defining inverted color tokens, I encountered this:
+
+```css
+:root {
+  --color-a: var(--color-b);
+}
+
+.child {
+  --color-b: #123456;
+  color: var(--color-a);
+}
+```
+
+I thought `color` would be `#123456`, as `color` is set to `var(--color-a)`, which is originally set to `var(--color-b)`. Therefore, I thought `var(--color-a)` would inherit that.
+
+However, that wasn't the case. Maybe variables in CSS are not simply aliases...
+
+## Tailwind v4 Deprecation of Preprocessors
+
+`scss` no longer works with tailwindcss v4.

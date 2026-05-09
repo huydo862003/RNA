@@ -5,8 +5,13 @@
         <th
           v-for="column in columns"
           :key="column.key"
-          :class="[column.class, { 'table-sortable': column.sortable }]"
-          @click="column.sortable && (column.onSort ? column.onSort(column.key) : context?.handleSort(column.key))"
+          :class="[
+            column.class,
+            {
+              'table-sortable': column.sortable,
+            },
+          ]"
+          @click="() => column.sortable && (column.onSort ? column.onSort(column.key) : context?.handleSort(column.key))"
         >
           <slot
             :name="column.key"
@@ -46,6 +51,7 @@ import GTableSorter from './GTableSorter.vue';
 const {
   columns = [],
 } = defineProps<{
+  /** Column definitions for the table header */
   columns?: GTableColumn[];
 }>();
 
@@ -67,13 +73,9 @@ const context = inject(TABLE_KEY, null);
 }
 
 .table-th-content {
-  display: flex;
+  display: inline-flex;
   align-items: first baseline;
   gap: var(--spacing-xs);
-}
-
-.table-th-content > span:first-child {
-  flex: 1;
 }
 }
 </style>

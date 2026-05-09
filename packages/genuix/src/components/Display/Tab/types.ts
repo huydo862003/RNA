@@ -22,15 +22,15 @@ export enum GTabPlacement {
   Right = 'right',
 }
 
-export interface TabPanelRegistration {
-  label: string;
-  icon?: GIconName;
-}
-
 export interface TabContext {
   activeTab: DeepReadonly<Ref<string | undefined>>;
   register (name: string, registration: TabPanelRegistration): void;
   unregister (name: string): void;
+}
+
+export interface TabPanelRegistration {
+  label: string;
+  icon?: GIconName;
 }
 
 export const TAB_KEY: InjectionKey<TabContext> = Symbol('GTab');

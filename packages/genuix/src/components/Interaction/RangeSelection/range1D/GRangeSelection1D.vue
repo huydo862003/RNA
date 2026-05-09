@@ -32,6 +32,7 @@ import type {
 const {
   count,
 } = defineProps<{
+  /** The number of items in the selection */
   count: number;
 }>();
 
@@ -47,59 +48,11 @@ const cursor = ref<number | undefined>(undefined);
 // Whether we're dragging
 const dragging = ref(false);
 
-// Ranges can be selected out of order, so we need to normalize
-function normalizeRange (from: number, to: number): Range1D {
-  return {
-    start: Math.min(from, to),
-    end: Math.max(from, to),
-  };
-}
-
-// Check if an item falls within the current selection
-function isSelected (index: number): boolean {
-  if (!selection.value) return false;
-  return selection.value.start <= index && index <= selection.value.end;
-}
-
-// Determine where an item sits in the selection (start, end, middle, only)
-function getPosition (index: number): Position1D | undefined {
-  if (!selection.value || !isSelected(index)) return undefined;
-  const {
-    start, end,
-  } = selection.value;
-  if (start === end) return 'only';
-  if (index === start) return 'start';
-  if (index === end) return 'end';
-  return 'middle';
-}
-
-// Check if an item matches a position. 'only' matches both 'start' and 'end'
-function isPosition (index: number, query: Position1D): boolean {
-  const position = getPosition(index);
-  if (!position) return false;
-  if (position === query) return true;
-  switch (position) {
-    case 'only': return query === 'start' || query === 'end';
-    case 'start':
-    case 'end':
-    case 'middle':
-      return false;
-    default: {
-      const _exhaustive: never = position;
-      throw new Error(`Unknown position: ${_exhaustive}`);
-    }
-  }
-}
-
-// Begin a new selection from this item
-function setAnchor (index: number) {
-  anchor.value = index;
-  cursor.value = index;
-  dragging.value = true;
-  selection.value = {
-    start: index,
-    end: index,
-  };
+// Reset selection
+function clearSelection () {
+  anchor.value = undefined;
+  cursor.value = undefined;
+  selection.value = undefined;
 }
 
 // Stop drag interaction
@@ -117,10 +70,52 @@ function extendSelection (index: number) {
   }
 }
 
-// Move cursor one step backward (left/up)
-function movePrevious (extend: boolean) {
+// Determine where an item sits in the selection (start, end, middle, only)
+function getPosition (index: number): Position1D | undefined {
+  if (!selection.value || !isSelected(index)) return undefined;
+  const {
+    start, end,
+  } = selection.value;
+
+  if (start === end) return 'only';
+  if (index === start) return 'start';
+  if (index === end) return 'end';
+
+  return 'middle';
+}
+
+// Check if an item matches a position. 'only' matches both 'start' and 'end'
+function isPosition (index: number, query: Position1D): boolean {
+  const position = getPosition(index);
+
+  if (!position) return false;
+  if (position === query) return true;
+  switch (position) {
+  case 'only': return query === 'start' || query === 'end';
+  case 'start':
+  case 'end':
+  case 'middle':
+    return false;
+  default: {
+    const _exhaustive: never = position;
+
+    throw new Error(`Unknown position: ${_exhaustive}`);
+  }
+  }
+}
+
+// Check if an item falls within the current selection
+function isSelected (index: number): boolean {
+  if (!selection.value) return false;
+
+  return selection.value.start <= index && index <= selection.value.end;
+}
+
+// Move cursor one step forward (right/down)
+function moveNext (extend: boolean) {
   if (cursor.value === undefined) return;
-  const next = Math.max(0, cursor.value - 1);
+  const next = Math.min(count - 1, cursor.value + 1);
+
   cursor.value = next;
   if (extend) {
     selection.value = normalizeRange(anchor.value!, next);
@@ -133,10 +128,11 @@ function movePrevious (extend: boolean) {
   }
 }
 
-// Move cursor one step forward (right/down)
-function moveNext (extend: boolean) {
+// Move cursor one step backward (left/up)
+function movePrevious (extend: boolean) {
   if (cursor.value === undefined) return;
-  const next = Math.min(count - 1, cursor.value + 1);
+  const next = Math.max(0, cursor.value - 1);
+
   cursor.value = next;
   if (extend) {
     selection.value = normalizeRange(anchor.value!, next);
@@ -147,6 +143,14 @@ function moveNext (extend: boolean) {
       end: next,
     };
   }
+}
+
+// Ranges can be selected out of order, so we need to normalize
+function normalizeRange (from: number, to: number): Range1D {
+  return {
+    start: Math.min(from, to),
+    end: Math.max(from, to),
+  };
 }
 
 // Select all items
@@ -158,11 +162,15 @@ function selectAll () {
   };
 }
 
-// Reset selection
-function clearSelection () {
-  anchor.value = undefined;
-  cursor.value = undefined;
-  selection.value = undefined;
+// Begin a new selection from this item
+function setAnchor (index: number) {
+  anchor.value = index;
+  cursor.value = index;
+  dragging.value = true;
+  selection.value = {
+    start: index,
+    end: index,
+  };
 }
 
 provide(RANGE_SELECTION_1D_KEY, {

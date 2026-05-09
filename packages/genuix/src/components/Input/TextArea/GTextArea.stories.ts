@@ -37,6 +37,7 @@ export const DefaultStory: Story = {
     },
     setup () {
       const text = ref('');
+
       return {
         text,
       };

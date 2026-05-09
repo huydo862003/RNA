@@ -87,8 +87,8 @@ export const Default: Story = {
     template: `
       <GTable :page-size="2">
         <GTableHeader :columns="columns" />
-        <GTableBody>
-          <GTableRow v-for="(row, index) in rows" :key="index" :row-data="row">
+        <GTableBody v-slot="{ rows: visibleRows }">
+          <GTableRow v-for="(row, index) in visibleRows" :key="index" :row-data="row">
             <GTableCell>{{ row.name }}</GTableCell>
             <GTableCell>{{ row.status }}</GTableCell>
             <GTableCell>{{ row.date }}</GTableCell>
@@ -118,8 +118,8 @@ export const NoPagination: Story = {
     template: `
       <GTable>
         <GTableHeader :columns="columns" />
-        <GTableBody>
-          <GTableRow v-for="(row, index) in rows" :key="index" :row-data="row">
+        <GTableBody v-slot="{ rows: visibleRows }">
+          <GTableRow v-for="(row, index) in visibleRows" :key="index" :row-data="row">
             <GTableCell>{{ row.name }}</GTableCell>
             <GTableCell>{{ row.status }}</GTableCell>
             <GTableCell>{{ row.date }}</GTableCell>
@@ -150,8 +150,8 @@ export const WithFilter: Story = {
           <GTableFilter placeholder="Filter rows..." />
         </template>
         <GTableHeader :columns="columns" />
-        <GTableBody>
-          <GTableRow v-for="(row, index) in rows" :key="index" :row-data="row">
+        <GTableBody v-slot="{ rows: visibleRows }">
+          <GTableRow v-for="(row, index) in visibleRows" :key="index" :row-data="row">
             <GTableCell>{{ row.name }}</GTableCell>
             <GTableCell>{{ row.status }}</GTableCell>
             <GTableCell>{{ row.date }}</GTableCell>
@@ -189,8 +189,8 @@ export const CustomHeader: Story = {
             </GTableCell>
           </tr>
         </GTableHeader>
-        <GTableBody>
-          <GTableRow v-for="(row, index) in rows" :key="index" :row-data="row">
+        <GTableBody v-slot="{ rows: visibleRows }">
+          <GTableRow v-for="(row, index) in visibleRows" :key="index" :row-data="row">
             <GTableCell>{{ row.name }}</GTableCell>
             <GTableCell>{{ row.status }}</GTableCell>
             <GTableCell>{{ row.date }}</GTableCell>

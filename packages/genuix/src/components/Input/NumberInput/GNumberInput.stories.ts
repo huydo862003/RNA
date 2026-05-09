@@ -40,6 +40,7 @@ export const DefaultStory: Story = {
     },
     setup () {
       const value = ref(5);
+
       return {
         val: value,
       };
@@ -70,6 +71,7 @@ export const MinMaxStory: Story = {
     },
     setup () {
       const value = ref(0);
+
       return {
         val: value,
       };
@@ -97,6 +99,7 @@ export const SizesStory: Story = {
     },
     setup () {
       const value = ref(42);
+
       return {
         val: value,
         GSize,
@@ -130,6 +133,7 @@ export const StatesStory: Story = {
     },
     setup () {
       const value = ref(5);
+
       return {
         val: value,
         GNumberInputState,
@@ -160,6 +164,7 @@ export const DisabledStory: Story = {
     },
     setup () {
       const value = ref(42);
+
       return {
         val: value,
       };
@@ -185,6 +190,7 @@ export const IntegerStory: Story = {
     },
     setup () {
       const value = ref(0);
+
       return {
         val: value,
       };
@@ -215,6 +221,7 @@ export const NoStepperStory: Story = {
     },
     setup () {
       const value = ref(42);
+
       return {
         val: value,
       };
@@ -245,6 +252,7 @@ export const NegativeValuesStory: Story = {
     },
     setup () {
       const value = ref(0);
+
       return {
         val: value,
       };

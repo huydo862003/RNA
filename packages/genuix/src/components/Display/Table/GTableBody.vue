@@ -1,6 +1,6 @@
 <template>
   <tbody>
-    <slot />
+    <slot :rows="context?.paginatedData.value ?? []" />
   </tbody>
 </template>
 
@@ -8,4 +8,13 @@
 /* #human-slop
  *  https://github.com/huydo862003/Fck-AI-Slop/edit/main/README.md
  */
+
+import {
+  inject,
+} from 'vue';
+import {
+  TABLE_KEY,
+} from './types';
+
+const context = inject(TABLE_KEY, null);
 </script>

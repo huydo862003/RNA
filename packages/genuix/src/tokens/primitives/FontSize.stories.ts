@@ -13,31 +13,55 @@ import {
 const sizes = [
   {
     token: '--text-1',
-    label: 'text-1 (11.1px)',
+    label: 'text-1 (10px)',
   },
   {
     token: '--text-2',
-    label: 'text-2 (13.3px)',
+    label: 'text-2 (12px)',
   },
   {
     token: '--text-3',
-    label: 'text-3 (16px)',
+    label: 'text-3 (14px)',
   },
   {
     token: '--text-4',
-    label: 'text-4 (19.2px)',
+    label: 'text-4 (17px)',
   },
   {
     token: '--text-5',
-    label: 'text-5 (23px)',
+    label: 'text-5 (20px)',
   },
   {
     token: '--text-6',
-    label: 'text-6 (27.6px)',
+    label: 'text-6 (24px)',
   },
   {
     token: '--text-7',
-    label: 'text-7 (33.2px)',
+    label: 'text-7 (29px)',
+  },
+  {
+    token: '--text-8',
+    label: 'text-8 (35px)',
+  },
+  {
+    token: '--text-9',
+    label: 'text-9 (42px)',
+  },
+  {
+    token: '--text-10',
+    label: 'text-10 (50px)',
+  },
+  {
+    token: '--text-11',
+    label: 'text-11 (60px)',
+  },
+  {
+    token: '--text-12',
+    label: 'text-12 (72px)',
+  },
+  {
+    token: '--text-13',
+    label: 'text-13 (86px)',
   },
 ];
 

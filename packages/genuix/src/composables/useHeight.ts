@@ -19,6 +19,7 @@ export function useHeight (elementRef: Ref<HTMLElement | null | undefined>) {
 
     if (!element) {
       height.value = undefined;
+
       return;
     }
 
