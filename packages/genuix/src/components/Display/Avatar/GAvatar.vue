@@ -45,6 +45,12 @@
  */
 
 import {
+  getCurrentInstance, inject, onMounted, onUnmounted,
+} from 'vue';
+import {
+  AVATAR_GROUP_KEY,
+} from '../AvatarGroup/types';
+import {
   GAvatarShape,
 } from './types';
 import type {
@@ -54,8 +60,6 @@ import {
   GSize,
 } from '@/types';
 import GTooltip from '@/components/Overlay/Tooltip/GTooltip.vue';
-import { getCurrentInstance, inject, onMounted, onUnmounted } from 'vue';
-import { AVATAR_GROUP_KEY } from '../AvatarGroup/types';
 
 defineOptions({
   inheritAttrs: false,
@@ -78,6 +82,7 @@ const {
 }>();
 
 const avatarGroup = inject(AVATAR_GROUP_KEY);
+
 onMounted(() => {
   avatarGroup?.register(getCurrentInstance());
 });

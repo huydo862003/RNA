@@ -15,7 +15,7 @@
         <span class="toast-message">{{ toast.message }}</span>
         <button
           v-inverted
-          class="gui-neutral-fg cursor-pointer"
+          class="cursor-pointer gui-neutral-fg"
           :prominence="GButtonProminence.Ghost"
           aria-label="Dismiss"
           @click="() => remove(toast.id)"
@@ -38,15 +38,19 @@
 import {
   ref,
 } from 'vue';
+import type {
+  GToastOptions, GToastSemantic,
+} from './types';
 import GIcon from '@/components/Display/Icon/GIcon.vue';
 import {
   GIconName,
 } from '@/components/Display/Icon/types';
-import { GButtonProminence } from '@/components/Input';
+import {
+  GButtonProminence,
+} from '@/components/Input';
 import {
   vInverted,
-} from '@/directives'
-import { GToastOptions, GToastSemantic } from './types';
+} from '@/directives';
 
 defineOptions({
   inheritAttrs: false,
@@ -64,7 +68,9 @@ const toasts = ref<ToastEntry[]>([]);
 function push (
   message: string,
   semantic: GToastSemantic,
-  { duration = 3000 }: GToastOptions = {},
+  {
+    duration = 3000,
+  }: GToastOptions = {},
 ) {
   const id = nextId++;
 

@@ -10,7 +10,9 @@ import {
   useTemplateRef,
 } from 'vue';
 import GToast from './GToast.vue';
-import { GToastSemantic } from './types';
+import {
+  GToastSemantic,
+} from './types';
 
 const meta = {
   title: 'Components/Overlay/GToast',

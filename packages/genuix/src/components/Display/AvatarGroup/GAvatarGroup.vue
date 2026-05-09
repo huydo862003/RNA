@@ -14,8 +14,12 @@
 </template>
 
 <script setup lang="ts">
-import { computed, provide, ref } from 'vue';
-import { AVATAR_GROUP_KEY } from './types';
+import {
+  computed, provide, ref,
+} from 'vue';
+import {
+  AVATAR_GROUP_KEY,
+} from './types';
 
 /* #human-slop
  *  https://github.com/huydo862003/Fck-AI-Slop/edit/main/README.md
@@ -46,13 +50,15 @@ provide(AVATAR_GROUP_KEY, {
   },
   unregister (avatar: unknown) {
     const index = avatars.value.indexOf(avatar);
-    if (index >= 0) {
+
+    if (0 <= index) {
       --count.value;
       avatars.value.splice(index, 1);
     }
   },
   isVisible (avatar: unknown): boolean {
     const index = avatars.value.indexOf(avatar);
+
     return index < limit;
   },
 });
