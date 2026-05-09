@@ -1,5 +1,6 @@
 <template>
   <GTooltip
+    arrow
     placement="right"
     :show-delay="500"
   >
