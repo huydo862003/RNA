@@ -1,5 +1,11 @@
 # nuclint
 
+## 0.17.2
+
+### Patch Changes
+
+- Patch some problematic configs
+
 ## 0.17.1
 
 ### Patch Changes
