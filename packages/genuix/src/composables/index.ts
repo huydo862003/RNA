@@ -31,12 +31,3 @@ export {
 export {
   useLocalStorage,
 } from './useLocalStorage';
-
-export {
-  useClipboard,
-} from './useClipboard';
-
-export {
-  useBreakpoint,
-  GBreakpoint,
-} from './useBreakpoint';
