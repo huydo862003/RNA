@@ -26,7 +26,8 @@
     "overrides": {
       "@vitest/browser": "^4.1.6",
       "minimatch@>=10.0.0": "^10.2.5",
-      "lodash@>=4.0.0": "^4.18.0"
+      "lodash@>=4.0.0": "^4.18.0",
+      "esbuild@>=0.17.0": "^0.28.1"
     }
   },
   "devDependencies": {
@@ -35,7 +36,7 @@
     "eslint": "^10.5.0",
     "tailwindcss": "^4.2.4",
     "typescript": "^6.0.3",
-    "vite": "^8.0.10",
+    "vite": "^8.0.16",
     "vue-tsc": "^3.2.8"
   }
 }
