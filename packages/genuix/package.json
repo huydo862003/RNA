@@ -71,7 +71,7 @@
     "storybook": "10.3.6",
     "storybook-addon-vue-slots": "^0.9.29",
     "storybook-design-token": "^5.0.0",
-    "vite-plugin-dts": "^5.0.0",
+    "vite-plugin-dts": "^5.0.2",
     "vitest": "^4.1.5"
   }
 }
