@@ -7,6 +7,7 @@ settings:
 overrides:
   '@vitest/browser': ^4.1.6
   minimatch@>=10.0.0: ^10.2.5
+  lodash@>=4.0.0: ^4.18.0
 
 importers:
 
@@ -3788,9 +3789,6 @@ packages:
   lodash.startcase@4.4.0:
     resolution: {integrity: sha512-+WKqsK294HMSc2jEbNgpHpd0JfIBhp7rEV4aqXWqFr6AlXov+SlcgB1Fv01y2kGe3Gc8nMW7VA0SrGuSkRfIEg==}
 
-  lodash@4.17.23:
-    resolution: {integrity: sha512-LgVTMpQtIopCi79SJeDiP0TfWi5CNEc/L/aRdTh3yIvmZXTnheWpKjSZhnvMl8iXbC1tFg9gdHHDMLoV7CnG+w==}
-
   lodash@4.18.1:
     resolution: {integrity: sha512-dMInicTPVE8d1e5otfwmmjlxkZoUpiVLwyeTdUsi/Caj/gfzzblBcCE5sRHV/AsjuCmxWrte2TNGSYuCeCq+0Q==}
 
@@ -5861,7 +5859,7 @@ snapshots:
       '@rushstack/terminal': 0.19.5(@types/node@25.6.0)
       '@rushstack/ts-command-line': 5.1.5(@types/node@25.6.0)
       diff: 8.0.4
-      lodash: 4.17.23
+      lodash: 4.18.1
       minimatch: 10.2.5
       resolve: 1.22.12
       semver: 7.5.4
@@ -5881,7 +5879,7 @@ snapshots:
       '@rushstack/terminal': 0.19.5(@types/node@25.9.3)
       '@rushstack/ts-command-line': 5.1.5(@types/node@25.9.3)
       diff: 8.0.4
-      lodash: 4.17.23
+      lodash: 4.18.1
       minimatch: 10.2.5
       resolve: 1.22.12
       semver: 7.5.4
@@ -9138,9 +9136,6 @@ snapshots:
   lodash.merge@4.6.2: {}
 
   lodash.startcase@4.4.0: {}
-
-  lodash@4.17.23:
-    optional: true
 
   lodash@4.18.1: {}
 
