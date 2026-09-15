@@ -17,33 +17,33 @@
   .dark {
     color-scheme: dark;
 
-    /* Warm neutral dark, synced with Typerighter */
-    --color-neutral-1: #131211;
-    --color-neutral-2: #1e1d1c;
-    --color-neutral-3: #282625;
-    --color-neutral-4: #2f2d2c;
-    --color-neutral-5: #383535;
-    --color-neutral-6: #444141;
-    --color-neutral-7: #545050;
-    --color-neutral-8: #6e6a6a;
-    --color-neutral-9: #7d7979;
-    --color-neutral-10: #9b9797;
-    --color-neutral-11: #bab6b6;
-    --color-neutral-12: #d4d0ce;
+    /* Warm neutral dark, synced with Typedown theme spec */
+    --color-neutral-1: #1A1816;
+    --color-neutral-2: #231F1C;
+    --color-neutral-3: #2E2A26;
+    --color-neutral-4: #363230;
+    --color-neutral-5: #3A3634;
+    --color-neutral-6: #4A4644;
+    --color-neutral-7: #605C5A;
+    --color-neutral-8: #7D7979;
+    --color-neutral-9: #9B9797;
+    --color-neutral-10: #BAB6B4;
+    --color-neutral-11: #BAB6B4;
+    --color-neutral-12: #D4D0CE;
 
-    /* Sienna dark, synced with Typerighter */
-    --color-primary-1: #1a0e09;
-    --color-primary-2: #271610;
-    --color-primary-3: #3e2318;
-    --color-primary-4: #542f1e;
-    --color-primary-5: #6a3d27;
-    --color-primary-6: #804d33;
-    --color-primary-7: #986342;
-    --color-primary-8: #b17a55;
-    --color-primary-9: #c8926a;
-    --color-primary-10: #d8a882;
-    --color-primary-11: #e6be9e;
-    --color-primary-12: #f0d4ba;
+    /* Sienna dark, synced with Typedown theme spec */
+    --color-primary-1: #1A1816;
+    --color-primary-2: #231F1C;
+    --color-primary-3: #2E2A26;
+    --color-primary-4: #3D3330;
+    --color-primary-5: #4A3D38;
+    --color-primary-6: #5C4C44;
+    --color-primary-7: #7A6558;
+    --color-primary-8: #C4885E;
+    --color-primary-9: #C4885E;
+    --color-primary-10: #D4A07A;
+    --color-primary-11: #D4A07A;
+    --color-primary-12: #F0D4C0;
 
     /* Corresponds to `redDark` in Radix UI (See www.radix-ui.com/colors/docs/palette-composition/scales#red) */
     --color-accent-red-1: #191111;

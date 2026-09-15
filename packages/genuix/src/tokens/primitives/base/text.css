@@ -7,19 +7,18 @@
  * @presenter FontSize
  */
 @theme static {
-  /* Font size scale: major third ratio (~1.25)
-   * Synced with Typerighter
-   * Base 17px
+  /* Font size scale, synced with Typedown theme spec
+   * Base 16px, Inter variable
    * */
   --text-1: 11px;
-  --text-2: 14px;
-  --text-3: 15px;
-  --text-4: 17px;
-  --text-5: 21px;
-  --text-6: 26px;
-  --text-7: 33px;
-  --text-8: 41px;
-  --text-9: 51px;
-  --text-10: 80px;
+  --text-2: 12.5px;
+  --text-3: 13.5px;
+  --text-4: 16px;
+  --text-5: 25px;
+  --text-6: 40px;
+  --text-7: 40px;
+  --text-8: 40px;
+  --text-9: 40px;
+  --text-10: 40px;
 }
 /** @tokens-end */

@@ -11,7 +11,7 @@
  * @presenter FontFamily
  */
 @theme static {
-  --font-sans: "Archivo Variable", "Archivo", system-ui, sans-serif;
+  --font-sans: "Inter Variable", "Inter", system-ui, sans-serif;
   --font-mono: "JetBrains Mono Variable", "JetBrains Mono", monospace;
 }
 
@@ -31,16 +31,16 @@
   --text-md: var(--text-4);
   --text-md--line-height: var(--leading-relaxed);
   --text-lg: var(--text-5);
-  --text-lg--line-height: var(--leading-normal);
+  --text-lg--line-height: var(--leading-heading);
   --text-xl: var(--text-6);
-  --text-xl--line-height: var(--leading-normal);
-  --text-2xl: var(--text-7);
+  --text-xl--line-height: var(--leading-tight);
+  --text-2xl: var(--text-6);
   --text-2xl--line-height: var(--leading-tight);
-  --text-3xl: var(--text-8);
+  --text-3xl: var(--text-6);
   --text-3xl--line-height: var(--leading-tight);
-  --text-4xl: var(--text-9);
+  --text-4xl: var(--text-6);
   --text-4xl--line-height: var(--leading-tight);
-  --text-5xl: var(--text-10);
+  --text-5xl: var(--text-6);
   --text-5xl--line-height: var(--leading-tight);
 }
 

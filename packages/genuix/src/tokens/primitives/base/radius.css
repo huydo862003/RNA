@@ -7,9 +7,9 @@
  * @presenter BorderRadius
  */
 @theme static {
-  /* Snapped to 2/4px grid for consistency with spacing */
-  --radius-1: 2px;
-  --radius-2: 4px;
+  /* Synced with Typedown theme spec: 4/6/8px */
+  --radius-1: 4px;
+  --radius-2: 6px;
   --radius-3: 8px;
   --radius-4: 12px;
   --radius-5: 16px;

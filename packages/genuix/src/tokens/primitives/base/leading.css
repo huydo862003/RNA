@@ -7,10 +7,11 @@
  * @presenter LineHeight
  */
 @theme static {
-  /* Unitless ratios, synced with Typerighter */
+  /* Unitless ratios, synced with Typedown theme spec */
   --leading-tight: 1.12;
+  --leading-heading: 1.25;
   --leading-normal: 1.5;
-  --leading-relaxed: 1.65;
-  --leading-loose: 1.7;
+  --leading-relaxed: 1.72;
+  --leading-loose: 1.8;
 }
 /** @tokens-end */

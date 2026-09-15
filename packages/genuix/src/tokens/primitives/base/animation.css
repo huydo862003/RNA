@@ -7,10 +7,12 @@
  * @presenter Animation
  */
 @theme static {
+  /* Synced with Typedown theme spec */
   --duration-fastest: 75ms;
   --duration-fast: 150ms;
   --duration-normal: 200ms;
-  --duration-slow: 300ms;
+  --duration-slow: 240ms;
+  --duration-drawer: 260ms;
 }
 /** @tokens-end */
 
@@ -19,8 +21,8 @@
  * @presenter Easing
  */
 @theme static {
-  /* Visualize at cubic-bezier.com */
-  --ease-default: cubic-bezier(0.4, 0, 0.2, 1);
+  /* ease-out-quart from Typedown theme spec */
+  --ease-default: cubic-bezier(.33, 1, .68, 1);
   --ease-in: cubic-bezier(0.4, 0, 1, 1);
   --ease-out: cubic-bezier(0, 0, 0.2, 1);
   --ease-in-out: cubic-bezier(0.4, 0, 0.6, 1);
