@@ -1,5 +1,11 @@
 # genuix
 
+## 0.19.0
+
+### Minor Changes
+
+- Resync to typedown token
+
 ## 0.18.1
 
 ### Patch Changes
