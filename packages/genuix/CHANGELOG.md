@@ -1,5 +1,11 @@
 # genuix
 
+## 0.19.1
+
+### Patch Changes
+
+- Scale up semantic text size design tokens
+
 ## 0.19.0
 
 ### Minor Changes
