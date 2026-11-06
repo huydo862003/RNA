@@ -1,5 +1,11 @@
 # nuclint
 
+## 0.18.1
+
+### Patch Changes
+
+- Add some more verbs to allow list
+
 ## 0.18.0
 
 ### Minor Changes
