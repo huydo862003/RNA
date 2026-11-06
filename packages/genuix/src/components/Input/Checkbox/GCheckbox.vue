@@ -63,7 +63,7 @@ import {
   GProminence,
 } from '@/types';
 import {
-  prominenceTokens,
+  getProminenceTokens,
 } from '@/utils/prominence';
 import GIcon from '@/components/Display/Icon/GIcon.vue';
 import {
@@ -100,7 +100,7 @@ const {
   label?: string;
 }>();
 
-const tokens = computed(() => prominenceTokens(GProminence.Primary, semantic));
+const tokens = computed(() => getProminenceTokens(GProminence.Primary, semantic));
 
 const inputRef = useTemplateRef('inputRef');
 

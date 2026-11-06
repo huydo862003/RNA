@@ -47,7 +47,7 @@ import type {
   TextInputPattern,
 } from '@/components/Input/TextInput/types';
 import {
-  prominenceTokens,
+  getProminenceTokens,
 } from '@/utils/prominence';
 import {
   GProminence,
@@ -103,7 +103,7 @@ const {
 
 }>();
 
-const tokens = prominenceTokens(GProminence.Ghost, GSemantic.Neutral);
+const tokens = getProminenceTokens(GProminence.Ghost, GSemantic.Neutral);
 
 /* Input state */
 const effectiveState = computed(() => {

@@ -25,7 +25,7 @@ import DOMPurify from 'dompurify';
 import katex from 'katex';
 import '@/fonts/katex.css';
 import {
-  prominenceTokens,
+  getProminenceTokens,
 } from '@/utils/prominence';
 import {
   GProminence,
@@ -52,7 +52,7 @@ const {
   semantic?: GSemantic;
 }>();
 
-const tokens = computed(() => prominenceTokens(prominence, semantic));
+const tokens = computed(() => getProminenceTokens(prominence, semantic));
 
 const rendered = computed(() => {
   try {

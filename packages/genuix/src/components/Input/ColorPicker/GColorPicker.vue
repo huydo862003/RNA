@@ -82,7 +82,7 @@ import {
   GColorPickerSize,
 } from './types';
 import {
-  prominenceTokens,
+  getProminenceTokens,
 } from '@/utils/prominence';
 import {
   GProminence, GSemantic,
@@ -112,7 +112,7 @@ const {
 
 const dropdownRef = useTemplateRef('dropdownRef');
 
-const tokens = prominenceTokens(GProminence.Ghost, GSemantic.Neutral);
+const tokens = getProminenceTokens(GProminence.Ghost, GSemantic.Neutral);
 
 const selectedSwatch = computed<ColorSwatch>(() => {
   return colors.find((color) => color.value === color.value) ?? DEFAULT_COLORS[0];

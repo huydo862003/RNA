@@ -47,7 +47,7 @@ import {
   GSpinnerSize,
 } from '@/components/Display/Spinner/types';
 import {
-  prominenceTokens,
+  getProminenceTokens,
 } from '@/utils/prominence';
 
 defineOptions({
@@ -76,7 +76,7 @@ const {
   loading?: boolean;
 }>();
 
-const tokens = computed(() => prominenceTokens(prominence, semantic));
+const tokens = computed(() => getProminenceTokens(prominence, semantic));
 
 const isInactive = computed(() => disabled || loading);
 

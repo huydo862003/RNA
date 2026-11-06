@@ -73,7 +73,7 @@ import {
   GNumberInputState,
 } from './types';
 import {
-  prominenceTokens,
+  getProminenceTokens,
 } from '@/utils/prominence';
 import {
   GProminence,
@@ -134,7 +134,7 @@ const NUMBER_REGEX = /^-?[0-9]*(\.[0-9]*)?$/;
 // Allows partially typed numbers like "-", "3.", "-." so the user can keep typing
 const PARTIAL_NUMBER_REGEX = /^(-?[0-9]*\.?|-?[0-9]*\.[0-9]*)$/;
 
-const tokens = prominenceTokens(GProminence.Ghost, GSemantic.Neutral);
+const tokens = getProminenceTokens(GProminence.Ghost, GSemantic.Neutral);
 
 /* Input state */
 const effectiveState = computed(() => {
@@ -157,7 +157,7 @@ watch(value, (newValue) => {
   // Do not set rawInput.value if it already equals to newValue
   // Reasons:
   //  1. For performance
-  //  2. The user can edit like -100 -> delete 1 -> rawInput becomes -00 -> value becomes 0 -> reset rawInput to 0 -> weird UX
+  //  2. Editing -100 -> delete 1 -> rawInput becomes -00 -> value becomes 0 -> resets rawInput to 0, which is weird UX
   if (parseFloat(rawInput.value) === newValue) return;
   if (newValue === undefined) {
     rawInput.value = '';

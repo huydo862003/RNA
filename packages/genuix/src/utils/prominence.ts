@@ -18,15 +18,14 @@ export interface GProminenceTokens {
   border: string;
 }
 
-/* Compute consistent design-token CSS var references for a given
- * prominence level and semantic role
+/* Compute consistent design-token CSS var references for a given prominence level and semantic role
  *
  * Primary   -> solid bg, contrast fg
  * Secondary -> tinted bg (bg-hover), semantic fg
  * Tertiary  -> transparent bg, semantic fg, subtle border
  * Ghost     -> transparent bg, semantic fg, no border
  */
-export function prominenceTokens (prominence: GProminence, semantic: GSemantic): GProminenceTokens {
+export function getProminenceTokens (prominence: GProminence, semantic: GSemantic): GProminenceTokens {
   switch (prominence) {
     case GProminence.Primary:
       return {

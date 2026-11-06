@@ -26,7 +26,7 @@ import type {
 const selection = defineModel<Range2D | undefined>('selection');
 
 // The current 2D range selection
-// Contains startRow, startCol, endRow, endCol that define a 2D block
+// Contains startRow, startColumn, endRow, endColumn that define a 2D block
 const {
   rows,
   columns,
@@ -77,15 +77,15 @@ function extendSelection (row: number, column: number) {
 function getPosition (row: number, column: number): Position2D | undefined {
   if (!selection.value || !isSelected(row, column)) return undefined;
   const {
-    startRow, startCol, endRow, endCol,
+    startRow, startColumn, endRow, endColumn,
   } = selection.value;
 
-  if (startRow === endRow && startCol === endCol) return 'only';
+  if (startRow === endRow && startColumn === endColumn) return 'only';
 
   const top = row === startRow;
   const bottom = row === endRow;
-  const left = column === startCol;
-  const right = column === endCol;
+  const left = column === startColumn;
+  const right = column === endColumn;
 
   if (top && left) return 'top-left';
   if (top && right) return 'top-right';
@@ -132,7 +132,7 @@ function isSelected (row: number, column: number): boolean {
   if (!selection.value) return false;
   const selection_ = selection.value;
 
-  return selection_.startRow <= row && row <= selection_.endRow && selection_.startCol <= column && column <= selection_.endCol;
+  return selection_.startRow <= row && row <= selection_.endRow && selection_.startColumn <= column && column <= selection_.endColumn;
 }
 
 // Move cursor by delta, or extend from anchor
@@ -150,9 +150,9 @@ function move (dRow: number, dColumn: number, extend: boolean) {
     anchorColumn.value = nextColumn;
     selection.value = {
       startRow: nextRow,
-      startCol: nextColumn,
+      startColumn: nextColumn,
       endRow: nextRow,
-      endCol: nextColumn,
+      endColumn: nextColumn,
     };
   }
 }
@@ -177,9 +177,9 @@ function moveUp (extend: boolean) {
 function normalizeRange (r1: number, c1: number, r2: number, c2: number): Range2D {
   return {
     startRow: Math.min(r1, r2),
-    startCol: Math.min(c1, c2),
+    startColumn: Math.min(c1, c2),
     endRow: Math.max(r1, r2),
-    endCol: Math.max(c1, c2),
+    endColumn: Math.max(c1, c2),
   };
 }
 
@@ -189,9 +189,9 @@ function selectAll () {
   anchorColumn.value = 0;
   selection.value = {
     startRow: 0,
-    startCol: 0,
+    startColumn: 0,
     endRow: rows - 1,
-    endCol: columns - 1,
+    endColumn: columns - 1,
   };
 }
 
@@ -204,9 +204,9 @@ function setAnchor (row: number, column: number) {
   dragging.value = true;
   selection.value = {
     startRow: row,
-    startCol: column,
+    startColumn: column,
     endRow: row,
-    endCol: column,
+    endColumn: column,
   };
 }
 

@@ -71,7 +71,10 @@ function setup (element: HTMLElement, handler: (event: Event) => void) {
       if (isEventTriggeredOutside(element, event)) dismiss(event);
     };
 
-    document.addEventListener('pointerdown', listener, true); // Triggered during the "capturing phase", so the listener is triggered first before the event ever reaches the element, allowing us to peak into the path before the event ever triggers anything else. This is needed because we don't want the listener to trigger on the bubbled event
+    // Use the capturing phase so the listener fires before the event reaches the element
+    // This lets us inspect the event path before anything else handles it
+    // Avoids triggering on the bubbled event
+    document.addEventListener('pointerdown', listener, true);
     listeners.push({
       target: document,
       event: 'pointerdown',

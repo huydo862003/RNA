@@ -187,7 +187,7 @@ import {
   GKbdKeyName,
 } from '@/components/Display/Kbd/types';
 import {
-  prominenceTokens,
+  getProminenceTokens,
 } from '@/utils/prominence';
 import {
   GProminence,
@@ -242,7 +242,7 @@ const {
 
 const isPill = computed(() => variant === GMultiSelectVariant.Pill);
 
-const tokens = prominenceTokens(GProminence.Ghost, GSemantic.Neutral);
+const tokens = getProminenceTokens(GProminence.Ghost, GSemantic.Neutral);
 
 const triggerRef = useTemplateRef('triggerRef');
 const triggerHeight = useHeight(triggerRef);

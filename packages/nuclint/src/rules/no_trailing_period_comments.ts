@@ -30,8 +30,12 @@ export const noTrailingPeriodCommentsRule: Rule.RuleModule = {
 
       if (!trimmed) return;
 
+      // Strip abbreviations (e.g. i.e. etc.) before sentence checks to avoid false positives
+      const withoutAbbrev = trimmed.replace(/\b(?:e\.g\.|i\.e\.|etc\.)\s*/gu, '');
+
       // Multiple sentences: a period followed by a space and an uppercase letter
-      if (/\.\s+[A-Z]/u.test(trimmed)) {
+      // Negative lookbehind excludes numbered list markers (e.g. `1. Item`)
+      if (/(?<!\d)\.\s+[A-Z]/u.test(withoutAbbrev)) {
         context.report({
           loc: {
             line: fileLine,
@@ -43,8 +47,8 @@ export const noTrailingPeriodCommentsRule: Rule.RuleModule = {
         return;
       }
 
-      // Trailing period
-      if (trimmed.endsWith('.')) {
+      // Trailing period: ignore if the line ends with an abbreviation
+      if (trimmed.endsWith('.') && !/\b(?:e\.g\.|i\.e\.|etc\.)$/u.test(trimmed)) {
         context.report({
           loc: {
             line: fileLine,

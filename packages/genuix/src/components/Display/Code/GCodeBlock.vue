@@ -140,7 +140,7 @@ import {
   GProminence,
 } from '@/types';
 import {
-  prominenceTokens,
+  getProminenceTokens,
 } from '@/utils/prominence';
 
 defineOptions({
@@ -188,7 +188,7 @@ const {
 }>();
 
 /* Theme */
-const tokens = computed(() => prominenceTokens(prominence, semantic));
+const tokens = computed(() => getProminenceTokens(prominence, semantic));
 
 /* Human-friendly language label */
 const languageLabel = computed(() => GCodeLanguageLabel[language]);

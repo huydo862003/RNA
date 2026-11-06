@@ -42,7 +42,7 @@ export function useKbdShortcut (
   handler: (event: KeyboardEvent) => void,
 ) {
   function onKeydown (event: KeyboardEvent) {
-    if (matchesKeys(event, keys)) {
+    if (doesMatchKeys(event, keys)) {
       event.preventDefault();
       handler(event);
     }
@@ -67,7 +67,7 @@ export function useLocalKbdShortcuts (element: TemplateRef<HTMLElement | Compone
 
   function onKeydown (event: KeyboardEvent) {
     for (const entry of entries) {
-      if (matchesKeys(event, entry.keys)) {
+      if (doesMatchKeys(event, entry.keys)) {
         event.preventDefault();
         event.stopPropagation();
         entry.handler(event);
@@ -99,7 +99,7 @@ interface ShortcutEntry {
   handler: (event: KeyboardEvent) => void;
 }
 
-function matchesKeys (event: KeyboardEvent, keys: GKbdKeyName[]): boolean {
+function doesMatchKeys (event: KeyboardEvent, keys: GKbdKeyName[]): boolean {
   const modifiers = keys.filter((key) => MODIFIERS.has(key));
   const nonModifiers = keys.filter((key) => !MODIFIERS.has(key));
 

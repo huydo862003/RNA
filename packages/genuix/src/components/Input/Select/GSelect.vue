@@ -53,7 +53,7 @@
                   <span
                     class="select-dot"
                     :style="{
-                      background: dotColor(colors.get(selected)),
+                      background: getDotColor(colors.get(selected)),
                     }"
                   />
                 </template>
@@ -107,7 +107,7 @@
                   <span
                     class="select-dot"
                     :style="{
-                      background: dotColor(colors.get(selected)),
+                      background: getDotColor(colors.get(selected)),
                     }"
                   />
                 </template>
@@ -182,7 +182,7 @@ import {
   GKbdKeyName,
 } from '@/components/Display/Kbd/types';
 import {
-  prominenceTokens,
+  getProminenceTokens,
 } from '@/utils/prominence';
 import {
   GProminence,
@@ -238,7 +238,7 @@ const {
 
 const isPill = computed(() => variant === GSelectVariant.Pill);
 
-const tokens = prominenceTokens(GProminence.Ghost, GSemantic.Neutral);
+const tokens = getProminenceTokens(GProminence.Ghost, GSemantic.Neutral);
 
 const dropdownRef = useTemplateRef('dropdownRef');
 
@@ -256,7 +256,7 @@ const visibleCount = computed(() => visibleValues.size);
 const labels = reactive(new Map<string, string>());
 const colors = reactive(new Map<string, GPillColor | undefined>());
 
-function dotColor (pillColor?: GPillColor) {
+function getDotColor (pillColor?: GPillColor) {
   return PILL_COLORS[pillColor ?? GPillColor.Gray].solid;
 }
 

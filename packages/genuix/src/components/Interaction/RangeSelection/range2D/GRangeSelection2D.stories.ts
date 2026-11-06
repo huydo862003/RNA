@@ -83,8 +83,8 @@ export const SpreadsheetRangeSelection2DStory: Story = {
       <div>
         <div class="text-xs gui-neutral-fg-muted mb-spacing-2">
           {{ selection
-            ? headers[selection.startCol] + (selection.startRow + 1) + ':' + headers[selection.endCol] + (selection.endRow + 1)
-              + ' (' + ((selection.endRow - selection.startRow + 1) * (selection.endCol - selection.startCol + 1)) + ' cells)'
+            ? headers[selection.startColumn] + (selection.startRow + 1) + ':' + headers[selection.endColumn] + (selection.endRow + 1)
+              + ' (' + ((selection.endRow - selection.startRow + 1) * (selection.endColumn - selection.startColumn + 1)) + ' cells)'
             : 'Click and drag to select cells' }}
         </div>
         <GRangeSelection2D ref="rangeRef" :rows="rows.length" :columns="headers.length">

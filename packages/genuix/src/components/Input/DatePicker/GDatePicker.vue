@@ -51,7 +51,7 @@
             <button
               type="button"
               class="datepicker-nav-btn"
-              @click="goToday"
+              @click="goToToday"
             >
               Today
             </button>
@@ -67,7 +67,7 @@
               type="button"
               class="datepicker-nav-btn"
               aria-label="Next month"
-              @click="nextMonth"
+              @click="getNextMonth"
             >
               <GIcon :name="GIconName.ChevronRight" />
             </button>
@@ -81,11 +81,11 @@
           :aria-label="currentMonthLabel"
         >
           <span
-            v-for="d in weekdays"
-            :key="d"
+            v-for="day in weekdays"
+            :key="day"
             role="columnheader"
             class="datepicker-weekday"
-          >{{ d }}</span>
+          >{{ day }}</span>
 
           <!-- Day cells -->
           <button
@@ -133,10 +133,10 @@ import {
 import {
   formatDate,
   parseDate,
-  today,
+  getTodayDateTime,
 } from '@/utils/date';
 import {
-  prominenceTokens,
+  getProminenceTokens,
 } from '@/utils/prominence';
 import {
   GProminence,
@@ -171,7 +171,7 @@ const {
   placeholder?: string;
 }>();
 
-const tokens = prominenceTokens(GProminence.Ghost, GSemantic.Neutral);
+const tokens = getProminenceTokens(GProminence.Ghost, GSemantic.Neutral);
 
 // Displayed date
 const displayDate = ref(placeholder);
@@ -205,7 +205,8 @@ const weekdays = Info.weekdays('short').map((day) => day.slice(0, 2));
 
 const cells = computed(() => {
   const first = startViewDate.value.startOf('month');
-  // luxon weekday: 1=Mon..7=Sun. Grid starts Monday
+  // luxon weekday: 1=Mon..7=Sun
+  // Grid starts Monday
   const startOffset = first.weekday - 1;
 
   const gridStart = first.minus({
@@ -234,7 +235,7 @@ const cells = computed(() => {
   return result;
 });
 
-function nextMonth () {
+function getNextMonth () {
   startViewDate.value = startViewDate.value.plus({
     months: 1,
   });
@@ -262,8 +263,8 @@ function focusDateInput () {
   });
 }
 
-function goToday () {
-  const todayDate = today();
+function goToToday () {
+  const todayDate = getTodayDateTime();
 
   startViewDate.value = todayDate.startOf('month') as DateTime<true>;
   date.value = todayDate;

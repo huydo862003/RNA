@@ -58,7 +58,7 @@ import {
   GProminence,
 } from '@/types';
 import {
-  prominenceTokens,
+  getProminenceTokens,
 } from '@/utils/prominence';
 
 defineOptions({
@@ -92,7 +92,7 @@ const {
   name?: string;
 }>();
 
-const tokens = computed(() => prominenceTokens(GProminence.Primary, semantic));
+const tokens = computed(() => getProminenceTokens(GProminence.Primary, semantic));
 
 function selectValue () {
   selected.value = value;

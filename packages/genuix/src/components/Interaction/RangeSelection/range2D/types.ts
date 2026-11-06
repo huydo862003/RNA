@@ -15,9 +15,9 @@ export type Position2D =
 
 export interface Range2D {
   startRow: number;
-  startCol: number;
+  startColumn: number;
   endRow: number;
-  endCol: number;
+  endColumn: number;
 }
 
 export interface RangeSelectionContext2D {
