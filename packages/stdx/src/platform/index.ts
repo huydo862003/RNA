@@ -11,6 +11,7 @@ export enum PlatformKind {
 
 /* Return the name of the current platform
  **/
+// eslint-disable-next-line complexity
 export function getPlatform (): PlatformKind {
   try {
     if (isBrowser()) {

@@ -4,7 +4,7 @@ import type {
 
 /**
  * Custom ESLint rule to enforce newlines in type literal braces
- * e.g. const a: { a: number; b: number } should have newlines after { and before }
+ * Example: `const a: { a: number; b: number }` should have newlines after `{` and before `}`
  */
 export const typeLiteralNewlineRule: Rule.RuleModule = {
   meta: {
@@ -27,13 +27,15 @@ export const typeLiteralNewlineRule: Rule.RuleModule = {
       }) {
         if (node.members.length === 0) return;
 
-        const openBrace = sourceCode.getFirstToken(node)!;
-        const closeBrace = sourceCode.getLastToken(node)!;
+        const openBrace = sourceCode.getFirstToken(node);
+        const closeBrace = sourceCode.getLastToken(node);
         const firstMember = node.members[0];
         const lastMember = node.members[node.members.length - 1];
 
+        if (!openBrace || !closeBrace) return;
+
         // Check newline after opening brace
-        if (openBrace.loc.end.line === firstMember.loc!.start.line) {
+        if (openBrace.loc.end.line === (firstMember.loc?.start.line ?? -1)) {
           context.report({
             loc: openBrace.loc,
             messageId: 'newlineAfterOpen',
@@ -44,9 +46,9 @@ export const typeLiteralNewlineRule: Rule.RuleModule = {
         }
 
         // Check newline before closing brace
-        const lastToken = sourceCode.getLastToken(lastMember as Rule.Node)!;
+        const lastToken = sourceCode.getLastToken(lastMember as Rule.Node);
 
-        if (lastToken.loc.end.line === closeBrace.loc.start.line) {
+        if (lastToken && lastToken.loc.end.line === closeBrace.loc.start.line) {
           context.report({
             loc: closeBrace.loc,
             messageId: 'newlineBeforeClose',

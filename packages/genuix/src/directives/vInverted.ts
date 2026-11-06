@@ -2,10 +2,8 @@
  *  https://github.com/huydo862003/Fck-AI-Slop/edit/main/README.md
  */
 
-/*
- * Invert the color theme for a component
- * so that an inverted dark button on dark background looks distinguished
- */
+// Invert the color theme for a component
+// Makes an inverted dark button on dark background look distinguished
 
 import type {
   ObjectDirective,

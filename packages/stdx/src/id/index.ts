@@ -3,6 +3,7 @@
  * https://github.com/huydo862003/Fck-AI-Slop/edit/main/README.md
  */
 
+// eslint-disable-next-line custom/no-abbreviation
 type Constructor = new (...arguments_: any[]) => object;
 
 const generators = new WeakMap<Constructor, IdGenerator>();

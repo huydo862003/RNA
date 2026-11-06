@@ -104,9 +104,7 @@ const visible = computed(() => {
   if (context.selectedValues.value.includes(value)) return false;
   const query = context.searchValue.value.toLowerCase();
 
-  if (!query) return true;
-
-  return (label ?? value).toLowerCase().includes(query);
+  return query ? (label ?? value).toLowerCase().includes(query) : true;
 });
 
 const options = computed(() => ({

@@ -22,6 +22,7 @@ export const preferLessThanRule: Rule.RuleModule = {
   create (context) {
     return {
       BinaryExpression (node) {
+        // Swap `a > b` to `b < a`
         if (node.operator === '>') {
           context.report({
             node,
@@ -34,7 +35,10 @@ export const preferLessThanRule: Rule.RuleModule = {
               return fixer.replaceText(node, `${rightText} < ${leftText}`);
             },
           });
-        } else if (node.operator === '>=') {
+        }
+
+        // Swap `a >= b` to `b <= a`
+        if (node.operator === '>=') {
           context.report({
             node,
             messageId: 'avoidGreaterThanOrEqual',

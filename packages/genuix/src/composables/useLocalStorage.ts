@@ -12,7 +12,7 @@ import type {
 
 export function useLocalStorage<T> (key: string, defaultValue: T): Ref<T> {
   const stored = localStorage.getItem(key);
-  const value = ref<T>(stored !== null ? JSON.parse(stored) as T : defaultValue) as Ref<T>;
+  const value = ref<T>(stored === null ? defaultValue : JSON.parse(stored) as T) as Ref<T>;
 
   watch(value, (newValue) => {
     localStorage.setItem(key, JSON.stringify(newValue));

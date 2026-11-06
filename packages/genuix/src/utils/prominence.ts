@@ -19,7 +19,7 @@ export interface GProminenceTokens {
 }
 
 /* Compute consistent design-token CSS var references for a given
- * prominence level and semantic role.
+ * prominence level and semantic role
  *
  * Primary   -> solid bg, contrast fg
  * Secondary -> tinted bg (bg-hover), semantic fg

@@ -4,7 +4,9 @@
 
 import './style.css';
 
+/* eslint-disable custom/no-export-star -- top-level barrel; explicit re-exports would duplicate all component names */
 export * from './types';
 export * from './components';
 export * from './composables';
 export * from './directives';
+/* eslint-enable custom/no-export-star */

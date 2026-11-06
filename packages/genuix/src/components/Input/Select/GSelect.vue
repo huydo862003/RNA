@@ -271,9 +271,7 @@ watch(visibleList, (list) => {
 });
 
 const displayValue = computed(() => {
-  if (!selected.value) return undefined;
-
-  return labels.get(selected.value) ?? selected.value;
+  return selected.value ? labels.get(selected.value) ?? selected.value : undefined;
 });
 
 function handleClose () {
@@ -292,10 +290,10 @@ function register (value: string, options: SelectOptionRegistration) {
 function select (value: string) {
   selected.value = value;
   search.value = '';
-  if (!closeOnSelect) {
-    focusSearchBox();
-  } else {
+  if (closeOnSelect) {
     dropdownRef.value?.hide();
+  } else {
+    focusSearchBox();
   }
 }
 
@@ -352,7 +350,7 @@ function handleKeydown (event: KeyboardEvent) {
 
   if (!list.length) return;
 
-  const index = focusedValue.value !== undefined ? list.indexOf(focusedValue.value) : -1;
+  const index = focusedValue.value === undefined ? -1 : list.indexOf(focusedValue.value);
 
   if (event.key === GKbdKeyName.ArrowDown) {
     event.preventDefault();

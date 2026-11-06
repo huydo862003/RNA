@@ -9,7 +9,10 @@ export interface DataTableColumn<T extends Record<string, unknown> = Record<stri
   label: string;
   /** Text alignment */
   align?: 'left' | 'center' | 'right';
-  /** Fixed column width in pixels. Defaults to 1fr */
+  /**
+   * Fixed column width in pixels
+   * Defaults to 1fr
+   */
   width?: number;
   /** CSS class string for the header cell */
   headerClass?: string;

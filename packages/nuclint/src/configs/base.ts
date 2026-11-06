@@ -16,6 +16,11 @@ import {
   noSpecialCharactersRule,
   typeLiteralNewlineRule,
   noImportAliasRule,
+  noExportStarRule,
+  noAbbreviationRule,
+  noLowercaseBlockCommentRule,
+  functionVerbPrefixRule,
+  noUncommentedBlocksRule,
 } from '../rules';
 import {
   typeSafetyRules,
@@ -55,6 +60,13 @@ export const baseConfig: Linter.Config[] = [
           'no-special-characters': noSpecialCharactersRule,
           'type-literal-newline': typeLiteralNewlineRule,
           'no-import-alias': noImportAliasRule,
+          'no-export-star': noExportStarRule,
+          // Registered twice: error for internal names, warn for exported names
+          'no-abbreviation': noAbbreviationRule,
+          'no-public-abbreviation': noAbbreviationRule,
+          'no-lowercase-block-comment': noLowercaseBlockCommentRule,
+          'function-verb-prefix': functionVerbPrefixRule,
+          'no-uncommented-blocks': noUncommentedBlocksRule,
         },
       },
     },

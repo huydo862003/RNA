@@ -76,12 +76,8 @@ export const exprRules: Linter.RulesRecord = {
   // Prefer < and <= over > and >= for easier left-to-right reading
   'custom/prefer-less-than': 'error',
 
-  /* Enforce fields and separators ([]()) to be on different lines
-   * e.g.
-   * [
-   *   a, b, c
-   * ]
-   * */
+  // Enforce fields and separators ([]()) to be on different lines
+  // Items must each occupy their own line inside arrays and objects
   '@stylistic/object-curly-newline': [
     'error',
     {
@@ -147,6 +143,11 @@ export const exprRules: Linter.RulesRecord = {
       },
     },
   ],
+
+  // Prefer positive conditions (`if (isReady)` is clearer than `if (!isNotReady)`)
+  'unicorn/no-negated-condition': 'warn',
+  // Prefer ternary for simple if-else assignments and returns to reduce verbosity
+  'unicorn/prefer-ternary': 'warn',
 
   // Disallow non-keyboard characters like em dash, smart quotes, arrows
   'custom/no-special-characters': 'error',

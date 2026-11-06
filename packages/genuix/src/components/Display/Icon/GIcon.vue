@@ -38,7 +38,10 @@ const {
   name?: GIconName;
   /** Custom component or SVG to render instead of named icon */
   icon?: Component;
-  /** Accessible alt text. When absent, icon is decorative (aria-hidden) */
+  /**
+   * Accessible alt text
+   * When absent, icon is decorative (aria-hidden)
+   */
   alt?: string;
   /** The weight of the icon */
   weight?: 'thin' | 'light' | 'regular' | 'bold' | 'fill';

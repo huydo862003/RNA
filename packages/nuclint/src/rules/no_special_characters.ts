@@ -45,10 +45,12 @@ export const noSpecialCharactersRule: Rule.RuleModule = {
         const text = sourceCode.getText();
         let match;
 
+        // Scan the full source text for any disallowed Unicode character
         while ((match = SPECIAL_CHAR_REGEX.exec(text)) !== null) {
           const char = match[0];
           const location = sourceCode.getLocFromIndex(match.index);
 
+          // Report with an auto-fix replacing the special char with its ASCII equivalent
           context.report({
             loc: {
               start: location,
@@ -63,10 +65,13 @@ export const noSpecialCharactersRule: Rule.RuleModule = {
               replacement: REPLACEMENTS[char],
             },
             fix (fixer) {
+              // Replace the single offending character with its ASCII equivalent
+              const matchIndex = match?.index ?? 0;
+
               return fixer.replaceTextRange(
                 [
-                  match!.index,
-                  match!.index + 1,
+                  matchIndex,
+                  matchIndex + 1,
                 ],
                 REPLACEMENTS[char],
               );

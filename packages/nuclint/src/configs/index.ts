@@ -1,3 +1,9 @@
-export * from './base';
-export * from './vue';
-export * from './tailwind';
+export {
+  baseConfig,
+} from './base';
+export {
+  tailwindConfig,
+} from './tailwind';
+export {
+  vueConfig,
+} from './vue';

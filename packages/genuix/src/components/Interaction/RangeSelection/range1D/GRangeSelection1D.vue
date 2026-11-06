@@ -106,9 +106,7 @@ function isPosition (index: number, query: Position1D): boolean {
 
 // Check if an item falls within the current selection
 function isSelected (index: number): boolean {
-  if (!selection.value) return false;
-
-  return selection.value.start <= index && index <= selection.value.end;
+  return selection.value ? selection.value.start <= index && index <= selection.value.end : false;
 }
 
 // Move cursor one step forward (right/down)

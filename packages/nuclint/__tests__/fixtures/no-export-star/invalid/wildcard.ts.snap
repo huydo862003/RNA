@@ -1,0 +1,2 @@
+1:1 custom/no-export-star Wildcard re-exports (`export * from`) are not allowed. Explicitly list the names you want to re-export.
+2:1 custom/no-export-star Wildcard re-exports (`export * from`) are not allowed. Explicitly list the names you want to re-export.

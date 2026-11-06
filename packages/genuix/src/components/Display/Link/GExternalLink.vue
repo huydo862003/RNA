@@ -76,9 +76,7 @@ const destination = computed(() =>
   (attrs.href ?? '') as string);
 
 const resolvedTooltip = computed(() => {
-  if (hideTooltip) return '';
-
-  return label || destination.value;
+  return hideTooltip ? '' : label || destination.value;
 });
 </script>
 

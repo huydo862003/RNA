@@ -93,7 +93,10 @@ const {
   rows,
   rowKey = undefined,
 } = defineProps<{
-  /** Column definitions. If omitted, derived from first row's keys */
+  /**
+   * Column definitions
+   * If omitted, derived from first row's keys
+   */
   columns?: DataTableColumn<T>[];
   /** Row data */
   rows: T[];

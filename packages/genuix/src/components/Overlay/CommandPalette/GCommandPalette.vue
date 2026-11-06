@@ -164,11 +164,11 @@ for (const item of items) {
 const filteredItems = computed(() => {
   const searchTerm = query.value.toLowerCase();
 
-  if (!searchTerm) return items;
-
-  return items.filter((item) =>
-    item.label.toLowerCase().includes(searchTerm)
-    || item.group?.toLowerCase().includes(searchTerm));
+  return searchTerm
+    ? items.filter((item) =>
+      item.label.toLowerCase().includes(searchTerm)
+      || item.group?.toLowerCase().includes(searchTerm))
+    : items;
 });
 
 /* Group items by group name */

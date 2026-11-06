@@ -303,7 +303,7 @@ function handleKeydown (event: KeyboardEvent) {
 
   if (!list.length) return;
 
-  const index = focusedValue.value !== undefined ? list.indexOf(focusedValue.value) : -1;
+  const index = focusedValue.value === undefined ? -1 : list.indexOf(focusedValue.value);
 
   if (event.key === GKbdKeyName.ArrowDown) {
     event.preventDefault();

@@ -74,9 +74,7 @@ const fullUrl = computed(() => {
 });
 
 const resolvedTooltip = computed(() => {
-  if (hideTooltip) return '';
-
-  return label || fullUrl.value;
+  return hideTooltip ? '' : label || fullUrl.value;
 });
 
 const ariaLabel = computed(() => label);

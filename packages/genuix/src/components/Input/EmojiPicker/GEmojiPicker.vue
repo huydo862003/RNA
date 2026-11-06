@@ -155,11 +155,7 @@ const filteredCategories = computed(() => {
     })).filter((cat) => 0 < cat.emojis.length)
     : categories;
 
-  if (activeCategory.value && !query) {
-    return filtered.filter((cat) => cat.name === activeCategory.value);
-  }
-
-  return filtered;
+  return activeCategory.value && !query ? filtered.filter((cat) => cat.name === activeCategory.value) : filtered;
 });
 </script>
 

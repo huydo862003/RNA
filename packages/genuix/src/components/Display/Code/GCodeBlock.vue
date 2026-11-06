@@ -180,7 +180,10 @@ const {
   prominence?: GProminence;
   /** Color role for block border, header, and language label */
   semantic?: GCodeBlockSemantic;
-  /** Built-in highlight color theme (auto-switches light/dark). Default: github */
+  /**
+   * Built-in highlight color theme (auto-switches light/dark)
+   * Default: github
+   */
   highlightTheme?: GHighlightTheme;
 }>();
 

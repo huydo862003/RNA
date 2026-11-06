@@ -2,6 +2,12 @@
  * https://github.com/huydo862003/Fck-AI-Slop/edit/main/README.md
  */
 
-export * from './platform';
-export * from './iterator';
-export * from './id';
+export {
+  PlatformKind, getPlatform, isBrowser, isNode,
+} from './platform';
+export {
+  range,
+} from './iterator';
+export {
+  getId,
+} from './id';

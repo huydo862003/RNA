@@ -115,9 +115,7 @@ const isFocused = computed(() => context.focusedValue.value === value);
 const visible = computed(() => {
   const query = context.searchValue.value.toLowerCase();
 
-  if (!query) return true;
-
-  return (label ?? value).toLowerCase().includes(query);
+  return query ? (label ?? value).toLowerCase().includes(query) : true;
 });
 
 const options = computed(() => ({

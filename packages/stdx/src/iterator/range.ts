@@ -4,6 +4,7 @@
 
 // Behavior mostly like Python's range
 // start is inclusive, end is exclusive
+// eslint-disable-next-line custom/function-verb-prefix
 export function* range (start: number, end: number, step: number = 1): Iterable<number> {
   let current = start;
 

@@ -105,7 +105,7 @@ function SwatchRow (role: string) {
               border-radius: 4px;
               ${isBorder ? `border: 3px solid var(${token}); background: transparent;` : ''}
               ${isFg ? `background: transparent; color: var(${token}); font-size: 11px; display: flex; align-items: center; justify-content: center; font-weight: 600;` : ''}
-              ${!isBorder && !isFg ? `background: var(${token});` : ''}
+              ${isBorder || isFg ? '' : `background: var(${token});`}
             `,
             title: token,
           }, isFg ? 'Aa' : undefined);
